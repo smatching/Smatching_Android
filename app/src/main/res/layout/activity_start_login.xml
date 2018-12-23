@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartLoginActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="@color/colorBackground">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorBackground"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <ImageView
+        android:id="@+id/act_start_login_iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/act_main_tv_text"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/act_main_tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumsquarer"
+        android:textSize="14sp"
+        android:text=""
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/center"
+        android:layout_marginBottom="27dp"/>
+
+    <TextView
+        android:id="@+id/center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <RelativeLayout
+        android:id="@+id/act_start_login_rl_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/act_start_login_iv_logo"
+        android:layout_marginTop="25dp">
+
+        <ImageView
+            android:id="@+id/act_start_login_iv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/et_email"
+            android:layout_centerHorizontal="true"/>
+
+        <EditText
+            android:id="@+id/act_start_login_et_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="이메일 주소 입력"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorText"
+            android:textSize="12sp"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:paddingLeft="17dp"
+            android:fontFamily="@font/nanumsquareb"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/act_start_login_rl_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/act_start_login_rl_email"
+        android:layout_marginTop="11dp">
+
+        <ImageView
+            android:id="@+id/act_start_login_iv_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/et_email" />
+
+        <EditText
+            android:id="@+id/act_start_login_et_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호 입력"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorText"
+            android:textSize="12sp"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:paddingLeft="17dp"
+            android:fontFamily="@font/nanumsquareb"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/act_start_login_btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_experience"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/act_start_login_rl_password"
+        android:layout_marginTop="25.2dp"/>
+
+</RelativeLayout>
