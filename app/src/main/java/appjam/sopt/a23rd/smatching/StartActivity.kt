@@ -8,7 +8,6 @@ import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
 import junit.framework.Test
-import org.jetbrains.anko.startActivity
 
 class StartActivity : AppCompatActivity() {
     val networkService: NetworkService by lazy {

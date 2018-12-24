@@ -3,6 +3,7 @@ package appjam.sopt.a23rd.smatching
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
+import android.telecom.Call
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -13,15 +14,9 @@ import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
 import appjam.sopt.a23rd.smatching.post.PostLogInResponse
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_start_login.*
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import javax.security.auth.callback.Callback
 
 class StartLoginActivity : AppCompatActivity() {
 
