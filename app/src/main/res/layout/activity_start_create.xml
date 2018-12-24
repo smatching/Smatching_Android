@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:focusableInTouchMode="true"
+    tools:context=".StartCreateActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorBackground"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="40dp">
+
+            <ImageView
+                android:id="@+id/act_start_create_iv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/et_nickname" />
+
+            <EditText
+                android:id="@+id/act_start_create_et_nickname"
+                android:layout_width="266dp"
+                android:layout_height="39dp"
+                android:hint="닉네임"
+                android:textColorHint="@color/colorTextHint"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:background="@null"
+                android:layout_centerVertical="true"
+                android:paddingLeft="17dp"
+                android:fontFamily="@font/nanumsquareb"
+                android:maxLength="15"
+                android:singleLine="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="10.5dp">
+
+            <ImageView
+                android:id="@+id/act_start_create_iv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/et_email" />
+
+            <EditText
+                android:id="@+id/act_start_create_et_email"
+                android:layout_width="266dp"
+                android:layout_height="39dp"
+                android:hint="이메일 주소"
+                android:textColorHint="@color/colorTextHint"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:background="@null"
+                android:layout_centerVertical="true"
+                android:paddingLeft="17dp"
+                android:fontFamily="@font/nanumsquareb"
+                android:singleLine="true"
+                android:inputType="textEmailAddress"/>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="10.5dp">
+
+            <ImageView
+                android:id="@+id/act_start_create_iv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/et_password" />
+            <!-- 지원하지 않는 글자라 공백인가?
+            android:fontFamily="@font/nanumsquareb" 이게 안됨
+            -->
+            <EditText
+                android:id="@+id/act_start_create_et_password"
+                android:layout_width="266dp"
+                android:layout_height="39dp"
+                android:hint="비밀번호 (8~15자리 숫자, 영문자)"
+                android:textColorHint="@color/colorTextHint"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:background="@null"
+                android:layout_centerVertical="true"
+                android:paddingLeft="17dp"
+                android:maxLength="15"
+                android:singleLine="true"
+                android:inputType="textPassword"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="10.5dp">
+            <ImageView
+                android:id="@+id/act_start_create_iv_passwordagain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/et_password" />
+            <!-- 지원하지 않는 글자라 공백인가?
+            android:fontFamily="@font/nanumsquareb" 이게 안됨
+            -->
+            <EditText
+                android:id="@+id/act_start_create_et_password_confirm"
+                android:layout_width="266dp"
+                android:layout_height="39dp"
+                android:hint="비밀번호 재입력"
+                android:textColorHint="@color/colorTextHint"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:background="@null"
+                android:layout_centerVertical="true"
+                android:paddingLeft="17dp"
+                android:maxLength="15"
+                android:singleLine="true"
+                android:inputType="textPassword"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/act_start_create_iv_createaccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btn_createaccount" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

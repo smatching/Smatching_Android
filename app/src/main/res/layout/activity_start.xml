@@ -46,7 +46,7 @@
         android:id="@+id/act_main_iv_create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/bt_createaccount"
+        android:src="@drawable/bt_createaccount_available"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/center"
         android:layout_marginTop="24dp"/>
