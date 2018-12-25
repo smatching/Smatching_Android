@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import appjam.sopt.a23rd.smatching.R.id.act_start_login_iv_email
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
 import appjam.sopt.a23rd.smatching.post.PostSignUpResponse
@@ -36,6 +37,10 @@ class StartCreateActivity : AppCompatActivity() {
         val email = findViewById<EditText>(R.id.act_start_create_et_email)
         val password = findViewById<EditText>(R.id.act_start_create_et_password)
         val password_confirm = findViewById<EditText>(R.id.act_start_create_et_password_confirm)
+        val password_hint = findViewById<EditText>(R.id.act_start_create_et_password_hint)
+        val password_confirm_hint = findViewById<EditText>(R.id.act_start_create_et_password_confirm_hint)
+
+
         //툴바 부분
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -58,46 +63,60 @@ class StartCreateActivity : AppCompatActivity() {
         }
         nickName.setOnFocusChangeListener(object : View.OnFocusChangeListener {
             override fun onFocusChange(v: View, hasFocus: Boolean) {
-                if (!hasFocus && nickName.getText().toString().length == 0)
-                    act_start_create_iv_nickname.setImageResource(R.drawable.et_nickname)
-                else
+                if (hasFocus || nickName.getText().toString().length != 0)
                     act_start_create_iv_nickname.setImageResource(R.drawable.et_nickname_click)
+                else
+                    act_start_create_iv_nickname.setImageResource(R.drawable.et_nickname)
             }
         })
         email.setOnFocusChangeListener(object : View.OnFocusChangeListener {
             override fun onFocusChange(v: View, hasFocus: Boolean) {
-                if (!hasFocus && email.getText().toString().length == 0)
-                    act_start_create_iv_email.setImageResource(R.drawable.et_email)
-                else {
-                    if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches())
+                if (hasFocus)
+                    act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
+                else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
+                        && email.getText().toString().length != 0)
                         act_start_create_iv_email.setImageResource(R.drawable.et_email_error)
-                    else
-                        act_start_create_iv_email.setImageResource(R.drawable.et_email_click) //이부분 수정해야될듯
-                }
+                else if(android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
+                        && email.getText().toString().length != 0)
+                    act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
+                else if(email.text.toString().length == 0)
+                    act_start_create_iv_email.setImageResource(R.drawable.et_email)
             }
         })
         password.setOnFocusChangeListener(object : View.OnFocusChangeListener {
             override fun onFocusChange(v: View, hasFocus: Boolean) {
-                if (!hasFocus && password.getText().toString().length == 0)
-                    act_start_create_iv_password.setImageResource(R.drawable.et_password)
-                else
+                password.addTextChangedListener(textWatcher)
+                if (hasFocus || password.getText().toString().length != 0) {
                     act_start_create_iv_password.setImageResource(R.drawable.et_password_click)
+                    act_start_create_et_password_hint.setHint("")
+                }
+                else {
+                    act_start_create_iv_password.setImageResource(R.drawable.et_password)
+                    act_start_create_et_password_hint.setHint("비밀번호 (8~15자리 숫자, 영문자)")
+                }
             }
         })
         password_confirm.setOnFocusChangeListener(object : View.OnFocusChangeListener {
             override fun onFocusChange(v: View, hasFocus: Boolean) {
-                if (!hasFocus && password_confirm.getText().toString().length == 0)
-                    act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain)
-                else {
-                    if(password.getText().toString() != password_confirm.getText().toString()) {
+                password_confirm.addTextChangedListener(textWatcher)
+                if (hasFocus) {
+                    act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain_click)
+                    act_start_create_et_password_confirm_hint.setHint("")
+                } else if (password_confirm.getText().toString().length != 0) {
+                    act_start_create_et_password_confirm_hint.setHint("")
+                    if (password.getText().toString() != password_confirm.getText().toString())
                         act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain_error)
-                        password_confirm.addTextChangedListener(textWatcher)
-                    }
                     else
-                        act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain_click) //이부분 수정해야될듯
-                }
-            }
-        })
+                        act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain_click)
+                } else {
+                    act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain)
+                    act_start_create_et_password_confirm_hint.setHint("비밀번호 재입력")
+                    }
+             }
+          }
+        )
+
+
         nickName.addTextChangedListener(textWatcher)
         email.addTextChangedListener(textWatcher)
         password.addTextChangedListener(textWatcher)

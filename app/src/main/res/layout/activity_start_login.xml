@@ -53,7 +53,7 @@
                 android:hint="이메일 주소 입력"
                 android:textColorHint="@color/colorTextHint"
                 android:textColor="@color/colorText"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:background="@null"
                 android:layout_centerVertical="true"
                 android:paddingLeft="17dp"
@@ -76,19 +76,33 @@
                 android:layout_marginTop="12.2dp"
                 android:src="@drawable/et_email" />
             <EditText
-                android:id="@+id/act_start_login_et_password"
+                android:id="@+id/act_start_login_et_password_hint"
                 android:layout_width="266dp"
                 android:layout_height="39dp"
                 android:hint="비밀번호 입력"
+                android:fontFamily="@font/nanumsquarer"
                 android:textColorHint="@color/colorTextHint"
                 android:textColor="@color/colorText"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:background="@null"
                 android:layout_centerVertical="true"
                 android:paddingLeft="17dp"
-                android:fontFamily="@font/nanumsquareb"
                 android:maxLength="15"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:inputType="textPassword"/>
+            <EditText
+                android:id="@+id/act_start_login_et_password"
+                android:layout_width="266dp"
+                android:layout_height="39dp"
+                android:textColorHint="@color/colorTextHint"
+                android:textColor="@color/colorText"
+                android:textSize="14sp"
+                android:background="@null"
+                android:layout_centerVertical="true"
+                android:paddingLeft="17dp"
+                android:maxLength="15"
+                android:singleLine="true"
+                android:inputType="textPassword"/>
         </RelativeLayout>
 
         <ImageView
@@ -98,9 +112,9 @@
             android:layout_below="@+id/act_start_login_password"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="12dp"
-            android:src="@drawable/btn_login_canclick"
-            app:srcCompat="@drawable/btn_login_canclick" />
+            android:layout_marginTop="25.2dp"
+            android:src="@drawable/btn_login"
+            app:srcCompat="@drawable/btn_login" />
 
     </RelativeLayout>
 
