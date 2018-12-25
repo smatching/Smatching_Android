@@ -23,7 +23,7 @@ class StartActivity : AppCompatActivity() {
 
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         var btnCreateAccount = findViewById<View>(R.id.act_main_iv_create_account)
-        var btnLogin = findViewById<View>(R.id.act_main_iv_login)
+        var btnLogin = findViewById<View>(R.id.act_start_login_btn_login)
 
 
 
