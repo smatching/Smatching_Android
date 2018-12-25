@@ -32,7 +32,8 @@ class StartLoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_login)
-        setOnBtnClickListenter()
+
+        setOnBtnClickListener()
 
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         val email = findViewById<EditText>(R.id.act_start_login_et_email)
@@ -81,7 +82,7 @@ class StartLoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun setOnBtnClickListenter(){
+    private fun setOnBtnClickListener(){
         act_start_login_btn_login.setOnClickListener {
             getLoginResponse()
         }
@@ -117,12 +118,11 @@ class StartLoginActivity : AppCompatActivity() {
                         //저번 시간에 배웠던 SharedPreference에 토큰을 저장! 왜냐하면 토큰이 필요한 통신에 사용하기 위해서!!
                         SharedPreferenceController.setAuthorization(this@StartLoginActivity, token)
                         toast(SharedPreferenceController.getAuthorization(this@StartLoginActivity))
-                        startActivity<TestActivity>()
+                        startActivity<BottomNaviActivity>()
                         finish()
                     }
                 }
             })
         }
     }
-
 }

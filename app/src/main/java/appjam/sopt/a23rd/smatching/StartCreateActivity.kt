@@ -31,6 +31,8 @@ class StartCreateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_create)
 
+        setOnBtnClickListenter()
+
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         val nickName = findViewById<EditText>(R.id.act_start_create_et_nickname)
         val email = findViewById<EditText>(R.id.act_start_create_et_email)
@@ -118,39 +120,41 @@ class StartCreateActivity : AppCompatActivity() {
         }
     }
     private fun getSignUpResponse() {
+
         //EditText에 있는 값 받기
-        //if (act_start_create_et_nickname.text.toString().isNotEmpty() && act_start_create_et_email.text.toString().isNotEmpty()
-         //       && act_start_create_et_password.text.toString().isNotEmpty() && act_start_create_et_password_confirm.text.toString().isNotEmpty()) {
+        if (act_start_create_et_nickname.text.toString().isNotEmpty() && act_start_create_et_email.text.toString().isNotEmpty()
+                && act_start_create_et_password.text.toString().isNotEmpty() && act_start_create_et_password_confirm.text.toString().isNotEmpty()) {
+
             val input_nickname: String = act_start_create_et_nickname.text.toString()
             val input_email: String = act_start_create_et_email.text.toString()
             val input_pw: String = act_start_create_et_password.text.toString()
             //Json 형식의 객체 만들기
             var jsonObject = JSONObject()
-            //jsonObject.put("nickname", input_nickname)
-            jsonObject.put("name", input_nickname)
+            jsonObject.put("nickname", input_nickname)
             jsonObject.put("email", input_email)
             jsonObject.put("password", input_pw)
-            //
-            jsonObject.put("part", "안드로이드")
+
+            // jsonObject.put("part", "안드로이드")
             //Gson 라이브러리의 Json Parser을 통해 객체를 Json으로!
             val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
             //통신 시작
             val postSignUpResponse: Call<PostSignUpResponse> =
                     networkService.postSignUpResponse("application/json", gsonObject)
+
             postSignUpResponse.enqueue(object : Callback<PostSignUpResponse> {
                 override fun onFailure(call: Call<PostSignUpResponse>, t: Throwable) {
-                    toast("Fail")
                     Log.e("Sign Up Fail", t.toString())
                 }
 
                 override fun onResponse(call: Call<PostSignUpResponse>, response: Response<PostSignUpResponse>) {
                     if (response.isSuccessful) {
+                        toast(input_nickname + ", " + input_email + ", " + input_pw)
                         toast(response.body()!!.message)
                         finish()
                     }
                 }
             })
         }
-    //}
+    }
 }

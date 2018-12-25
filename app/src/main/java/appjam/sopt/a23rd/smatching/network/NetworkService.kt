@@ -16,8 +16,8 @@ interface NetworkService {
             @Body() body : JsonObject
     ) : Call<PostSignUpResponse>
     //로그인
-    //@POST("/users/login")
-    @POST("/login")
+    @POST("/users/login")
+    //@POST("/login")
     fun postLoginResponse(
             @Header("Content-Type") content_type : String,
             @Body() body : JsonObject

@@ -18,9 +18,9 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
         //자동로그인
-        /*
         if(SharedPreferenceController.getAuthorization(this).isNotEmpty())
-            startActivity<TestActivity>()*/
+            startActivity<BottomNaviActivity>()
+
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         var btnCreateAccount = findViewById<View>(R.id.act_main_iv_create_account)
         var btnLogin = findViewById<View>(R.id.act_main_iv_login)

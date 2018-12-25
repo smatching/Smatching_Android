@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/fragment_search_et_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="검색어를 입력하세요."
+                android:paddingLeft="30dp"
+                android:textSize="18sp"
+                android:textColorHint="@color/colorTextHint"
+                android:textColor="@color/colorText"
+                android:background="@null"
+                android:fontFamily="@font/nanumsquarer"
+                android:maxLength="15"
+                android:singleLine="true"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icn_search"/>
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="8.5dp"
+            android:src="@drawable/line_search"/>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

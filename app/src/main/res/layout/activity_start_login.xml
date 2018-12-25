@@ -87,7 +87,9 @@
             android:id="@+id/act_start_login_iv_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/et_email" />
+            android:src="@drawable/et_email"
+            android:maxLength="15"
+            android:singleLine="true"/>
 
         <EditText
             android:id="@+id/act_start_login_et_password"
@@ -102,7 +104,7 @@
             android:paddingLeft="17dp"
             android:maxLength="15"
             android:singleLine="true"
-            android:fontFamily="@font/nanumsquareb"/>
+            android:inputType="textPassword"/>
 
     </RelativeLayout>
 
@@ -113,6 +115,7 @@
         android:src="@drawable/btn_experience"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/act_start_login_rl_password"
-        android:layout_marginTop="25.2dp"/>
+        android:layout_marginTop="25.2dp"
+        android:clickable="true"/>
 
 </RelativeLayout>
