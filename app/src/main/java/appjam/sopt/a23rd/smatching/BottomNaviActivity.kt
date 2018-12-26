@@ -2,22 +2,22 @@ package appjam.sopt.a23rd.smatching
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.view.ViewPager
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.RelativeLayout
 import android.widget.TextView
-import appjam.sopt.a23rd.smatching.Adapter.FragmentStatePagerAdapter
-import appjam.sopt.a23rd.smatching.Fragment.SearchFragment
-import kotlinx.android.synthetic.main.activity_bottom_navi.*
 import org.jetbrains.anko.toast
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
+import android.view.View
+import android.widget.ImageView
+import appjam.sopt.a23rd.smatching.Fragment.*
+import kotlinx.android.synthetic.main.activity_bottom_navi.*
+
 
 class BottomNaviActivity : AppCompatActivity() {
-    val fr = SearchFragment()// Fragment Instance 설정
-    val fm = supportFragmentManager
-    val fragmentTransaction = fm.beginTransaction()// FragmentManager와 FragmentTransaction 얻어옴
+    var pageNum: Int = 0
+    lateinit var fragment: Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_navi)
@@ -25,58 +25,70 @@ class BottomNaviActivity : AppCompatActivity() {
         //툴바 부분
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         val titleText = findViewById<TextView>(R.id.act_bottom_navi_tv_title)
-        val titleImage = findViewById<TextView>(R.id.act_bottom_navi_tv_title)
+        val titleImage = findViewById<ImageView>(R.id.act_bottom_navi_iv_title)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setTitle("")
-        titleText.setText("홈")
+        titleText.setText("")
 
-        val pager = findViewById<ViewPager>(R.id.vp_bottom_navi_act_frag_pager)
-        pager.adapter = FragmentStatePagerAdapter(supportFragmentManager, 4)
+        addFragment(HomeFragment())
+        act_main_iv_home.isSelected = true
+        act_main_iv_smatching.isSelected = false
+        act_main_iv_talk.isSelected = false
+        act_main_iv_my_page.isSelected = false
+
+        val navi = ll_bottom_navi_act_main
+
+        act_main_rl_home.setOnClickListener{
+            replaceFragment(HomeFragment())
+            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            toolbar.menu.findItem(R.id.menu_search).isVisible = true
+            pageNum = 0
+            act_main_iv_home.isSelected = true
+            act_main_iv_smatching.isSelected = false
+            act_main_iv_talk.isSelected = false
+            act_main_iv_my_page.isSelected = false
+            titleText.setText("")
+            titleImage.visibility = View.VISIBLE
+        }
+        act_main_rl_smatching.setOnClickListener{
+            replaceFragment(CustomFragment())
+            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            toolbar.menu.findItem(R.id.menu_search).isVisible = true
+            pageNum = 1
+            act_main_iv_home.isSelected = false
+            act_main_iv_smatching.isSelected = true
+            act_main_iv_talk.isSelected = false
+            act_main_iv_my_page.isSelected = false
+            titleText.setText("맞춤지원")
+            titleImage.visibility = View.INVISIBLE
+        }
+        act_main_rl_talk.setOnClickListener{
+            replaceFragment(TalkFragment())
+            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            toolbar.menu.findItem(R.id.menu_search).isVisible = true
+            pageNum = 2
+            act_main_iv_home.isSelected = false
+            act_main_iv_smatching.isSelected = false
+            act_main_iv_talk.isSelected = true
+            act_main_iv_my_page.isSelected = false
+            titleText.setText("창업토크")
+            titleImage.visibility = View.INVISIBLE
+        }
+        act_main_rl_my_page.setOnClickListener{
+            replaceFragment(MyPageFragment())
+            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            toolbar.menu.findItem(R.id.menu_search).isVisible = false
+            pageNum = 3
+            act_main_iv_home.isSelected = false
+            act_main_iv_smatching.isSelected = false
+            act_main_iv_talk.isSelected = false
+            act_main_iv_my_page.isSelected = true
+            titleText.setText("마이페이지")
+            titleImage.visibility = View.INVISIBLE
+        }
 
 
-        tl_bottom_navi_act_bottom_menu.setupWithViewPager(pager)
-
-        val bottomNaviLayout  : View = this.layoutInflater.inflate(R.layout.bottom_navigation_tab, null, false)//inflate뷰를 붙여줌
-
-
-
-        pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
-            override fun onPageScrollStateChanged(state: Int) {
-            }
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            }
-            override fun onPageSelected(position: Int) {
-                when(position) {
-                    0 -> {
-                        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-                        toolbar.menu.findItem(R.id.menu_search).isVisible = true
-                        titleText.setText("홈")
-                    }
-                    1 -> {
-                        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-                        toolbar.menu.findItem(R.id.menu_search).isVisible = true
-                        titleText.setText("맞춤지원")
-                    }
-                    2 -> {
-                        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-                        toolbar.menu.findItem(R.id.menu_search).isVisible = true
-                        titleText.setText("창업토크")
-                    }
-                    3 -> {
-                        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-                        toolbar.menu.findItem(R.id.menu_search).isVisible = false
-                        titleText.setText("마이페이지")
-                        //val item = findViewById<View>(R.id.menu_search)
-                    }
-                }
-            }
-        })
-0
-        tl_bottom_navi_act_bottom_menu.getTabAt(0)!!.customView = bottomNaviLayout.findViewById(R.id.bottom_navi_btn_tab_home) as RelativeLayout
-        tl_bottom_navi_act_bottom_menu.getTabAt(1)!!.customView = bottomNaviLayout.findViewById(R.id.bottom_navi_btn_tab_smatching) as RelativeLayout
-        tl_bottom_navi_act_bottom_menu.getTabAt(2)!!.customView = bottomNaviLayout.findViewById(R.id.bottom_navi_btn_tab_talk) as RelativeLayout
-        tl_bottom_navi_act_bottom_menu.getTabAt(3)!!.customView = bottomNaviLayout.findViewById(R.id.bottom_navi_btn_tab_my_page) as RelativeLayout
 
         //configureBottomNavigation()
 
@@ -84,7 +96,8 @@ class BottomNaviActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
             android.R.id.home -> {
-                finish()
+                replaceFragmentNum(pageNum)
+
                 return true
             }
             R.id.menu_search -> {
@@ -94,12 +107,13 @@ class BottomNaviActivity : AppCompatActivity() {
                 val fragmentTransaction = fm.beginTransaction()// FragmentManager와 FragmentTransaction 얻어옴
                 fragmentTransaction.replace(R.id.act_bottom_navi_fl, fr)// 위에서 만든 Fragment Instance를 붙여줌
                 fragmentTransaction.commit()// 실행*/
-                fragmentTransaction.replace(R.id.act_bottom_navi_fl, fr)// 위에서 만든 Fragment Instance를 붙여줌
-                fragmentTransaction.commit()// 실행
+                replaceFragment(SearchFragment())
                 findViewById<TextView>(R.id.act_bottom_navi_tv_title).setText("검색")
                 findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
                 supportActionBar!!.setDisplayHomeAsUpEnabled(true)
                 supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
+
+                act_bottom_navi_iv_title.visibility = View.INVISIBLE
                 return true
             }
             R.id.menu_notice -> {
@@ -128,4 +142,45 @@ class BottomNaviActivity : AppCompatActivity() {
         tl_bottom_navi_act_bottom_menu.getTabAt(2)!!.customView = bottomNaviLayout.findViewById(R.id.bottom_navi_btn_tab_talk) as RelativeLayout
         tl_bottom_navi_act_bottom_menu.getTabAt(3)!!.customView = bottomNaviLayout.findViewById(R.id.bottom_navi_btn_tab_my_page) as RelativeLayout
     }*/
+    private fun addFragment(fragment : Fragment) {
+        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.act_bottom_navi_fl, fragment)
+        transaction.commit()
+    }
+
+    private fun replaceFragment(fragment : Fragment) {
+        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.act_bottom_navi_fl, fragment)
+        transaction.commit()
+    }
+    private fun replaceFragmentNum(int : Int) {
+        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+        if(int == 0) {
+            fragment = HomeFragment()
+            act_bottom_navi_tv_title.setText("")
+            act_bottom_navi_iv_title.visibility = View.VISIBLE
+            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
+            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        }
+        else if(int == 1) {
+            fragment = CustomFragment()
+            act_bottom_navi_tv_title.setText("맞춤지원")
+            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
+            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        }
+        else if(int == 2) {
+            fragment = TalkFragment()
+            act_bottom_navi_tv_title.setText("창업토크")
+            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
+            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        }
+        else if(int == 3) {
+            fragment = MyPageFragment()
+            act_bottom_navi_tv_title.setText("마이페이지")
+            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
+            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        }
+        transaction.replace(R.id.act_bottom_navi_fl, fragment)
+        transaction.commit()
+    }
 }

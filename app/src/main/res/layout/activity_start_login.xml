@@ -110,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/act_start_login_password"
-            android:layout_centerInParent="true0"
+            android:layout_centerInParent="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="25.2dp"
             android:src="@drawable/btn_login"

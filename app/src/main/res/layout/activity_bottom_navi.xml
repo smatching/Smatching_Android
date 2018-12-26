@@ -1,66 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BottomNaviActivity">
 
-    <FrameLayout
-        android:id="@+id/act_bottom_navi_fl"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/tl_bottom_navi_act_bottom_menu"
-        android:layout_below="@+id/my_toolbar">
+        android:layout_height="match_parent">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vp_bottom_navi_act_frag_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v4.view.ViewPager>
-
-    </FrameLayout>
-
-
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorBackground"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:id="@+id/act_bottom_navi_fl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll_bottom_navi_act_main"
+            android:layout_below="@+id/my_toolbar">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:id="@+id/act_bottom_navi_tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text=""
-                android:textColor="@color/colorText"
-                android:textSize="18sp"/>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_bottom_navi_act_frag_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </android.support.v4.view.ViewPager>
 
         </FrameLayout>
 
-    </android.support.v7.widget.Toolbar>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tl_bottom_navi_act_bottom_menu"
-        android:background="#FFFFFF"
-        android:elevation="5dp"
-        app:tabIndicatorColor="#FFFFFF"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_alignParentBottom="true">
-    </android.support.design.widget.TabLayout>
-</RelativeLayout>
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorBackground"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/act_bottom_navi_iv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_symbol"/>
+
+                <TextView
+                    android:id="@+id/act_bottom_navi_tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@color/colorText"
+                    android:textSize="18sp"/>
+
+            </FrameLayout>
+
+        </android.support.v7.widget.Toolbar>
+        <!--
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tl_bottom_navi_act_bottom_menu"
+                    android:background="#FFFFFF"
+                    android:elevation="5dp"
+                    app:tabIndicatorColor="#FFFFFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_alignParentBottom="true">
+                </android.support.design.widget.TabLayout> -->
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_navi_act_main"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"        >
+            <RelativeLayout
+                android:id="@+id/act_main_rl_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/act_main_iv_home"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bottom_navi_home_icon"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/act_main_rl_smatching"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/act_main_iv_smatching"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bottom_navi_smatching_icon"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/act_main_rl_talk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/act_main_iv_talk"
+                    android:layout_weight="1"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bottom_navi_talk_icon"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/act_main_rl_my_page"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/act_main_iv_my_page"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bottom_navi_my_page_icon"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+</android.support.v4.widget.DrawerLayout>
