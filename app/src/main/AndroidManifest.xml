@@ -22,7 +22,7 @@
         <activity android:name=".StartLoginActivity" />
         <activity android:name=".StartCreateActivity" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".BottomNaviActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

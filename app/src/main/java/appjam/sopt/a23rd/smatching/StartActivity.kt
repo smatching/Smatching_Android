@@ -7,7 +7,6 @@ import android.view.View
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
-import junit.framework.Test
 import org.jetbrains.anko.startActivity
 
 class StartActivity : AppCompatActivity() {
@@ -19,7 +18,7 @@ class StartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_start)
         //자동로그인
         if(SharedPreferenceController.getAuthorization(this).isNotEmpty())
-            startActivity<BottomNaviActivity>()
+            startActivity<MainActivity>()
 
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         var btnCreateAccount = findViewById<View>(R.id.act_main_iv_create_account)

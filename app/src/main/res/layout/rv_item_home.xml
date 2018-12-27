@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="69dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="13dp">
+
+            <TextView
+                android:id="@+id/rv_item_home_tv_supervisor"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주관처"
+                android:fontFamily="@font/nanumsquarer"
+                android:textSize="11sp"/>
+
+            <TextView
+                android:id="@+id/rv_item_home_tv_deadline"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="마감기한"
+                android:fontFamily="@font/nanumsquarer"
+                android:textSize="10sp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/rv_item_home_tv_title"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="62.5dp"
+                android:layout_marginTop="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareb"
+                android:text="2019년도 스매칭 주관 제1기 기술혁신창업기업 기술육성 프로그램 문정호 캠프 참여기업 모집 공고"/>
+
+            <ImageView
+                android:id="@+id/rv_item_home_iv_scrap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/icn_scrap_grey"
+                android:layout_marginRight="24.7dp"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

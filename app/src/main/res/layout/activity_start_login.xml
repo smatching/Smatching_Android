@@ -37,6 +37,7 @@
             android:id="@+id/act_start_login_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12.2dp"
             android:layout_below="@+id/act_main_iv_logo">
             <ImageView
                 android:id="@+id/act_start_login_iv_email"
@@ -44,7 +45,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:background="@null"
-                android:layout_marginTop="12.2dp"
                 android:src="@drawable/et_email" />
             <EditText
                 android:id="@+id/act_start_login_et_email"
@@ -59,13 +59,14 @@
                 android:paddingLeft="17dp"
                 android:fontFamily="@font/nanumsquareb"
                 android:maxLength="15"
-                android:singleLine="true"/>
+                android:maxLines = "2"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/act_start_login_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12.2dp"
             android:layout_below="@+id/act_start_login_email">
             <ImageView
                 android:id="@+id/act_start_login_iv_password"
