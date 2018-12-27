@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="29dp"
+    android:layout_height="8dp">
+
+    <ImageView
+        android:id="@+id/home_navigation_tab_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/selector_home_navi_first_icon"/>
+
+    <ImageView
+        android:id="@+id/home_navigation_tab_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/selector_home_navi_second_icon"/>
+
+</RelativeLayout>

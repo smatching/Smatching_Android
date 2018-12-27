@@ -10,14 +10,12 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
-import appjam.sopt.a23rd.smatching.R.id.act_start_login_btn_login
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
 import appjam.sopt.a23rd.smatching.post.PostLogInResponse
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import kotlinx.android.synthetic.main.activity_start_create.*
 import kotlinx.android.synthetic.main.activity_start_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -131,7 +129,7 @@ class StartLoginActivity : AppCompatActivity() {
                         //저번 시간에 배웠던 SharedPreference에 토큰을 저장! 왜냐하면 토큰이 필요한 통신에 사용하기 위해서!!
                         SharedPreferenceController.setAuthorization(this@StartLoginActivity, token)
                         toast(SharedPreferenceController.getAuthorization(this@StartLoginActivity))
-                        startActivity<BottomNaviActivity>()
+                        startActivity<MainActivity>()
                         finish()
                     }
                 }

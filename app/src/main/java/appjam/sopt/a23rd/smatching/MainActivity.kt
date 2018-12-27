@@ -2,6 +2,7 @@ package appjam.sopt.a23rd.smatching
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.NavigationView
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
@@ -9,18 +10,29 @@ import android.widget.TextView
 import org.jetbrains.anko.toast
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBarDrawerToggle
 import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
+import appjam.sopt.a23rd.smatching.Adapter.MyFragmentStatePagerAdapter
 import appjam.sopt.a23rd.smatching.Fragment.*
-import kotlinx.android.synthetic.main.activity_bottom_navi.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 
 
-class BottomNaviActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    var pageCount: Int = 0
     var pageNum: Int = 0
     lateinit var fragment: Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bottom_navi)
+        setContentView(R.layout.activity_main)
+
+        nav_view.setNavigationItemSelectedListener(this)
 
         //툴바 부분
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
@@ -30,6 +42,11 @@ class BottomNaviActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setTitle("")
         titleText.setText("")
+        /*
+        val toggle = EndDrawerToggle(
+                this, drawer_layout, my_toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()*/
 
         addFragment(HomeFragment())
         act_main_iv_home.isSelected = true
@@ -38,6 +55,10 @@ class BottomNaviActivity : AppCompatActivity() {
         act_main_iv_my_page.isSelected = false
 
         val navi = ll_bottom_navi_act_main
+
+
+        //configureBottomNavigation()
+
 
         act_main_rl_home.setOnClickListener{
             replaceFragment(HomeFragment())
@@ -117,7 +138,14 @@ class BottomNaviActivity : AppCompatActivity() {
                 return true
             }
             R.id.menu_notice -> {
-                toast("notice버튼")
+                if (drawer_layout.isDrawerOpen(GravityCompat.END)) {
+                    drawer_layout.closeDrawer(GravityCompat.END)
+                } else {
+                    drawer_layout.openDrawer(GravityCompat.END)
+                }
+                nav_header_main_iv_delete.setOnClickListener {
+                    drawer_layout.closeDrawer(GravityCompat.END)
+                }
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -183,4 +211,26 @@ class BottomNaviActivity : AppCompatActivity() {
         transaction.replace(R.id.act_bottom_navi_fl, fragment)
         transaction.commit()
     }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Handle navigation view item clicks here.
+        when (item.itemId) {
+            R.id.a -> {
+                // Handle the camera action
+            }
+            R.id.b -> {
+
+            }
+            R.id.c -> {
+
+            }
+            R.id.d -> {
+
+            }
+        }
+
+        drawer_layout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+
 }

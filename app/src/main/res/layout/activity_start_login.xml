@@ -59,7 +59,7 @@
                 android:paddingLeft="17dp"
                 android:fontFamily="@font/nanumsquareb"
                 android:maxLength="15"
-                android:singleLine="true"/>
+                android:maxLines = "2"/>
         </RelativeLayout>
 
         <RelativeLayout
