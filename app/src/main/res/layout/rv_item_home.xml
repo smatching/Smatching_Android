@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="69dp">
+    android:layout_width="310dp"
+    android:layout_height="71dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,14 +23,32 @@
                 android:fontFamily="@font/nanumsquarer"
                 android:textSize="11sp"/>
 
-            <TextView
-                android:id="@+id/rv_item_home_tv_deadline"
-                android:layout_alignParentRight="true"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="마감기한"
-                android:fontFamily="@font/nanumsquarer"
-                android:textSize="10sp"/>
+
+                android:layout_alignParentRight="true">
+
+
+                <TextView
+                    android:id="@+id/rv_item_home_tv_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="D-"
+                    android:fontFamily="@font/nanumsquarer"
+                    android:textSize="10sp"/>
+
+
+                <TextView
+                    android:id="@+id/rv_item_home_tv_deadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="마감기한"
+                    android:fontFamily="@font/nanumsquarer"
+                    android:textSize="10sp"/>
+
+
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -46,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:fontFamily="@font/nanumsquareb"
-                android:text="2019년도 스매칭 주관 제1기 기술혁신창업기업 기술육성 프로그램 문정호 캠프 참여기업 모집 공고"/>
+                android:text="2019년도 스매칭 주관 기술혁신창업기업 기술육성 프로그램 문정호 캠프 참여기업 모집 공고"/>
 
             <ImageView
                 android:id="@+id/rv_item_home_iv_scrap"
@@ -54,7 +73,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="12dp"
-                android:src="@drawable/icn_scrap_grey"
                 android:layout_marginRight="24.7dp"/>
 
         </RelativeLayout>

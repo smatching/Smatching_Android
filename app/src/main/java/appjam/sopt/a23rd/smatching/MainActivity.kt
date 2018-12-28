@@ -15,8 +15,10 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.Toast
 import appjam.sopt.a23rd.smatching.Adapter.MyFragmentStatePagerAdapter
 import appjam.sopt.a23rd.smatching.Fragment.*
+import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -25,8 +27,8 @@ import kotlinx.android.synthetic.main.nav_header_main.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    var pageCount: Int = 0
     var pageNum: Int = 0
+    var time: Long = 0
     lateinit var fragment: Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -227,10 +229,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
         }
-
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 
-
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - time >= 2000) {
+            time = System.currentTimeMillis()
+            Toast.makeText(getApplicationContext(), "뒤로 버튼을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show()
+        } else if (System.currentTimeMillis() - time < 2000) {
+            finish()
+            //finishAffinity()
+        }
+    }
 }

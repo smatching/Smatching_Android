@@ -24,32 +24,45 @@
                 android:layout_marginLeft="29dp"
                 android:layout_marginVertical="16dp"/>
 
-                <RelativeLayout
-                    android:id="@+id/fragment_home_rl"
+            <RelativeLayout
+                android:id="@+id/fragment_home_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/fragment_home_vp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="325dp">
+                </android.support.v4.view.ViewPager>
 
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/fragment_home_vp"
-                        android:layout_width="match_parent"
-                        android:layout_height="325dp">
-                    </android.support.v4.view.ViewPager>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/fragment_home_vp">
 
+                    <android.support.design.widget.TabLayout
 
-                <android.support.design.widget.TabLayout
-                    android:layout_below="@+id/fragment_home_vp"
-                    android:id="@+id/fragment_home_tl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="8dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:background="@color/colorBackground"
-                    app:tabIndicatorColor="@color/colorBackground"
-                    android:layout_marginTop="18dp"
-                    app:tabIndicatorHeight="0dp">
+                        android:id="@+id/fragment_home_tl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="8dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/colorBackground"
+                        app:tabIndicatorColor="@color/colorBackground"
+                        app:tabIndicatorHeight="0dp">
 
 
-                </android.support.design.widget.TabLayout>
+                    </android.support.design.widget.TabLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="34dp"
+                        android:src="@drawable/btn_more"/>
+
+                </LinearLayout>
+
+
 
             </RelativeLayout>
 
@@ -63,9 +76,48 @@
                 android:fontFamily="@font/nanumsquareb"
                 android:layout_marginLeft="29dp"
                 android:layout_marginTop="16dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="42dp">
+
+                <ImageView
+                    android:id="@+id/fragment_home_iv_all_blue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_allsupportbox_blue"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_allsupportbox_white"/>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/fragment_home_rv"
+                        android:layout_width="310dp"
+                        android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
+
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="34dp"
+                    android:src="@drawable/btn_more"/>
+
+            </LinearLayout>
 
         </LinearLayout>
-
-
     </ScrollView>
 </RelativeLayout>

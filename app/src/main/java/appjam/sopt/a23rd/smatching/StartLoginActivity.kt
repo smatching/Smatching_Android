@@ -128,7 +128,8 @@ class StartLoginActivity : AppCompatActivity() {
                         val token = response.body()!!.data.token
                         //저번 시간에 배웠던 SharedPreference에 토큰을 저장! 왜냐하면 토큰이 필요한 통신에 사용하기 위해서!!
                         SharedPreferenceController.setAuthorization(this@StartLoginActivity, token)
-                        toast(SharedPreferenceController.getAuthorization(this@StartLoginActivity))
+                        //toast(SharedPreferenceController.getNickname(this@StartLoginActivity))
+                        //toast(SharedPreferenceController.getUserNickName(this@StartLoginActivity))
                         startActivity<MainActivity>()
                         finish()
                     }

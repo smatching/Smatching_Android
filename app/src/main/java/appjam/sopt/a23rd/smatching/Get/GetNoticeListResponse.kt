@@ -1,10 +1,9 @@
 package appjam.sopt.a23rd.smatching.Get
 
-import appjam.sopt.a23rd.smatching.Data.AllNoticeListData
-import appjam.sopt.a23rd.smatching.Data.HomeData
+import appjam.sopt.a23rd.smatching.Data.NoticeData
 
-data class GetAllNoticeListResponse(
+data class GetNoticeListResponse(
         val status : Int,
         val message : String,
-        val data : ArrayList<HomeData>
+        val data : ArrayList<NoticeData>
 )

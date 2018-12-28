@@ -1,6 +1,7 @@
 package appjam.sopt.a23rd.smatching.db
 
 import android.content.Context
+import android.provider.ContactsContract
 
 object SharedPreferenceController{
     private val USER_NAME = "MYKEY"
@@ -12,7 +13,6 @@ object SharedPreferenceController{
         editor.putString(myAuth, authorization)
         editor.commit()
     }
-
     fun getAuthorization(context: Context) : String {
         val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE) //현재 내 기기에서만 볼수 있는 데이터
         return pref.getString(myAuth, "")
