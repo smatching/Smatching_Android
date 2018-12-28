@@ -1,42 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/image_whiteboard"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/image_blueboard"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:id="@+id/fragment_custom_condition_notclick_rl_custom_custom"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <TextView
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:textSize="12sp"
-                android:textColor="#474747"
-                android:lineSpacingExtra="1sp"
-                android:text="지역"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#474747"
-                android:lineSpacingExtra="4sp"
-                android:text="서울, 인천"
-                />
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/image_whiteboard"/>
+
+                <RelativeLayout
+                    android:id="@+id/fragment_custom_condition_click_rl_blue_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/image_blueboard"/>
+
+                    <TextView
+                        android:layout_marginLeft="15dp"
+                        android:id="@+id/fragment_custom_condition_click_tv_custom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:layout_centerVertical="true"
+                        android:text="맞춤조건1"
+                        android:textSize="18sp"
+                        android:textColor="#ffffff"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="274dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/btn_smatching_edit"
+                        android:layout_marginRight="16dp"/>
+
+
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_below="@+id/fragment_custom_condition_click_rl_blue_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginHorizontal="16dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorText"
+                            android:text="지역"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorText"
+                            android:layout_marginLeft="98dp"
+                            android:text="서울, 인천"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
         </RelativeLayout>
 
-    </RelativeLayout>
-</android.support.constraint.ConstraintLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/fragment_custom_condition_notclick_rl_custom_custom">
+            <TextView
+                android:id="@+id/fragment_custom_condition_notclick_tv_listsize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarer"
+                android:text="총 46건"
+                android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+                <TextView
+                    android:id="@+id/fragment_custom_condition_notclick_tv_options"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquarer"
+                    android:text="최신 등록순"
+                    android:textSize="12sp" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="11.4dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/btn_align_triangle"/>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,6 +1,5 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -8,22 +7,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
-import appjam.sopt.a23rd.smatching.Adapter.MyFragmentStatePagerAdapter
 import appjam.sopt.a23rd.smatching.R
 import kotlinx.android.synthetic.main.fragment_home.*
 import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import appjam.sopt.a23rd.smatching.Adapter.HomeRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Adapter.PagerAdapter
-import appjam.sopt.a23rd.smatching.Data.HomeData
-import appjam.sopt.a23rd.smatching.MainActivity
-import org.jetbrains.anko.support.v4.intentFor
+import appjam.sopt.a23rd.smatching.Data.NoticeData
+import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
+import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
+import appjam.sopt.a23rd.smatching.network.ApplicationController
+import appjam.sopt.a23rd.smatching.network.NetworkService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class HomeFragment : Fragment(){
     var mInstace : HomeFragment? = null
+    val dataList : ArrayList<NoticeData> by lazy {
+        ArrayList<NoticeData>()
+    }
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
     lateinit var homeRecyclerViewAdapter: HomeRecyclerViewAdapter
     //다른 스레드에서 인스턴스 생성해줘서 하나만 생성됨
     @Synchronized
@@ -35,7 +43,6 @@ class HomeFragment : Fragment(){
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,26 +57,42 @@ class HomeFragment : Fragment(){
             //mTabLayout.setupWithViewPager(mViewPager)
             //mTabLayout.getTabAt(0)!!.customView = bottomNaviLayout.findViewById(R.id.home_navigation_tab_first) as ImageView
         } else {*/
-            mViewPager.adapter = PagerAdapter(childFragmentManager, 2)
-            mTabLayout.setupWithViewPager(mViewPager)
-            mTabLayout.getTabAt(0)!!.customView = bottomNaviLayout.findViewById(R.id.home_navigation_tab_first) as ImageView
-            mTabLayout.getTabAt(1)!!.customView = bottomNaviLayout.findViewById(R.id.home_navigation_tab_second) as ImageView
+        mViewPager.adapter = PagerAdapter(childFragmentManager, 2)
+        mTabLayout.setupWithViewPager(mViewPager)
+        mTabLayout.getTabAt(0)!!.customView = bottomNaviLayout.findViewById(R.id.home_navigation_tab_first) as ImageView
+        mTabLayout.getTabAt(1)!!.customView = bottomNaviLayout.findViewById(R.id.home_navigation_tab_second) as ImageView
         //}
-
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
         setRecyclerView()
+        getAllNoticeListResponse()
     }
+
+
     private fun setRecyclerView() {
-        var dataList: ArrayList<HomeData> = ArrayList()
-        dataList.add(HomeData("a", "b", "c"))
-
-
         homeRecyclerViewAdapter = HomeRecyclerViewAdapter(activity!!, dataList)
+        homeRecyclerViewAdapter.currentView = 0
         fragment_home_rv.adapter = homeRecyclerViewAdapter
-        fragment_home_rv.layoutManager = GridLayoutManager(activity, 3)
+        fragment_home_rv.layoutManager = LinearLayoutManager(activity)
+
+    }
+    private fun getAllNoticeListResponse(){
+        val getAllNoticeListResponse = networkService.getAllNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 4, 0)
+        getAllNoticeListResponse.enqueue(object : Callback<GetNoticeListResponse> {
+            override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
+                Log.e("board list fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
+                if (response.isSuccessful){
+                    val temp : ArrayList<NoticeData> = response.body()!!.data
+                    if (temp.size > 0){
+                        val position = homeRecyclerViewAdapter.itemCount
+                        for (a in 0..3)
+                            homeRecyclerViewAdapter.dataList.add(temp.get(a))
+                        homeRecyclerViewAdapter.notifyItemInserted(position)
+
+                    }
+                }
+            }
+        })
     }
 }

@@ -17,7 +17,7 @@
                 android:id="@+id/fragment_custom_condition_notclick_iv_custom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/btn_smatching_canclick"/>
+                android:src="@drawable/btn_smatching_canclick_shadow"/>
 
                 <TextView
                     android:layout_marginLeft="15dp"
