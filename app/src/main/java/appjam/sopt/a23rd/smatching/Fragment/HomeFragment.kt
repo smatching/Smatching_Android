@@ -88,7 +88,6 @@ class HomeFragment : Fragment(){
         homeRecyclerViewAdapter.currentView = 0
         fragment_home_rv.adapter = homeRecyclerViewAdapter
         fragment_home_rv.layoutManager = LinearLayoutManager(activity)
-
     }
     private fun getAllNoticeListResponse(){
         val getAllNoticeListResponse = networkService.getAllNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 4, 0)

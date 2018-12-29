@@ -5,22 +5,30 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp">
         <RelativeLayout
             android:id="@+id/fragment_custom_condition_notclick_rl_custom_custom"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="7dp">
+
             <ImageView
                 android:id="@+id/fragment_custom_condition_notclick_iv_custom"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/btn_smatching_canclick_shadow"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/btn_smatching_canclick_shadow" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="16dp">
 
                 <TextView
-                    android:layout_marginLeft="15dp"
                     android:id="@+id/fragment_custom_condition_notclick_tv_custom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -29,46 +37,19 @@
                     android:textSize="18sp"
                     android:layout_centerVertical="true"
                     android:textColor="#ffffff"/>
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/fragment_custom_condition_notclick_rl_custom_custom">
-            <TextView
-                android:id="@+id/fragment_custom_condition_notclick_tv_listsize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquarer"
-                android:text="총 46건"
-                android:textSize="12sp" />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true">
-                <TextView
-                    android:id="@+id/fragment_custom_condition_notclick_tv_options"
+                <ImageView
+                    android:id="@+id/fragment_custom_condition_notclick_iv_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumsquarer"
-                    android:text="최신 등록순"
-                    android:textSize="12sp" />
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="11.4dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/btn_align_triangle"/>
-                </RelativeLayout>
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icn_back_white"/>
+            </RelativeLayout>
 
 
-            </LinearLayout>
         </RelativeLayout>
+
     </LinearLayout>
 
 </RelativeLayout>
