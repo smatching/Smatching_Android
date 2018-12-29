@@ -9,4 +9,6 @@
     <color name="colorTab">#40b2cc</color>
     <color name="colorBlue">#4C82D8</color>
     <color name="colorTextshallow">#D6D6D6</color>
+    <color name="colorToggleCheck">#4C82D8</color>
+    <color name="colorToggleNotCheck">#E8E8E8</color>
 </resources>
