@@ -60,7 +60,7 @@
                 android:layout_centerVertical="true"
                 android:paddingLeft="17dp"
                 android:fontFamily="@font/nanumsquareb"
-                android:maxLength="10"
+                android:maxLength="9"
                 android:singleLine="true"/>
 
         </RelativeLayout>
