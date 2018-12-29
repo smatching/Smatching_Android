@@ -1,106 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/colorBlue"
     android:layout_centerHorizontal="true"
-    android:layout_marginBottom="0dp">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:layout_marginHorizontal="18dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/img_scrapbox" />
+    android:layout_marginBottom="0dp"
+    android:focusableInTouchMode="true">
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="25dp">
+        android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-
-            android:layout_marginHorizontal="18dp"
-            android:layout_marginBottom="20dp">
+            android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/txt_smatchingscrap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:src="@drawable/txt_talkscrap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="18dp">
-            <ImageView
-                android:src="@drawable/box_mypage_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitXY"/>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_marginHorizontal="18dp"
+                android:scaleType="fitXY"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/img_mypage_scrapbox_top" />
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_centerVertical="true">
-                <EditText
-                    android:id="@+id/fragment_mypage_user_et_search"
+
+                android:layout_marginHorizontal="25dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="49dp"
+
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginBottom="16dp">
+                    <TextView
+                        android:id="@+id/fragment_my_page_user_smatchingscrap"
+                        android:text="맞춤지원 스크랩"
+                        android:fontFamily="@font/nanumsquareeb"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/fragment_my_page_user_talkscrap"
+                        android:text="창업토크 스크랩"
+                        android:fontFamily="@font/nanumsquareeb"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/colorTextshallow"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumsquarer"
-                    android:hint="스크랩을 검색하세요."
-                    android:singleLine="true"
-                    android:background="@null"
-                    android:textColorHint="@color/colorTextHint"
-                    android:textSize="12sp" />
+                    android:layout_marginHorizontal="18dp">
+                    <ImageView
+                        android:src="@drawable/box_mypage_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"/>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_centerVertical="true">
+                        <EditText
+                            android:id="@+id/fragment_mypage_user_et_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumsquarer"
+                            android:hint="스크랩을 검색하세요."
+                            android:singleLine="true"
+                            android:background="@null"
+                            android:textColorHint="@color/colorTextHint"
+                            android:textSize="12sp" />
+                        <ImageView
+                            android:id="@+id/fragment_mypage_user_btn_search"
+                            android:src="@drawable/icn_mypage_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="23.5dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp">
+                    <TextView
+                        android:text="총"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorText"
+                        android:fontFamily="@font/nanumsquarer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="몇"
+                        android:textSize="12sp"
+                        android:layout_marginLeft="4dp"
+                        android:textColor="@color/colorText"
+                        android:fontFamily="@font/nanumsquarer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="건"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorText"
+                        android:fontFamily="@font/nanumsquarer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
                 <ImageView
-                    android:id="@+id/fragment_mypage_user_btn_search"
-                    android:src="@drawable/icn_mypage_search"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"/>
-
-            </RelativeLayout>
-
+                    android:scaleType="fitXY"
+                    android:src="@drawable/line"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginTop="10dp"/>
+            </LinearLayout>
 
         </RelativeLayout>
-        <LinearLayout
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="23.5dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="22dp">
-            <TextView
-                android:text="총"
-                android:textSize="12sp"
-                android:textColor="@color/colorText"
-                android:fontFamily="@font/nanumsquarer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="몇"
-                android:textSize="12sp"
-                android:layout_marginLeft="4dp"
-                android:textColor="@color/colorText"
-                android:fontFamily="@font/nanumsquarer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="건"
-                android:textSize="12sp"
-                android:textColor="@color/colorText"
-                android:fontFamily="@font/nanumsquarer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            android:layout_marginHorizontal="18dp">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="23.5dp">
+
+            </android.support.v7.widget.RecyclerView>
+            </ScrollView>
+            <ImageView
+                android:background="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_mypage_scrapbox_bottom"/>
+
+        </RelativeLayout>
+
+
     </LinearLayout>
+
 </RelativeLayout>

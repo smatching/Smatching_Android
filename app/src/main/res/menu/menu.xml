@@ -6,12 +6,23 @@
     <item android:id="@+id/menu_search"
         android:title="Search"
         android:icon="@drawable/icn_search"
-        android:visible="true"
         app:showAsAction="ifRoom" />
 
     <item android:id="@+id/menu_notice"
         android:title="Notice"
         android:icon="@drawable/icn_notice"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/menu_setting_white"
+        android:title="Setting"
+        android:icon="@drawable/icn_setting_white"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/menu_notice_white"
+        android:title="Setting"
+        android:icon="@drawable/icn_notice_white"
+        android:visible="false"
         app:showAsAction="ifRoom" />
 
 </menu>
