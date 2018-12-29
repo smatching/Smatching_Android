@@ -15,8 +15,7 @@ import org.jetbrains.anko.lines
 import org.jetbrains.anko.rightPadding
 
 
-class HomeRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<NoticeData>) : RecyclerView.Adapter<HomeRecyclerViewAdapter.Holder>() {
-    var currentView: Int = 0
+class AllNoticeListFragmentRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<NoticeData>) : RecyclerView.Adapter<AllNoticeListFragmentRecyclerViewAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_home, parent, false)
         return Holder(view)
@@ -34,14 +33,11 @@ class HomeRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<NoticeDa
             holder.tag.text = "D-"
         }
         holder.title.text = dataList[position].title
-        if(currentView == 0)
-            holder.scrap.visibility = View.INVISIBLE
-        else {
             holder.scrap.visibility = View.VISIBLE
             when(dataList[position].scrap){//자바에서의 switch
                 0 -> return holder.scrap.setImageResource(R.drawable.icn_scrap_grey)
                 1 -> return holder.scrap.setImageResource(R.drawable.icn_scrap_yellow)
-            }
+
         }
 
     }
@@ -51,6 +47,5 @@ class HomeRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<NoticeDa
         val deadline : TextView = itemView.findViewById(R.id.rv_item_home_tv_deadline) as TextView
         val title : TextView = itemView.findViewById(R.id.rv_item_home_tv_title) as TextView
         val scrap : ImageView = itemView.findViewById(R.id.rv_item_home_iv_scrap) as ImageView
-        val width : LinearLayout = itemView.findViewById(R.id.rv_item_home_ll_dday) as LinearLayout
     }
 }
