@@ -15,7 +15,7 @@ class TestActivity : AppCompatActivity() {
         setContentView(R.layout.activity_test)
     }
 
-//    alert dialog 구현 부분(in java)
+//    alert dialog 구현 부분(in java)q
 //    final CharSequence[] items = {"Red", "Green", "Blue"};
 //
 //    AlertDialog.Builder builder = new AlertDialog.Builder(this);

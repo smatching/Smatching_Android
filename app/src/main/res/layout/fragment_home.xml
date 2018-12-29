@@ -87,21 +87,26 @@
                     android:id="@+id/fragment_home_iv_all_blue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:layout_marginHorizontal="25dp"
                     android:src="@drawable/img_allsupportbox_blue"/>
                 <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:layout_marginHorizontal="25dp"
                         android:src="@drawable/img_allsupportbox_white"/>
 
                     <android.support.v7.widget.RecyclerView
                         android:layout_centerHorizontal="true"
                         android:id="@+id/fragment_home_rv"
-                        android:layout_width="310dp"
+                        android:layout_marginHorizontal="39dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                     </android.support.v7.widget.RecyclerView>
@@ -110,6 +115,7 @@
                 </RelativeLayout>
 
                 <ImageView
+                    android:id="@+id/fragment_home_iv_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"

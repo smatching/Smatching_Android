@@ -3,6 +3,7 @@ package appjam.sopt.a23rd.smatching.Fragment
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,9 @@ import appjam.sopt.a23rd.smatching.network.NetworkService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+import android.widget.TextView
 
 
 class HomeFragment : Fragment(){
@@ -64,6 +68,18 @@ class HomeFragment : Fragment(){
         //}
         setRecyclerView()
         getAllNoticeListResponse()
+
+        fragment_home_iv_more.setOnClickListener{
+            replaceFragment(AllNoticeListFragment())
+            (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            (activity as AppCompatActivity).supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
+            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
+            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
+//            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_talk).isSelected = false
+//            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_my_page).isSelected = false
+            (activity as AppCompatActivity).findViewById<TextView>(R.id.act_bottom_navi_tv_title).setText("전체공고")
+            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_bottom_navi_iv_title).visibility = View.INVISIBLE
+        }
     }
 
 
@@ -94,5 +110,10 @@ class HomeFragment : Fragment(){
                 }
             }
         })
+    }
+    private fun replaceFragment(fragment : Fragment) {
+        val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.replace(R.id.act_bottom_navi_fl, fragment)
+        transaction.commit()
     }
 }

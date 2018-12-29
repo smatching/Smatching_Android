@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="310dp"
+    android:layout_width="match_parent"
     android:layout_height="71dp">
 
     <LinearLayout
@@ -11,7 +11,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="13dp">
 
             <TextView
@@ -24,6 +23,7 @@
                 android:textSize="11sp"/>
 
             <LinearLayout
+                android:id="@+id/rv_item_home_ll_dday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -47,33 +47,33 @@
                     android:fontFamily="@font/nanumsquarer"
                     android:textSize="10sp"/>
 
-
             </LinearLayout>
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp">
             <TextView
                 android:id="@+id/rv_item_home_tv_title"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="62.5dp"
-                android:layout_marginTop="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
                 android:textSize="12sp"
                 android:fontFamily="@font/nanumsquareb"
+                android:maxLines="2"
+                android:ellipsize="end"
                 android:text="2019년도 스매칭 주관 기술혁신창업기업 기술육성 프로그램 문정호 캠프 참여기업 모집 공고"/>
 
             <ImageView
                 android:id="@+id/rv_item_home_iv_scrap"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="24.7dp"/>
+                android:src="@drawable/icn_scrap_grey"/>
 
         </RelativeLayout>
 

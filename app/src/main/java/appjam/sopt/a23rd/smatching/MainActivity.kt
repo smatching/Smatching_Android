@@ -18,6 +18,7 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import appjam.sopt.a23rd.smatching.Adapter.MyFragmentStatePagerAdapter
 import appjam.sopt.a23rd.smatching.Fragment.*
+import appjam.sopt.a23rd.smatching.R.id.container
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -110,8 +111,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             titleText.setText("마이페이지")
             titleImage.visibility = View.INVISIBLE
         }
-
-
 
         //configureBottomNavigation()
 
@@ -239,7 +238,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Toast.makeText(getApplicationContext(), "뒤로 버튼을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show()
         } else if (System.currentTimeMillis() - time < 2000) {
             finish()
-            //finishAffinity()
+            finishAffinity()
         }
     }
 }
