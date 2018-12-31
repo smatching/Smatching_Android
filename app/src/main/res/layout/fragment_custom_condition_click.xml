@@ -27,6 +27,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginHorizontal="16dp">
                     <TextView
+                        android:id="@+id/fragment_custom_condition_click_tv_smatching_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="맞춤조건1"
@@ -69,6 +70,7 @@
                             android:fontFamily="@font/nanumsquarer"/>
 
                         <TextView
+                            android:id="@+id/fragment_custom_condition_click_tv_location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="여기에 지역을 선택"
