@@ -50,6 +50,10 @@ class StartLoginActivity : AppCompatActivity() {
             override fun afterTextChanged(edit: Editable) {
                 if (email.text.toString().isEmpty() || password.text.toString().isEmpty())
                     act_start_login_canclick.setImageResource(R.drawable.btn_login)
+                    if(!email.text.toString().isEmpty())
+                        act_start_login_iv_email_delete.setVisibility(View.VISIBLE)
+                    if(!password.text.toString().isEmpty())
+                        act_start_login_iv_password_delete.setVisibility(View.VISIBLE)
                 else
                     act_start_login_canclick.setImageResource(R.drawable.btn_login_canclick)
             }

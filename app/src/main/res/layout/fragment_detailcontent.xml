@@ -18,9 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="132dp">
             <ImageView
-                android:src="@drawable/image_blueboard"
+                android:src="@drawable/image_detail_blueboard"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"/>
             <LinearLayout
                 android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
@@ -37,8 +38,8 @@
                     android:fontFamily="@font/nanumsquarer"/>
                 <TextView
                     android:id="@+id/fragment_detailcontent_tv_supportname"
-                    android:layout_width="309dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:layout_marginBottom="14dp"
                     android:text="2018년 창업기업지원서비스 바우처
@@ -47,13 +48,13 @@
                     android:fontFamily="@font/nanumsquareb"/>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp">
                     <TextView
                         android:id="@+id/fragment_detailcontent_tv_institution"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
-                        android:layout_marginBottom="16dp"
                         android:layout_centerVertical="true"
                         android:text="창업진흥원"
                         android:textColor="@color/colorBackground"
@@ -63,7 +64,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
-                        android:layout_marginBottom="16dp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:text="2018.12.27~2019.03.05"
