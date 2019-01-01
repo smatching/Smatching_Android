@@ -2,7 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="18dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +31,7 @@
                         android:id="@+id/fragment_custom_condition_click_tv_smatching_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="맞춤조건1"
+                        android:text=""
                         android:textSize="18sp"
                         android:fontFamily="@font/nanumsquareb"
                         android:textColor="#ffffff"/>
@@ -73,7 +74,7 @@
                             android:id="@+id/fragment_custom_condition_click_tv_location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="여기에 지역을 선택"
+                            android:text=""
                             android:textSize="12sp"
                             android:fontFamily="@font/nanumsquarer"/>
                     </LinearLayout>
@@ -229,6 +230,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/fragment_custom_condition_click_tv_edit"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

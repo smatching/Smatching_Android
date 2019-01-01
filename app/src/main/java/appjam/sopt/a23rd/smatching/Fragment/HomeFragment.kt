@@ -73,7 +73,7 @@ class HomeFragment : Fragment(){
             replaceFragment(AllNoticeListFragment())
             (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             (activity as AppCompatActivity).supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
-            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
+            //(activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false ??
             (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
 //            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_talk).isSelected = false
 //            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_my_page).isSelected = false

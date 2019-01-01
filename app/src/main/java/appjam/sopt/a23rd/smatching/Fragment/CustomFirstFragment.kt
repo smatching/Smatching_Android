@@ -11,8 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import appjam.sopt.a23rd.smatching.Adapter.AllNoticeListFragmentRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Adapter.CustomRecyclerViewAdapter
+import appjam.sopt.a23rd.smatching.Data.CondSummaryListData
 import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
+import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
 import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
@@ -21,13 +23,17 @@ import kotlinx.android.synthetic.main.fragment_all_notice_list.*
 import kotlinx.android.synthetic.main.fragment_custom.*
 import kotlinx.android.synthetic.main.fragment_custom_condition_click.*
 import kotlinx.android.synthetic.main.fragment_custom_condition_notclick.*
+import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CustomFragment : Fragment(){
+class CustomFirstFragment : Fragment(){
     val dataList : ArrayList<NoticeData> by lazy {
         ArrayList<NoticeData>()
+    }
+    val dataList2 : ArrayList<CondSummaryListData> by lazy {
+        java.util.ArrayList<CondSummaryListData>()
     }
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -41,7 +47,9 @@ class CustomFragment : Fragment(){
         super.onActivityCreated(savedInstanceState)
         replaceFragment(CustomConditionNotClickFragment())
         setRecyclerView()
-        getCustomFragmentResponse()
+        //getUserSmatchingCondResponse()
+        getCustomFirstFragmentListResponse(1)
+        getUserSmatchingCondResponse()
     }
     private fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
@@ -55,9 +63,9 @@ class CustomFragment : Fragment(){
         fragment_custom_condition_rv.addItemDecoration(DividerItemDecoration(view!!.getContext(), 1))
 
     }
-    private fun getCustomFragmentResponse(){
-        val getCustomFragmentResponse = networkService.getAllNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 20, 0)
-        getCustomFragmentResponse.enqueue(object : Callback<GetNoticeListResponse> {
+    private fun getCustomFirstFragmentListResponse(cond_idx:Int){
+        val getCustomFirstFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 20, 0, cond_idx)
+        getCustomFirstFragmentListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
                 Log.e("board list fail", t.toString())
             }
@@ -74,6 +82,25 @@ class CustomFragment : Fragment(){
 
                     }
                 }
+            }
+        })
+    }
+    private fun getUserSmatchingCondResponse(){
+        val getUserSmatchingCondResponse = networkService.getUserSmatchingCondResponse(SharedPreferenceController.getAuthorization(activity!!))
+        getUserSmatchingCondResponse.enqueue(object : Callback<GetUserSmatchingCondResponse> {
+            override fun onFailure(call: Call<GetUserSmatchingCondResponse>, t: Throwable) {
+                Log.e("board list fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
+                if (response.isSuccessful && response.body()!!.data.condSummaryList.size == 2){
+                    getCustomFirstFragmentListResponse(response.body()!!.data.condSummaryList.get(0).condIdx)
+                    fragment_custom_condition_notclick_tv_listsize.text = response.body()!!.data.condSummaryList.get(0).noticeCnt.toString()
+                } else if (response.isSuccessful && response.body()!!.data.condSummaryList.size == 1){
+                    dataList2.addAll(response.body()!!.data.condSummaryList)
+                    toast("2")
+                } else
+                    toast("테스트2")
             }
         })
     }
