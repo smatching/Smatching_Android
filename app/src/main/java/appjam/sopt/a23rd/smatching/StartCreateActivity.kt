@@ -56,6 +56,16 @@ class StartCreateActivity : AppCompatActivity() {
                     act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
                 else
                     act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
+
+                if(!nickName.text.toString().isEmpty())
+                    act_start_create_iv_nickname_delete.setVisibility(View.VISIBLE)
+                if(!email.text.toString().isEmpty())
+                    act_start_create_iv_email_delete.setVisibility(View.VISIBLE)
+                if(!password.text.toString().isEmpty())
+                    act_start_create_iv_password_delete.setVisibility(View.VISIBLE)
+                if(!password_confirm.text.toString().isEmpty())
+                    act_start_create_iv_passwordagain_delete.setVisibility(View.VISIBLE)
+
             }
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             }

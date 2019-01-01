@@ -37,8 +37,8 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="266dp"
+            android:layout_height="38.5dp"
             android:clickable="true"
             android:layout_marginTop="40dp">
 
@@ -62,12 +62,20 @@
                 android:fontFamily="@font/nanumsquareb"
                 android:maxLength="9"
                 android:singleLine="true"/>
-
+            <ImageView
+                android:id="@+id/act_start_create_iv_nickname_delete"
+                android:src="@drawable/btn_x"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4.5dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="266dp"
+            android:layout_height="38.5dp"
             android:clickable="true"
             android:layout_marginTop="10.5dp">
 
@@ -92,12 +100,21 @@
                 android:singleLine="true"
                 android:inputType="textEmailAddress"/>
 
+            <ImageView
+                android:id="@+id/act_start_create_iv_email_delete"
+                android:src="@drawable/btn_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginRight="4.5dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
 
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="266dp"
+            android:layout_height="38.5dp"
             android:clickable="true"
             android:layout_marginTop="10.5dp">
 
@@ -137,12 +154,21 @@
                 android:maxLength="15"
                 android:singleLine="true"
                 android:inputType="textPassword"/>
+            <ImageView
+                android:id="@+id/act_start_create_iv_password_delete"
+                android:src="@drawable/btn_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginRight="4.5dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="266dp"
+            android:layout_height="38.5dp"
             android:clickable="true"
             android:layout_marginTop="10.5dp">
             <ImageView
@@ -181,6 +207,16 @@
                 android:maxLength="15"
                 android:singleLine="true"
                 android:inputType="textPassword"/>
+
+            <ImageView
+                android:id="@+id/act_start_create_iv_passwordagain_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="4.5dp"
+                android:src="@drawable/btn_x"
+                android:visibility="gone" />
         </RelativeLayout>
 
         <RelativeLayout

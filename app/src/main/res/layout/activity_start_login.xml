@@ -35,8 +35,8 @@
 
         <RelativeLayout
             android:id="@+id/act_start_login_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="266dp"
+            android:layout_height="38.5dp"
             android:layout_marginTop="12.2dp"
             android:layout_below="@+id/act_main_iv_logo">
             <ImageView
@@ -60,12 +60,21 @@
                 android:fontFamily="@font/nanumsquareb"
                 android:maxLength="15"
                 android:maxLines = "2"/>
+            <ImageView
+                android:id="@+id/act_start_login_iv_email_delete"
+                android:src="@drawable/btn_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginRight="4.5dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/act_start_login_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="266dp"
+            android:layout_height="38.5dp"
             android:layout_marginTop="12.2dp"
             android:layout_below="@+id/act_start_login_email">
             <ImageView
@@ -103,6 +112,15 @@
                 android:maxLength="15"
                 android:singleLine="true"
                 android:inputType="textPassword"/>
+            <ImageView
+                android:id="@+id/act_start_login_iv_password_delete"
+                android:src="@drawable/btn_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginRight="4.5dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
 
         <ImageView

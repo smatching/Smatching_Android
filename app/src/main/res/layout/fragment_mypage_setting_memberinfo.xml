@@ -2,38 +2,167 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
-        android:id="@+id/fragment_mypage_setting_memberinfo_rl_profile"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="45dp"
-        android:layout_centerHorizontal="true">
-        <ImageView
-            android:src="@drawable/img_profile_edge_blue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:id="@+id/fragment_mypage_setting_memberinfo_rl_profile"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="20dp"
+            android:onClick="onClick"
+            android:layout_centerHorizontal="true">
             <ImageView
-                android:src="@drawable/img_profile"
+                android:src="@drawable/img_profile_edge_blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <ImageView
+                    android:src="@drawable/img_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
 
+            <ImageView
+                android:src="@drawable/icn_profile_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="36dp"
+                android:layout_marginBottom="7dp"
+                android:textSize="14sp"
+                android:textColor="#909090"
+                android:lineSpacingExtra="-1sp"
+                android:text="닉네임 (10자 이하)"
+                android:fontFamily="@font/nanumsquareb"/>
+            <EditText
+                android:id="@+id/fragment_mypage_setting_memberinfo_et_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarer"
+                android:layout_marginBottom="17dp"
+                android:layout_marginLeft="40dp"
+                android:textSize="14sp"
+                android:textColor="#474747"
+                android:lineSpacingExtra="15sp"
+                android:text="유윤종"
+                android:inputType="text"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="36dp"
+                android:fontFamily="@font/nanumsquareb"
+                android:textSize="14sp"
+                android:textColor="#909090"
+                android:lineSpacingExtra="-1sp"
+                android:text="이메일주소 (변경불가)"
+                />
+            <EditText
+                android:id="@+id/fragment_mypage_setting_memberinfo_et_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="17dp"
+                android:layout_marginLeft="40dp"
+                android:textSize="14sp"
+                android:textColor="#d9d9d9"
+                android:lineSpacingExtra="2sp"
+                android:fontFamily="@font/nanumsquarer"
+                android:text="yunjong@naver.com"
+                android:inputType="textEmailAddress"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="36dp"
+                android:layout_marginBottom="7dp"
+                android:textSize="14sp"
+                android:textColor="#909090"
+                android:lineSpacingExtra="2sp"
+                android:text="기존 비밀번호"
+                android:fontFamily="@font/nanumsquareb"
+                />
+            <EditText
+                android:id="@+id/fragment_mypage_setting_memberinfo_et_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginBottom="17dp"
+                android:textSize="14sp"
+                android:textColor="#d9d9d9"
+                android:lineSpacingExtra="2sp"
+                android:fontFamily="@font/nanumsquarer"
+                android:inputType="textPassword"
+                android:text=""
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="36dp"
+                android:textSize="14sp"
+                android:textColor="#909090"
+                android:lineSpacingExtra="2sp"
+                android:fontFamily="@font/nanumsquareb"
+                android:text="새 비밀번호 "
+                />
+            <EditText
+                android:id="@+id/fragment_mypage_setting_memberinfo_et_new_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="17dp"
+                android:layout_marginLeft="40dp"
+                android:textSize="14sp"
+                android:textColor="#d9d9d9"
+                android:lineSpacingExtra="2sp"
+                android:text="8~15자리 숫자, 영문자"
+                android:inputType="textPassword"
+                android:fontFamily="@font/nanumsquarer"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="36dp"
+                android:textSize="14sp"
+                android:textColor="#909090"
+                android:lineSpacingExtra="2sp"
+                android:fontFamily="@font/nanumsquareb"
+                android:text="새 비밀번호 재입력"
+                />
+            <EditText
+                android:id="@+id/fragment_mypage_setting_memberinfo_et_new_password_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:textSize="14sp"
+                android:textColor="#d9d9d9"
+                android:lineSpacingExtra="2sp"
+                android:fontFamily="@font/nanumsquarer"
+                android:text=""
+                android:inputType="textPassword"
+                />
+        </LinearLayout>
         <ImageView
-            android:src="@drawable/icn_profile_camera"
+            android:id="@+id/fragment_mypage_setting_memberinfo_btn_save"
+            android:onClick="onClick"
+            android:src="@drawable/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
-    <ImageView
-        android:src="@drawable/btn_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="66dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>
