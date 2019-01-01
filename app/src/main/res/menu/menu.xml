@@ -24,5 +24,9 @@
         android:icon="@drawable/icn_notice_white"
         android:visible="false"
         app:showAsAction="ifRoom" />
+    <item android:id="@+id/menu_smatching_delete"
+        android:title="조건삭제"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
 
 </menu>
