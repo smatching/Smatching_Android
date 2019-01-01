@@ -26,6 +26,8 @@ import retrofit2.Response
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.TextView
+import appjam.sopt.a23rd.smatching.MainActivity
+import kotlinx.android.synthetic.main.content_main.*
 
 
 class HomeFragment : Fragment(){
@@ -69,6 +71,25 @@ class HomeFragment : Fragment(){
         setRecyclerView()
         getAllNoticeListResponse()
 
+        fragment_home_iv_more_smatching.setOnClickListener {
+            replaceFragment(SmatchingCustom())
+            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
+            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).setTitleTextColor(resources.getColor(R.color.colorText))
+            (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
+            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
+            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = true
+            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
+            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
+            (activity as AppCompatActivity).findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
+            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_home).isSelected = false
+            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_smatching).isSelected = true
+            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_talk).isSelected = false
+            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_my_page).isSelected = false
+            (activity as AppCompatActivity).findViewById<TextView>(R.id.act_bottom_navi_tv_title).setText("맞춤지원")
+            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_bottom_navi_iv_title).visibility = View.INVISIBLE
+
+        }
         fragment_home_iv_more.setOnClickListener{
             replaceFragment(AllNoticeListFragment())
             (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)

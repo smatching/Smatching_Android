@@ -6,7 +6,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="25dp"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -15,26 +17,27 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:scaleType="fitXY"
                 android:src="@drawable/img_smatchingbox_blue"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-
-                android:layout_marginLeft="50dp"
+                android:layout_marginHorizontal="25dp"
                 android:layout_centerVertical="true">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="6dp">
 
                     <TextView
                         android:id="@+id/fragment_second_tv_nickname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="닉네임"
+                        android:text=""
                         android:fontFamily="@font/nanumsquarer"
                         android:textSize="16sp"
                         android:textColor="#ffffff"/>
@@ -87,13 +90,15 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:scaleType="fitXY"
                 android:src="@drawable/img_smatchingbox_white"/>
 
             <android.support.v7.widget.RecyclerView
                 android:layout_centerHorizontal="true"
                 android:id="@+id/fragment_second_rv"
                 android:layout_width="310dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="18dp">
 
             </android.support.v7.widget.RecyclerView>
 

@@ -11,13 +11,13 @@
         android:orientation="vertical"
         android:layout_marginBottom="20dp">
         <RelativeLayout
-            android:id="@+id/fragment_custom_condition_notclick_rl_custom_custom"
+            android:id="@+id/fragment_second_custom_condition_notclick_rl_custom_custom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="7dp">
 
             <ImageView
-                android:id="@+id/fragment_custom_condition_notclick_iv_custom"
+                android:id="@+id/fragment_second_custom_condition_notclick_iv_custom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
@@ -30,7 +30,7 @@
                 android:layout_marginHorizontal="16dp">
 
                 <TextView
-                    android:id="@+id/fragment_custom_condition_notclick_tv_name"
+                    android:id="@+id/fragment_second_custom_condition_notclick_tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumsquareb"
@@ -40,7 +40,7 @@
                     android:textColor="#ffffff"/>
 
                 <ImageView
-                    android:id="@+id/fragment_custom_condition_notclick_iv_back"
+                    android:id="@+id/fragment_second_custom_condition_notclick_iv_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

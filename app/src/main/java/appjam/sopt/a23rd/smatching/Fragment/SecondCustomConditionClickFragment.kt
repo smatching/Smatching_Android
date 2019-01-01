@@ -1,6 +1,5 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
@@ -8,12 +7,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.ImageView
-import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Data.CondSummaryListData
 import appjam.sopt.a23rd.smatching.Get.GetSmatchingListResponse
 import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
@@ -21,14 +16,13 @@ import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
-import kotlinx.android.synthetic.main.fragment_custom_condition_click.*
-import org.jetbrains.anko.support.v4.toast
+import kotlinx.android.synthetic.main.fragment_second_custom_condition_click.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
-class CustomConditionClickFragment : Fragment(){
+class SecondCustomConditionClickFragment : Fragment(){
     val dataList : ArrayList<CondSummaryListData> by lazy {
         ArrayList<CondSummaryListData>()
     }
@@ -36,14 +30,14 @@ class CustomConditionClickFragment : Fragment(){
         ApplicationController.instance.networkService
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_custom_condition_click, container, false)
+        return inflater.inflate(R.layout.fragment_second_custom_condition_click, container, false)
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        fragment_custom_condition_click_iv_back.setOnClickListener {
-            replaceFragment(CustomConditionNotClickFragment())
+        fragment_second_custom_condition_click_ll.setOnClickListener {
+            replaceFragment(SecondCustomConditionNotClickFragment())
         }
-        fragment_custom_condition_click_tv_edit.setOnClickListener {
+        fragment_second_custom_condition_click_tv_edit.setOnClickListener {
             replaceFragment2(SmatchingCustomEdit())
             (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             (activity as AppCompatActivity).supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
@@ -59,7 +53,7 @@ class CustomConditionClickFragment : Fragment(){
     }
     private fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fragment_custom_fl, fragment)
+        transaction.replace(R.id.fragment_second_custom_fl, fragment)
         transaction.commit()
     }
     private fun replaceFragment2(fragment : Fragment) {
@@ -75,17 +69,15 @@ class CustomConditionClickFragment : Fragment(){
             }
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-                if (response.isSuccessful && response.body()!!.data.condSummaryList.size == 2){
-                    getUserSmatchingListResponse(response.body()!!.data.condSummaryList.get(0).condIdx)
-                    fragment_custom_condition_click_tv_smatching_name.text = response.body()!!.data.condSummaryList.get(0).condName
-                } else if (response.isSuccessful && response.body()!!.data.condSummaryList.size == 1){
-                    dataList.addAll(response.body()!!.data.condSummaryList)
-                    toast("2")
-                } else
-                    toast("테스트2")
+                if (response.isSuccessful && response.body()!!.data.condSummaryList.get(1) != null) {
+                    getUserSmatchingListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
+                    fragment_second_custom_condition_click_tv_smatching_name.text = response.body()!!.data.condSummaryList.get(1).condName
+                }
             }
-        })
+        }
+        )
     }
+
     private fun getUserSmatchingListResponse(condIdx: Int){
         val getUserSmatchingListResponse = networkService.getSmatchingCondsResponse(condIdx)
         getUserSmatchingListResponse.enqueue(object : Callback<GetSmatchingListResponse> {
@@ -203,7 +195,7 @@ class CustomConditionClickFragment : Fragment(){
                                 first++
                         }
                     }
-                    fragment_custom_condition_click_tv_location.text = locationList.toString()
+                    fragment_second_custom_condition_click_tv_location.text = locationList.toString()
                             .replace(",", "")  //remove the commas
                             .replace("@", ", ")  //add the commas
                             .replace(" ,", ", ")
@@ -214,24 +206,5 @@ class CustomConditionClickFragment : Fragment(){
                 }
             }
         })
-    }
-    private fun testResponse(){
-        val getUserSmatchingListResponse = networkService.getSmatchingCondsResponse(1)
-        getUserSmatchingListResponse.enqueue(object : Callback<GetSmatchingListResponse> {
-            override fun onFailure(call: Call<GetSmatchingListResponse>, t: Throwable) {
-                Log.e("board list fail", t.toString())
-            }
-
-            override fun onResponse(call: Call<GetSmatchingListResponse>, response: Response<GetSmatchingListResponse>) {
-                if (response.isSuccessful) {
-                    toast("테스트")
-                }
-            }
-        })
-    }
-
-    /*                    getSmatchingListFirstResponse = networkService.getSmatchingCondsResponse(response.body()!!.data.condSummaryList.get(0).condIdx)
-                    getSmatchingListFirstResponse = Response<GetSmatchingListResponse>().body()!!.data*/
-    private fun setTextView() {
     }
 }

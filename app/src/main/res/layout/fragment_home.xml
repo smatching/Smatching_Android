@@ -55,6 +55,7 @@
 
                     </android.support.design.widget.TabLayout>
                     <ImageView
+                        android:id="@+id/fragment_home_iv_more_smatching"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"

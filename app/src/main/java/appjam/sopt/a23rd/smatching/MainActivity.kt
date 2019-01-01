@@ -19,11 +19,15 @@ import android.widget.Toast
 import appjam.sopt.a23rd.smatching.Fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.nav_header_main.*
+import org.jetbrains.anko.find
+import org.jetbrains.anko.imageResource
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var pageNum: Int = 0
+
     var time: Long = 0
     lateinit var fragment: Fragment
 
@@ -291,13 +295,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
-        if(android.R.id.home.)
-        if (System.currentTimeMillis() - time >= 2000) {
-            time = System.currentTimeMillis()
-            Toast.makeText(getApplicationContext(), "뒤로 버튼을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show()
-        } else if (System.currentTimeMillis() - time < 2000) {
-            finish()
-            finishAffinity()
+        //if (findViewById<ImageView>(R.id.home).visibility == View.VISIBLE)
+       //     replaceFragmentNum(pageNum)
+        //else {
+            if (System.currentTimeMillis() - time >= 2000) {
+                time = System.currentTimeMillis()
+                Toast.makeText(getApplicationContext(), "뒤로 버튼을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show()
+            } else if (System.currentTimeMillis() - time < 2000) {
+                finish()
+                finishAffinity()
+         //   }
         }
     }
+    public fun setpageNum(num:Int){
+        pageNum = num
+    }
+
 }

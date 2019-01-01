@@ -3,7 +3,6 @@ package appjam.sopt.a23rd.smatching.Fragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
-import android.text.TextUtils.replace
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,15 +13,15 @@ import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
-import kotlinx.android.synthetic.main.fragment_custom_condition_click.*
-import kotlinx.android.synthetic.main.fragment_custom_condition_notclick.*
+import kotlinx.android.synthetic.main.fragment_first_custom_condition_notclick.*
+import kotlinx.android.synthetic.main.fragment_second_custom_condition_notclick.*
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.ArrayList
 
-class CustomConditionNotClickFragment : Fragment(){
+class SecondCustomConditionNotClickFragment : Fragment(){
     val dataList : ArrayList<CondSummaryListData> by lazy {
         ArrayList<CondSummaryListData>()
     }
@@ -31,18 +30,18 @@ class CustomConditionNotClickFragment : Fragment(){
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_custom_condition_notclick, container, false)
+        return inflater.inflate(R.layout.fragment_second_custom_condition_notclick, container, false)
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        fragment_custom_condition_notclick_iv_back.setOnClickListener {
-            replaceFragment(CustomConditionClickFragment())
+        fragment_second_custom_condition_notclick_rl_custom_custom.setOnClickListener {
+            replaceFragment(SecondCustomConditionClickFragment())
         }
         getUserSmatchingCondResponse()
     }
     private fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fragment_custom_fl, fragment)
+        transaction.replace(R.id.fragment_second_custom_fl, fragment)
         transaction.commit()
     }
     private fun getUserSmatchingCondResponse(){
@@ -53,13 +52,9 @@ class CustomConditionNotClickFragment : Fragment(){
             }
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-                if (response.isSuccessful && response.body()!!.data.condSummaryList.size == 2){
-                    fragment_custom_condition_notclick_tv_name.text = response.body()!!.data.condSummaryList.get(0).condName
-                } else if (response.isSuccessful && response.body()!!.data.condSummaryList.size == 1){
-                    dataList.addAll(response.body()!!.data.condSummaryList)
-                    toast("2")
-                } else
-                    toast("테스트2")
+                if (response.isSuccessful && response.body()!!.data.condSummaryList.size == 2) {
+                    fragment_second_custom_condition_notclick_tv_name.text = response.body()!!.data.condSummaryList.get(1).condName
+                }
             }
         })
     }
