@@ -7,21 +7,57 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nanumsquarer"
-            android:textSize="12sp"/>
-        <ImageView
-            android:src="@drawable/img_profile_edge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/rv_item_mypage_smatching_scrap_tv_supervisor"
+                android:text="대한무역투자진흥공사"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarer"
+                android:textSize="11sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorBackgroundshallow"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/box_dday_gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/rv_item_mypage_smatching_scrap_tv_dday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/nanumsquareb"
+                    android:textColor="#bdbdbd"
+                    android:lineSpacingExtra="2sp"
+                    android:text="D-12"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/rv_item_mypage_smatching_scrap_tv_title"
+            android:layout_width="238dp"
+            android:layout_height="32dp"
+            android:textSize="12sp"
+            android:textColor="#313131"
+            android:fontFamily="@font/nanumsquareb"
+            android:lineSpacingExtra="3sp"
+            android:text="2019년 말레이시아 쿠알라룸푸르 할랄 전시회(MIHAS) 한국관 참가기업 모집 공고"
+            />
     </LinearLayout>
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/rv_item_mypage_smatching_scrap_iv_scrap"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/icn_scrap_yellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
 
 
