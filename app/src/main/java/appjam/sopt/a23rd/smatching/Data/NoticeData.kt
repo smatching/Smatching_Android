@@ -5,5 +5,6 @@ data class NoticeData(
         val title: String,
         val institution : String,
         val dday: Int,
-        val scrap : Int
+        val scrap : Int,
+        val readCnt : Int
 )
