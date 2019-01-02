@@ -4,41 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TestActivity">
+    tools:context=".SmatchingCustomActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/act_test_toolbar"
+        android:id="@+id/act_smatching_custom_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorBackground"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:layout_alignParentTop="true">
-
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center">
-
             <TextView
-                android:id="@+id/act_test_tv"
+                android:id="@+id/act_smatching_custom_tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:text=""
                 android:textColor="@color/colorText"
                 android:textSize="18sp"/>
-
         </FrameLayout>
-
     </android.support.v7.widget.Toolbar>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
-        android:layout_below="@+id/act_test_toolbar"
-        android:layout_above="@+id/act_test_rl">
+        android:layout_below="@+id/my_toolbar">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -61,7 +54,6 @@
                         android:scaleType="fitXY"/>
 
                     <EditText
-                        android:id="@+id/act_test_et_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -135,12 +127,11 @@
                         android:textColor="@color/colorText"
                         android:textSize="16sp"/>
                 </LinearLayout>
-
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
-                    android:layout_marginBottom="0dp"
+                    android:layout_marginBottom="16dp"
                     android:layout_marginHorizontal="25dp">
                     <ImageView
                         android:layout_width="wrap_content"
@@ -162,18 +153,6 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="158dp"/>
                 </RelativeLayout>
-                <GridView
-                    android:id="@+id/act_test_gv"
-                    android:numColumns="3"
-                    android:horizontalSpacing="8dp"
-                    android:verticalSpacing="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginBottom="16dp">
-
-
-                </GridView>
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -705,10 +684,11 @@
 
         </ScrollView>
 
+
+
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/act_test_rl"
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:layout_alignParentBottom="true"
@@ -734,5 +714,4 @@
 
         </LinearLayout>
     </RelativeLayout>
-
 </RelativeLayout>

@@ -148,7 +148,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.getItemId()) {
             android.R.id.home -> {
                 replaceFragmentNum(pageNum)
-
+                val mEditText = findViewById<TextView>(R.id.fragment_search_et_search)
+                val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(mEditText.windowToken, 0)
                 return true
             }
             R.id.menu_search -> {
@@ -310,5 +312,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     public fun setpageNum(num:Int){
         pageNum = num
     }
+
 
 }

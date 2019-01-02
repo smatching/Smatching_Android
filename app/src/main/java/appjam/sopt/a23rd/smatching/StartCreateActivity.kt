@@ -59,8 +59,7 @@ class StartCreateActivity : AppCompatActivity() {
 
                 if(!nickName.text.toString().isEmpty())
                     act_start_create_iv_nickname_delete.setVisibility(View.VISIBLE)
-                if(!email.text.toString().isEmpty())
-                    act_start_create_iv_email_delete.setVisibility(View.VISIBLE)
+
                 if(!password.text.toString().isEmpty())
                     act_start_create_iv_password_delete.setVisibility(View.VISIBLE)
                 if(!password_confirm.text.toString().isEmpty())
@@ -79,6 +78,54 @@ class StartCreateActivity : AppCompatActivity() {
                     act_start_create_iv_nickname.setImageResource(R.drawable.et_nickname_click)
                 else
                     act_start_create_iv_nickname.setImageResource(R.drawable.et_nickname)
+            }
+        })
+
+        //체킹
+        email.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //여기서 받기
+                if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
+                        && email.getText().toString().length != 0){
+                    act_start_create_iv_email.setImageResource(R.drawable.et_email_error)
+                    email.setOnFocusChangeListener(object : View.OnFocusChangeListener {
+                        override fun onFocusChange(v: View, hasFocus: Boolean) {
+                            if (!hasFocus)
+                                act_start_create_iv_email.setImageResource(R.drawable.et_email_error)
+                        }
+                    })
+                }
+                else if(android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
+                        && email.getText().toString().length != 0) {
+                    email.setOnFocusChangeListener(object : View.OnFocusChangeListener {
+                        override fun onFocusChange(v: View, hasFocus: Boolean) {
+                            if (!hasFocus)
+                                act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
+                            if(!email.text.toString().isEmpty())
+                                act_start_create_iv_email_delete.setVisibility(View.INVISIBLE)
+                        }
+                    })
+
+                    act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
+                }
+                else if(email.text.toString().length == 0) {
+
+                    act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
+                    email.setOnFocusChangeListener(object : View.OnFocusChangeListener {
+                        override fun onFocusChange(v: View, hasFocus: Boolean) {
+                            if (!hasFocus)
+                                act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
+                            if(!email.text.toString().isEmpty())
+                                act_start_create_iv_email_delete.setVisibility(View.INVISIBLE)
+                        }
+                    })
+                }
             }
         })
         email.setOnFocusChangeListener(object : View.OnFocusChangeListener {
