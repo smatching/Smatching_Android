@@ -3,19 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorText">
+    android:background="#8C474747">
     <ImageView
         android:src="@drawable/popupbox_region"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginVertical="72dp"
+        android:layout_marginVertical="50dp"
         android:layout_centerInParent="true"
         android:scaleType="fitXY"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginVertical="72dp"
+        android:layout_marginVertical="50dp"
         android:layout_marginHorizontal="25dp"
         android:orientation="vertical"
         android:layout_centerInParent="true">
@@ -251,8 +251,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginHorizontal="30dp"
-                android:orientation="horizontal"
-                android:layout_marginLeft="30dp">
+                android:layout_marginBottom="19.9dp"
+                android:orientation="horizontal">
                 <ImageView
                     android:src="@drawable/icn_emptybox"
                     android:layout_width="wrap_content"
@@ -268,56 +268,58 @@
                     android:textSize="12sp" />
             </LinearLayout>
         </RelativeLayout>
-        <ImageView
-            android:src="@drawable/line_horizon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RelativeLayout
-                android:id="@+id/fragment_smatching_custom_popup_needless_rl_exit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <TextView
-                    android:text="닫기"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/nanumsquareb"
-                    android:textSize="18sp"
-                    android:textColor="@color/colorText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"/>
-
-            </RelativeLayout>
 
             <ImageView
-                android:src="@drawable/line_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
-                android:scaleType="fitXY"/>
-            <RelativeLayout
-                android:id="@+id/fragment_smatching_custom_popup_needless_rl_ok"
-                android:layout_width="0dp"
+                android:src="@drawable/line_horizon"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <TextView
-                    android:text="확인"
-                    android:fontFamily="@font/nanumsquareb"
-                    android:textSize="18sp"
-                    android:textColor="@color/colorBlue"
-                    android:layout_width="wrap_content"
+                android:layout_marginHorizontal="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RelativeLayout
+                    android:id="@+id/fragment_smatching_custom_popup_needless_rl_exit"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"/>
-            </RelativeLayout>
+                    android:layout_weight="1">
+                    <TextView
+                        android:text="닫기"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"/>
 
-        </LinearLayout>
+                </RelativeLayout>
+
+                <ImageView
+                    android:src="@drawable/line_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:scaleType="fitXY"/>
+                <RelativeLayout
+                    android:id="@+id/fragment_smatching_custom_popup_needless_rl_ok"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <TextView
+                        android:text="확인"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorBlue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>

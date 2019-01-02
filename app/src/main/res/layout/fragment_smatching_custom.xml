@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -514,6 +515,7 @@
                     android:text="/5"/>
             </LinearLayout>
             <RelativeLayout
+                android:id="@+id/fragment_smatching_custom_rl_needless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
@@ -653,30 +655,37 @@
 
     </ScrollView>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="49dp"
-    android:layout_alignParentBottom="true"
-    android:background="@color/colorBackgroundshallow">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-        <TextView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorBackgroundshallow">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:fontFamily="@font/nanumsquareb"
-            android:textSize="18sp"
-            android:text="0" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:fontFamily="@font/nanumsquareb"
-            android:textSize="18sp"
-            android:text="건의 결과 보기" />
+            android:layout_centerInParent="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:fontFamily="@font/nanumsquareb"
+                android:textSize="18sp"
+                android:text="0" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:fontFamily="@font/nanumsquareb"
+                android:textSize="18sp"
+                android:text="건의 결과 보기" />
 
-    </LinearLayout>
-</RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_smatching_custom_fl_popup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 </RelativeLayout>
