@@ -4,34 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorText">
+
     <ImageView
-        android:src="@drawable/popupbox_region"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="25dp"
         android:layout_marginVertical="74dp"
-        android:layout_centerInParent="true"
-        android:scaleType="fitXY"/>
-    <LinearLayout
+        android:scaleType="fitXY"
+        android:src="@drawable/popupbox_region" />
+      <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="74dp"
         android:orientation="vertical"
         android:layout_centerInParent="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            android:layout_marginLeft="80dp"
-            android:layout_marginBottom="17.5dp">
+            android:layout_centerHorizontal="true">
+
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="6dp"
-                android:text="검색 희망 지역"
-                android:textSize="16sp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
                 android:fontFamily="@font/nanumsquareb"
-                android:textColor="@color/colorText"/>
+                android:text="검색 희망 지역"
+                android:textColor="@color/colorText"
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/fragment_smatching_custom_popup_region_tv_count"
                 android:layout_width="wrap_content"
@@ -49,12 +55,19 @@
                 android:fontFamily="@font/nanumsquareb"
                 android:textColor="@color/colorText"/>
         </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
         <LinearLayout
             android:id="@+id/fragment_smatching_custom_popup_region_ll_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginHorizontal="20dp"
             android:orientation="horizontal"
-            android:layout_marginLeft="30dp"
             android:layout_marginBottom="12.5dp">
             <ImageView
                 android:src="@drawable/icn_checkbox_blue"
@@ -69,22 +82,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+        </RelativeLayout>
         <ImageView
             android:src="@drawable/line_horizon"
-            android:layout_width="270dp"
-            android:layout_height="0dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="10dp"/>
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:scaleType="fitXY"
+            android:layout_marginBottom="10dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginHorizontal="48dp"
+            android:layout_marginHorizontal="38dp"
+            android:layout_centerInParent="true"
             android:layout_marginBottom="20dp">
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_seoul"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -102,8 +122,8 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_busan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -121,8 +141,8 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_daegu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -139,16 +159,22 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginHorizontal="48dp">
+            android:layout_marginHorizontal="38dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="20dp">
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_incheon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -166,8 +192,8 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_gwangju"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -185,8 +211,8 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_daejeon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -203,16 +229,22 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginHorizontal="48dp">
+            android:layout_marginHorizontal="38dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="20dp">
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_ulsan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -230,8 +262,8 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_sejong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -249,8 +281,8 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_gangwon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -267,16 +299,22 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginHorizontal="48dp">
+            android:layout_marginHorizontal="38dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="20dp">
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_gyunggi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -294,8 +332,8 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_gyungnam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -313,8 +351,8 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_gyungbuk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -331,16 +369,22 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginHorizontal="48dp">
+            android:layout_marginHorizontal="38dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="20dp">
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_jeonnam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -358,8 +402,8 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_jeonbuk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -377,8 +421,8 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_chungnam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -395,15 +439,22 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginHorizontal="48dp">
+            android:layout_marginBottom="20dp"
+            android:layout_marginHorizontal="38dp"
+            android:layout_centerInParent="true">
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_chungbuk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -421,8 +472,8 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_jeju"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <ImageView
@@ -440,8 +491,8 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/fragment_smatching_custom_popup_region_ll_invisible"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:visibility="invisible"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -459,70 +510,90 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
-
+        </RelativeLayout>
         <ImageView
             android:src="@drawable/line_horizon"
-            android:layout_width="270dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:layout_marginHorizontal="10dp"/>
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="1">
         <LinearLayout
             android:id="@+id/fragment_smatching_custom_popup_region_ll_foreign_country"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
             android:orientation="horizontal">
             <ImageView
                 android:src="@drawable/icn_emptybox"
                 android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"/>
             <TextView
                 android:text="국외"
                 android:fontFamily="@font/nanumsquarer"
                 android:textSize="12sp"
+                android:layout_gravity="center_vertical"
                 android:textColor="@color/colorText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+          </RelativeLayout>
         <ImageView
             android:src="@drawable/line_horizon"
-            android:layout_width="270dp"
-            android:layout_height="0dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="15dp"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:text="닫기"
-                android:fontFamily="@font/nanumsquareb"
-                android:textSize="18sp"
-                android:textColor="@color/colorText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="61.5dp"
-                android:layout_marginRight="60.5dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"/>
-            <ImageView
-                android:src="@drawable/line_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="확인"
-                android:fontFamily="@font/nanumsquareb"
-                android:textSize="18sp"
-                android:textColor="@color/colorBlue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="61.5dp"
-                android:layout_marginLeft="60.5dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"/>
-        </LinearLayout>
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="wrap_content" />
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+              <RelativeLayout
+                  android:id="@+id/fragment_smatching_custom_popup_needless_rl_exit"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1">
+                  <TextView
+                      android:text="닫기"
+                      android:layout_centerHorizontal="true"
+                      android:fontFamily="@font/nanumsquareb"
+                      android:textSize="18sp"
+                      android:textColor="@color/colorText"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                   android:layout_marginVertical="15dp"/>
+
+              </RelativeLayout>
+
+              <ImageView
+                  android:src="@drawable/line_vertical"
+                  android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                  android:layout_marginBottom="10dp"
+                  android:scaleType="fitXY"/>
+              <RelativeLayout
+                  android:id="@+id/fragment_smatching_custom_popup_needless_rl_ok"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1">
+                  <TextView
+                      android:text="확인"
+                      android:fontFamily="@font/nanumsquareb"
+                      android:textSize="18sp"
+                      android:textColor="@color/colorBlue"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_centerHorizontal="true"
+                     android:layout_marginVertical="15dp"/>
+              </RelativeLayout>
+
+          </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
