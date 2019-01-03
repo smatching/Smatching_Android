@@ -38,8 +38,7 @@ data class LocationData(
         val aborad: Boolean,
         val kyunggi: Boolean,
         val incheon: Boolean,
-        val jeonnam: Boolean,
-        val domesticAll: Boolean
+        val jeonnam: Boolean
 )
 data class AgeData(
         val forty_more: Boolean,

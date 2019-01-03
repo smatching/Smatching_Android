@@ -27,7 +27,7 @@ import org.jetbrains.anko.imageResource
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var pageNum: Int = 0
-
+    var isSearch: Int = 0
     var time: Long = 0
     lateinit var fragment: Fragment
 
@@ -147,12 +147,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         when (item.getItemId()) {
             android.R.id.home -> {
+                if(isSearch == 1) {
+                    val mEditText = findViewById<TextView>(R.id.fragment_search_et_search)
+                    val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    inputMethodManager.hideSoftInputFromWindow(mEditText.windowToken, 0)
+                    isSearch = 0
+                }
                 replaceFragmentNum(pageNum)
-
                 return true
             }
             R.id.menu_search -> {
-
+                isSearch = 1
 /*
                 val fr = SearchFragment()// Fragment Instance 설정
                 val fm = supportFragmentManager
@@ -310,5 +315,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     public fun setpageNum(num:Int){
         pageNum = num
     }
+
 
 }

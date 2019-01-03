@@ -17,7 +17,7 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
-
+        //SharedPreferenceController.setAuthorization(this, "")
         //자동로그인
         if(SharedPreferenceController.getAuthorization(this).isNotEmpty())
             startActivity<MainActivity>()

@@ -21,7 +21,10 @@
         </activity>
         <activity android:name=".StartLoginActivity" />
         <activity android:name=".StartCreateActivity" />
-        <activity android:name=".TestActivity" />
+        <activity android:name=".TestActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".FirstSmatchingCustomActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".PolicyActivity" />
