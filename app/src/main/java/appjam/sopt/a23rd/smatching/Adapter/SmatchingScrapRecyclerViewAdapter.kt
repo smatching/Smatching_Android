@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.R
-import kotlinx.android.synthetic.main.rv_item_mypage_smatching_scrap.view.*
 
 class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<NoticeData>)
     : RecyclerView.Adapter<SmatchingScrapRecyclerViewAdapter.Holder>() {
@@ -36,7 +35,7 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
         // 스크랩이 됐을 경우
         else
             holder.scrap.setImageResource(R.drawable.icn_scrap_yellow)
-    }
+}
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val supervisor: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_supervisor)
         val ddayImg : ImageView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_iv_dday)

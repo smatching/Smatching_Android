@@ -21,11 +21,14 @@
         </activity>
         <activity android:name=".StartLoginActivity" />
         <activity android:name=".StartCreateActivity" />
-        <activity android:name=".TestActivity" />
-        <activity android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".TestActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".PolicyActivity" />
-        <activity android:name=".PolicyViewActivity"></activity>
+        <activity android:name=".PolicyViewActivity" />
     </application>
 
 </manifest>

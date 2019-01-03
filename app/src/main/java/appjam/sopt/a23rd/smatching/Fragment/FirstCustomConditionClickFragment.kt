@@ -10,13 +10,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import appjam.sopt.a23rd.smatching.Data.CondSummaryListData
+import appjam.sopt.a23rd.smatching.FirstSmatchingCustomActivity
 import appjam.sopt.a23rd.smatching.Get.GetSmatchingListResponse
 import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
 import appjam.sopt.a23rd.smatching.R
+import appjam.sopt.a23rd.smatching.TestActivity
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_first_custom_condition_click.*
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,15 +41,7 @@ class FirstCustomConditionClickFragment : Fragment(){
             replaceFragment(FirstCustomConditionNotClickFragment())
         }
         fragment_first_custom_condition_click_tv_edit.setOnClickListener {
-            replaceFragment2(SmatchingCustomEdit())
-            (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-            (activity as AppCompatActivity).supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
-            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
-            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
-            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = true
-
-//            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_talk).isSelected = false
-//            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_my_page).isSelected = false
+            activity!!.startActivity<TestActivity>()
         }
         getUserSmatchingCondResponse()
         //testResponse()
@@ -87,7 +82,7 @@ class FirstCustomConditionClickFragment : Fragment(){
 
             override fun onResponse(call: Call<GetSmatchingListResponse>, response: Response<GetSmatchingListResponse>) {
                 if (response.isSuccessful) {
-                    val locationList = Arrays.asList("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
+                    val locationList = Arrays.asList("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
                     if (response.body()!!.data.location.jeonbuk)
                         locationList[0] = "전북"
                     else
@@ -173,21 +168,23 @@ class FirstCustomConditionClickFragment : Fragment(){
                     else
                         locationList[16] = ""
 
-                    if (response.body()!!.data.location.domesticAll)
-                        locationList[17] = "국내전체"
+                    if (response.body()!!.data.location.aborad)
+                        locationList[17] = "국외"
                     else
                         locationList[17] = ""
-                    if (response.body()!!.data.location.aborad)
-                        locationList[18] = "국외"
-                    else
-                        locationList[18] = ""
-                    if (locationList[17] != "") {
-                        for (a in 0..16)
+                    var count = 0
+                    for (a in 0..17) {
+                        if (locationList[a] != "")
+                        count++
+                    }
+                    if (count == 18) {
+                        for (a in 0..15)
                             locationList[a] = ""
-                        if (locationList[18] != "")
-                            locationList[18] = "@" + locationList[18]
+                        locationList[17] = "국내전체"
+                        if (locationList[17] != "")
+                            locationList[17] = "@" + locationList[17]
                     } else {
-                        for (a in 0..18) {
+                        for (a in 0..17) {
                             var first: Int = 0
                             if (locationList[a] != "" && a != first)
                                 locationList[a] = "@" + locationList[a]

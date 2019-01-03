@@ -40,6 +40,9 @@ class MyPageFragment : Fragment(){
         fragment_my_page_user_rl_profile.setOnClickListener{
             replaceFragment(MyPageSettingMemberInfoFragment())
         }
+        fragment_my_page_user_talkscrap.setOnClickListener {
+            replaceFragment(TalkFragment())
+        }
         /*
         fragment_my_page_user_smatchingscrap.setOnClickListener {
             fragment_my_page_user_smatchingscrap.setTextColor(resources.getColor(R.color.colorText))
