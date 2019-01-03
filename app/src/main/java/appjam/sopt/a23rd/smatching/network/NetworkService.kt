@@ -80,4 +80,11 @@ interface NetworkService {
     fun deleteSmatchingCondsDeleteResponse(
             @Header("Authorization") token : String
     ) : Call<DeleteSmatchingCondsResponse>
+    //스크랩한 지원사업 목록 조회
+    @GET("/users/noticelist")
+    fun getSmatchingScrapListResponse(
+            @Header("Authorization") token : String,
+            @Query("request_num") request_num : Int,
+            @Query("exist_num") exist_num : Int
+    ) : Call<GetNoticeListResponse>
 }

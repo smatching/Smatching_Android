@@ -52,7 +52,7 @@
                 android:id="@+id/act_start_create_et_nickname"
                 android:layout_width="266dp"
                 android:layout_height="39dp"
-                android:hint="닉네임"
+                android:hint="닉네임 (8자 이내)"
                 android:textColorHint="@color/colorTextHint"
                 android:textColor="@color/colorText"
                 android:textSize="14sp"

@@ -24,13 +24,14 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
         holder.supervisor.text = dataList[position].institution
         if(dataList[position].dday.toString() > "1000"){
             holder.dday.text = "예산 소진시"
+            holder.ddayImg.getLayoutParams().width = 170
         }
         else {
             holder.dday.text = dataList[position].dday.toString()
         }
         holder.title.text = dataList[position].title
         // 스크랩이 되지 않았을 경우
-        if(dataList[position].scrap == 1)
+        if(dataList[position].scrap == 0)
             holder.scrap.setImageResource(R.drawable.icn_scrap_grey)
         // 스크랩이 됐을 경우
         else
@@ -38,6 +39,7 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
     }
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val supervisor: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_supervisor)
+        val ddayImg : ImageView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_iv_dday)
         val dday: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_dday)
         val title: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_title)
         val scrap: ImageView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_iv_scrap)
