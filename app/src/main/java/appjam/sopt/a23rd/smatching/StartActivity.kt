@@ -20,7 +20,7 @@ class StartActivity : AppCompatActivity() {
         //SharedPreferenceController.setAuthorization(this, "")
         //자동로그인
         if(SharedPreferenceController.getAuthorization(this).isNotEmpty())
-            startActivity<MainActivity>()
+            startActivity<TestActivity>()
         //else if(SharedPreferenceController.getAuthorization(this).isEmpty())
         //    toast("null")
 

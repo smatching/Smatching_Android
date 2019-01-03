@@ -154,6 +154,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     isSearch = 0
                 }
                 replaceFragmentNum(pageNum)
+<<<<<<< HEAD
+=======
+                val mEditText = findViewById<TextView>(R.id.fragment_search_et_search)
+                val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(mEditText.windowToken, 0)
+>>>>>>> cfe06e3aa22beb03c6f2e437262de2e3567a5940
                 return true
             }
             R.id.menu_search -> {

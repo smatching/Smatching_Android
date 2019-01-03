@@ -41,7 +41,7 @@ class FirstCustomConditionClickFragment : Fragment(){
             replaceFragment(FirstCustomConditionNotClickFragment())
         }
         fragment_first_custom_condition_click_tv_edit.setOnClickListener {
-            activity!!.startActivity<FirstSmatchingCustomActivity>()
+            activity!!.startActivity<TestActivity>()
         }
         getUserSmatchingCondResponse()
         //testResponse()

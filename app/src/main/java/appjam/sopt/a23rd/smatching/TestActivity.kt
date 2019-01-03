@@ -2,6 +2,7 @@ package appjam.sopt.a23rd.smatching
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.media.Image
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
@@ -16,6 +17,8 @@ import kotlinx.android.synthetic.main.activity_test.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TestActivity : AppCompatActivity() {
     val dataList : ArrayList<CondSummaryListData> by lazy {
@@ -34,7 +37,6 @@ class TestActivity : AppCompatActivity() {
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
         supportActionBar!!.setTitle("")
         act_test_tv.text = "맞춤지원"
-        getUserSmatchingCondResponse()
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {

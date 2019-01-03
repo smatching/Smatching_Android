@@ -5,7 +5,5 @@
 
     <item android:id="@+id/menu_smatching_delete"
         android:title="조건삭제"
-        android:visible="false"
         app:showAsAction="ifRoom" />
-
 </menu>
