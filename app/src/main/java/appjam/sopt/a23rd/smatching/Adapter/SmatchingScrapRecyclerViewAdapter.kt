@@ -22,8 +22,8 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.supervisor.text = dataList[position].institution
         if(dataList[position].dday.toString() > "1000"){
-            holder.dday.text = "예산 소진시"
-            holder.ddayImg.getLayoutParams().width = 170
+            holder.dday.text = ""
+            holder.ddayImg.setImageResource(R.drawable.txt_budgetend)
         }
         else {
             holder.dday.text = dataList[position].dday.toString()

@@ -41,7 +41,10 @@ class MyPageFragment : Fragment(){
             replaceFragment(MyPageSettingMemberInfoFragment())
         }
         fragment_my_page_user_talkscrap.setOnClickListener {
-            replaceFragment(TalkFragment())
+            replaceFragment(MyPageTalkFragment())
+        }
+        fragment_my_page_user_smatchingscrap.setOnClickListener{
+            replaceFragment(MyPageFragment())
         }
         /*
         fragment_my_page_user_smatchingscrap.setOnClickListener {

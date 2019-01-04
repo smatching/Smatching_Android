@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.view.View
 import appjam.sopt.a23rd.smatching.Fragment.*
-import appjam.sopt.a23rd.smatching.R
 
 class PagerSmatchingAdapter(fm: FragmentManager, var fragmentCount : Int): FragmentStatePagerAdapter(fm){//val로해도 됨?
     override fun getItem(position: Int): Fragment? {
