@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorText">
+    android:background="#99474747">
     <ImageView
-        android:src="@drawable/popupbox_region"
+        android:src="@drawable/popupbox_sector"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="25dp"
@@ -41,7 +41,7 @@
                 android:textColor="@color/colorText"
                 android:textSize="16sp" />
             <TextView
-                android:id="@+id/fragment_smatching_custom_popup_region_tv_count"
+                android:id="@+id/fragment_smatching_custom_popup_sector_tv_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumsquareb"
@@ -846,7 +846,7 @@
             android:layout_marginHorizontal="25dp"
             android:orientation="horizontal">
             <RelativeLayout
-                android:id="@+id/fragment_smatching_custom_popup_needless_rl_exit"
+                android:id="@+id/fragment_smatching_custom_popup_sector_needless_rl_exit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">

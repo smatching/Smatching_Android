@@ -5,6 +5,7 @@ import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
 import appjam.sopt.a23rd.smatching.Get.GetSmatchingListResponse
 import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
 import appjam.sopt.a23rd.smatching.Put.PutSmatchingCount
+import appjam.sopt.a23rd.smatching.Put.PutSmatchingEdit
 import appjam.sopt.a23rd.smatching.post.PostLogInResponse
 import appjam.sopt.a23rd.smatching.post.PostSignUpResponse
 import appjam.sopt.a23rd.smatching.post.PostSmatchingAdd
@@ -61,7 +62,7 @@ interface NetworkService {
             @Header("Content-Type") content_type : String,
             @Body() body : JsonObject
     ) : Call<PutSmatchingCount>
-    //맞춤조건 추가
+    //맞춤조건 추가 안했음
     @POST("/conds")
     fun postSmatchingCondsAddResponse(
             @Header("Content-Type") content_type : String,
@@ -73,8 +74,9 @@ interface NetworkService {
     fun putSmatchingCondsChangeResponse(
             @Header("Content-Type") content_type : String,
             @Header("Authorization") token : String,
+            @Path("condIdx") cond_idx: Int,
             @Body() body : JsonObject
-    ) : Call<PutSmatchingCount>
+    ) : Call<PutSmatchingEdit>
     //맞춤조건 삭제
     @DELETE("/conds/{condIdx}")
     fun deleteSmatchingCondsDeleteResponse(

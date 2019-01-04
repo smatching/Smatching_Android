@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         val titleText = findViewById<TextView>(R.id.act_bottom_navi_tv_title)
         val titleImage = findViewById<ImageView>(R.id.act_bottom_navi_iv_title)
+        var pageState = 0
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setTitle("")
@@ -59,6 +60,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val navi = ll_bottom_navi_act_main
 
+        val intent = getIntent()
+        if(intent.getIntExtra("view", 0) == 1) {
+            replaceFragment(SmatchingCustom())
+            toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
+            toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
+            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
+            pageNum = 1
+            act_main_iv_home.isSelected = false
+            act_main_iv_smatching.isSelected = true
+            act_main_iv_talk.isSelected = false
+            act_main_iv_my_page.isSelected = false
+            titleText.setText("맞춤지원")
+            titleImage.visibility = View.INVISIBLE
+            if(intent.getIntExtra("page", 0) == 0) {
+                val fragIntent = intent
+                fragIntent.putExtra("page", 0)
+            } else if(intent.getIntExtra("page", 0) == 1) {
+                val fragIntent = intent
+                fragIntent.putExtra("page", 1)
+            }
+        }
 
         //configureBottomNavigation()
 
@@ -315,6 +338,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     public fun setpageNum(num:Int){
         pageNum = num
     }
-
-
 }

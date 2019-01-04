@@ -65,7 +65,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="맞춤조건1"
+                        android:text=""
                         android:background="@null"
                         android:layout_marginHorizontal="10dp"
                         android:textSize="18sp"
@@ -375,36 +375,46 @@
                     android:layout_marginHorizontal="18dp"
                     android:scaleType="fitXY"
                     android:layout_marginBottom="17dp"/>
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginBottom="17dp">
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/fragment_smatching_custom_ll_busiType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="기업형태"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:textColor="@color/colorText"/>
-                    <TextView
-                        android:id="@+id/act_test_tv_field_count"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="기업형태"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textColor="@color/colorText"
+                            android:textSize="16sp"/>
+                        <TextView
+                            android:id="@+id/act_test_tv_busiType_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textColor="@color/colorText"
+                            android:textSize="16sp"
+                            android:layout_marginLeft="4dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/7"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textColor="@color/colorText"
+                            android:textSize="16sp"/>
+                    </LinearLayout>
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="16sp"
-                        android:layout_marginLeft="4dp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:textColor="@color/colorText"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="/7"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:textColor="@color/colorText"/>
-                </LinearLayout>
+                        android:src="@drawable/btn_custom_must"
+                        android:layout_toRightOf="@+id/fragment_smatching_custom_ll_busiType"/>
+                </RelativeLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -493,41 +503,52 @@
                     android:layout_marginHorizontal="18dp"
                     android:layout_marginBottom="17dp"
                     android:scaleType="fitXY"/>
-                <LinearLayout
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginBottom="17dp">
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/fragment_smatching_custom_ll_field"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorText"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:text="업종"/>
-                    <TextView
-                        android:id="@+id/act_test_tv_field"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="업종"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textColor="@color/colorText"
+                            android:textSize="16sp"/>
+                        <TextView
+                            android:id="@+id/act_test_tv_field_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textColor="@color/colorText"
+                            android:textSize="16sp"
+                            android:layout_marginLeft="4dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/6"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textColor="@color/colorText"
+                            android:textSize="16sp"/>
+                    </LinearLayout>
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorText"
-                        android:textSize="16sp"
-                        android:layout_marginLeft="4dp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:text="0"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorText"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:text="/6"/>
-                </LinearLayout>
+                        android:src="@drawable/btn_custom_must"
+                        android:layout_toRightOf="@+id/fragment_smatching_custom_ll_field"/>
+                </RelativeLayout>
                 <RelativeLayout
+                    android:id="@+id/act_test_rl_busiType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginHorizontal="30dp">
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -551,39 +572,955 @@
                         android:layout_marginRight="16dp"/>
                 </RelativeLayout>
                 <LinearLayout
-                    android:visibility="gone"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp">
-                    <ImageView
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_a"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/img_rightround"/>
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
                         <ImageView
-                            android:id="@+id/act_test_iv_field_a"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:scaleType= "fitXY"
-                            android:src="@drawable/img_square"/>
-                        <TextView
-                            android:id="@+id/act_test_tv_field_a"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="6dp"
-                            android:layout_marginRight="32dp"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="C 제조업 (10~34)zzzzzzz"
-                            android:textSize="12sp"
-                            android:textColor="@color/colorText"
-                            android:fontFamily="@font/nanumsquarer" />
-                    </RelativeLayout>
-                    <ImageView
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_a"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="A 농업, 임업 및 어업 (01~03)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_a"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_b"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/img_leftround"/>
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_b"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="B 광업 (05~08)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_b"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_b"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_c"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_c"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="C 제조업 (10~34)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_c"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_c"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_d"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_d"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="D 전기, 가스, 증기 및 공기 조절 공급업 (35)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_d"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_d"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_e"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_e"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="E 수도, 하수 및 폐기물 처리, 원료 재생업 (36~39)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_e"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_e"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_f"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_f"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="F 건설업 (41~42)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_f"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_f"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_g"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="G 도매 및 소매업 (45~47)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_g"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_g"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_h"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_h"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="H 운수 및 창고업 (49~52)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_h"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_h"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_i"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_i"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="I 숙박 및 음식점업 (55~56)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_i"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_i"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_j"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_j"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="J 정보통신업 (58~63)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_j"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_j"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_k"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_k"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="K 금융 및 보험업 (64~66)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_k"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_k"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_l"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_l"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="L 부동산업 (68)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_l"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_l"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_m"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_m"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="M 전문, 과학 및 기술 서비스업 (70~73)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_m"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_m"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_n"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_n"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="N 사업시설 관리, 사업지원 및 임대서비스업 (74~76)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_n"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_n"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_o"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_o"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="O 공공 행정 ,국방 및 사회보장 행정 (84)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_o"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_o"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_p"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_p"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="P 교육 서비스업 (85)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_p"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_p"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_q"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_q"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Q 보건업 및 사회복지 서비스업 (86~87)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_q"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_q"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_r"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R 예술, 스포츠 및 여가관련 서비스업 (90~91)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_r"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_r"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_s"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_s"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="S 협회 및 단체, 수리 및 기타 개인 서비스업 (94~96)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_s"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_s"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_t"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_t"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="T 가구 내 고용횔동 및 달리 분류되지 않은 자가 소비 생산활동 (97~98)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_t"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_t"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_u"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_u"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="U 국제 및 외국기관 (99)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_u"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_u"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_field_v"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_field_v"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="V 4차산업분야"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_field_v"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_field_v"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
                 </LinearLayout>
                 <ImageView
                     android:layout_width="match_parent"
@@ -591,42 +1528,53 @@
                     android:src="@drawable/line"
                     android:layout_marginHorizontal="18dp"
                     android:layout_marginBottom="17dp"
+                    android:layout_marginTop="18dp"
                     android:scaleType="fitXY"/>
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginBottom="17dp">
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/fragment_smatching_custom_ll_excCategory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorText"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:text="필요 없는 지원사업분야"/>
-                    <TextView
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="필요 없는 지원사업분야"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textColor="@color/colorText"
+                            android:textSize="16sp"/>
+                        <TextView
+                            android:id="@+id/act_test_tv_excCategory_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textColor="@color/colorText"
+                            android:textSize="16sp"
+                            android:layout_marginLeft="4dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/5"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textColor="@color/colorText"
+                            android:textSize="16sp"/>
+                    </LinearLayout>
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorText"
-                        android:textSize="16sp"
-                        android:layout_marginLeft="4dp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:text="0"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorText"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:text="/5"/>
-                </LinearLayout>
+                        android:src="@drawable/btn_custom_must"
+                        android:layout_toRightOf="@+id/fragment_smatching_custom_ll_excCategory"/>
+                </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/fragment_smatching_custom_rl_needless"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginHorizontal="30dp">
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -649,42 +1597,404 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="16dp"/>
                 </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_excCategory_edu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_excCategory_edu"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="창업교육, 창업 멘토링"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_excCategory_edu"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_excCategory_edu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_excCategory_know"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_excCategory_know"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="지식재산권 (특허, 저작권 등)"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_excCategory_know"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_excCategory_know"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_excCategory_place"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_excCategory_place"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="시설, 공간"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_excCategory_place"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_excCategory_place"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_excCategory_local"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_excCategory_local"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="국내판로 확대"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_excCategory_local"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_excCategory_local"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_excCategory_global"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_excCategory_global"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="해외판로 확대"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_excCategory_global"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_excCategory_global"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_excCategory_make"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_excCategory_make"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="시제품 제작, 제조양산"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_excCategory_make"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_excCategory_make"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_excCategory_gov"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_excCategory_gov"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="정부 대출 지원"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_excCategory_gov"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_excCategory_gov"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/act_test_ll_excCategory_loan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_rightround"/>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:background="@drawable/img_square"
+                                android:id="@+id/act_test_tv_excCategory_loan"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="무대출 자금 지원"
+                                android:singleLine="true"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorText"
+                                android:fontFamily="@font/nanumsquarer" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/act_test_tv_excCategory_loan"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/btn_delete"/>
+
+                            <ImageView
+                                android:layout_alignRight="@+id/act_test_tv_excCategory_loan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/img_leftround"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/line"
                     android:layout_marginHorizontal="18dp"
                     android:layout_marginBottom="17dp"
+                    android:layout_marginTop="18dp"
                     android:scaleType="fitXY"/>
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginBottom="17dp">
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/fragment_smatching_custom_ll_advantage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="우대사항"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:textColor="@color/colorText"/>
-                    <TextView
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="우대사항"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textColor="@color/colorText"
+                            android:textSize="16sp"/>
+                        <TextView
+                            android:id="@+id/act_test_tv_advantage_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textColor="@color/colorText"
+                            android:textSize="16sp"
+                            android:layout_marginLeft="4dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/8"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textColor="@color/colorText"
+                            android:textSize="16sp"/>
+                    </LinearLayout>
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="16sp"
-                        android:layout_marginLeft="4dp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:textColor="@color/colorText"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="/8"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:textColor="@color/colorText"/>
-                </LinearLayout>
+                        android:src="@drawable/btn_custom_must"
+                        android:layout_toRightOf="@+id/fragment_smatching_custom_ll_advantage"/>
+                </RelativeLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -698,16 +2008,19 @@
                         android:layout_marginHorizontal="30dp"
                         android:layout_marginBottom="9dp">
                         <ImageView
+                            android:id="@+id/act_test_iv_preference_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:src="@drawable/btn_pick_preference_1"/>
                         <ImageView
+                            android:id="@+id/act_test_iv_preference_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:src="@drawable/btn_pick_preference_2"/>
                         <ImageView
+                            android:id="@+id/act_test_iv_preference_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -720,16 +2033,19 @@
                         android:layout_marginHorizontal="30dp"
                         android:layout_marginBottom="9dp">
                         <ImageView
+                            android:id="@+id/act_test_iv_preference_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:src="@drawable/btn_pick_preference_4"/>
                         <ImageView
+                            android:id="@+id/act_test_iv_preference_5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:src="@drawable/btn_pick_preference_5"/>
                         <ImageView
+                            android:id="@+id/act_test_iv_preference_6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -741,11 +2057,13 @@
                         android:orientation="horizontal"
                         android:layout_marginHorizontal="30dp">
                         <ImageView
+                            android:id="@+id/act_test_iv_preference_7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:src="@drawable/btn_pick_preference_7"/>
                         <ImageView
+                            android:id="@+id/act_test_iv_preference_8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -790,6 +2108,895 @@
                 android:text="건의 결과 보기" />
 
         </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/act_test_rl_popup_sector"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99474747">
+        <ImageView
+            android:src="@drawable/popupbox_sector"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginVertical="58dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginVertical="58dp"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="25dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="6dp"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:text="업종"
+                        android:textColor="@color/colorText"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/act_test_tv_fieldCount_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:text="0"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="6dp"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:text="/6"
+                        android:textColor="@color/colorText"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginTop="10dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_A"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_A"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="A"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="농업, 임업 및 어업 (01~03)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_B"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_centerVertical="true"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_B"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="B"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="광업 (05~08)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_C"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_centerVertical="true"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_C"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="C"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="제조업 (10~34)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_D"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_centerVertical="true"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_D"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="D"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="전기, 가스, 증기 및 공기 조절 공급업 (35)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_E"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_centerVertical="true"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_E"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="E"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="수도, 하수 및 폐기물 처리, 원료 재생업 (36~39)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_F"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_centerVertical="true"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_F"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="F"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="건설업 (41~42)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_G"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_G"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="G"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="도매 및 소매업 (45~47)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_H"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_H"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="H"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="운수 및 창고업 (49~52)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_I"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_centerVertical="true"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_I"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="I"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="숙박 및 음식점업 (55~56)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_J"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_J"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="J"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="정보통신업 (58~63)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_K"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_centerVertical="true"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_K"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="K"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="금융 및 보험업 (64~66)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_L"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_L"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="L"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="부동산업 (68)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_M"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_centerVertical="true"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_M"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="M"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="전문, 과학 및 기술 서비스업 (70~73)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_N"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_N"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="N"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="사업시설 관리, 사업지원 및 임대서비스업 (74~76)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_O"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_O"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="O"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="공공 행정, 국방 및 사회보장 행정 (84)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_P"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_P"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="P"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="교육 서비스업 (85)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_Q"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_Q"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="Q"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="보건업 및 사회복지 서비스업 (86~87)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_R"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_R"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="R"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="예술, 스포츠 및 여가관련 서비스업 (90~91)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_S"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_S"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="S"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="협회 및 단체, 수리 및 기타 개인 서비스업 (94~96)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_T"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_T"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="T"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="가구 내 고용활동 및 달리 분류되지 않은 자가 소비 생산활동 (97~98)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_U"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_U"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="U"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="국제 및 외국기관 (99)"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp">
+                            <LinearLayout
+                                android:id="@+id/act_test_popup_sector_ll_V"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="30dp">
+                                <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_V"
+                                    android:src="@drawable/icn_emptybox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"/>
+                                <TextView
+                                    android:text="V"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:layout_marginRight="4dp"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:text="4차산업분야"
+                                    android:fontFamily="@font/nanumsquarer"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </ScrollView>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:src="@drawable/line_horizon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="10dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:id="@+id/act_test_rl_popup_sector_exit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <TextView
+                            android:text="닫기"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:src="@drawable/line_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"/>
+                    <RelativeLayout
+                        android:id="@+id/act_test_rl_popup_sector_ok"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                        <TextView
+                            android:text="확인"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorBlue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
     </RelativeLayout>
 
 </RelativeLayout>

@@ -46,13 +46,15 @@ class FirstFragment : Fragment(){
     private fun setRecyclerView() {
         var noticeCnt: TextView = view!!.findViewById(R.id.fragment_first_tv_cnt)
         noticeCnt.setPaintFlags(noticeCnt.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
+        var ro: TextView = view!!.findViewById(R.id.fragment_first_tv_ro)
+        ro.setPaintFlags(ro.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
 
         homeFragmentFragmentRecyclerViewAdapter = HomeRecyclerViewAdapter(activity!!, dataList)
         fragment_first_rv.adapter = homeFragmentFragmentRecyclerViewAdapter
         fragment_first_rv.layoutManager = LinearLayoutManager(activity)
     }
     private fun getFirstFitListResponse(cond_idx:Int){
-        val getCustomSecondFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 20, 0, cond_idx)
+        val getCustomSecondFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 3, 0, cond_idx)
         getCustomSecondFragmentListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
                 Log.e("board list fail", t.toString())
@@ -66,7 +68,6 @@ class FirstFragment : Fragment(){
                         for (a in 0..2)
                             homeFragmentFragmentRecyclerViewAdapter.dataList.add(temp.get(a))
                         homeFragmentFragmentRecyclerViewAdapter.notifyItemInserted(position)
-
                     }
                 }
             }
