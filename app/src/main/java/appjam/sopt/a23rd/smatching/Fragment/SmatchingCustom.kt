@@ -29,5 +29,13 @@ class SmatchingCustom : Fragment() {
         mTabLayout.getTabAt(0)!!.customView = bottomNaviLayout.findViewById(R.id.home_navigation_tab_first) as ImageView
         mTabLayout.getTabAt(1)!!.customView = bottomNaviLayout.findViewById(R.id.home_navigation_tab_second) as ImageView
 
+        val intent = activity!!.getIntent()
+        if(intent.getIntExtra("page", 0) == 0) {
+            mViewPager.setCurrentItem(0)
+            intent.removeExtra("page")
+        }  else if(intent.getIntExtra("page", 0) == 1) {
+            mViewPager.setCurrentItem(1)
+            intent.removeExtra("page")
+        }
     }
 }

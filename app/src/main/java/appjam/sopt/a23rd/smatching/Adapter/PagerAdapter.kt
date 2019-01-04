@@ -16,6 +16,9 @@ class PagerAdapter(fm: FragmentManager, var fragmentCount : Int): FragmentStateP
         }
     }
 
+    override fun getItemPosition(`object`: Any): Int {
+        return POSITION_NONE
+    }
     override fun getCount(): Int = fragmentCount //리턴시켜준다고 생각
 
 }

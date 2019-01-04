@@ -46,6 +46,8 @@ class FirstFragment : Fragment(){
     private fun setRecyclerView() {
         var noticeCnt: TextView = view!!.findViewById(R.id.fragment_first_tv_cnt)
         noticeCnt.setPaintFlags(noticeCnt.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
+        var ro: TextView = view!!.findViewById(R.id.fragment_first_tv_ro)
+        ro.setPaintFlags(ro.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
 
         homeFragmentFragmentRecyclerViewAdapter = HomeRecyclerViewAdapter(activity!!, dataList)
         fragment_first_rv.adapter = homeFragmentFragmentRecyclerViewAdapter
