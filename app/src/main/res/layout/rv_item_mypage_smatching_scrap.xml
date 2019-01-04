@@ -10,7 +10,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="6dp">
             <TextView
                 android:id="@+id/rv_item_mypage_smatching_scrap_tv_supervisor"
                 android:text="대한무역투자진흥공사"
@@ -25,9 +26,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:id="@+id/rv_item_mypage_smatching_scrap_iv_dday"
                     android:src="@drawable/box_dday_gray"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"/>
                 <TextView
                     android:id="@+id/rv_item_mypage_smatching_scrap_tv_dday"
                     android:layout_width="wrap_content"
@@ -37,7 +40,7 @@
                     android:fontFamily="@font/nanumsquareb"
                     android:textColor="#bdbdbd"
                     android:lineSpacingExtra="2sp"
-                    android:text="D-12"
+                    android:text="예산 소진시"
                     />
             </RelativeLayout>
         </LinearLayout>

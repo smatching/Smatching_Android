@@ -7,10 +7,62 @@
     android:layout_centerHorizontal="true"
     android:layout_marginBottom="0dp"
     android:focusableInTouchMode="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/fragment_my_page_user_rl_profile"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true">
+                <ImageView
+                    android:src="@drawable/img_profile_edge"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:src="@drawable/img_profile"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+                <TextView
+                    android:id="@+id/fragment_my_page_profile_tv_nickname"
+                    android:fontFamily="@font/nanumsquareb"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:letterSpacing="0.02"
+                    android:lineSpacingExtra="10sp"
+                    android:layout_marginLeft="6dp"
+                    android:text="닉네임"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:fontFamily="@font/nanumsquareb"
+                    android:textSize="15sp"
+                    android:textColor="#ffffff"
+                    android:letterSpacing="0.02"
+                    android:lineSpacingExtra="10sp"
+                    android:text="님"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -104,6 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/fragment_my_page_user_tv_scrapCnt"
                         android:text="몇"
                         android:textSize="12sp"
                         android:layout_marginLeft="4dp"
@@ -135,21 +188,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="18dp">
+            <ImageView
+                android:background="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_mypage_scrapbox_bottom"/>
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/fragment_my_page_user_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="23.5dp">
 
             </android.support.v7.widget.RecyclerView>
             </ScrollView>
-            <ImageView
-                android:background="#ffffff"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/img_mypage_scrapbox_bottom"/>
+
 
         </RelativeLayout>
 

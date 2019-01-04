@@ -55,6 +55,7 @@
                 android:textColor="@color/colorText"
                 android:textSize="14sp"
                 android:background="@null"
+                android:inputType="textEmailAddress"
                 android:layout_centerVertical="true"
                 android:paddingLeft="17dp"
                 android:fontFamily="@font/nanumsquareb"
