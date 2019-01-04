@@ -68,7 +68,7 @@ class SecondCustomConditionClickFragment : Fragment(){
                     getUserSmatchingListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
                     fragment_second_custom_condition_click_tv_smatching_name.text = response.body()!!.data.condSummaryList.get(1).condName
                 }
-                
+
             }
         }
         )

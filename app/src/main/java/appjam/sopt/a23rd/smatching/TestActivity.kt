@@ -38,7 +38,7 @@ import kotlinx.android.synthetic.main.fragment_smatching_custom_popup_sector.*
 
 class TestActivity : AppCompatActivity() {
 
-     //region 복수선택 가능한 객관식 옵션들 정의
+    //region 복수선택 가능한 객관식 옵션들 정의
     val LOCATIONSNAME = arrayOf("seoul", "busan", "daegu", "incheon", "gwangju", "daejeon", "ulsan", "sejong", "gangwon", "kyunggi", "kyungnam", "kyungbuk", "jeonnam", "jeonbuk", "chungnam", "chungbuk", "jeju", "aborad")
     val AGESNAME = arrayOf("twenty_less", "twenty_forty", "forty_more")
     val PERIODSNAME = arrayOf("zero_one", "one_two", "two_three", "three_four", "four_five", "five_six", "six_seven", "seven_more", "yet")
@@ -51,6 +51,7 @@ class TestActivity : AppCompatActivity() {
     val PERIODSBOOL = arrayOfNulls<Boolean>(9)
     val CATEGORYSBOOL = arrayOfNulls<Boolean>(8)
     val FIELDSBOOL = arrayOfNulls<Boolean>(22)
+    var TEMPFIELDSBOOL = arrayOfNulls<Boolean>(22)
     val ADVANTAGESBOOL = arrayOfNulls<Boolean>(8)
     val BUSITYPESBOOL = arrayOfNulls<Boolean>(7)
     //endregion 복수선택 가능한 객관식 옵션들 정의
@@ -64,6 +65,8 @@ class TestActivity : AppCompatActivity() {
     var periodCount = 0
     var busiTypeCount = 0
     var advantageCount = 0
+    var fieldCount = 0
+    var tempFieldCount = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
@@ -75,6 +78,7 @@ class TestActivity : AppCompatActivity() {
         Arrays.fill(FIELDSBOOL, false)
         Arrays.fill(ADVANTAGESBOOL, false)
         Arrays.fill(BUSITYPESBOOL, false)
+        Arrays.fill(TEMPFIELDSBOOL, false)
         //endregion
         val toolbar = findViewById<Toolbar>(R.id.act_test_toolbar)
         setSupportActionBar(toolbar)
@@ -83,6 +87,9 @@ class TestActivity : AppCompatActivity() {
         supportActionBar!!.setTitle("")
         act_test_tv.text = "맞춤지원"
         getUserSmatchingCondResponse()
+
+        for(a in 0..21)
+            TEMPFIELDSBOOL[a] = FIELDSBOOL[a]
         //region 나이 설정
         act_test_iv_age20.setOnClickListener {
             if(AGESBOOL[0]!!) {
@@ -129,10 +136,670 @@ class TestActivity : AppCompatActivity() {
         //endregion
         //region 업종 설정
         act_test_rl_busiType.setOnClickListener {
+            tempFieldCount = fieldCount
+            for(a in 0..21)
+                TEMPFIELDSBOOL[a] = FIELDSBOOL[a]
             act_test_rl_popup_sector.visibility = View.VISIBLE
+            act_test_tv_fieldCount_count.text = fieldCount.toString()
         }
         act_test_rl_popup_sector_exit.setOnClickListener {
+            fieldCount = tempFieldCount
+            for(a in 0..21)
+                FIELDSBOOL[a] = TEMPFIELDSBOOL[a]
+            //region 노가다로 값넣기1 -> 나중에 수정하자...
+            if(FIELDSBOOL[0]!!)
+                act_test_iv_check_sector_A.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_A.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[1]!!)
+                act_test_iv_check_sector_B.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_B.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[2]!!)
+                act_test_iv_check_sector_C.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_C.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[3]!!)
+                act_test_iv_check_sector_D.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_D.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[4]!!)
+                act_test_iv_check_sector_E.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_E.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[5]!!)
+                act_test_iv_check_sector_F.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_F.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[6]!!)
+                act_test_iv_check_sector_G.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_G.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[7]!!)
+                act_test_iv_check_sector_H.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_H.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[8]!!)
+                act_test_iv_check_sector_I.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_I.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[9]!!)
+                act_test_iv_check_sector_J.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_J.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[10]!!)
+                act_test_iv_check_sector_K.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_K.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[11]!!)
+                act_test_iv_check_sector_L.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_L.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[12]!!)
+                act_test_iv_check_sector_M.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_M.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[13]!!)
+                act_test_iv_check_sector_N.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_N.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[14]!!)
+                act_test_iv_check_sector_O.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_O.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[15]!!)
+                act_test_iv_check_sector_P.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_P.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[16]!!)
+                act_test_iv_check_sector_Q.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_Q.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[17]!!)
+                act_test_iv_check_sector_R.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_R.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[18]!!)
+                act_test_iv_check_sector_S.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_S.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[19]!!)
+                act_test_iv_check_sector_T.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_T.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[20]!!)
+                act_test_iv_check_sector_U.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_U.setImageResource(R.drawable.icn_emptybox)
+            if(FIELDSBOOL[21]!!)
+                act_test_iv_check_sector_V.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_iv_check_sector_V.setImageResource(R.drawable.icn_emptybox)
+            //endregion
             act_test_rl_popup_sector.visibility = View.INVISIBLE
+            act_test_tv_field_count.text = fieldCount.toString()
+            act_test_tv_fieldCount_count.text = fieldCount.toString()
+        }
+        act_test_rl_popup_sector_ok.setOnClickListener {
+            tempFieldCount = fieldCount
+            for(a in 0..21)
+                TEMPFIELDSBOOL[a] = FIELDSBOOL[a]
+
+            //region 노가다로 값넣기2 -> 나중에 수정하자...
+            if(FIELDSBOOL[0]!!)
+                act_test_ll_field_a.visibility = View.VISIBLE
+            else
+                act_test_ll_field_a.visibility = View.GONE
+            if(FIELDSBOOL[1]!!)
+                act_test_ll_field_b.visibility = View.VISIBLE
+            else
+                act_test_ll_field_b.visibility = View.GONE
+            if(FIELDSBOOL[2]!!)
+                act_test_ll_field_c.visibility = View.VISIBLE
+            else
+                act_test_ll_field_c.visibility = View.GONE
+            if(FIELDSBOOL[3]!!)
+                act_test_ll_field_d.visibility = View.VISIBLE
+            else
+                act_test_ll_field_d.visibility = View.GONE
+            if(FIELDSBOOL[4]!!)
+                act_test_ll_field_e.visibility = View.VISIBLE
+            else
+                act_test_ll_field_e.visibility = View.GONE
+            if(FIELDSBOOL[5]!!)
+                act_test_ll_field_f.visibility = View.VISIBLE
+            else
+                act_test_ll_field_f.visibility = View.GONE
+            if(FIELDSBOOL[6]!!)
+                act_test_ll_field_g.visibility = View.VISIBLE
+            else
+                act_test_ll_field_g.visibility = View.GONE
+            if(FIELDSBOOL[7]!!)
+                act_test_ll_field_h.visibility = View.VISIBLE
+            else
+                act_test_ll_field_h.visibility = View.GONE
+            if(FIELDSBOOL[8]!!)
+                act_test_ll_field_i.visibility = View.VISIBLE
+            else
+                act_test_ll_field_i.visibility = View.GONE
+            if(FIELDSBOOL[9]!!)
+                act_test_ll_field_j.visibility = View.VISIBLE
+            else
+                act_test_ll_field_j.visibility = View.GONE
+            if(FIELDSBOOL[10]!!)
+                act_test_ll_field_k.visibility = View.VISIBLE
+            else
+                act_test_ll_field_k.visibility = View.GONE
+            if(FIELDSBOOL[11]!!)
+                act_test_ll_field_l.visibility = View.VISIBLE
+            else
+                act_test_ll_field_l.visibility = View.GONE
+            if(FIELDSBOOL[12]!!)
+                act_test_ll_field_m.visibility = View.VISIBLE
+            else
+                act_test_ll_field_m.visibility = View.GONE
+            if(FIELDSBOOL[13]!!)
+                act_test_ll_field_n.visibility = View.VISIBLE
+            else
+                act_test_ll_field_n.visibility = View.GONE
+            if(FIELDSBOOL[14]!!)
+                act_test_ll_field_o.visibility = View.VISIBLE
+            else
+                act_test_ll_field_o.visibility = View.GONE
+            if(FIELDSBOOL[15]!!)
+                act_test_ll_field_p.visibility = View.VISIBLE
+            else
+                act_test_ll_field_p.visibility = View.GONE
+            if(FIELDSBOOL[16]!!)
+                act_test_ll_field_q.visibility = View.VISIBLE
+            else
+                act_test_ll_field_q.visibility = View.GONE
+            if(FIELDSBOOL[17]!!)
+                act_test_ll_field_r.visibility = View.VISIBLE
+            else
+                act_test_ll_field_r.visibility = View.GONE
+            if(FIELDSBOOL[18]!!)
+                act_test_ll_field_s.visibility = View.VISIBLE
+            else
+                act_test_ll_field_s.visibility = View.GONE
+            if(FIELDSBOOL[19]!!)
+                act_test_ll_field_t.visibility = View.VISIBLE
+            else
+                act_test_ll_field_t.visibility = View.GONE
+            if(FIELDSBOOL[20]!!)
+                act_test_ll_field_u.visibility = View.VISIBLE
+            else
+                act_test_ll_field_u.visibility = View.GONE
+            if(FIELDSBOOL[21]!!)
+                act_test_ll_field_v.visibility = View.VISIBLE
+            else
+                act_test_ll_field_v.visibility = View.GONE
+            //endregion
+            act_test_rl_popup_sector.visibility = View.INVISIBLE
+            act_test_tv_field_count.text = fieldCount.toString()
+            act_test_tv_fieldCount_count.text = fieldCount.toString()
+        }
+        act_test_popup_sector_ll_A.setOnClickListener {
+            if (FIELDSBOOL[0]!! && fieldCount > 0) {
+                FIELDSBOOL[0] = false
+                fieldCount--
+                act_test_iv_check_sector_A.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[0]!! && fieldCount < 6) {
+                FIELDSBOOL[0] = true
+                fieldCount++
+                act_test_iv_check_sector_A.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_B.setOnClickListener {
+            if (FIELDSBOOL[1]!! && fieldCount > 0) {
+                FIELDSBOOL[1] = false
+                fieldCount--
+                act_test_iv_check_sector_B.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[1]!! && fieldCount < 6) {
+                FIELDSBOOL[1] = true
+                fieldCount++
+                act_test_iv_check_sector_B.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_C.setOnClickListener {
+            if (FIELDSBOOL[2]!! && fieldCount > 0) {
+                FIELDSBOOL[2] = false
+                fieldCount--
+                act_test_iv_check_sector_C.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[2]!! && fieldCount < 6) {
+                FIELDSBOOL[2] = true
+                fieldCount++
+                act_test_iv_check_sector_C.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_D.setOnClickListener {
+            if (FIELDSBOOL[3]!! && fieldCount > 0) {
+                FIELDSBOOL[3] = false
+                fieldCount--
+                act_test_iv_check_sector_D.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[3]!! && fieldCount < 6) {
+                FIELDSBOOL[3] = true
+                fieldCount++
+                act_test_iv_check_sector_D.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_E.setOnClickListener {
+            if (FIELDSBOOL[4]!! && fieldCount > 0) {
+                FIELDSBOOL[4] = false
+                fieldCount--
+                act_test_iv_check_sector_E.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[4]!! && fieldCount < 6) {
+                FIELDSBOOL[4] = true
+                fieldCount++
+                act_test_iv_check_sector_E.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_F.setOnClickListener {
+            if (FIELDSBOOL[5]!! && fieldCount > 0) {
+                FIELDSBOOL[5] = false
+                fieldCount--
+                act_test_iv_check_sector_F.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[5]!! && fieldCount < 6) {
+                FIELDSBOOL[5] = true
+                fieldCount++
+                act_test_iv_check_sector_F.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_G.setOnClickListener {
+            if (FIELDSBOOL[6]!! && fieldCount > 0) {
+                FIELDSBOOL[6] = false
+                fieldCount--
+                act_test_iv_check_sector_G.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[6]!! && fieldCount < 6) {
+                FIELDSBOOL[6] = true
+                fieldCount++
+                act_test_iv_check_sector_G.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_H.setOnClickListener {
+            if (FIELDSBOOL[7]!! && fieldCount > 0) {
+                FIELDSBOOL[7] = false
+                fieldCount--
+                act_test_iv_check_sector_H.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[7]!! && fieldCount < 6) {
+                FIELDSBOOL[7] = true
+                fieldCount++
+                act_test_iv_check_sector_H.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_I.setOnClickListener {
+            if (FIELDSBOOL[8]!! && fieldCount > 0) {
+                FIELDSBOOL[8] = false
+                fieldCount--
+                act_test_iv_check_sector_I.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[8]!! && fieldCount < 6) {
+                FIELDSBOOL[8] = true
+                fieldCount++
+                act_test_iv_check_sector_I.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_J.setOnClickListener {
+            if (FIELDSBOOL[9]!! && fieldCount > 0) {
+                FIELDSBOOL[9] = false
+                fieldCount--
+                act_test_iv_check_sector_J.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[9]!! && fieldCount < 6) {
+                FIELDSBOOL[9] = true
+                fieldCount++
+                act_test_iv_check_sector_J.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_K.setOnClickListener {
+            if (FIELDSBOOL[10]!! && fieldCount > 0) {
+                FIELDSBOOL[10] = false
+                fieldCount--
+                act_test_iv_check_sector_K.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[10]!! && fieldCount < 6) {
+                FIELDSBOOL[10] = true
+                fieldCount++
+                act_test_iv_check_sector_K.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_L.setOnClickListener {
+            if (FIELDSBOOL[11]!! && fieldCount > 0) {
+                FIELDSBOOL[11] = false
+                fieldCount--
+                act_test_iv_check_sector_L.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[11]!! && fieldCount < 6) {
+                FIELDSBOOL[11] = true
+                fieldCount++
+                act_test_iv_check_sector_L.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_M.setOnClickListener {
+            if (FIELDSBOOL[12]!! && fieldCount > 0) {
+                FIELDSBOOL[12] = false
+                fieldCount--
+                act_test_iv_check_sector_M.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[12]!! && fieldCount < 6) {
+                FIELDSBOOL[12] = true
+                fieldCount++
+                act_test_iv_check_sector_M.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_N.setOnClickListener {
+            if (FIELDSBOOL[13]!! && fieldCount > 0) {
+                FIELDSBOOL[13] = false
+                fieldCount--
+                act_test_iv_check_sector_N.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[13]!! && fieldCount < 6) {
+                FIELDSBOOL[13] = true
+                fieldCount++
+                act_test_iv_check_sector_N.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_O.setOnClickListener {
+            if (FIELDSBOOL[14]!! && fieldCount > 0) {
+                FIELDSBOOL[14] = false
+                fieldCount--
+                act_test_iv_check_sector_O.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[14]!! && fieldCount < 6) {
+                FIELDSBOOL[14] = true
+                fieldCount++
+                act_test_iv_check_sector_O.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_P.setOnClickListener {
+            if (FIELDSBOOL[15]!! && fieldCount > 0) {
+                FIELDSBOOL[15] = false
+                fieldCount--
+                act_test_iv_check_sector_P.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[15]!! && fieldCount < 6) {
+                FIELDSBOOL[15] = true
+                fieldCount++
+                act_test_iv_check_sector_P.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_Q.setOnClickListener {
+            if (FIELDSBOOL[16]!! && fieldCount > 0) {
+                FIELDSBOOL[16] = false
+                fieldCount--
+                act_test_iv_check_sector_Q.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[16]!! && fieldCount < 6) {
+                FIELDSBOOL[16] = true
+                fieldCount++
+                act_test_iv_check_sector_Q.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_R.setOnClickListener {
+            if (FIELDSBOOL[17]!! && fieldCount > 0) {
+                FIELDSBOOL[17] = false
+                fieldCount--
+                act_test_iv_check_sector_R.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[17]!! && fieldCount < 6) {
+                FIELDSBOOL[17] = true
+                fieldCount++
+                act_test_iv_check_sector_R.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_S.setOnClickListener {
+            if (FIELDSBOOL[18]!! && fieldCount > 0) {
+                FIELDSBOOL[18] = false
+                fieldCount--
+                act_test_iv_check_sector_S.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[18]!! && fieldCount < 6) {
+                FIELDSBOOL[18] = true
+                fieldCount++
+                act_test_iv_check_sector_S.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_T.setOnClickListener {
+            if (FIELDSBOOL[19]!! && fieldCount > 0) {
+                FIELDSBOOL[19] = false
+                fieldCount--
+                act_test_iv_check_sector_T.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[19]!! && fieldCount < 6) {
+                FIELDSBOOL[19] = true
+                fieldCount++
+                act_test_iv_check_sector_T.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_U.setOnClickListener {
+            if (FIELDSBOOL[20]!! && fieldCount > 0) {
+                FIELDSBOOL[20] = false
+                fieldCount--
+                act_test_iv_check_sector_U.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[20]!! && fieldCount < 6) {
+                FIELDSBOOL[20] = true
+                fieldCount++
+                act_test_iv_check_sector_U.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
+        }
+        act_test_popup_sector_ll_V.setOnClickListener {
+            if (FIELDSBOOL[21]!! && fieldCount > 0) {
+                FIELDSBOOL[21] = false
+                fieldCount--
+                act_test_iv_check_sector_V.setImageResource(R.drawable.icn_emptybox)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            } else if (!FIELDSBOOL[21]!! && fieldCount < 6) {
+                FIELDSBOOL[21] = true
+                fieldCount++
+                act_test_iv_check_sector_V.setImageResource(R.drawable.icn_checkbox_white)
+                if (fieldCount > 0)
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_fieldCount_count.text = fieldCount.toString()
+            }
         }
         //endregion
         //region 설립 경과 년수 설정
@@ -838,93 +1505,136 @@ class TestActivity : AppCompatActivity() {
                     act_test_tv_busiType_count.text = busiTypeCount.toString()
                     //endregion
                     //region field
-                    var fieldCount = 0
                     if(response.body()!!.data.field.a) {
                         fieldCount++
+                        FIELDSBOOL[0] = true
+                        act_test_iv_check_sector_A.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_a.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.b) {
+                        FIELDSBOOL[1] = true
                         fieldCount++
+                        act_test_iv_check_sector_B.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_b.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.c) {
+                        FIELDSBOOL[2] = true
                         fieldCount++
+                        act_test_iv_check_sector_C.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_c.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.d) {
+                        FIELDSBOOL[3] = true
                         fieldCount++
+                        act_test_iv_check_sector_D.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_d.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.e) {
+                        FIELDSBOOL[4] = true
                         fieldCount++
+                        act_test_iv_check_sector_E.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_e.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.f) {
+                        FIELDSBOOL[5] = true
                         fieldCount++
+                        act_test_iv_check_sector_F.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_f.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.g) {
+                        FIELDSBOOL[6] = true
                         fieldCount++
+                        act_test_iv_check_sector_G.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_g.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.h) {
+                        FIELDSBOOL[7] = true
                         fieldCount++
+                        act_test_iv_check_sector_H.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_h.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.i) {
+                        FIELDSBOOL[8] = true
                         fieldCount++
+                        act_test_iv_check_sector_I.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_i.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.j) {
+                        FIELDSBOOL[9] = true
                         fieldCount++
+                        act_test_iv_check_sector_J.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_j.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.k) {
+                        FIELDSBOOL[10] = true
                         fieldCount++
+                        act_test_iv_check_sector_K.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_k.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.l) {
+                        FIELDSBOOL[11] = true
                         fieldCount++
+                        act_test_iv_check_sector_L.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_l.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.m) {
+                        FIELDSBOOL[12] = true
                         fieldCount++
+                        act_test_iv_check_sector_M.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_m.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.n) {
+                        FIELDSBOOL[13] = true
                         fieldCount++
+                        act_test_iv_check_sector_N.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_n.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.o) {
+                        FIELDSBOOL[14] = true
                         fieldCount++
+                        act_test_iv_check_sector_O.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_o.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.p) {
+                        FIELDSBOOL[15] = true
                         fieldCount++
+                        act_test_iv_check_sector_P.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_p.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.q) {
+                        FIELDSBOOL[16] = true
                         fieldCount++
+                        act_test_iv_check_sector_Q.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_q.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.r) {
+                        FIELDSBOOL[17] = true
                         fieldCount++
+                        act_test_iv_check_sector_R.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_r.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.s) {
+                        FIELDSBOOL[18] = true
                         fieldCount++
+                        act_test_iv_check_sector_S.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_s.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.t) {
+                        FIELDSBOOL[19] = true
                         fieldCount++
+                        act_test_iv_check_sector_T.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_t.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.u) {
+                        FIELDSBOOL[20] = true
                         fieldCount++
+                        act_test_iv_check_sector_U.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_u.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.field.v) {
+                        FIELDSBOOL[21] = true
                         fieldCount++
+                        act_test_iv_check_sector_V.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_v.visibility = View.VISIBLE
                     }
                     if(fieldCount > 0)
@@ -1039,32 +1749,9 @@ class TestActivity : AppCompatActivity() {
         jsonObject.add("period", periodJson)
 
         var fieldJson = JsonObject() // field 내부 객체
-        fieldJson.addProperty("a", true)
-        fieldJson.addProperty("b", true)
-        fieldJson.addProperty("c", true)
-        fieldJson.addProperty("d", true)
-        fieldJson.addProperty("e", true)
-        fieldJson.addProperty("f", true)
-        fieldJson.addProperty("g", true)
-        fieldJson.addProperty("h", true)
-        fieldJson.addProperty("i", true)
-        fieldJson.addProperty("j", true)
-        fieldJson.addProperty("k", true)
-        fieldJson.addProperty("l", true)
-        fieldJson.addProperty("m", true)
-        fieldJson.addProperty("n", true)
-        fieldJson.addProperty("o", true)
-        fieldJson.addProperty("p", true)
-        fieldJson.addProperty("q", true)
-        fieldJson.addProperty("r", true)
-        fieldJson.addProperty("s", true)
-        fieldJson.addProperty("t", true)
-        fieldJson.addProperty("u", true)
-        fieldJson.addProperty("v", true)
+        for(a in 0..21)
+            fieldJson.addProperty(FIELDSNAME[a], FIELDSBOOL[a])
         jsonObject.add("field", fieldJson)
-
-
-
 
         var advantageJson = JsonObject() // advantage 내부 객체
         for(a in 0..7)

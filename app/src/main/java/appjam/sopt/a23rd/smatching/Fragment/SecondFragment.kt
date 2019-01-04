@@ -56,7 +56,7 @@ class SecondFragment : Fragment(){
     }
 
     private fun getSecondFitListResponse(cond_idx:Int){
-        val getCustomSecondFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 20, 0, cond_idx)
+        val getCustomSecondFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 3, 0, cond_idx)
         getCustomSecondFragmentListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
                 Log.e("board list fail", t.toString())
@@ -65,12 +65,11 @@ class SecondFragment : Fragment(){
             override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
                 if (response.isSuccessful){
                     val temp : ArrayList<NoticeData> = response.body()!!.data
-                    if (temp.size > 0){
+                    if (temp.size > 0) {
                         val position = homeFragmentFragmentRecyclerViewAdapter.itemCount
                         for (a in 0..2)
                             homeFragmentFragmentRecyclerViewAdapter.dataList.add(temp.get(a))
                         homeFragmentFragmentRecyclerViewAdapter.notifyItemInserted(position)
-
                     }
                 }
             }
@@ -88,6 +87,9 @@ class SecondFragment : Fragment(){
                     getSecondFitListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
                     fragment_second_tv_cnt.text = response.body()!!.data.condSummaryList.get(1).noticeCnt.toString()
                     fragment_second_tv_nickname.text = response.body()!!.data.nickname
+                } else {
+                    fragment_second_rl_null.visibility = View.VISIBLE
+                    fragment_second_ll_not_null.visibility = View.INVISIBLE
                 }
             }
         })

@@ -338,6 +338,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     public fun setpageNum(num:Int){
         pageNum = num
     }
-
-
 }

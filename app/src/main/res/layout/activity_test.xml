@@ -2111,6 +2111,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/act_test_rl_popup_sector"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -2152,11 +2153,11 @@
                         android:textColor="@color/colorText"
                         android:textSize="16sp" />
                     <TextView
-                        android:id="@+id/fragment_smatching_custom_popup_sector_tv_count"
+                        android:id="@+id/act_test_tv_fieldCount_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanumsquareb"
-                        android:text="3"
+                        android:text="0"
                         android:textColor="@color/colorBlue"
                         android:textSize="16sp" />
                     <TextView
@@ -2189,13 +2190,14 @@
                             android:layout_marginBottom="20dp"
                             android:layout_marginTop="10dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_A"
+                                android:id="@+id/act_test_popup_sector_ll_A"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_A"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2222,13 +2224,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_B"
+                                android:id="@+id/act_test_popup_sector_ll_B"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:layout_centerVertical="true"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_B"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2255,13 +2258,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_C"
+                                android:id="@+id/act_test_popup_sector_ll_C"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:layout_centerVertical="true"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_C"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2288,13 +2292,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_D"
+                                android:id="@+id/act_test_popup_sector_ll_D"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:layout_centerVertical="true"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_D"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2321,13 +2326,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_E"
+                                android:id="@+id/act_test_popup_sector_ll_E"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:layout_centerVertical="true"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_E"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2354,13 +2360,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_F"
+                                android:id="@+id/act_test_popup_sector_ll_F"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:layout_centerVertical="true"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_F"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2387,13 +2394,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_G"
+                                android:id="@+id/act_test_popup_sector_ll_G"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_G"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2420,13 +2428,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_H"
+                                android:id="@+id/act_test_popup_sector_ll_H"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_H"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2453,13 +2462,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_I"
+                                android:id="@+id/act_test_popup_sector_ll_I"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:layout_centerVertical="true"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_I"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2486,13 +2496,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_J"
+                                android:id="@+id/act_test_popup_sector_ll_J"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_J"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2519,13 +2530,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_K"
+                                android:id="@+id/act_test_popup_sector_ll_K"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:layout_centerVertical="true"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_K"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2552,13 +2564,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_L"
+                                android:id="@+id/act_test_popup_sector_ll_L"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_L"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2586,13 +2599,14 @@
                             android:layout_marginBottom="20dp">
 
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_M"
+                                android:id="@+id/act_test_popup_sector_ll_M"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:layout_centerVertical="true"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_M"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2619,13 +2633,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_N"
+                                android:id="@+id/act_test_popup_sector_ll_N"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_N"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2652,13 +2667,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_O"
+                                android:id="@+id/act_test_popup_sector_ll_O"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_O"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2685,13 +2701,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_P"
+                                android:id="@+id/act_test_popup_sector_ll_P"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_P"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2718,13 +2735,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_Q"
+                                android:id="@+id/act_test_popup_sector_ll_Q"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_Q"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2751,13 +2769,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_R"
+                                android:id="@+id/act_test_popup_sector_ll_R"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_R"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2784,13 +2803,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_S"
+                                android:id="@+id/act_test_popup_sector_ll_S"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_S"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2817,13 +2837,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_T"
+                                android:id="@+id/act_test_popup_sector_ll_T"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_T"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2850,13 +2871,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_U"
+                                android:id="@+id/act_test_popup_sector_ll_U"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_U"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2883,13 +2905,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp">
                             <LinearLayout
-                                android:id="@+id/fragment_smatching_custom_popup_sector_ll_V"
+                                android:id="@+id/act_test_popup_sector_ll_V"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:orientation="horizontal"
                                 android:layout_marginHorizontal="30dp">
                                 <ImageView
+                                    android:id="@+id/act_test_iv_check_sector_V"
                                     android:src="@drawable/icn_emptybox"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -2956,7 +2979,7 @@
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"/>
                     <RelativeLayout
-                        android:id="@+id/fragment_smatching_custom_popup_needless_rl_ok"
+                        android:id="@+id/act_test_rl_popup_sector_ok"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
