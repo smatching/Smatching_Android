@@ -57,23 +57,28 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/fragment_search_tv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumsquarer"
                 android:text="총 "
+                android:visibility="invisible"
                 android:textSize="12sp" />
             <TextView
-                android:id="@+id/fragment_second_custom_condition_notclick_tv_listsize"
+                android:id="@+id/fragment_search_tv_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumsquarer"
                 android:text="25"
+                android:visibility="invisible"
                 android:textSize="12sp" />
             <TextView
+                android:id="@+id/fragment_search_tv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumsquarer"
                 android:text="건"
+                android:visibility="invisible"
                 android:textSize="12sp" />
         </LinearLayout>
 

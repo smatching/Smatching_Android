@@ -1,5 +1,6 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
@@ -12,6 +13,7 @@ import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Adapter.SmatchingScrapRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
+import appjam.sopt.a23rd.smatching.MainActivity
 import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
@@ -63,7 +65,8 @@ class MyPageFragment : Fragment(){
         fragment_my_page_user_rv.layoutManager = LinearLayoutManager(activity)
     }
     private fun getSmatchingScrapListResponse(){
-        val getSmatchingScrapListResponse = networkService.getSmatchingScrapListResponse(SharedPreferenceController.getAuthorization(activity!!), 20, 0)
+        val getSmatchingScrapListResponse = networkService.getSmatchingScrapListResponse(SharedPreferenceController.getAuthorization(activity!!),
+                20, 0)
         getSmatchingScrapListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
                 Log.e("board list fail", t.toString())

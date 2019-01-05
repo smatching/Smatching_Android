@@ -1,6 +1,7 @@
 package appjam.sopt.a23rd.smatching.network
 
 import appjam.sopt.a23rd.smatching.Delete.DeleteSmatchingCondsResponse
+import appjam.sopt.a23rd.smatching.Get.GetDetailContentResponse
 import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
 import appjam.sopt.a23rd.smatching.Get.GetSmatchingListResponse
 import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
@@ -40,8 +41,6 @@ interface NetworkService {
             @Query("exist_num") exist_num : Int,
             @Query("cond_idx") cond_idx : Int
     ) : Call<GetNoticeListResponse>
-    //맞춤지원사업 개수 조회
-
     //전체지원사업 목록 조회
     @GET("/notices/list")
     fun getAllNoticeListResponse(
@@ -49,8 +48,6 @@ interface NetworkService {
             @Query("request_num") request_num : Int,
             @Query("exist_num") exist_num : Int
     ) : Call<GetNoticeListResponse>
-    //전체지원사업 개수 조회
-
     //맞춤조건 조회
     @GET("/conds")
     fun getSmatchingCondsResponse(
@@ -82,10 +79,23 @@ interface NetworkService {
     fun deleteSmatchingCondsDeleteResponse(
             @Header("Authorization") token : String
     ) : Call<DeleteSmatchingCondsResponse>
+    //지원사업 상세 조회
+    @GET("/notices/detail")
+    fun getDetailContentResponse(
+            @Query("notice_idx") notice_idx : Int
+    ) : Call<GetDetailContentResponse>
     //스크랩한 지원사업 목록 조회
     @GET("/users/noticelist")
     fun getSmatchingScrapListResponse(
             @Header("Authorization") token : String,
+            @Query("request_num") request_num : Int,
+            @Query("exist_num") exist_num : Int
+    ) : Call<GetNoticeListResponse>
+    //전체 지원사업 검색
+    @GET("/search/notices")
+    fun getSearchResultResponse(
+            @Header("Authorization") token : String,
+            @Query("query") query : String,
             @Query("request_num") request_num : Int,
             @Query("exist_num") exist_num : Int
     ) : Call<GetNoticeListResponse>

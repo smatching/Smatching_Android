@@ -15,7 +15,8 @@ import org.jetbrains.anko.lines
 import org.jetbrains.anko.rightPadding
 
 
-class HomeRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<NoticeData>) : RecyclerView.Adapter<HomeRecyclerViewAdapter.Holder>() {
+class HomeRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<NoticeData>)
+    : RecyclerView.Adapter<HomeRecyclerViewAdapter.Holder>() {
     var currentView: Int = 0
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_home, parent, false)

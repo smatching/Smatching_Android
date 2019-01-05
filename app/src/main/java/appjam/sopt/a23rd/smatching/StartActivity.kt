@@ -42,7 +42,7 @@ class StartActivity : AppCompatActivity() {
         })
         btnGuest.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
-                toast("테스트")
+                toast("비회원 모드 준비 중 입니다.")
             }
         })
         btnCreateAccount.setOnClickListener(object : View.OnClickListener {
