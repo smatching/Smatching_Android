@@ -6,6 +6,7 @@
     android:background="@color/colorBackground">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -20,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="검색어를 입력하세요."
-                android:paddingLeft="30dp"
+                android:layout_marginLeft="30dp"
                 android:textSize="18sp"
                 android:textColorHint="@color/colorTextHint"
                 android:textColor="@color/colorText"
@@ -29,6 +30,7 @@
                 android:maxLength="15"
                 android:singleLine="true"/>
             <ImageView
+                android:id="@+id/fragment_search_iv_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="30dp"
@@ -43,15 +45,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
+            android:scaleType="fitXY"
             android:layout_marginTop="8.5dp"
             android:src="@drawable/line_search"/>
+        <LinearLayout
+            android:id="@+id/fragment_search_list_ll"
+            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="16.5dp"
+            android:layout_marginBottom="13dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarer"
+                android:text="총 "
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/fragment_second_custom_condition_notclick_tv_listsize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarer"
+                android:text="25"
+                android:textSize="12sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarer"
+                android:text="건"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_below="@+id/fragment_search_list_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="23.5dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fragment_search_list_sv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
 
+            </android.support.v7.widget.RecyclerView>
 
-
-
-    </LinearLayout>
-
-
+        </ScrollView>
+</LinearLayout>
 
 </RelativeLayout>

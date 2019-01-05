@@ -36,6 +36,7 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
         else
             holder.scrap.setImageResource(R.drawable.icn_scrap_yellow)
 }
+
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val supervisor: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_supervisor)
         val ddayImg : ImageView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_iv_dday)

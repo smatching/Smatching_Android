@@ -46,6 +46,7 @@ class MyPageFragment : Fragment(){
         fragment_my_page_user_smatchingscrap.setOnClickListener{
             replaceFragment(MyPageFragment())
         }
+
         /*
         fragment_my_page_user_smatchingscrap.setOnClickListener {
             fragment_my_page_user_smatchingscrap.setTextColor(resources.getColor(R.color.colorText))

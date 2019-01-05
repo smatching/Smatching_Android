@@ -21,60 +21,62 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="true">
-
+        android:layout_centerInParent="true">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <ImageView
             android:id="@+id/act_main_iv_logo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="12dp"
-            android:src="@drawable/logo" />
-
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <TextView
             android:id="@+id/act_main_tv_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/act_main_iv_logo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="27dp"
+            android:layout_centerInParent="true"
             android:fontFamily="@font/nanumsquarer"
+            android:layout_marginBottom="20dp"
             android:text="당신에게 필요한 지원사업을 받아보세요:)"
             android:textSize="14sp" />
-
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/act_main_iv_create_account"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/act_main_tv_text"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="12.2dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12.2dp"
             android:src="@drawable/bt_createaccount"
             android:background="@null"/>
 
         <ImageView
             android:id="@+id/act_main_iv_experience"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/act_main_iv_create_account"
-            android:layout_centerHorizontal="true"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"
+            android:layout_marginBottom="11.2dp"
+            android:layout_gravity="center"
             android:background="@null"
-            android:layout_marginTop="12.2dp"
             android:src="@drawable/bt_experience" />
 
         <ImageView
             android:id="@+id/act_start_login_btn_login"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/act_main_iv_experience"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="11.8dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
             android:clickable="true"
             android:src="@drawable/bt_login" />
-
+        </LinearLayout>
     </RelativeLayout>
 
 

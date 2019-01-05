@@ -17,7 +17,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="검색어를 입력하세요."
-                android:paddingLeft="30dp"
+                android:layout_marginHorizontal="30dp"
                 android:textSize="18sp"
                 android:textColorHint="@color/colorTextHint"
                 android:textColor="@color/colorText"
@@ -37,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
+            android:scaleType="fitXY"
             android:layout_marginTop="8.5dp"
             android:src="@drawable/line_search"/>
     </LinearLayout>
