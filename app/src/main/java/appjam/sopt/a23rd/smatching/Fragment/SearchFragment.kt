@@ -53,8 +53,8 @@ class SearchFragment : Fragment() {
     }
     private fun setRecyclerView() {
         searchAdapter = SearchAdapter(activity!!, dataList)
-        fragment_search_list_sv.adapter = searchAdapter
-        fragment_search_list_sv.layoutManager = LinearLayoutManager(activity)
+        fragment_search_list_rv.adapter = searchAdapter
+        fragment_search_list_rv.layoutManager = LinearLayoutManager(activity)
     }
 
     private fun getSearchResponse() {
@@ -67,23 +67,21 @@ class SearchFragment : Fragment() {
                 }
                 override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>){
                     if (response.isSuccessful) {
-                        if(response.body()!!.status == 204)
-                            replaceFragment(SearchNoresultFragment())
+                        if(response.body()!!.status == 204) {
+                            frag_search_rl.visibility = View.VISIBLE
+                            frag_search_ll.visibility = View.GONE
+                        }
                         else if(response.body()!!.status == 200){
-                                replaceFragment(SearchResultFragment())
-                                setRecyclerView()
-                                val temp : ArrayList<NoticeData> = response.body()!!.data
-                                val position = searchAdapter.itemCount
-                                val scrapCnt: TextView = view!!.findViewById(R.id.fragment_search_tv_count)
-                                val tv1 : TextView = view!!.findViewById(R.id.fragment_search_tv1)
-                                val tv2 : TextView = view!!.findViewById(R.id.fragment_search_tv2)
-                                scrapCnt.setVisibility(View.VISIBLE)
-                                tv1.setVisibility(View.VISIBLE)
-                                tv2.setVisibility(View.VISIBLE)
-                                scrapCnt.setText(temp.size.toString())
-                                searchAdapter.dataList.clear()
-                                searchAdapter.dataList.addAll(temp)
-                                searchAdapter.notifyItemInserted(position)
+                            frag_search_rl.visibility = View.GONE
+                            frag_search_ll.visibility = View.VISIBLE
+                            setRecyclerView()
+                            val temp : ArrayList<NoticeData> = response.body()!!.data
+                            val position = searchAdapter.itemCount
+                            val scrapCnt: TextView = fragment_search_tv_count
+                            scrapCnt.setText(temp.size.toString())
+                            searchAdapter.dataList.clear()
+                            searchAdapter.dataList.addAll(temp)
+                            searchAdapter.notifyItemInserted(position)
                         }
                 }
 

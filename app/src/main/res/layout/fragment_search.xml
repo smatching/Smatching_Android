@@ -8,12 +8,12 @@
     <LinearLayout
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
             <EditText
@@ -52,6 +52,69 @@
           android:id="@+id/fragment_search_fl"
           android:layout_width="match_parent"
           android:layout_height="match_parent">
+          <RelativeLayout
+              android:visibility="gone"
+              android:id="@+id/frag_search_rl"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+              <ImageView
+                  android:src="@drawable/img_searchresultnone"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerInParent="true"/>
+          </RelativeLayout>
+          <LinearLayout
+              android:visibility="gone"
+              android:id="@+id/frag_search_ll"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:layout_marginHorizontal="25.5dp">
+              <LinearLayout
+                  android:id="@+id/fragment_search_list_ll"
+                  android:layout_width="wrap_content"
+                  android:layout_marginHorizontal="25dp"
+                  android:layout_marginTop="16.5dp"
+                  android:layout_marginBottom="13dp"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+                  <TextView
+                      android:id="@+id/fragment_search_tv1"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:fontFamily="@font/nanumsquarer"
+                      android:text="총 "
+                      android:visibility="invisible"
+                      android:textSize="12sp" />
+                  <TextView
+                      android:id="@+id/fragment_search_tv_count"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:fontFamily="@font/nanumsquarer"
+                      android:text="25"
+                      android:visibility="invisible"
+                      android:textSize="12sp" />
+                  <TextView
+                      android:id="@+id/fragment_search_tv2"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:fontFamily="@font/nanumsquarer"
+                      android:text="건"
+                      android:visibility="invisible"
+                      android:textSize="12sp" />
+              </LinearLayout>
+
+              <android.support.v7.widget.RecyclerView
+                  android:id="@+id/fragment_search_list_rv"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginHorizontal="23.5dp">
+
+
+              </android.support.v7.widget.RecyclerView>
+
+          </LinearLayout>
 
       </FrameLayout>
 </LinearLayout>

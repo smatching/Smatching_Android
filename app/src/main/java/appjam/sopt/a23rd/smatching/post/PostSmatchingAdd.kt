@@ -6,5 +6,5 @@ import appjam.sopt.a23rd.smatching.Data.UserData
 data class PostSmatchingAdd(
         val status : Int,
         val message : String,
-        val data : ArrayList<UserData>
+        val data : Int
 )

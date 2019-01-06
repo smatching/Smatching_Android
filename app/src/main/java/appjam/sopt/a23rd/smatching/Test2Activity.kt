@@ -35,7 +35,10 @@ import appjam.sopt.a23rd.smatching.Fragment.SecondCustomConditionClickFragment
 import appjam.sopt.a23rd.smatching.Fragment.SmatchingCustomPopupSectorFragment
 import kotlinx.android.synthetic.main.fragment_smatching_custom_popup_sector.*
 import android.view.MotionEvent
+import appjam.sopt.a23rd.smatching.Delete.DeleteSmatchingCondsResponse
 import appjam.sopt.a23rd.smatching.Put.PutSmatchingCount
+import appjam.sopt.a23rd.smatching.post.PostSmatchingAdd
+import org.jetbrains.anko.startActivity
 
 
 class Test2Activity : AppCompatActivity() {
@@ -72,6 +75,8 @@ class Test2Activity : AppCompatActivity() {
     var tempFieldCount = 0
     var categoryCount = 0
     var tempCategoryCount = 0
+    var state = 0
+    var condIdx = 0
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -100,6 +105,15 @@ class Test2Activity : AppCompatActivity() {
             TEMPCATEGORYSBOOL[a] = CATEGORYSBOOL[a]
         act_test2_rl_popup_needless.setOnTouchListener(View.OnTouchListener { v, event -> true })
         act_test2_rl_popup_sector.setOnTouchListener(View.OnTouchListener { v, event -> true })
+        act_test_iv_detail.setOnClickListener {
+            startActivity<SmatchingCustomCorporateDetailActivity>()
+        }
+
+
+        act_test2_tv_toolbar_text.setOnClickListener {
+            deleteSmatchingCondsDeleteResponse(condIdx)
+        }
+
         //region 나이 설정
         act_test2_iv_age20.setOnClickListener {
             if (AGESBOOL[0]!!) {
@@ -2069,7 +2083,10 @@ class Test2Activity : AppCompatActivity() {
         //endregion
         //endregion
         act_test2_rl.setOnClickListener {
-            putUserSmatchingResponse(mCondIdx)
+            if(state == 0)
+                postSmatchingCondsAddResponse()
+            else if(state == 1)
+                putUserSmatchingResponse(mCondIdx)
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -2097,14 +2114,108 @@ class Test2Activity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-                if (response.isSuccessful && response.body()!!.data.condSummaryList.get(1) != null) {
+                if(response.isSuccessful && response.body()!!.status == 206) {
+                    state = 0
+                    act_test2_tv_toolbar_text.visibility = View.INVISIBLE
+                } else if (response.isSuccessful && response.body()!!.status == 200) {
                     mCondIdx = response.body()!!.data.condSummaryList.get(1).condIdx
                     getUserSmatchingListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
                     act_test2_et_title.setText(response.body()!!.data.condSummaryList.get(1).condName)
+                    state = 1
+                    condIdx = response.body()!!.data.condSummaryList.get(1).condIdx
+                    act_test2_tv_toolbar_text.visibility = View.VISIBLE
                 }
             }
         }
         )
+    }
+    private fun postSmatchingCondsAddResponse()
+    {
+        //region 요청바디에 들어갈 객체 생성
+        var jsonObject = JsonObject() // 요청바디 전체 객체
+
+        jsonObject.addProperty("condName", act_test2_et_title.text.toString())
+
+        var ageJson = JsonObject() // age 내부 객체
+        for(a in 0..2)
+            ageJson.addProperty(AGESNAME[a], AGESBOOL[a])
+        jsonObject.add("age", ageJson)
+
+        var locationJson = JsonObject() // location 내부 객체
+        for(a in 0..17)
+            locationJson.addProperty(LOCATIONSNAME[a], LOCATIONSBOOL[a])
+        jsonObject.add("location", locationJson)
+
+        var periodJson = JsonObject() // period 내부 객체
+        for(a in 0..8)
+            periodJson.addProperty(PERIODSNAME[a], PERIODSBOOL[a])
+        jsonObject.add("period", periodJson)
+
+        var fieldJson = JsonObject() // field 내부 객체
+        for(a in 0..21)
+            fieldJson.addProperty(FIELDSNAME[a], FIELDSBOOL[a])
+        jsonObject.add("field", fieldJson)
+
+        var advantageJson = JsonObject() // advantage 내부 객체
+        for(a in 0..7)
+            advantageJson.addProperty(ADVANTAGESNAME[a], ADVANTAGESBOOL[a])
+        jsonObject.add("advantage", advantageJson)
+
+
+
+        var busiTypeJson = JsonObject() // busiType 내부 객체
+        for(a in 0..6)
+            busiTypeJson.addProperty(BUSITYPESNAME[a], BUSITYPESBOOL[a])
+        jsonObject.add("busiType", busiTypeJson)
+
+
+        var excCategoryJson = JsonObject() // excCategory 내부 객체
+        for(a in 0..7)
+            excCategoryJson.addProperty(CATEGORYSNAME[a], CATEGORYSBOOL[a])
+        jsonObject.add("excCategory", excCategoryJson)
+        //endregion
+        val postSmatchingCondsAddResponse =
+                networkService.postSmatchingCondsAddResponse("application/json",
+                SharedPreferenceController.getAuthorization(this), jsonObject)
+
+        postSmatchingCondsAddResponse.enqueue(object : Callback <PostSmatchingAdd> {
+            override fun onFailure(call: Call<PostSmatchingAdd>, t: Throwable) {
+                Log.e("Add fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostSmatchingAdd>, response: Response<PostSmatchingAdd>) {
+                if (response.isSuccessful)
+                {
+                    val refresh = Intent(this@Test2Activity, MainActivity::class.java )
+                    refresh.putExtra("view", 1)
+                    refresh.putExtra("page", 1)
+                    startActivity(refresh)//Start the same Activity
+                    finish() //finish Activity.
+                }
+            }
+        })
+    }
+    private fun deleteSmatchingCondsDeleteResponse(condIdxDelete: Int)
+    {
+        val deleteSmatchingCondsDeleteResponse =
+                networkService.deleteSmatchingCondsDeleteResponse(SharedPreferenceController.getAuthorization(this), condIdxDelete)
+
+        deleteSmatchingCondsDeleteResponse.enqueue(object : Callback <DeleteSmatchingCondsResponse> {
+            override fun onFailure(call: Call<DeleteSmatchingCondsResponse>, t: Throwable) {
+                Log.e("Add fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<DeleteSmatchingCondsResponse>, response: Response<DeleteSmatchingCondsResponse>) {
+                if (response.isSuccessful)
+                {
+                    val refresh = Intent(this@Test2Activity, MainActivity::class.java )
+                    refresh.putExtra("view", 1)
+                    refresh.putExtra("page", 1)
+                    startActivity(refresh)//Start the same Activity
+                    finish() //finish Activity.
+                }
+            }
+        })
     }
     private fun getUserSmatchingListResponse(condIdx: Int)
     {
