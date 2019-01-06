@@ -1,41 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1">-->
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/fragment_mypage_setting_memberinfo_rl_profile"-->
+                    <!--android:layout_width="72dp"-->
+                    <!--android:layout_height="72dp"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:layout_marginTop="30dp"-->
+                    <!--android:onClick="onClick">-->
+                    <!--<ImageView-->
+                        <!--android:src="@drawable/img_profile_edge_blue"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content" />-->
+                    <!--<RelativeLayout-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerInParent="true">-->
+                        <!--<ImageView-->
+                            <!--android:src="@drawable/img_profile"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content" />-->
+                    <!--</RelativeLayout>-->
 
-        <RelativeLayout
-            android:id="@+id/fragment_mypage_setting_memberinfo_rl_profile"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginTop="20dp"
-            android:onClick="onClick"
-            android:layout_centerHorizontal="true">
-            <ImageView
-                android:src="@drawable/img_profile_edge_blue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
-                <ImageView
-                    android:src="@drawable/img_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
+                    <!--<ImageView-->
+                        <!--android:src="@drawable/icn_profile_camera"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentBottom="true"-->
+                        <!--android:layout_alignParentRight="true"/>-->
+                <!--</RelativeLayout>-->
+            <!--</RelativeLayout>-->
 
-            <ImageView
-                android:src="@drawable/icn_profile_camera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"/>
-        </RelativeLayout>
+        <!--</LinearLayout>-->
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_marginVertical="40dp"
+            android:orientation="vertical"
+            android:layout_weight="3">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,14 +67,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumsquarer"
-                android:layout_marginBottom="17dp"
                 android:layout_marginLeft="40dp"
                 android:textSize="14sp"
-                android:textColor="#474747"
+                android:textColor="@color/colorText"
                 android:lineSpacingExtra="15sp"
-                android:text="유윤종"
+                android:hint="유윤종"
+                android:background="@null"
                 android:inputType="text"
                 />
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="25dp"
+                android:src="@drawable/line_horizon"
+                android:layout_marginHorizontal="36dp"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,15 +103,29 @@
                 android:id="@+id/fragment_mypage_setting_memberinfo_et_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="17dp"
                 android:layout_marginLeft="40dp"
                 android:textSize="14sp"
-                android:textColor="#d9d9d9"
+                android:textColor="@color/colorText"
                 android:lineSpacingExtra="2sp"
                 android:fontFamily="@font/nanumsquarer"
-                android:text="yunjong@naver.com"
+                android:hint="yunjong@naver.com"
+                android:background="@null"
                 android:inputType="textEmailAddress"
                 />
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="25dp"
+                android:src="@drawable/line_horizon"
+                android:layout_marginHorizontal="36dp"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,14 +142,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:layout_marginBottom="17dp"
                 android:textSize="14sp"
-                android:textColor="#d9d9d9"
+                android:textColor="@color/colorText"
                 android:lineSpacingExtra="2sp"
-                android:fontFamily="@font/nanumsquarer"
                 android:inputType="textPassword"
-                android:text=""
+                android:background="@null"
                 />
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="25dp"
+                android:src="@drawable/line_horizon"
+                android:layout_marginHorizontal="36dp"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -122,15 +177,29 @@
                 android:id="@+id/fragment_mypage_setting_memberinfo_et_new_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="17dp"
                 android:layout_marginLeft="40dp"
                 android:textSize="14sp"
-                android:textColor="#d9d9d9"
+                android:textColor="@color/colorText"
                 android:lineSpacingExtra="2sp"
-                android:text="8~15자리 숫자, 영문자"
+                android:hint="8~15자리 숫자, 영문자"
                 android:inputType="textPassword"
+                android:background="@null"
                 android:fontFamily="@font/nanumsquarer"
                 />
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="25dp"
+                android:src="@drawable/line_horizon"
+                android:layout_marginHorizontal="36dp"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -148,21 +217,36 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:textSize="14sp"
-                android:textColor="#d9d9d9"
+                android:textColor="@color/colorText"
                 android:lineSpacingExtra="2sp"
-                android:fontFamily="@font/nanumsquarer"
-                android:text=""
+                android:background="@null"
                 android:inputType="textPassword"
                 />
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:src="@drawable/line_horizon"
+                android:layout_marginHorizontal="36dp"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
-        <ImageView
-            android:id="@+id/fragment_mypage_setting_memberinfo_btn_save"
-            android:onClick="onClick"
-            android:src="@drawable/btn_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"/>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/fragment_mypage_setting_memberinfo_btn_save"
+                    android:onClick="onClick"
+                    android:src="@drawable/btn_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

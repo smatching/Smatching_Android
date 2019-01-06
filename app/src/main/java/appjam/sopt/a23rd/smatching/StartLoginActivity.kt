@@ -101,6 +101,12 @@ class StartLoginActivity : AppCompatActivity() {
         act_start_login_canclick.setOnClickListener{
             getLoginResponse()
         }
+        act_start_login_iv_email_delete.setOnClickListener{
+            act_start_login_et_email.setText("")
+        }
+        act_start_login_iv_password_delete.setOnClickListener{
+            act_start_login_et_password.setText("")
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

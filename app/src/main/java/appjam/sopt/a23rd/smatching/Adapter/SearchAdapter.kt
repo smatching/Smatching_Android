@@ -10,10 +10,10 @@ import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.R
 
-class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<NoticeData>)
-    : RecyclerView.Adapter<SmatchingScrapRecyclerViewAdapter.Holder>() {
+class SearchAdapter(val ctx : Context, val dataList : ArrayList<NoticeData>)
+    : RecyclerView.Adapter<SearchAdapter.Holder>() {
     var currentView: Int = 0
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SmatchingScrapRecyclerViewAdapter.Holder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_mypage_smatching_scrap, parent, false)
         return Holder(view)
     }
@@ -27,6 +27,7 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
         }
         else {
             holder.dday.text = dataList[position].dday.toString()
+            holder.ddayImg.setImageResource(R.drawable.box_dday_gray)
         }
         holder.title.text = dataList[position].title
         // 스크랩이 되지 않았을 경우
@@ -35,7 +36,7 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
         // 스크랩이 됐을 경우
         else
             holder.scrap.setImageResource(R.drawable.icn_scrap_yellow)
-}
+    }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val supervisor: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_supervisor)

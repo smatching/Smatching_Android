@@ -21,35 +21,37 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="true">
-
+        android:layout_centerInParent="true">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
         <ImageView
             android:id="@+id/act_main_iv_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:layout_gravity="center"
+            android:layout_marginBottom="66dp"
             android:src="@drawable/logo" />
 
         <RelativeLayout
             android:id="@+id/act_start_login_email"
-            android:layout_width="266dp"
-            android:layout_height="38.5dp"
-            android:layout_marginTop="12.2dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:layout_below="@+id/act_main_iv_logo">
             <ImageView
                 android:id="@+id/act_start_login_iv_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
                 android:background="@null"
                 android:src="@drawable/et_email" />
             <EditText
                 android:id="@+id/act_start_login_et_email"
-                android:layout_width="266dp"
-                android:layout_height="39dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:hint="이메일 주소 입력"
                 android:textColorHint="@color/colorTextHint"
                 android:textColor="@color/colorText"
@@ -57,7 +59,7 @@
                 android:background="@null"
                 android:inputType="textEmailAddress"
                 android:layout_centerVertical="true"
-                android:paddingLeft="17dp"
+                android:layout_marginHorizontal="17dp"
                 android:fontFamily="@font/nanumsquareb"
                 android:maxLength="15"
                 android:maxLines = "2"/>
@@ -74,21 +76,21 @@
 
         <RelativeLayout
             android:id="@+id/act_start_login_password"
-            android:layout_width="266dp"
-            android:layout_height="38.5dp"
-            android:layout_marginTop="12.2dp"
-            android:layout_below="@+id/act_start_login_email">
+            android:layout_width="match_parent"
+            android:layout_marginTop="11dp"
+            android:layout_height="0dp"
+            android:layout_weight="2">
             <ImageView
                 android:id="@+id/act_start_login_iv_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
                 android:background="@null"
                 android:src="@drawable/et_email" />
             <EditText
                 android:id="@+id/act_start_login_et_password_hint"
-                android:layout_width="266dp"
-                android:layout_height="39dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:hint="비밀번호 입력"
                 android:fontFamily="@font/nanumsquarer"
                 android:textColorHint="@color/colorTextHint"
@@ -96,20 +98,19 @@
                 android:textSize="14sp"
                 android:background="@null"
                 android:layout_centerVertical="true"
-                android:paddingLeft="17dp"
+                android:layout_marginHorizontal="17dp"
                 android:maxLength="15"
                 android:singleLine="true"
                 android:inputType="textPassword"/>
             <EditText
                 android:id="@+id/act_start_login_et_password"
-                android:layout_width="266dp"
-                android:layout_height="39dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:textColorHint="@color/colorTextHint"
                 android:textColor="@color/colorText"
                 android:textSize="14sp"
                 android:background="@null"
                 android:layout_centerVertical="true"
-                android:paddingLeft="17dp"
                 android:maxLength="15"
                 android:singleLine="true"
                 android:inputType="textPassword"/>
@@ -127,14 +128,12 @@
         <ImageView
             android:id="@+id/act_start_login_canclick"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/act_start_login_password"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:layout_marginTop="25.2dp"
-            android:src="@drawable/btn_login"
-            app:srcCompat="@drawable/btn_login" />
-
+            android:layout_centerInParent="true"
+            android:src="@drawable/btn_login"/>
+</LinearLayout>
     </RelativeLayout>
 
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/fragment_search_list_ll"
+        android:layout_width="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="16.5dp"
+        android:layout_marginBottom="13dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/fragment_search_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarer"
+            android:text="총 "
+            android:visibility="invisible"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/fragment_search_tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarer"
+            android:text="25"
+            android:visibility="invisible"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/fragment_search_tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarer"
+            android:text="건"
+            android:visibility="invisible"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_below="@+id/fragment_search_list_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="23.5dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_search_list_sv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </android.support.v7.widget.RecyclerView>
+
+    </ScrollView>
+</LinearLayout>

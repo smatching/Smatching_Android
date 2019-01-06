@@ -185,6 +185,18 @@ class StartCreateActivity : AppCompatActivity() {
         act_start_create_iv_createaccount.setOnClickListener {
             getSignUpResponse()
         }
+        act_start_create_iv_nickname_delete.setOnClickListener{
+            act_start_create_et_nickname.setText("")
+        }
+        act_start_create_iv_email_delete.setOnClickListener{
+            act_start_create_et_email.setText("")
+        }
+        act_start_create_iv_password_delete.setOnClickListener{
+            act_start_create_et_password.setText("")
+        }
+        act_start_create_iv_passwordagain_delete.setOnClickListener{
+            act_start_create_et_password_confirm.setText("")
+        }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
@@ -225,7 +237,6 @@ class StartCreateActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<PostSignUpResponse>, response: Response<PostSignUpResponse>) {
                     if (response.isSuccessful) {
-                        toast(input_nickname + ", " + input_email + ", " + input_pw)
                         toast(response.body()!!.message)
                         finish()
                     }

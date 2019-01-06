@@ -14,4 +14,5 @@
     <color name="colorTextshallow2">#676767</color>
     <color name="colorBackgroundshallow">#D8D8D8</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBackgroundNull">#99474747</color>
 </resources>

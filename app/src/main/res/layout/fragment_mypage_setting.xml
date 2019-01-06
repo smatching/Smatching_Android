@@ -10,6 +10,7 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical">
         <RelativeLayout
+            android:id="@+id/fragment_mypage_setting_rl_memberinfo_setting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="17dp">
@@ -31,145 +32,146 @@
                 android:layout_marginRight="45dp"
                 android:src="@drawable/btn_setting_in" />
         </RelativeLayout>
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="30dp">-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="41.5dp"-->
+                <!--android:fontFamily="@font/nanumsquareb"-->
+                <!--android:lineSpacingExtra="3sp"-->
+                <!--android:text="알림설정"-->
+                <!--android:textColor="#212e4f"-->
+                <!--android:textSize="18sp" />-->
+        <!--</RelativeLayout>-->
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="30dp">-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="41.5dp"-->
+                <!--android:fontFamily="@font/nanumsquareb"-->
+                <!--android:lineSpacingExtra="2sp"-->
+                <!--android:text="맞춤지원사업 알람"-->
+                <!--android:textColor="#909090"-->
+                <!--android:textSize="14sp" />-->
+            <!--<ToggleButton-->
+                <!--android:id="@+id/fragment_mypage_setting_toggle_smatching"-->
+                <!--android:layout_width="34dp"-->
+                <!--android:layout_height="18dp"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_marginRight="45dp"-->
+                <!--android:background="@color/colorToggleNotCheck"-->
+                <!--android:checked="false"-->
+                <!--android:text=""-->
+                <!--android:textOff=""-->
+                <!--android:textOn="" />-->
+        <!--</RelativeLayout>-->
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="15dp">-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal">-->
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="41.5dp"-->
+                    <!--android:src="@drawable/connect" />-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="0dp"-->
+                    <!--android:fontFamily="@font/nanumsquareb"-->
+                    <!--android:lineSpacingExtra="2sp"-->
+                    <!--android:text="맞춤조건1"-->
+                    <!--android:textColor="#909090"-->
+                    <!--android:textSize="14sp" />-->
+            <!--</LinearLayout>-->
+            <!--<ToggleButton-->
+                <!--android:id="@+id/fragment_mypage_setting_toggle_smatching1"-->
+                <!--android:layout_width="34dp"-->
+                <!--android:layout_height="18dp"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginRight="45dp"-->
+                <!--android:background="@color/colorToggleNotCheck"-->
+                <!--android:checked="false"-->
+                <!--android:text=""-->
+                <!--android:textOff=""-->
+                <!--android:textOn="" />-->
+        <!--</RelativeLayout>-->
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="15dp">-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal">-->
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="41.5dp"-->
+                    <!--android:src="@drawable/connect" />-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="0dp"-->
+                    <!--android:fontFamily="@font/nanumsquareb"-->
+                    <!--android:lineSpacingExtra="2sp"-->
+                    <!--android:text="맞춤조건2"-->
+                    <!--android:textColor="#909090"-->
+                    <!--android:textSize="14sp" />-->
+            <!--</LinearLayout>-->
+            <!--<ToggleButton-->
+                <!--android:id="@+id/fragment_mypage_setting_toggle_smatching2"-->
+                <!--android:layout_width="34dp"-->
+                <!--android:layout_height="18dp"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginRight="45dp"-->
+                <!--android:background="@color/colorToggleNotCheck"-->
+                <!--android:checked="false"-->
+                <!--android:text=""-->
+                <!--android:textOff=""-->
+                <!--android:textOn="" />-->
+        <!--</RelativeLayout>-->
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="15dp">-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="41.5dp"-->
+                <!--android:fontFamily="@font/nanumsquareb"-->
+                <!--android:lineSpacingExtra="2sp"-->
+                <!--android:text="창업토크 알림"-->
+                <!--android:textColor="#909090"-->
+                <!--android:textSize="14sp" />-->
+            <!--<ToggleButton-->
+                <!--android:id="@+id/fragment_mypage_setting_toggle_startup_talk"-->
+                <!--android:layout_width="34dp"-->
+                <!--android:layout_height="18dp"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginRight="45dp"-->
+                <!--android:background="@color/colorToggleNotCheck"-->
+                <!--android:checked="false"-->
+                <!--android:text=""-->
+                <!--android:textOff=""-->
+                <!--android:textOn="" />-->
+        <!--</RelativeLayout>-->
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="41.5dp"
-                android:fontFamily="@font/nanumsquareb"
-                android:lineSpacingExtra="3sp"
-                android:text="알림설정"
-                android:textColor="#212e4f"
-                android:textSize="18sp" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="41.5dp"
-                android:fontFamily="@font/nanumsquareb"
-                android:lineSpacingExtra="2sp"
-                android:text="맞춤지원사업 알람"
-                android:textColor="#909090"
-                android:textSize="14sp" />
-            <ToggleButton
-                android:id="@+id/fragment_mypage_setting_toggle_smatching"
-                android:layout_width="34dp"
-                android:layout_height="18dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="45dp"
-                android:background="@color/colorToggleNotCheck"
-                android:checked="false"
-                android:text=""
-                android:textOff=""
-                android:textOn="" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="41.5dp"
-                    android:src="@drawable/connect" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:fontFamily="@font/nanumsquareb"
-                    android:lineSpacingExtra="2sp"
-                    android:text="맞춤조건1"
-                    android:textColor="#909090"
-                    android:textSize="14sp" />
-            </LinearLayout>
-            <ToggleButton
-                android:id="@+id/fragment_mypage_setting_toggle_smatching1"
-                android:layout_width="34dp"
-                android:layout_height="18dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="45dp"
-                android:background="@color/colorToggleNotCheck"
-                android:checked="false"
-                android:text=""
-                android:textOff=""
-                android:textOn="" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="41.5dp"
-                    android:src="@drawable/connect" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:fontFamily="@font/nanumsquareb"
-                    android:lineSpacingExtra="2sp"
-                    android:text="맞춤조건2"
-                    android:textColor="#909090"
-                    android:textSize="14sp" />
-            </LinearLayout>
-            <ToggleButton
-                android:id="@+id/fragment_mypage_setting_toggle_smatching2"
-                android:layout_width="34dp"
-                android:layout_height="18dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="45dp"
-                android:background="@color/colorToggleNotCheck"
-                android:checked="false"
-                android:text=""
-                android:textOff=""
-                android:textOn="" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="41.5dp"
-                android:fontFamily="@font/nanumsquareb"
-                android:lineSpacingExtra="2sp"
-                android:text="창업토크 알림"
-                android:textColor="#909090"
-                android:textSize="14sp" />
-            <ToggleButton
-                android:id="@+id/fragment_mypage_setting_toggle_startup_talk"
-                android:layout_width="34dp"
-                android:layout_height="18dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="45dp"
-                android:background="@color/colorToggleNotCheck"
-                android:checked="false"
-                android:text=""
-                android:textOff=""
-                android:textOn="" />
-        </RelativeLayout>
-        <RelativeLayout
+            android:id="@+id/fragment_mypage_setting_rl_ask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp">
@@ -191,6 +193,7 @@
                 android:src="@drawable/btn_setting_in" />
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/fragment_mypage_setting_rl_policyData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp">
@@ -212,6 +215,7 @@
                 android:src="@drawable/btn_setting_in" />
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/fragment_mypage_setting_rl_policyPrivate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp">
@@ -253,11 +257,12 @@
                 android:layout_marginRight="45dp"
                 android:fontFamily="@font/nanumsquarer"
                 android:lineSpacingExtra="3sp"
-                android:text="2.0.0"
+                android:text="1.0.0"
                 android:textColor="#d9d9d9"
                 android:textSize="14sp" />
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/fragment_mypage_setting_rl_memberquit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp">
@@ -272,6 +277,7 @@
                 android:textSize="18sp" />
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/fragment_mypage_setting_rl_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp">
