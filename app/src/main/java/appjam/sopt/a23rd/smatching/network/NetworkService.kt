@@ -91,6 +91,11 @@ interface NetworkService {
             @Query("request_num") request_num : Int,
             @Query("exist_num") exist_num : Int
     ) : Call<GetNoticeListResponse>
+    //회원탈퇴
+    @DELETE("/users")
+    fun deleteUserInfoResponse(
+            @Header("Authorization") token : String
+    ) : Call<DeleteSmatchingCondsResponse>
     //전체 지원사업 검색
     @GET("/search/notices")
     fun getSearchResultResponse(

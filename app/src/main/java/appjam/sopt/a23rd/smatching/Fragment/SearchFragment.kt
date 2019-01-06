@@ -24,6 +24,8 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.fragment_my_page_user.*
 import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.fragment_search_result.*
+import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
@@ -45,7 +47,6 @@ class SearchFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         fragment_search_iv_search.setOnClickListener {
-            setRecyclerView()
             getSearchResponse()
         }
 
@@ -58,50 +59,81 @@ class SearchFragment : Fragment() {
 
     private fun getSearchResponse() {
         val query: String = fragment_search_et_search.text.toString()
-        //통신 시작
-        val getSearchResultResponse: Call<GetNoticeListResponse> =
-                networkService.getSearchResultResponse("application/json", query, 20, 0)
-
-        if (query.isNotEmpty()) {
-            var jsonObject = JSONObject()
-
-            jsonObject.put("query", query)
-
-            //Gson 라이브러리의 Json Parser을 통해 객체를 Json으로!
-            val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-        }
-
-            getSearchResultResponse.enqueue(object : Callback<GetNoticeListResponse> {
-                override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
-                    Log.e("Search Fail", t.toString())
+        val getSearchResultResponse = networkService.getSearchResultResponse(
+                SharedPreferenceController.getAuthorization(activity!!), query, 20, 0)
+            getSearchResultResponse.enqueue(object : Callback<GetNoticeListResponse>{
+                override fun onFailure(call: Call<GetNoticeListResponse>, t : Throwable){
+                    Log.e("response body fail", t.toString())
                 }
-
-                override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
+                override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>){
                     if (response.isSuccessful) {
-                        val temp : ArrayList<NoticeData> = response.body()!!.data
-                        if (temp.size > 0){
-                            val position = searchAdapter.itemCount
-                            val scrapCnt: TextView = view!!.findViewById(R.id.fragment_search_tv_count)
-                            val tv1 : TextView = view!!.findViewById(R.id.fragment_search_tv1)
-                            val tv2 : TextView = view!!.findViewById(R.id.fragment_search_tv2)
-                            scrapCnt.setVisibility(View.VISIBLE)
-                            tv1.setVisibility(View.VISIBLE)
-                            tv2.setVisibility(View.VISIBLE)
-                            scrapCnt.setText(temp.size.toString())
-                            searchAdapter.dataList.addAll(temp)
-                            searchAdapter.notifyItemInserted(position)
-                        }
-                        else
+                        if(response.body()!!.status == 204)
                             replaceFragment(SearchNoresultFragment())
-                    }
+                        else if(response.body()!!.status == 200){
+                                replaceFragment(SearchResultFragment())
+                                setRecyclerView()
+                                val temp : ArrayList<NoticeData> = response.body()!!.data
+                                val position = searchAdapter.itemCount
+                                val scrapCnt: TextView = view!!.findViewById(R.id.fragment_search_tv_count)
+                                val tv1 : TextView = view!!.findViewById(R.id.fragment_search_tv1)
+                                val tv2 : TextView = view!!.findViewById(R.id.fragment_search_tv2)
+                                scrapCnt.setVisibility(View.VISIBLE)
+                                tv1.setVisibility(View.VISIBLE)
+                                tv2.setVisibility(View.VISIBLE)
+                                scrapCnt.setText(temp.size.toString())
+                                searchAdapter.dataList.clear()
+                                searchAdapter.dataList.addAll(temp)
+                                searchAdapter.notifyItemInserted(position)
+                        }
                 }
+
+            }
             })
-        }
+    }
+//        //통신 시작
+//        val getSearchResultResponse: Call<GetNoticeListResponse> =
+//                networkService.getSearchResultResponse("application/json", query, 20, 0)
+//
+//        if (query.isNotEmpty()) {
+//            var jsonObject = JSONObject()
+//
+//            jsonObject.put("query", query)
+//
+//            //Gson 라이브러리의 Json Parser을 통해 객체를 Json으로!
+//            val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+//        }
+//
+//            getSearchResultResponse.enqueue(object : Callback<GetNoticeListResponse> {
+//                override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
+//                    Log.e("Search Fail", t.toString())
+//                }
+//
+//                override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
+//                    if (response.isSuccessful) {
+//                        val temp : ArrayList<NoticeData> = response.body()!!.data
+//                        if (temp.size > 0){
+//                            val position = searchAdapter.itemCount
+//                            val scrapCnt: TextView = view!!.findViewById(R.id.fragment_search_tv_count)
+//                            val tv1 : TextView = view!!.findViewById(R.id.fragment_search_tv1)
+//                            val tv2 : TextView = view!!.findViewById(R.id.fragment_search_tv2)
+//                            scrapCnt.setVisibility(View.VISIBLE)
+//                            tv1.setVisibility(View.VISIBLE)
+//                            tv2.setVisibility(View.VISIBLE)
+//                            scrapCnt.setText(temp.size.toString())
+//                            searchAdapter.dataList.addAll(temp)
+//                            searchAdapter.notifyItemInserted(position)
+//                        }
+//                        else
+//                            replaceFragment(SearchNoresultFragment())
+//                    }
+//                }
+//            })
+//        }
 
 
     private fun replaceFragment(fragment: Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.act_bottom_navi_fl, fragment)
+        transaction.replace(R.id.fragment_search_fl, fragment)
         transaction.commit()
     }
 }

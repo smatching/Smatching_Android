@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import appjam.sopt.a23rd.smatching.R
 
-
-class SearchNoresultFragment : Fragment() {
+class SearchResultFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_search_noresult, container, false)
+        return inflater.inflate(R.layout.fragment_search_result, container, false)
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
