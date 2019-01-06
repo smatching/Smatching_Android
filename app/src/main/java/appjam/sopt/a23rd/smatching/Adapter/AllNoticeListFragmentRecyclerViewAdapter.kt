@@ -34,12 +34,12 @@ class AllNoticeListFragmentRecyclerViewAdapter(val ctx: Context, val dataList: A
         }
         holder.title.text = dataList[position].title
             holder.scrap.visibility = View.VISIBLE
-            when(dataList[position].scrap){//자바에서의 switch
-                0 -> return holder.scrap.setImageResource(R.drawable.icn_scrap_grey)
-                1 -> return holder.scrap.setImageResource(R.drawable.icn_scrap_yellow)
-
-        }
-
+        // 스크랩이 되지 않았을 경우
+        if(dataList[position].scrap == 0)
+            holder.scrap.setImageResource(R.drawable.icn_scrap_grey)
+        // 스크랩이 됐을 경우
+        else
+            holder.scrap.setImageResource(R.drawable.icn_scrap_yellow)
     }
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val supervisor : TextView = itemView.findViewById(R.id.rv_item_home_tv_supervisor) as TextView

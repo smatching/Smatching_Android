@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="18dp">
@@ -62,7 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-
+                        <!--
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -84,10 +85,12 @@
                                 android:textSize="12sp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
+                        -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
+                            android:layout_marginTop="14dp"
                             android:layout_marginBottom="10dp">
                             <TextView
                                 android:layout_width="80dp"
@@ -97,9 +100,10 @@
                                 android:fontFamily="@font/nanumsquarer"/>
 
                             <TextView
+                                android:id="@+id/fragment_second_custom_condition_click_tv_age"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="만 20세 이상 ~ 만 39세 이하"
+                                android:text=""
                                 android:textSize="12sp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
@@ -116,9 +120,10 @@
                                 android:fontFamily="@font/nanumsquarer"/>
 
                             <TextView
+                                android:id="@+id/fragment_second_custom_condition_click_tv_period"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1 ~ 2년"
+                                android:text=""
                                 android:textSize="12sp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
@@ -135,9 +140,10 @@
                                 android:fontFamily="@font/nanumsquarer"/>
 
                             <TextView
+                                android:id="@+id/fragment_second_custom_condition_click_tv_busiType"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1인창조기업, 전통시장"
+                                android:text=""
                                 android:textSize="12sp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
@@ -154,9 +160,10 @@
                                 android:fontFamily="@font/nanumsquarer"/>
 
                             <TextView
+                                android:id="@+id/fragment_second_custom_condition_click_tv_field"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="가구 내 고용활동 및 달리 분류되지 않은 자가 소비 생산활동"
+                                android:text=""
                                 android:textSize="12sp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
@@ -173,9 +180,10 @@
                                 android:fontFamily="@font/nanumsquarer"/>
 
                             <TextView
+                                android:id="@+id/fragment_second_custom_condition_click_tv_exceCategory"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="창업교육, 창업 멘토링, 지식재산권(특허, 저작권 등)"
+                                android:text=""
                                 android:textSize="12sp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
@@ -192,9 +200,10 @@
                                 android:fontFamily="@font/nanumsquarer"/>
 
                             <TextView
+                                android:id="@+id/fragment_second_custom_condition_click_tv_advantage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1인창조기업, 대학(원)생, 해외판로 확대 시제품 제작, 제조양산"
+                                android:text=""
                                 android:textSize="12dp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
@@ -206,6 +215,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/fragment_second_custom_condition_click_tv_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
@@ -219,6 +229,7 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="5dp">
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ImageView
@@ -237,7 +248,6 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/fragment_second_custom_condition_click_tv_edit"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -41,7 +41,17 @@ class CustomSecondFragment: Fragment() {
     }
     private fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fragment_second_custom_fl, fragment)
+        transaction.replace(R.id.frag_second_custom_fl, fragment)
+        transaction.commit()
+    }
+    private fun replaceFragmentContent(fragment : Fragment) {
+        val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.replace(R.id.frag_second_custom_fl_content, fragment)
+        transaction.commit()
+    }
+    private fun replaceFragmentBody(fragment : Fragment) {
+        val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.replace(R.id.frag_second_custom_fl_body, fragment)
         transaction.commit()
     }
     private fun setRecyclerView() {
@@ -60,14 +70,17 @@ class CustomSecondFragment: Fragment() {
 
             override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
                 if (response.isSuccessful){
-                    val temp : ArrayList<NoticeData> = response.body()!!.data
-                    if (temp.size > 0){
-                        val position = customRecyclerViewAdapter.itemCount
-                        //for (a in 0..3)
-                        //    allNoticeListFragmentRecyclerViewAdapter.dataList.add(temp.get(a))
-                        customRecyclerViewAdapter.dataList.addAll(temp)
-                        customRecyclerViewAdapter.notifyItemInserted(position)
-
+                    if (response.body()!!.status == 204)
+                        replaceFragmentContent(FirstCustomNullFragment())
+                    else {
+                        val temp: ArrayList<NoticeData> = response.body()!!.data
+                        if (temp.size > 0) {
+                            val position = customRecyclerViewAdapter.itemCount
+                            //for (a in 0..3)
+                            //    allNoticeListFragmentRecyclerViewAdapter.dataList.add(temp.get(a))
+                            customRecyclerViewAdapter.dataList.addAll(temp)
+                            customRecyclerViewAdapter.notifyItemInserted(position)
+                        }
                     }
                 }
             }
@@ -81,9 +94,11 @@ class CustomSecondFragment: Fragment() {
         }
 
         override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-            if (response.isSuccessful && response.body()!!.data.condSummaryList.get(1) != null) {
+            if (response.isSuccessful && response.body()!!.data.condSummaryList.size == 2) {
                 getCustomSecondFragmentListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
                 fragment_second_custom_condition_notclick_tv_listsize.text = response.body()!!.data.condSummaryList.get(1).noticeCnt.toString()
+            } else {
+                replaceFragmentBody(SecondCustomEmptyFragment())
             }
         }
     })

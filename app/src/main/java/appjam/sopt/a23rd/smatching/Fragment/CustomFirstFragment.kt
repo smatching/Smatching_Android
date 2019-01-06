@@ -1,14 +1,17 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import appjam.sopt.a23rd.smatching.Adapter.CustomRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
@@ -17,6 +20,7 @@ import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
+import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.fragment_first_custom.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -36,13 +40,27 @@ class CustomFirstFragment : Fragment(){
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        //
+        (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
+        (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
+        //
         replaceFragment(FirstCustomConditionNotClickFragment())
         setRecyclerView()
         getUserSmatchingCondResponse()
+
+        Handler().postDelayed({
+            (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+        }, 1000)
     }
     private fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fragment_first_custom_fl, fragment)
+        transaction.replace(R.id.frag_first_custom_fl, fragment)
+        transaction.commit()
+    }
+    private fun replaceFragmentContent(fragment : Fragment) {
+        val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.replace(R.id.frag_first_custom_fl_content, fragment)
         transaction.commit()
     }
     private fun setRecyclerView() {
@@ -61,14 +79,15 @@ class CustomFirstFragment : Fragment(){
 
             override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
                 if (response.isSuccessful){
-                    val temp : ArrayList<NoticeData> = response.body()!!.data
-                    if (temp.size > 0){
-                        val position = customRecyclerViewAdapter.itemCount
-                        //for (a in 0..3)
-                        //    allNoticeListFragmentRecyclerViewAdapter.dataList.add(temp.get(a))
-                        customRecyclerViewAdapter.dataList.addAll(temp)
-                        customRecyclerViewAdapter.notifyItemInserted(position)
-
+                    if (response.body()!!.status == 204)
+                        replaceFragmentContent(FirstCustomNullFragment())
+                    else {
+                        val temp: ArrayList<NoticeData> = response.body()!!.data
+                        if (temp.size > 0) {
+                            val position = customRecyclerViewAdapter.itemCount
+                            customRecyclerViewAdapter.dataList.addAll(temp)
+                            customRecyclerViewAdapter.notifyItemInserted(position)
+                        }
                     }
                 }
             }

@@ -48,6 +48,7 @@ class AllNoticeListFragment : Fragment(){
 
     }
     private fun getAllNoticeListFragmentResponse(){
+
         val getAllNoticeListResponse = networkService.getAllNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 20, 0)
         getAllNoticeListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {

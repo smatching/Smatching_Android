@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.NavigationView
 import android.support.v7.widget.Toolbar
 import android.view.Menu
@@ -17,6 +18,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
 import appjam.sopt.a23rd.smatching.Fragment.*
+import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -25,17 +27,25 @@ import org.jetbrains.anko.find
 import org.jetbrains.anko.imageResource
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
+{
     var pageNum: Int = 0
     var isSearch: Int = 0
     var time: Long = 0
     lateinit var fragment: Fragment
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         nav_view.setNavigationItemSelectedListener(this)
+
+
+        act_main_loading.setOnTouchListener(View.OnTouchListener { v, event -> true })
+
+        //act_main_loading.visibility = View.VISIBLE
+        //act_main_anim.playAnimation()
 
         //툴바 부분
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
@@ -61,7 +71,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navi = ll_bottom_navi_act_main
 
         val intent = getIntent()
-        if(intent.getIntExtra("view", 0) == 1) {
+        if (intent.getIntExtra("view", 0) == 1)
+        {
             replaceFragment(SmatchingCustom())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
@@ -74,10 +85,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_iv_my_page.isSelected = false
             titleText.setText("맞춤지원")
             titleImage.visibility = View.INVISIBLE
-            if(intent.getIntExtra("page", 0) == 0) {
+            if (intent.getIntExtra("page", 0) == 0)
+            {
+                intent.removeExtra("page")
                 val fragIntent = intent
                 fragIntent.putExtra("page", 0)
-            } else if(intent.getIntExtra("page", 0) == 1) {
+            }
+            else if (intent.getIntExtra("page", 0) == 1)
+            {
+                intent.removeExtra("page")
                 val fragIntent = intent
                 fragIntent.putExtra("page", 1)
             }
@@ -87,14 +103,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         act_main_rl_home.setOnClickListener{
+
+
+            //act_main_rl_home.isEnabled = false
             replaceFragment(HomeFragment())
+            /*
+            Handler().postDelayed(Runnable {
+                // TODO
+            }, 500)
+            act_main_rl_home.isEnabled = true*/
+
+
             //replaceFragment(CorporateDetailFragment())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = true
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             pageNum = 0
@@ -104,6 +130,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_iv_my_page.isSelected = false
             titleText.setText("")
             titleImage.visibility = View.VISIBLE
+
         }
         act_main_rl_smatching.setOnClickListener{
             //replaceFragment(CustomFirstFragment())
@@ -111,9 +138,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = true
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
@@ -130,9 +157,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = true
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
@@ -149,9 +176,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBlue))
             titleText.setTextColor(Color.WHITE)
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = true
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = true
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             pageNum = 3
@@ -168,9 +195,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        when (item.getItemId()) {
-            android.R.id.home -> {
-                if(isSearch == 1) {
+        when(item.getItemId())
+        {
+            android.R.id.home-> {
+                if (isSearch == 1)
+                {
                     val mEditText = findViewById<TextView>(R.id.fragment_search_et_search)
                     val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                     inputMethodManager.hideSoftInputFromWindow(mEditText.windowToken, 0)
@@ -179,7 +208,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 replaceFragmentNum(pageNum)
                 return true
             }
-            R.id.menu_search -> {
+            R.id.menu_search-> {
                 isSearch = 1
 /*
                 val fr = SearchFragment()// Fragment Instance 설정
@@ -196,28 +225,35 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 act_bottom_navi_iv_title.visibility = View.INVISIBLE
                 return true
             }
-            R.id.menu_notice -> {
-                if (drawer_layout.isDrawerOpen(GravityCompat.END)) {
+            /*R.id.menu_notice-> {
+                if (drawer_layout.isDrawerOpen(GravityCompat.END))
+                {
                     drawer_layout.closeDrawer(GravityCompat.END)
-                } else {
+                }
+                else
+                {
                     drawer_layout.openDrawer(GravityCompat.END)
                 }
                 nav_header_main_iv_delete.setOnClickListener {
                     drawer_layout.closeDrawer(GravityCompat.END)
                 }
                 return true
-            }
-            R.id.menu_notice_white -> {
-                if (drawer_layout.isDrawerOpen(GravityCompat.END)) {
+            }*/
+            /*
+            R.id.menu_notice_white-> {
+                if (drawer_layout.isDrawerOpen(GravityCompat.END))
+                {
                     drawer_layout.closeDrawer(GravityCompat.END)
-                } else {
+                }
+                else
+                {
                     drawer_layout.openDrawer(GravityCompat.END)
                 }
                 nav_header_main_iv_delete.setOnClickListener {
                     drawer_layout.closeDrawer(GravityCompat.END)
                 }
                 return true
-            }
+            }*/
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -240,60 +276,67 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         tl_bottom_navi_act_bottom_menu.getTabAt(2)!!.customView = bottomNaviLayout.findViewById(R.id.bottom_navi_btn_tab_talk) as RelativeLayout
         tl_bottom_navi_act_bottom_menu.getTabAt(3)!!.customView = bottomNaviLayout.findViewById(R.id.bottom_navi_btn_tab_my_page) as RelativeLayout
     }*/
-    private fun addFragment(fragment : Fragment) {
+    private fun addFragment(fragment : Fragment)
+    {
         val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.act_bottom_navi_fl, fragment)
         transaction.commit()
     }
 
-    private fun replaceFragment(fragment : Fragment) {
+    private fun replaceFragment(fragment : Fragment)
+    {
         val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.act_bottom_navi_fl, fragment)
         transaction.commit()
     }
-    private fun replaceFragmentNum(int : Int) {
+    private fun replaceFragmentNum(int : Int)
+    {
         val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
-        if(int == 0) {
+        if (int == 0)
+        {
             fragment = HomeFragment()
             act_bottom_navi_tv_title.setText("")
             act_bottom_navi_iv_title.visibility = View.VISIBLE
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = true
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         }
-        else if(int == 1) {
+        else if (int == 1)
+        {
             fragment = SmatchingCustom()
             act_bottom_navi_tv_title.setText("맞춤지원")
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = true
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
 
         }
-        else if(int == 2) {
+        else if (int == 2)
+        {
             fragment = TalkFragment()
             act_bottom_navi_tv_title.setText("창업토크")
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = true
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         }
-        else if(int == 3) {
+        else if (int == 3)
+        {
             fragment = MyPageFragment()
             act_bottom_navi_tv_title.setText("마이페이지")
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = true
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = true
-            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
+            //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(Color.WHITE)
@@ -304,17 +347,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
-        when (item.itemId) {
-            R.id.a -> {
+        when(item.itemId)
+        {
+            R.id.a-> {
                 // Handle the camera action
             }
-            R.id.b -> {
+            R.id.b-> {
 
             }
-            R.id.c -> {
+            R.id.c-> {
 
             }
-            R.id.d -> {
+            R.id.d-> {
 
             }
         }
@@ -322,20 +366,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    override fun onBackPressed() {
+    override fun onBackPressed()
+    {
         //if (findViewById<ImageView>(R.id.home).visibility == View.VISIBLE)
-       //     replaceFragmentNum(pageNum)
+        //     replaceFragmentNum(pageNum)
         //else {
-            if (System.currentTimeMillis() - time >= 2000) {
-                time = System.currentTimeMillis()
-                Toast.makeText(getApplicationContext(), "뒤로 버튼을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show()
-            } else if (System.currentTimeMillis() - time < 2000) {
-                finish()
-                finishAffinity()
-         //   }
+        if (System.currentTimeMillis() - time >= 2000)
+        {
+            time = System.currentTimeMillis()
+            Toast.makeText(getApplicationContext(), "뒤로 버튼을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show()
+        }
+        else if (System.currentTimeMillis() - time < 2000)
+        {
+            finish()
+            finishAffinity()
+            //   }
         }
     }
-    public fun setpageNum(num:Int){
+    public fun setpageNum(num:Int)
+    {
         pageNum = num
     }
 }

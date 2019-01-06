@@ -34,6 +34,8 @@ import appjam.sopt.a23rd.smatching.Fragment.CustomSecondFragment
 import appjam.sopt.a23rd.smatching.Fragment.SecondCustomConditionClickFragment
 import appjam.sopt.a23rd.smatching.Fragment.SmatchingCustomPopupSectorFragment
 import kotlinx.android.synthetic.main.fragment_smatching_custom_popup_sector.*
+import android.view.MotionEvent
+import appjam.sopt.a23rd.smatching.Put.PutSmatchingCount
 
 
 class TestActivity : AppCompatActivity() {
@@ -50,6 +52,7 @@ class TestActivity : AppCompatActivity() {
     val AGESBOOL = arrayOfNulls<Boolean>(3)
     val PERIODSBOOL = arrayOfNulls<Boolean>(9)
     val CATEGORYSBOOL = arrayOfNulls<Boolean>(8)
+    val TEMPCATEGORYSBOOL = arrayOfNulls<Boolean>(8)
     val FIELDSBOOL = arrayOfNulls<Boolean>(22)
     var TEMPFIELDSBOOL = arrayOfNulls<Boolean>(22)
     val ADVANTAGESBOOL = arrayOfNulls<Boolean>(8)
@@ -67,11 +70,13 @@ class TestActivity : AppCompatActivity() {
     var advantageCount = 0
     var fieldCount = 0
     var tempFieldCount = 0
+    var categoryCount = 0
+    var tempCategoryCount = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
         //region 객관식 옵션들 false로 초기화
-        Arrays.fill(LOCATIONSBOOL, false)
+        Arrays.fill(LOCATIONSBOOL, true)
         Arrays.fill(AGESBOOL, false)
         Arrays.fill(PERIODSBOOL, false)
         Arrays.fill(CATEGORYSBOOL, false)
@@ -79,6 +84,7 @@ class TestActivity : AppCompatActivity() {
         Arrays.fill(ADVANTAGESBOOL, false)
         Arrays.fill(BUSITYPESBOOL, false)
         Arrays.fill(TEMPFIELDSBOOL, false)
+        Arrays.fill(TEMPCATEGORYSBOOL, false)
         //endregion
         val toolbar = findViewById<Toolbar>(R.id.act_test_toolbar)
         setSupportActionBar(toolbar)
@@ -87,9 +93,12 @@ class TestActivity : AppCompatActivity() {
         supportActionBar!!.setTitle("")
         act_test_tv.text = "맞춤지원"
         getUserSmatchingCondResponse()
-
         for(a in 0..21)
             TEMPFIELDSBOOL[a] = FIELDSBOOL[a]
+        for(a in 0..7)
+            TEMPCATEGORYSBOOL[a] = CATEGORYSBOOL[a]
+        act_test_rl_popup_needless.setOnTouchListener(View.OnTouchListener { v, event -> true })
+        act_test_rl_popup_sector.setOnTouchListener(View.OnTouchListener { v, event -> true })
         //region 나이 설정
         act_test_iv_age20.setOnClickListener {
             if(AGESBOOL[0]!!) {
@@ -134,13 +143,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         //endregion
+
         //region 업종 설정
+        //region 팝업부분
         act_test_rl_busiType.setOnClickListener {
             tempFieldCount = fieldCount
             for(a in 0..21)
                 TEMPFIELDSBOOL[a] = FIELDSBOOL[a]
-            act_test_rl_popup_sector.visibility = View.VISIBLE
+            if (fieldCount > 0)
+                act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
+            else
+                act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorText))
+            act_test_tv_field_count.text = fieldCount.toString()
             act_test_tv_fieldCount_count.text = fieldCount.toString()
+            act_test_rl_popup_sector.visibility = View.VISIBLE
         }
         act_test_rl_popup_sector_exit.setOnClickListener {
             fieldCount = tempFieldCount
@@ -236,9 +252,13 @@ class TestActivity : AppCompatActivity() {
             else
                 act_test_iv_check_sector_V.setImageResource(R.drawable.icn_emptybox)
             //endregion
-            act_test_rl_popup_sector.visibility = View.INVISIBLE
+            if (fieldCount > 0)
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            else
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             act_test_tv_field_count.text = fieldCount.toString()
             act_test_tv_fieldCount_count.text = fieldCount.toString()
+            act_test_rl_popup_sector.visibility = View.INVISIBLE
         }
         act_test_rl_popup_sector_ok.setOnClickListener {
             tempFieldCount = fieldCount
@@ -335,9 +355,13 @@ class TestActivity : AppCompatActivity() {
             else
                 act_test_ll_field_v.visibility = View.GONE
             //endregion
-            act_test_rl_popup_sector.visibility = View.INVISIBLE
+            if (fieldCount > 0)
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            else
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             act_test_tv_field_count.text = fieldCount.toString()
             act_test_tv_fieldCount_count.text = fieldCount.toString()
+            act_test_rl_popup_sector.visibility = View.INVISIBLE
         }
         act_test_popup_sector_ll_A.setOnClickListener {
             if (FIELDSBOOL[0]!! && fieldCount > 0) {
@@ -802,6 +826,295 @@ class TestActivity : AppCompatActivity() {
             }
         }
         //endregion
+        //region 뷰 부분
+        act_test_ll_field_a.setOnClickListener {
+            act_test_ll_field_a.visibility = View.GONE
+            FIELDSBOOL[0] = false
+            fieldCount--
+            act_test_iv_check_sector_A.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_b.setOnClickListener {
+            act_test_ll_field_b.visibility = View.GONE
+            FIELDSBOOL[1] = false
+            fieldCount--
+            act_test_iv_check_sector_B.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_c.setOnClickListener {
+            act_test_ll_field_c.visibility = View.GONE
+            FIELDSBOOL[2] = false
+            fieldCount--
+            act_test_iv_check_sector_C.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_d.setOnClickListener {
+            act_test_ll_field_d.visibility = View.GONE
+            FIELDSBOOL[3] = false
+            fieldCount--
+            act_test_iv_check_sector_D.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_e.setOnClickListener {
+            act_test_ll_field_e.visibility = View.GONE
+            FIELDSBOOL[4] = false
+            fieldCount--
+            act_test_iv_check_sector_E.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_f.setOnClickListener {
+            act_test_ll_field_f.visibility = View.GONE
+            FIELDSBOOL[5] = false
+            fieldCount--
+            act_test_iv_check_sector_F.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_g.setOnClickListener {
+            act_test_ll_field_g.visibility = View.GONE
+            FIELDSBOOL[6] = false
+            fieldCount--
+            act_test_iv_check_sector_G.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_h.setOnClickListener {
+            act_test_ll_field_h.visibility = View.GONE
+            FIELDSBOOL[7] = false
+            fieldCount--
+            act_test_iv_check_sector_H.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_i.setOnClickListener {
+            act_test_ll_field_i.visibility = View.GONE
+            FIELDSBOOL[8] = false
+            fieldCount--
+            act_test_iv_check_sector_I.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_j.setOnClickListener {
+            act_test_ll_field_j.visibility = View.GONE
+            FIELDSBOOL[9] = false
+            fieldCount--
+            act_test_iv_check_sector_J.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_k.setOnClickListener {
+            act_test_ll_field_k.visibility = View.GONE
+            FIELDSBOOL[10] = false
+            fieldCount--
+            act_test_iv_check_sector_K.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_l.setOnClickListener {
+            act_test_ll_field_l.visibility = View.GONE
+            FIELDSBOOL[11] = false
+            fieldCount--
+            act_test_iv_check_sector_L.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_m.setOnClickListener {
+            act_test_ll_field_m.visibility = View.GONE
+            FIELDSBOOL[12] = false
+            fieldCount--
+            act_test_iv_check_sector_M.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_n.setOnClickListener {
+            act_test_ll_field_n.visibility = View.GONE
+            FIELDSBOOL[13] = false
+            fieldCount--
+            act_test_iv_check_sector_N.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_o.setOnClickListener {
+            act_test_ll_field_o.visibility = View.GONE
+            FIELDSBOOL[14] = false
+            fieldCount--
+            act_test_iv_check_sector_O.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_p.setOnClickListener {
+            act_test_ll_field_p.visibility = View.GONE
+            FIELDSBOOL[15] = false
+            fieldCount--
+            act_test_iv_check_sector_P.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_q.setOnClickListener {
+            act_test_ll_field_q.visibility = View.GONE
+            FIELDSBOOL[16] = false
+            fieldCount--
+            act_test_iv_check_sector_Q.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_r.setOnClickListener {
+            act_test_ll_field_r.visibility = View.GONE
+            FIELDSBOOL[17] = false
+            fieldCount--
+            act_test_iv_check_sector_R.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_s.setOnClickListener {
+            act_test_ll_field_s.visibility = View.GONE
+            FIELDSBOOL[18] = false
+            fieldCount--
+            act_test_iv_check_sector_S.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_t.setOnClickListener {
+            act_test_ll_field_t.visibility = View.GONE
+            FIELDSBOOL[19] = false
+            fieldCount--
+            act_test_iv_check_sector_T.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_u.setOnClickListener {
+            act_test_ll_field_u.visibility = View.GONE
+            FIELDSBOOL[20] = false
+            fieldCount--
+            act_test_iv_check_sector_U.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        act_test_ll_field_v.setOnClickListener {
+            act_test_ll_field_v.visibility = View.GONE
+            FIELDSBOOL[21] = false
+            fieldCount--
+            act_test_iv_check_sector_V.setImageResource(R.drawable.icn_emptybox)
+            if (fieldCount > 0) {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_field_count.text = fieldCount.toString()
+        }
+        //endregion
+        //endregion
         //region 설립 경과 년수 설정
         act_test_iv_01.setOnClickListener {
             if(PERIODSBOOL[0]!! && periodCount > 0) {
@@ -993,155 +1306,6 @@ class TestActivity : AppCompatActivity() {
             }
         }
         //endregion
-        // region 기업형태 설정
-        act_test_iv_company_1.setOnClickListener {
-            if(BUSITYPESBOOL[0]!! && busiTypeCount > 0) {
-                BUSITYPESBOOL[0] = false
-                busiTypeCount--
-                act_test_iv_company_1.setImageResource(R.drawable.btn_pick_company_1)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[0]!! && busiTypeCount < 7) {
-                BUSITYPESBOOL[0] = true
-                busiTypeCount++
-                act_test_iv_company_1.setImageResource(R.drawable.btn_pick_company_1_click)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            }
-        }
-        act_test_iv_company_2.setOnClickListener {
-            if(BUSITYPESBOOL[1]!! && busiTypeCount > 0) {
-                BUSITYPESBOOL[1] = false
-                busiTypeCount--
-                act_test_iv_company_2.setImageResource(R.drawable.btn_pick_company_2)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[1]!! && busiTypeCount < 7) {
-                BUSITYPESBOOL[1] = true
-                busiTypeCount++
-                act_test_iv_company_2.setImageResource(R.drawable.btn_pick_company_2_click)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            }
-        }
-        act_test_iv_company_3.setOnClickListener {
-            if(BUSITYPESBOOL[2]!! && busiTypeCount > 0) {
-                BUSITYPESBOOL[2] = false
-                busiTypeCount--
-                act_test_iv_company_3.setImageResource(R.drawable.btn_pick_company_3)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[2]!! && busiTypeCount < 7) {
-                BUSITYPESBOOL[2] = true
-                busiTypeCount++
-                act_test_iv_company_3.setImageResource(R.drawable.btn_pick_company_3_click)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            }
-        }
-        act_test_iv_company_4.setOnClickListener {
-            if(BUSITYPESBOOL[3]!! && busiTypeCount > 0) {
-                BUSITYPESBOOL[3] = false
-                busiTypeCount--
-                act_test_iv_company_4.setImageResource(R.drawable.btn_pick_company_4)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[3]!! && busiTypeCount < 7) {
-                BUSITYPESBOOL[3] = true
-                busiTypeCount++
-                act_test_iv_company_4.setImageResource(R.drawable.btn_pick_company_4_click)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            }
-        }
-        act_test_iv_company_5.setOnClickListener {
-            if(BUSITYPESBOOL[4]!! && busiTypeCount > 0) {
-                BUSITYPESBOOL[4] = false
-                busiTypeCount--
-                act_test_iv_company_5.setImageResource(R.drawable.btn_pick_company_5)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[4]!! && busiTypeCount < 7) {
-                BUSITYPESBOOL[4] = true
-                busiTypeCount++
-                act_test_iv_company_5.setImageResource(R.drawable.btn_pick_company_5_click)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            }
-        }
-        act_test_iv_company_6.setOnClickListener {
-            if(BUSITYPESBOOL[5]!! && busiTypeCount > 0) {
-                BUSITYPESBOOL[5] = false
-                busiTypeCount--
-                act_test_iv_company_6.setImageResource(R.drawable.btn_pick_company_6)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[5]!! && busiTypeCount < 7) {
-                BUSITYPESBOOL[5] = true
-                busiTypeCount++
-                act_test_iv_company_6.setImageResource(R.drawable.btn_pick_company_6_click)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            }
-        }
-        act_test_iv_company_7.setOnClickListener {
-            if(BUSITYPESBOOL[6]!! && busiTypeCount > 0) {
-                BUSITYPESBOOL[6] = false
-                busiTypeCount--
-                act_test_iv_company_7.setImageResource(R.drawable.btn_pick_company_7)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[6]!! && busiTypeCount < 7) {
-                BUSITYPESBOOL[6] = true
-                busiTypeCount++
-                act_test_iv_company_7.setImageResource(R.drawable.btn_pick_company_7_click)
-                if(busiTypeCount > 0)
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
-                else
-                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
-                act_test_tv_busiType_count.text = busiTypeCount.toString()
-            }
-        }
-        //endregion
         // region 우대사항 설정
         act_test_iv_preference_1.setOnClickListener {
             if(ADVANTAGESBOOL[0]!! && advantageCount > 0) {
@@ -1312,6 +1476,537 @@ class TestActivity : AppCompatActivity() {
             }
         }
         //endregion
+        // region 기업형태 설정
+        act_test_iv_company_1.setOnClickListener {
+            if(BUSITYPESBOOL[0]!! && busiTypeCount > 0) {
+                BUSITYPESBOOL[0] = false
+                busiTypeCount--
+                act_test_iv_company_1.setImageResource(R.drawable.btn_pick_company_1)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            } else if(!BUSITYPESBOOL[0]!! && busiTypeCount < 7) {
+                BUSITYPESBOOL[0] = true
+                busiTypeCount++
+                act_test_iv_company_1.setImageResource(R.drawable.btn_pick_company_1_click)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            }
+        }
+        act_test_iv_company_2.setOnClickListener {
+            if(BUSITYPESBOOL[1]!! && busiTypeCount > 0) {
+                BUSITYPESBOOL[1] = false
+                busiTypeCount--
+                act_test_iv_company_2.setImageResource(R.drawable.btn_pick_company_2)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            } else if(!BUSITYPESBOOL[1]!! && busiTypeCount < 7) {
+                BUSITYPESBOOL[1] = true
+                busiTypeCount++
+                act_test_iv_company_2.setImageResource(R.drawable.btn_pick_company_2_click)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            }
+        }
+        act_test_iv_company_3.setOnClickListener {
+            if(BUSITYPESBOOL[2]!! && busiTypeCount > 0) {
+                BUSITYPESBOOL[2] = false
+                busiTypeCount--
+                act_test_iv_company_3.setImageResource(R.drawable.btn_pick_company_3)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            } else if(!BUSITYPESBOOL[2]!! && busiTypeCount < 7) {
+                BUSITYPESBOOL[2] = true
+                busiTypeCount++
+                act_test_iv_company_3.setImageResource(R.drawable.btn_pick_company_3_click)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            }
+        }
+        act_test_iv_company_4.setOnClickListener {
+            if(BUSITYPESBOOL[3]!! && busiTypeCount > 0) {
+                BUSITYPESBOOL[3] = false
+                busiTypeCount--
+                act_test_iv_company_4.setImageResource(R.drawable.btn_pick_company_4)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            } else if(!BUSITYPESBOOL[3]!! && busiTypeCount < 7) {
+                BUSITYPESBOOL[3] = true
+                busiTypeCount++
+                act_test_iv_company_4.setImageResource(R.drawable.btn_pick_company_4_click)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            }
+        }
+        act_test_iv_company_5.setOnClickListener {
+            if(BUSITYPESBOOL[4]!! && busiTypeCount > 0) {
+                BUSITYPESBOOL[4] = false
+                busiTypeCount--
+                act_test_iv_company_5.setImageResource(R.drawable.btn_pick_company_5)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            } else if(!BUSITYPESBOOL[4]!! && busiTypeCount < 7) {
+                BUSITYPESBOOL[4] = true
+                busiTypeCount++
+                act_test_iv_company_5.setImageResource(R.drawable.btn_pick_company_5_click)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            }
+        }
+        act_test_iv_company_6.setOnClickListener {
+            if(BUSITYPESBOOL[5]!! && busiTypeCount > 0) {
+                BUSITYPESBOOL[5] = false
+                busiTypeCount--
+                act_test_iv_company_6.setImageResource(R.drawable.btn_pick_company_6)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            } else if(!BUSITYPESBOOL[5]!! && busiTypeCount < 7) {
+                BUSITYPESBOOL[5] = true
+                busiTypeCount++
+                act_test_iv_company_6.setImageResource(R.drawable.btn_pick_company_6_click)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            }
+        }
+        act_test_iv_company_7.setOnClickListener {
+            if(BUSITYPESBOOL[6]!! && busiTypeCount > 0) {
+                BUSITYPESBOOL[6] = false
+                busiTypeCount--
+                act_test_iv_company_7.setImageResource(R.drawable.btn_pick_company_7)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            } else if(!BUSITYPESBOOL[6]!! && busiTypeCount < 7) {
+                BUSITYPESBOOL[6] = true
+                busiTypeCount++
+                act_test_iv_company_7.setImageResource(R.drawable.btn_pick_company_7_click)
+                if(busiTypeCount > 0)
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_tv_busiType_count.text = busiTypeCount.toString()
+            }
+        }
+        //endregion
+        //region 필요 없는 지원사업분야
+        //region 팝업 부분
+        act_test_rl_needless.setOnClickListener {
+            tempCategoryCount = categoryCount
+            for(a in 0..7)
+                TEMPCATEGORYSBOOL[a] = CATEGORYSBOOL[a]
+            if (categoryCount > 0)
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
+            else
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
+            act_test_popup_needless_tv_count.text = categoryCount.toString()
+            act_test_tv_excCategory_count.text = categoryCount.toString()
+            act_test_rl_popup_needless.visibility = View.VISIBLE
+        }
+        act_test_rl_popup_needless_exit.setOnClickListener {
+            categoryCount = tempCategoryCount
+            for(a in 0..7)
+                CATEGORYSBOOL[a] = TEMPCATEGORYSBOOL[a]
+            //region 노가다로 값넣기1 -> 나중에 수정하자...
+            if(CATEGORYSBOOL[0]!!)
+                act_test_popup_needless_iv_A.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_popup_needless_iv_A.setImageResource(R.drawable.icn_emptybox)
+            if(CATEGORYSBOOL[1]!!)
+                act_test_popup_needless_iv_B.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_popup_needless_iv_B.setImageResource(R.drawable.icn_emptybox)
+            if(CATEGORYSBOOL[2]!!)
+                act_test_popup_needless_iv_C.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_popup_needless_iv_C.setImageResource(R.drawable.icn_emptybox)
+            if(CATEGORYSBOOL[3]!!)
+                act_test_popup_needless_iv_D.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_popup_needless_iv_D.setImageResource(R.drawable.icn_emptybox)
+            if(CATEGORYSBOOL[4]!!)
+                act_test_popup_needless_iv_E.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_popup_needless_iv_E.setImageResource(R.drawable.icn_emptybox)
+            if(CATEGORYSBOOL[5]!!)
+                act_test_popup_needless_iv_F.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_popup_needless_iv_F.setImageResource(R.drawable.icn_emptybox)
+            if(CATEGORYSBOOL[6]!!)
+                act_test_popup_needless_iv_G.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_popup_needless_iv_G.setImageResource(R.drawable.icn_emptybox)
+            if(CATEGORYSBOOL[7]!!)
+                act_test_popup_needless_iv_H.setImageResource(R.drawable.icn_checkbox_white)
+            else
+                act_test_popup_needless_iv_H.setImageResource(R.drawable.icn_emptybox)
+            //endregion
+            if (categoryCount > 0)
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
+            else
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
+            act_test_popup_needless_tv_count.text = categoryCount.toString()
+            act_test_tv_excCategory_count.text = categoryCount.toString()
+            act_test_rl_popup_needless.visibility = View.INVISIBLE
+        }
+        act_test_rl_popup_needless_ok.setOnClickListener {
+            tempCategoryCount = categoryCount
+            for(a in 0..7)
+                TEMPCATEGORYSBOOL[a] = CATEGORYSBOOL[a]
+            //region 노가다로 값넣기2 -> 나중에 수정하자...
+            if(CATEGORYSBOOL[0]!!)
+                act_test_ll_excCategory_edu.visibility = View.VISIBLE
+            else
+                act_test_ll_excCategory_edu.visibility = View.GONE
+            if(CATEGORYSBOOL[1]!!)
+                act_test_ll_excCategory_know.visibility = View.VISIBLE
+            else
+                act_test_ll_excCategory_know.visibility = View.GONE
+            if(CATEGORYSBOOL[2]!!)
+                act_test_ll_excCategory_place.visibility = View.VISIBLE
+            else
+                act_test_ll_excCategory_place.visibility = View.GONE
+            if(CATEGORYSBOOL[3]!!)
+                act_test_ll_excCategory_local.visibility = View.VISIBLE
+            else
+                act_test_ll_excCategory_local.visibility = View.GONE
+            if(CATEGORYSBOOL[4]!!)
+                act_test_ll_excCategory_global.visibility = View.VISIBLE
+            else
+                act_test_ll_excCategory_global.visibility = View.GONE
+            if(CATEGORYSBOOL[5]!!)
+                act_test_ll_excCategory_make.visibility = View.VISIBLE
+            else
+                act_test_ll_excCategory_make.visibility = View.GONE
+            if(CATEGORYSBOOL[6]!!)
+                act_test_ll_excCategory_gov.visibility = View.VISIBLE
+            else
+                act_test_ll_excCategory_gov.visibility = View.GONE
+            if(CATEGORYSBOOL[7]!!)
+                act_test_ll_excCategory_loan.visibility = View.VISIBLE
+            else
+                act_test_ll_excCategory_loan.visibility = View.GONE
+            //endregion
+            if (categoryCount > 0)
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
+            else
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
+            act_test_popup_needless_tv_count.text = categoryCount.toString()
+            act_test_tv_excCategory_count.text = categoryCount.toString()
+            act_test_rl_popup_needless.visibility = View.INVISIBLE
+        }
+        act_test_ll_popup_needless_A.setOnClickListener {
+            if (CATEGORYSBOOL[0]!! && categoryCount > 0) {
+                CATEGORYSBOOL[0] = false
+                categoryCount--
+                act_test_popup_needless_iv_A.setImageResource(R.drawable.icn_emptybox)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            } else if (!CATEGORYSBOOL[0]!! && categoryCount < 5) {
+                CATEGORYSBOOL[0] = true
+                categoryCount++
+                act_test_popup_needless_iv_A.setImageResource(R.drawable.icn_checkbox_white)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            }
+        }
+        act_test_ll_popup_needless_B.setOnClickListener {
+            if (CATEGORYSBOOL[1]!! && categoryCount > 0) {
+                CATEGORYSBOOL[1] = false
+                categoryCount--
+                act_test_popup_needless_iv_B.setImageResource(R.drawable.icn_emptybox)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            } else if (!CATEGORYSBOOL[1]!! && categoryCount < 5) {
+                CATEGORYSBOOL[1] = true
+                categoryCount++
+                act_test_popup_needless_iv_B.setImageResource(R.drawable.icn_checkbox_white)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            }
+        }
+        act_test_ll_popup_needless_C.setOnClickListener {
+            if (CATEGORYSBOOL[2]!! && categoryCount > 0) {
+                CATEGORYSBOOL[2] = false
+                categoryCount--
+                act_test_popup_needless_iv_C.setImageResource(R.drawable.icn_emptybox)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            } else if (!CATEGORYSBOOL[2]!! && categoryCount < 5) {
+                CATEGORYSBOOL[2] = true
+                categoryCount++
+                act_test_popup_needless_iv_C.setImageResource(R.drawable.icn_checkbox_white)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            }
+        }
+        act_test_ll_popup_needless_D.setOnClickListener {
+            if (CATEGORYSBOOL[3]!! && categoryCount > 0) {
+                CATEGORYSBOOL[3] = false
+                categoryCount--
+                act_test_popup_needless_iv_D.setImageResource(R.drawable.icn_emptybox)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            } else if (!CATEGORYSBOOL[3]!! && categoryCount < 5) {
+                CATEGORYSBOOL[3] = true
+                categoryCount++
+                act_test_popup_needless_iv_D.setImageResource(R.drawable.icn_checkbox_white)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            }
+        }
+        act_test_ll_popup_needless_E.setOnClickListener {
+            if (CATEGORYSBOOL[4]!! && categoryCount > 0) {
+                CATEGORYSBOOL[4] = false
+                categoryCount--
+                act_test_popup_needless_iv_E.setImageResource(R.drawable.icn_emptybox)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            } else if (!CATEGORYSBOOL[4]!! && categoryCount < 5) {
+                CATEGORYSBOOL[4] = true
+                categoryCount++
+                act_test_popup_needless_iv_E.setImageResource(R.drawable.icn_checkbox_white)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            }
+        }
+        act_test_ll_popup_needless_F.setOnClickListener {
+            if (CATEGORYSBOOL[5]!! && categoryCount > 0) {
+                CATEGORYSBOOL[5] = false
+                categoryCount--
+                act_test_popup_needless_iv_F.setImageResource(R.drawable.icn_emptybox)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            } else if (!CATEGORYSBOOL[5]!! && categoryCount < 5) {
+                CATEGORYSBOOL[5] = true
+                categoryCount++
+                act_test_popup_needless_iv_F.setImageResource(R.drawable.icn_checkbox_white)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            }
+        }
+        act_test_ll_popup_needless_G.setOnClickListener {
+            if (CATEGORYSBOOL[6]!! && categoryCount > 0) {
+                CATEGORYSBOOL[6] = false
+                categoryCount--
+                act_test_popup_needless_iv_G.setImageResource(R.drawable.icn_emptybox)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            } else if (!CATEGORYSBOOL[6]!! && categoryCount < 5) {
+                CATEGORYSBOOL[6] = true
+                categoryCount++
+                act_test_popup_needless_iv_G.setImageResource(R.drawable.icn_checkbox_white)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            }
+        }
+        act_test_ll_popup_needless_H.setOnClickListener {
+            if (CATEGORYSBOOL[7]!! && categoryCount > 0) {
+                CATEGORYSBOOL[7] = false
+                categoryCount--
+                act_test_popup_needless_iv_H.setImageResource(R.drawable.icn_emptybox)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            } else if (!CATEGORYSBOOL[7]!! && categoryCount < 5) {
+                CATEGORYSBOOL[7] = true
+                categoryCount++
+                act_test_popup_needless_iv_H.setImageResource(R.drawable.icn_checkbox_white)
+                if (categoryCount > 0)
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorBlue))
+                else
+                    act_test_popup_needless_tv_count.setTextColor(resources.getColor(R.color.colorText))
+                act_test_popup_needless_tv_count.text = categoryCount.toString()
+            }
+        }
+        //endregion
+        //region 뷰 부분
+        act_test_ll_excCategory_edu.setOnClickListener {
+            act_test_ll_excCategory_edu.visibility = View.GONE
+            CATEGORYSBOOL[0] = false
+            categoryCount--
+            act_test_popup_needless_iv_A.setImageResource(R.drawable.icn_emptybox)
+            if (categoryCount > 0) {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_excCategory_count.text = categoryCount.toString()
+        }
+        act_test_ll_excCategory_know.setOnClickListener {
+            act_test_ll_excCategory_know.visibility = View.GONE
+            CATEGORYSBOOL[1] = false
+            categoryCount--
+            act_test_popup_needless_iv_B.setImageResource(R.drawable.icn_emptybox)
+            if (categoryCount > 0) {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_excCategory_count.text = categoryCount.toString()
+        }
+        act_test_ll_excCategory_place.setOnClickListener {
+            act_test_ll_excCategory_place.visibility = View.GONE
+            CATEGORYSBOOL[2] = false
+            categoryCount--
+            act_test_popup_needless_iv_C.setImageResource(R.drawable.icn_emptybox)
+            if (categoryCount > 0) {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_excCategory_count.text = categoryCount.toString()
+        }
+        act_test_ll_excCategory_local.setOnClickListener {
+            act_test_ll_excCategory_local.visibility = View.GONE
+            CATEGORYSBOOL[3] = false
+            categoryCount--
+            act_test_popup_needless_iv_D.setImageResource(R.drawable.icn_emptybox)
+            if (categoryCount > 0) {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_excCategory_count.text = categoryCount.toString()
+        }
+        act_test_ll_excCategory_global.setOnClickListener {
+            act_test_ll_excCategory_global.visibility = View.GONE
+            CATEGORYSBOOL[4] = false
+            categoryCount--
+            act_test_popup_needless_iv_E.setImageResource(R.drawable.icn_emptybox)
+            if (categoryCount > 0) {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_excCategory_count.text = categoryCount.toString()
+        }
+        act_test_ll_excCategory_make.setOnClickListener {
+            act_test_ll_excCategory_make.visibility = View.GONE
+            CATEGORYSBOOL[5] = false
+            categoryCount--
+            act_test_popup_needless_iv_F.setImageResource(R.drawable.icn_emptybox)
+            if (categoryCount > 0) {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_excCategory_count.text = categoryCount.toString()
+        }
+        act_test_ll_excCategory_gov.setOnClickListener {
+            act_test_ll_excCategory_gov.visibility = View.GONE
+            CATEGORYSBOOL[6] = false
+            categoryCount--
+            act_test_popup_needless_iv_G.setImageResource(R.drawable.icn_emptybox)
+            if (categoryCount > 0) {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_excCategory_count.text = categoryCount.toString()
+        }
+        act_test_ll_excCategory_loan.setOnClickListener {
+            act_test_ll_excCategory_loan.visibility = View.GONE
+            CATEGORYSBOOL[7] = false
+            categoryCount--
+            act_test_popup_needless_iv_H.setImageResource(R.drawable.icn_emptybox)
+            if (categoryCount > 0) {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
+            }
+            else {
+                act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
+            }
+            act_test_tv_excCategory_count.text = categoryCount.toString()
+        }
+        //endregion
+        //endregion
         act_test_rl.setOnClickListener {
             putUserSmatchingResponse(mCondIdx)
         }
@@ -1339,16 +2034,15 @@ class TestActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-                if (response.isSuccessful && response.body()!!.data.condSummaryList.get(1) != null) {
-                    mCondIdx = response.body()!!.data.condSummaryList.get(1).condIdx
-                    getUserSmatchingListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
-                    act_test_et_title.setText(response.body()!!.data.condSummaryList.get(1).condName)
+                if (response.isSuccessful && response.body()!!.data.condSummaryList.get(0) != null) {
+                    mCondIdx = response.body()!!.data.condSummaryList.get(0).condIdx
+                    getUserSmatchingListResponse(response.body()!!.data.condSummaryList.get(0).condIdx)
+                    act_test_et_title.setText(response.body()!!.data.condSummaryList.get(0).condName)
                 }
             }
         }
         )
     }
-
     private fun getUserSmatchingListResponse(condIdx: Int){
         val getUserSmatchingListResponse = networkService.getSmatchingCondsResponse(condIdx)
         getUserSmatchingListResponse.enqueue(object : Callback<GetSmatchingListResponse> {
@@ -1358,6 +2052,7 @@ class TestActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<GetSmatchingListResponse>, response: Response<GetSmatchingListResponse>) {
                 if (response.isSuccessful) {
+                    /*
                     //region location
                     var locationCount: Int = 0
                     if(response.body()!!.data.location.aborad)
@@ -1400,6 +2095,7 @@ class TestActivity : AppCompatActivity() {
                         fragment_smatching_custom_location.setTextColor(resources.getColor(R.color.colorBlue))
                     fragment_smatching_custom_location.text = locationCount.toString()
                     //endregion
+                    */
                     //region age
                     if(response.body()!!.data.age.twenty_less) {
                         act_test_iv_age20.setImageResource(R.drawable.btn_pick_age_20_click_blue)
@@ -1642,42 +2338,57 @@ class TestActivity : AppCompatActivity() {
                     act_test_tv_field_count.text = fieldCount.toString()
                     //endregion
                     //region excCategory
-                    var excCategoryCount = 0
                     if(response.body()!!.data.excCategory.edu) {
-                        excCategoryCount++
+                        CATEGORYSBOOL[0] = true
+                        act_test_popup_needless_iv_A.setImageResource(R.drawable.icn_checkbox_white)
+                        categoryCount++
                         act_test_ll_excCategory_edu.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.excCategory.know) {
-                        excCategoryCount++
+                        CATEGORYSBOOL[1] = true
+                        act_test_popup_needless_iv_B.setImageResource(R.drawable.icn_checkbox_white)
+                        categoryCount++
                         act_test_ll_excCategory_know.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.excCategory.place) {
-                        excCategoryCount++
+                        CATEGORYSBOOL[2] = true
+                        act_test_popup_needless_iv_C.setImageResource(R.drawable.icn_checkbox_white)
+                        categoryCount++
                         act_test_ll_excCategory_place.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.excCategory.local) {
-                        excCategoryCount++
+                        CATEGORYSBOOL[3] = true
+                        act_test_popup_needless_iv_D.setImageResource(R.drawable.icn_checkbox_white)
+                        categoryCount++
                         act_test_ll_excCategory_local.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.excCategory.global) {
-                        excCategoryCount++
+                        CATEGORYSBOOL[4] = true
+                        act_test_popup_needless_iv_E.setImageResource(R.drawable.icn_checkbox_white)
+                        categoryCount++
                         act_test_ll_excCategory_global.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.excCategory.make) {
-                        excCategoryCount++
+                        CATEGORYSBOOL[5] = true
+                        act_test_popup_needless_iv_F.setImageResource(R.drawable.icn_checkbox_white)
+                        categoryCount++
                         act_test_ll_excCategory_make.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.excCategory.gov) {
-                        excCategoryCount++
+                        CATEGORYSBOOL[6] = true
+                        act_test_popup_needless_iv_G.setImageResource(R.drawable.icn_checkbox_white)
+                        categoryCount++
                         act_test_ll_excCategory_gov.visibility = View.VISIBLE
                     }
                     if(response.body()!!.data.excCategory.loan) {
-                        excCategoryCount++
+                        CATEGORYSBOOL[7] = true
+                        act_test_popup_needless_iv_H.setImageResource(R.drawable.icn_checkbox_white)
+                        categoryCount++
                         act_test_ll_excCategory_loan.visibility = View.VISIBLE
                     }
-                    if(excCategoryCount > 0)
+                    if(categoryCount > 0)
                         act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
-                    act_test_tv_excCategory_count.text = excCategoryCount.toString()
+                    act_test_tv_excCategory_count.text = categoryCount.toString()
                     //endregion
                     //region advantage
                     if(response.body()!!.data.advantage.retry) {
@@ -1724,11 +2435,57 @@ class TestActivity : AppCompatActivity() {
                         act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                     act_test_tv_advantage_count.text = advantageCount.toString()
                     //endregion
+/* 테스트
+                    //region 요청바디에 들어갈 객체 생성
+                    var jsonObject = JsonObject() // 요청바디 전체 객체
+
+                    jsonObject.addProperty("condName", act_test_et_title.text.toString())
+
+                    var ageJson = JsonObject() // age 내부 객체
+                    for(a in 0..2)
+                        ageJson.addProperty(AGESNAME[a], AGESBOOL[a])
+                    jsonObject.add("age", ageJson)
+
+                    var locationJson = JsonObject() // location 내부 객체
+                    for(a in 0..17)
+                        locationJson.addProperty(LOCATIONSNAME[a], LOCATIONSBOOL[a])
+                    jsonObject.add("location", locationJson)
+
+                    var periodJson = JsonObject() // period 내부 객체
+                    for(a in 0..8)
+                        periodJson.addProperty(PERIODSNAME[a], PERIODSBOOL[a])
+                    jsonObject.add("period", periodJson)
+
+                    var fieldJson = JsonObject() // field 내부 객체
+                    for(a in 0..21)
+                        fieldJson.addProperty(FIELDSNAME[a], FIELDSBOOL[a])
+                    jsonObject.add("field", fieldJson)
+
+                    var advantageJson = JsonObject() // advantage 내부 객체
+                    for(a in 0..7)
+                        advantageJson.addProperty(ADVANTAGESNAME[a], ADVANTAGESBOOL[a])
+                    jsonObject.add("advantage", advantageJson)
+
+
+
+                    var busiTypeJson = JsonObject() // busiType 내부 객체
+                    for(a in 0..6)
+                        busiTypeJson.addProperty(BUSITYPESNAME[a], BUSITYPESBOOL[a])
+                    jsonObject.add("busiType", busiTypeJson)
+
+
+                    var excCategoryJson = JsonObject() // excCategory 내부 객체
+                    for(a in 0..7)
+                        excCategoryJson.addProperty(CATEGORYSNAME[a], CATEGORYSBOOL[a])
+                    jsonObject.add("excCategory", excCategoryJson)
+                    //endregion
+                    putSmatchingCondsCountResponse(jsonObject)*/
                 }
             }
         })
     }
     private fun putUserSmatchingResponse(condIdx: Int) {
+        //region 요청바디에 들어갈 객체 생성
         var jsonObject = JsonObject() // 요청바디 전체 객체
 
         jsonObject.addProperty("condName", act_test_et_title.text.toString())
@@ -1767,17 +2524,10 @@ class TestActivity : AppCompatActivity() {
 
 
         var excCategoryJson = JsonObject() // excCategory 내부 객체
-        excCategoryJson.addProperty("loan", false)
-        excCategoryJson.addProperty("edu", false)
-        excCategoryJson.addProperty("know", false)
-        excCategoryJson.addProperty("global", false)
-        excCategoryJson.addProperty("place", false)
-        excCategoryJson.addProperty("make", false)
-        excCategoryJson.addProperty("local", false)
-        excCategoryJson.addProperty("gov", false)
+        for(a in 0..7)
+            excCategoryJson.addProperty(CATEGORYSNAME[a], CATEGORYSBOOL[a])
         jsonObject.add("excCategory", excCategoryJson)
-
-
+        //endregion
         //통신 시작
         val postSignUpResponse: Call<PutSmatchingEdit> =
                 networkService.putSmatchingCondsChangeResponse("application/json", SharedPreferenceController.getAuthorization(this), condIdx, jsonObject)
@@ -1792,12 +2542,33 @@ class TestActivity : AppCompatActivity() {
 
                     val refresh = Intent(this@TestActivity, MainActivity::class.java )
                     refresh.putExtra("view", 1)
-                    refresh.putExtra("page", 1)
+                    refresh.putExtra("page", 0)
                     startActivity(refresh)//Start the same Activity
                     finish() //finish Activity.
                 }
             }
         })
     }
+    /* 테스트
+    private fun putSmatchingCondsCountResponse(jsonObject: JsonObject){
+        val putSmatchingCondsCountResponse = networkService.putSmatchingCondsCountResponse("application/json", jsonObject)
+        putSmatchingCondsCountResponse.enqueue(object : Callback<PutSmatchingCount> {
+            override fun onFailure(call: Call<PutSmatchingCount>, t: Throwable) {
+                Log.e("board list fail", t.toString())
+            }
 
+            override fun onResponse(call: Call<PutSmatchingCount>, response: Response<PutSmatchingCount>) {
+                if (response.isSuccessful) {
+                    act_test_tv_smatching_count.text = response.body()!!.data.toString()
+                    if(response.body()!!.data > 0) {
+                        act_test_rl.setBackgroundColor(resources.getColor(R.color.colorBlue))
+                        act_test_tv_smatching_count.setTextColor(resources.getColor(R.color.colorWhite))
+                    } else {
+                        act_test_rl.setBackgroundColor(resources.getColor(R.color.colorBackgroundshallow))
+                        act_test_tv_smatching_count.setTextColor(resources.getColor(R.color.colorText))
+                    }
+                }
+            }
+        })
+    }*/
 }

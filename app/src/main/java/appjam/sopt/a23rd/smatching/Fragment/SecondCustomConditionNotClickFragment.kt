@@ -1,18 +1,22 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import appjam.sopt.a23rd.smatching.Data.CondSummaryListData
 import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
 import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
+import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.fragment_first_custom_condition_notclick.*
 import kotlinx.android.synthetic.main.fragment_second_custom_condition_notclick.*
 import org.jetbrains.anko.support.v4.toast
@@ -34,14 +38,28 @@ class SecondCustomConditionNotClickFragment : Fragment(){
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        //
+        (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
+        (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
+        //
         fragment_second_custom_condition_notclick_rl_custom_custom.setOnClickListener {
             replaceFragment(SecondCustomConditionClickFragment())
         }
         getUserSmatchingCondResponse()
+
+        Handler().postDelayed({
+            (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+        }, 1000)
     }
     private fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fragment_second_custom_fl, fragment)
+        transaction.replace(R.id.frag_second_custom_fl, fragment)
+        transaction.commit()
+    }
+    private fun replaceFragmentBody(fragment : Fragment) {
+        val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.replace(R.id.frag_second_custom_condition_notclick_fl, fragment)
         transaction.commit()
     }
     private fun getUserSmatchingCondResponse(){
@@ -54,7 +72,10 @@ class SecondCustomConditionNotClickFragment : Fragment(){
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
                 if (response.isSuccessful && response.body()!!.data.condSummaryList.size == 2) {
                     fragment_second_custom_condition_notclick_tv_name.text = response.body()!!.data.condSummaryList.get(1).condName
+                } else {
+                    replaceFragmentBody(SecondCustomConditionNotClickEmptyFragment())
                 }
+
             }
         })
     }

@@ -1,13 +1,17 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
+import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import appjam.sopt.a23rd.smatching.Adapter.HomeFragmentRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.R
@@ -16,9 +20,12 @@ import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Adapter.HomeRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
 import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
+import appjam.sopt.a23rd.smatching.MainActivity
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
+import com.airbnb.lottie.LottieAnimationView
+import kotlinx.android.synthetic.main.fragment_second_custom_condition_notclick.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -54,7 +61,11 @@ class SecondFragment : Fragment(){
         fragment_second_rv.adapter = homeFragmentFragmentRecyclerViewAdapter
         fragment_second_rv.layoutManager = LinearLayoutManager(activity)
     }
-
+    private fun replaceFragment(fragment : Fragment) {
+        val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.replace(R.id.frag_second_fl, fragment)
+        transaction.commit()
+    }
     private fun getSecondFitListResponse(cond_idx:Int){
         val getCustomSecondFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 3, 0, cond_idx)
         getCustomSecondFragmentListResponse.enqueue(object : Callback<GetNoticeListResponse> {
@@ -63,13 +74,17 @@ class SecondFragment : Fragment(){
             }
 
             override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
-                if (response.isSuccessful){
-                    val temp : ArrayList<NoticeData> = response.body()!!.data
-                    if (temp.size > 0) {
-                        val position = homeFragmentFragmentRecyclerViewAdapter.itemCount
-                        for (a in 0..2)
-                            homeFragmentFragmentRecyclerViewAdapter.dataList.add(temp.get(a))
-                        homeFragmentFragmentRecyclerViewAdapter.notifyItemInserted(position)
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 204)
+                        replaceFragment(SecondNullFragment())
+                    else {
+                        val temp: ArrayList<NoticeData> = response.body()!!.data
+                        if (temp.size > 0) {
+                            val position = homeFragmentFragmentRecyclerViewAdapter.itemCount
+                            for (a in 0..2)
+                                homeFragmentFragmentRecyclerViewAdapter.dataList.add(temp.get(a))
+                            homeFragmentFragmentRecyclerViewAdapter.notifyItemInserted(position)
+                        }
                     }
                 }
             }
@@ -83,13 +98,16 @@ class SecondFragment : Fragment(){
             }
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-                if (response.isSuccessful && response.body()!!.data.condSummaryList.get(1) != null) {
+                if (response.isSuccessful && response.body()!!.status == 204) {
+                    replaceFragment(NullFragment())
+
+                } else if (response.isSuccessful && response.body()!!.status == 206) {
+                    replaceFragment(NullFragment())
+
+                } else if (response.isSuccessful && response.body()!!.status == 200) {
                     getSecondFitListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
                     fragment_second_tv_cnt.text = response.body()!!.data.condSummaryList.get(1).noticeCnt.toString()
                     fragment_second_tv_nickname.text = response.body()!!.data.nickname
-                } else {
-                    fragment_second_rl_null.visibility = View.VISIBLE
-                    fragment_second_ll_not_null.visibility = View.INVISIBLE
                 }
             }
         })

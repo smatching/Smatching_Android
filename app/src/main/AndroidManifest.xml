@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/CustomAppTheme">
-        <activity android:name=".StartActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,10 +25,14 @@
             android:name=".TestActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:name=".Test2Activity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".PolicyActivity" />
         <activity android:name=".PolicyViewActivity" />
+        <activity android:name=".StartActivity" />
     </application>
 
 </manifest>
