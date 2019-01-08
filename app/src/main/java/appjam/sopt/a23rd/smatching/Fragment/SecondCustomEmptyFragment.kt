@@ -19,7 +19,7 @@ class SecondCustomEmptyFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         frag_second_custom_empty_rl.setOnClickListener {
-            startActivity<TestActivity>() //테슷흐
+            startActivity<Test2Activity>() //테슷흐
         }
     }
 }

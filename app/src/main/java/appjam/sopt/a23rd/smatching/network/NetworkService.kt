@@ -78,7 +78,8 @@ interface NetworkService {
     //맞춤조건 삭제
     @DELETE("/conds/{condIdx}")
     fun deleteSmatchingCondsDeleteResponse(
-            @Header("Authorization") token : String
+            @Header("Authorization") token : String,
+            @Path("condIdx") cond_idx: Int
     ) : Call<DeleteSmatchingCondsResponse>
     //지원사업 스크랩 설정/해제
     @PUT("/notices/scrap/{noticeIdx}")
