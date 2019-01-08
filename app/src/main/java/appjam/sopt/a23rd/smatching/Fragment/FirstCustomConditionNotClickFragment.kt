@@ -54,6 +54,11 @@ class FirstCustomConditionNotClickFragment : Fragment(){
         transaction.replace(R.id.frag_first_custom_fl, fragment)
         transaction.commit()
     }
+    private fun replaceFragmentBody(fragment : Fragment) {
+        val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+        transaction.replace(R.id.frag_first_custom_condition_notclick_fl, fragment)
+        transaction.commit()
+    }
     private fun getUserSmatchingCondResponse(){
         val getUserSmatchingCondResponse = networkService.getUserSmatchingCondResponse(SharedPreferenceController.getAuthorization(activity!!))
         getUserSmatchingCondResponse.enqueue(object : Callback<GetUserSmatchingCondResponse> {
@@ -62,8 +67,12 @@ class FirstCustomConditionNotClickFragment : Fragment(){
             }
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-                if (response.isSuccessful && response.body()!!.data.condSummaryList.size >= 1) {
+                if (response.isSuccessful && (response.body()!!.status == 200 ||response.body()!!.status == 206)) {
+                    //frag_first_custom_condition_notclick_rl.visibility == View.VISIBLE
                     fragment_first_custom_condition_notclick_tv_name.text = response.body()!!.data.condSummaryList.get(0).condName
+                } else if(response.isSuccessful && response.body()!!.status == 204) {
+                    replaceFragmentBody(FirstCustomConditionNotClickEmptyFragment())
+                    //frag_first_custom_condition_notclick_rl.visibility == View.GONE
                 }
             }
         })

@@ -2114,7 +2114,7 @@ class Test2Activity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-                if(response.isSuccessful && response.body()!!.status == 206) {
+                if(response.isSuccessful && (response.body()!!.status == 206 || response.body()!!.status == 204)) {
                     state = 0
                     act_test2_tv_toolbar_text.visibility = View.INVISIBLE
                 } else if (response.isSuccessful && response.body()!!.status == 200) {
@@ -2727,26 +2727,4 @@ class Test2Activity : AppCompatActivity() {
             }
         })
     }
-    /* 테스트
-    private fun putSmatchingCondsCountResponse(jsonObject: JsonObject){
-        val putSmatchingCondsCountResponse = networkService.putSmatchingCondsCountResponse("application/json", jsonObject)
-        putSmatchingCondsCountResponse.enqueue(object : Callback<PutSmatchingCount> {
-            override fun onFailure(call: Call<PutSmatchingCount>, t: Throwable) {
-                Log.e("board list fail", t.toString())
-            }
-
-            override fun onResponse(call: Call<PutSmatchingCount>, response: Response<PutSmatchingCount>) {
-                if (response.isSuccessful) {
-                    act_test2_tv_smatching_count.text = response.body()!!.data.toString()
-                    if(response.body()!!.data > 0) {
-                        act_test2_rl.setBackgroundColor(resources.getColor(R.color.colorBlue))
-                        act_test2_tv_smatching_count.setTextColor(resources.getColor(R.color.colorWhite))
-                    } else {
-                        act_test2_rl.setBackgroundColor(resources.getColor(R.color.colorBackgroundshallow))
-                        act_test2_tv_smatching_count.setTextColor(resources.getColor(R.color.colorText))
-                    }
-                }
-            }
-        })
-    }*/
 }

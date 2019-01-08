@@ -37,7 +37,7 @@
                     android:id="@+id/fragment_all_notice_list_all_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="몇"
+                    android:text=""
                     android:textColor="@color/colorText"
                     android:fontFamily="@font/nanumsquarer"
                     android:textSize="12sp"/>

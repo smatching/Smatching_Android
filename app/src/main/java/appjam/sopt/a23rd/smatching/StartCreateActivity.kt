@@ -218,7 +218,8 @@ class StartCreateActivity : AppCompatActivity() {
 
         //EditText에 있는 값 받기
         if (act_start_create_et_nickname.text.toString().isNotEmpty() && act_start_create_et_email.text.toString().isNotEmpty()
-                && act_start_create_et_password.text.toString().isNotEmpty() && act_start_create_et_passwordagain.text.toString().isNotEmpty()) {
+                && act_start_create_et_password.text.toString().isNotEmpty() && act_start_create_et_passwordagain.text.toString().isNotEmpty()
+                && act_start_create_et_password.text.toString() == act_start_create_et_passwordagain.text.toString()) {
 
             val input_nickname: String = act_start_create_et_nickname.text.toString()
             val input_email: String = act_start_create_et_email.text.toString()

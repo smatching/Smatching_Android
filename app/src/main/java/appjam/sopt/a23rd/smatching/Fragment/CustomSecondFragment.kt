@@ -36,8 +36,8 @@ class CustomSecondFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         replaceFragment(SecondCustomConditionNotClickFragment())
-        setRecyclerView()
         getUserSmatchingCondResponse()
+        setRecyclerView()
     }
     private fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
@@ -62,7 +62,7 @@ class CustomSecondFragment: Fragment() {
 
     }
     private fun getCustomSecondFragmentListResponse(cond_idx:Int){
-        val getCustomSecondFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 20, 0, cond_idx)
+        val getCustomSecondFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 999, 0, cond_idx)
         getCustomSecondFragmentListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
                 Log.e("board list fail", t.toString())
@@ -70,9 +70,9 @@ class CustomSecondFragment: Fragment() {
 
             override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
                 if (response.isSuccessful){
-                    if (response.body()!!.status == 204)
+                    if (response.body()!!.status == 204 || response.body()!!.status == 206)
                         replaceFragmentContent(FirstCustomNullFragment())
-                    else {
+                    else if(response.body()!!.status == 200){
                         val temp: ArrayList<NoticeData> = response.body()!!.data
                         if (temp.size > 0) {
                             val position = customRecyclerViewAdapter.itemCount
@@ -94,10 +94,10 @@ class CustomSecondFragment: Fragment() {
         }
 
         override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-            if (response.isSuccessful && response.body()!!.data.condSummaryList.size == 2) {
+            if (response.isSuccessful && response.body()!!.status == 200) {
                 getCustomSecondFragmentListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
                 fragment_second_custom_condition_notclick_tv_listsize.text = response.body()!!.data.condSummaryList.get(1).noticeCnt.toString()
-            } else {
+            } else if(response.isSuccessful && (response.body()!!.status == 204 || response.body()!!.status == 206)) {
                 replaceFragmentBody(SecondCustomEmptyFragment())
             }
         }

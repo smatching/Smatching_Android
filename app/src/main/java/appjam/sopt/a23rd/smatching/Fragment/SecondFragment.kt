@@ -81,9 +81,14 @@ class SecondFragment : Fragment(){
                         val temp: ArrayList<NoticeData> = response.body()!!.data
                         if (temp.size > 0) {
                             val position = homeFragmentFragmentRecyclerViewAdapter.itemCount
-                            for (a in 0..2)
-                                homeFragmentFragmentRecyclerViewAdapter.dataList.add(temp.get(a))
-                            homeFragmentFragmentRecyclerViewAdapter.notifyItemInserted(position)
+                            if(temp.size > 2) {
+                                for (a in 0..2)
+                                    homeFragmentFragmentRecyclerViewAdapter.dataList.add(temp.get(a))
+                                homeFragmentFragmentRecyclerViewAdapter.notifyItemInserted(position)
+                            } else {
+                                homeFragmentFragmentRecyclerViewAdapter.dataList.addAll(temp)
+                                homeFragmentFragmentRecyclerViewAdapter.notifyItemInserted(position)
+                            }
                         }
                     }
                 }

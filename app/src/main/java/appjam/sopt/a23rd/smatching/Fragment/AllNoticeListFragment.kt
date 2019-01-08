@@ -11,7 +11,9 @@ import android.view.ViewGroup
 import appjam.sopt.a23rd.smatching.Adapter.AllNoticeListFragmentRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Adapter.HomeRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Data.NoticeData
+import appjam.sopt.a23rd.smatching.Get.GetAllNoticeListSizeResponse
 import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
+import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
 import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
@@ -38,7 +40,7 @@ class AllNoticeListFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         setRecyclerView()
         getAllNoticeListFragmentResponse()
-
+        getAllNoticeListSizeResponse()
     }
     private fun setRecyclerView() {
         allNoticeListFragmentRecyclerViewAdapter =  AllNoticeListFragmentRecyclerViewAdapter(activity!!, dataList)
@@ -49,7 +51,7 @@ class AllNoticeListFragment : Fragment(){
     }
     private fun getAllNoticeListFragmentResponse(){
 
-        val getAllNoticeListResponse = networkService.getAllNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 20, 0)
+        val getAllNoticeListResponse = networkService.getAllNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 999, 0)
         getAllNoticeListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
                 Log.e("board list fail", t.toString())
@@ -66,6 +68,20 @@ class AllNoticeListFragment : Fragment(){
                         allNoticeListFragmentRecyclerViewAdapter.notifyItemInserted(position)
 
                     }
+                }
+            }
+        })
+    }
+    private fun getAllNoticeListSizeResponse(){
+        val getAllNoticeListSizeResponse = networkService.getAllNoticeListSizeResponse()
+        getAllNoticeListSizeResponse.enqueue(object : Callback<GetAllNoticeListSizeResponse> {
+            override fun onFailure(call: Call<GetAllNoticeListSizeResponse>, t: Throwable) {
+                Log.e("board list fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<GetAllNoticeListSizeResponse>, response: Response<GetAllNoticeListSizeResponse>) {
+                if (response.isSuccessful && (response.body()!!.status == 200)) {
+                    fragment_all_notice_list_all_count.text = response.body()!!.data.toString()
                 }
             }
         })

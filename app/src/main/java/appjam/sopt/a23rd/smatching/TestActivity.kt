@@ -28,14 +28,10 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 import android.content.Intent
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
-import appjam.sopt.a23rd.smatching.Fragment.CustomSecondFragment
-import appjam.sopt.a23rd.smatching.Fragment.SecondCustomConditionClickFragment
-import appjam.sopt.a23rd.smatching.Fragment.SmatchingCustomPopupSectorFragment
-import kotlinx.android.synthetic.main.fragment_smatching_custom_popup_sector.*
-import android.view.MotionEvent
+import appjam.sopt.a23rd.smatching.Delete.DeleteSmatchingCondsResponse
 import appjam.sopt.a23rd.smatching.Put.PutSmatchingCount
+import appjam.sopt.a23rd.smatching.post.PostSmatchingAdd
+import org.jetbrains.anko.startActivity
 
 
 class TestActivity : AppCompatActivity() {
@@ -72,7 +68,10 @@ class TestActivity : AppCompatActivity() {
     var tempFieldCount = 0
     var categoryCount = 0
     var tempCategoryCount = 0
-    override fun onCreate(savedInstanceState: Bundle?) {
+    var state = 0
+    var condIdx = 0
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
         //region 객관식 옵션들 false로 초기화
@@ -93,15 +92,24 @@ class TestActivity : AppCompatActivity() {
         supportActionBar!!.setTitle("")
         act_test_tv.text = "맞춤지원"
         getUserSmatchingCondResponse()
-        for(a in 0..21)
+        for (a in 0..21)
             TEMPFIELDSBOOL[a] = FIELDSBOOL[a]
-        for(a in 0..7)
+        for (a in 0..7)
             TEMPCATEGORYSBOOL[a] = CATEGORYSBOOL[a]
         act_test_rl_popup_needless.setOnTouchListener(View.OnTouchListener { v, event -> true })
         act_test_rl_popup_sector.setOnTouchListener(View.OnTouchListener { v, event -> true })
+        act_test_iv_detail.setOnClickListener {
+            startActivity<SmatchingCustomCorporateDetailActivity>()
+        }
+
+
+        act_test_tv_toolbar_text.setOnClickListener {
+            deleteSmatchingCondsDeleteResponse(condIdx)
+        }
+
         //region 나이 설정
         act_test_iv_age20.setOnClickListener {
-            if(AGESBOOL[0]!!) {
+            if (AGESBOOL[0]!!) {
                 AGESBOOL[0] = false
                 act_test_iv_age20.setImageResource(R.drawable.btn_pick_age20)
             }
@@ -115,7 +123,7 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_age2039.setOnClickListener {
-            if(AGESBOOL[1]!!) {
+            if (AGESBOOL[1]!!) {
                 AGESBOOL[1] = false
                 act_test_iv_age2039.setImageResource(R.drawable.btn_pick_age2039)
             }
@@ -129,7 +137,7 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_age40.setOnClickListener {
-            if(AGESBOOL[2]!!) {
+            if (AGESBOOL[2]!!) {
                 AGESBOOL[2] = false
                 act_test_iv_age40.setImageResource(R.drawable.btn_pick_age40_click)
             }
@@ -148,7 +156,7 @@ class TestActivity : AppCompatActivity() {
         //region 팝업부분
         act_test_rl_busiType.setOnClickListener {
             tempFieldCount = fieldCount
-            for(a in 0..21)
+            for (a in 0..21)
                 TEMPFIELDSBOOL[a] = FIELDSBOOL[a]
             if (fieldCount > 0)
                 act_test_tv_fieldCount_count.setTextColor(resources.getColor(R.color.colorBlue))
@@ -160,94 +168,94 @@ class TestActivity : AppCompatActivity() {
         }
         act_test_rl_popup_sector_exit.setOnClickListener {
             fieldCount = tempFieldCount
-            for(a in 0..21)
+            for (a in 0..21)
                 FIELDSBOOL[a] = TEMPFIELDSBOOL[a]
             //region 노가다로 값넣기1 -> 나중에 수정하자...
-            if(FIELDSBOOL[0]!!)
+            if (FIELDSBOOL[0]!!)
                 act_test_iv_check_sector_A.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_A.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[1]!!)
+            if (FIELDSBOOL[1]!!)
                 act_test_iv_check_sector_B.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_B.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[2]!!)
+            if (FIELDSBOOL[2]!!)
                 act_test_iv_check_sector_C.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_C.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[3]!!)
+            if (FIELDSBOOL[3]!!)
                 act_test_iv_check_sector_D.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_D.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[4]!!)
+            if (FIELDSBOOL[4]!!)
                 act_test_iv_check_sector_E.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_E.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[5]!!)
+            if (FIELDSBOOL[5]!!)
                 act_test_iv_check_sector_F.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_F.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[6]!!)
+            if (FIELDSBOOL[6]!!)
                 act_test_iv_check_sector_G.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_G.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[7]!!)
+            if (FIELDSBOOL[7]!!)
                 act_test_iv_check_sector_H.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_H.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[8]!!)
+            if (FIELDSBOOL[8]!!)
                 act_test_iv_check_sector_I.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_I.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[9]!!)
+            if (FIELDSBOOL[9]!!)
                 act_test_iv_check_sector_J.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_J.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[10]!!)
+            if (FIELDSBOOL[10]!!)
                 act_test_iv_check_sector_K.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_K.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[11]!!)
+            if (FIELDSBOOL[11]!!)
                 act_test_iv_check_sector_L.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_L.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[12]!!)
+            if (FIELDSBOOL[12]!!)
                 act_test_iv_check_sector_M.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_M.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[13]!!)
+            if (FIELDSBOOL[13]!!)
                 act_test_iv_check_sector_N.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_N.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[14]!!)
+            if (FIELDSBOOL[14]!!)
                 act_test_iv_check_sector_O.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_O.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[15]!!)
+            if (FIELDSBOOL[15]!!)
                 act_test_iv_check_sector_P.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_P.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[16]!!)
+            if (FIELDSBOOL[16]!!)
                 act_test_iv_check_sector_Q.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_Q.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[17]!!)
+            if (FIELDSBOOL[17]!!)
                 act_test_iv_check_sector_R.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_R.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[18]!!)
+            if (FIELDSBOOL[18]!!)
                 act_test_iv_check_sector_S.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_S.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[19]!!)
+            if (FIELDSBOOL[19]!!)
                 act_test_iv_check_sector_T.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_T.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[20]!!)
+            if (FIELDSBOOL[20]!!)
                 act_test_iv_check_sector_U.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_U.setImageResource(R.drawable.icn_emptybox)
-            if(FIELDSBOOL[21]!!)
+            if (FIELDSBOOL[21]!!)
                 act_test_iv_check_sector_V.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_iv_check_sector_V.setImageResource(R.drawable.icn_emptybox)
@@ -262,95 +270,95 @@ class TestActivity : AppCompatActivity() {
         }
         act_test_rl_popup_sector_ok.setOnClickListener {
             tempFieldCount = fieldCount
-            for(a in 0..21)
+            for (a in 0..21)
                 TEMPFIELDSBOOL[a] = FIELDSBOOL[a]
 
             //region 노가다로 값넣기2 -> 나중에 수정하자...
-            if(FIELDSBOOL[0]!!)
+            if (FIELDSBOOL[0]!!)
                 act_test_ll_field_a.visibility = View.VISIBLE
             else
                 act_test_ll_field_a.visibility = View.GONE
-            if(FIELDSBOOL[1]!!)
+            if (FIELDSBOOL[1]!!)
                 act_test_ll_field_b.visibility = View.VISIBLE
             else
                 act_test_ll_field_b.visibility = View.GONE
-            if(FIELDSBOOL[2]!!)
+            if (FIELDSBOOL[2]!!)
                 act_test_ll_field_c.visibility = View.VISIBLE
             else
                 act_test_ll_field_c.visibility = View.GONE
-            if(FIELDSBOOL[3]!!)
+            if (FIELDSBOOL[3]!!)
                 act_test_ll_field_d.visibility = View.VISIBLE
             else
                 act_test_ll_field_d.visibility = View.GONE
-            if(FIELDSBOOL[4]!!)
+            if (FIELDSBOOL[4]!!)
                 act_test_ll_field_e.visibility = View.VISIBLE
             else
                 act_test_ll_field_e.visibility = View.GONE
-            if(FIELDSBOOL[5]!!)
+            if (FIELDSBOOL[5]!!)
                 act_test_ll_field_f.visibility = View.VISIBLE
             else
                 act_test_ll_field_f.visibility = View.GONE
-            if(FIELDSBOOL[6]!!)
+            if (FIELDSBOOL[6]!!)
                 act_test_ll_field_g.visibility = View.VISIBLE
             else
                 act_test_ll_field_g.visibility = View.GONE
-            if(FIELDSBOOL[7]!!)
+            if (FIELDSBOOL[7]!!)
                 act_test_ll_field_h.visibility = View.VISIBLE
             else
                 act_test_ll_field_h.visibility = View.GONE
-            if(FIELDSBOOL[8]!!)
+            if (FIELDSBOOL[8]!!)
                 act_test_ll_field_i.visibility = View.VISIBLE
             else
                 act_test_ll_field_i.visibility = View.GONE
-            if(FIELDSBOOL[9]!!)
+            if (FIELDSBOOL[9]!!)
                 act_test_ll_field_j.visibility = View.VISIBLE
             else
                 act_test_ll_field_j.visibility = View.GONE
-            if(FIELDSBOOL[10]!!)
+            if (FIELDSBOOL[10]!!)
                 act_test_ll_field_k.visibility = View.VISIBLE
             else
                 act_test_ll_field_k.visibility = View.GONE
-            if(FIELDSBOOL[11]!!)
+            if (FIELDSBOOL[11]!!)
                 act_test_ll_field_l.visibility = View.VISIBLE
             else
                 act_test_ll_field_l.visibility = View.GONE
-            if(FIELDSBOOL[12]!!)
+            if (FIELDSBOOL[12]!!)
                 act_test_ll_field_m.visibility = View.VISIBLE
             else
                 act_test_ll_field_m.visibility = View.GONE
-            if(FIELDSBOOL[13]!!)
+            if (FIELDSBOOL[13]!!)
                 act_test_ll_field_n.visibility = View.VISIBLE
             else
                 act_test_ll_field_n.visibility = View.GONE
-            if(FIELDSBOOL[14]!!)
+            if (FIELDSBOOL[14]!!)
                 act_test_ll_field_o.visibility = View.VISIBLE
             else
                 act_test_ll_field_o.visibility = View.GONE
-            if(FIELDSBOOL[15]!!)
+            if (FIELDSBOOL[15]!!)
                 act_test_ll_field_p.visibility = View.VISIBLE
             else
                 act_test_ll_field_p.visibility = View.GONE
-            if(FIELDSBOOL[16]!!)
+            if (FIELDSBOOL[16]!!)
                 act_test_ll_field_q.visibility = View.VISIBLE
             else
                 act_test_ll_field_q.visibility = View.GONE
-            if(FIELDSBOOL[17]!!)
+            if (FIELDSBOOL[17]!!)
                 act_test_ll_field_r.visibility = View.VISIBLE
             else
                 act_test_ll_field_r.visibility = View.GONE
-            if(FIELDSBOOL[18]!!)
+            if (FIELDSBOOL[18]!!)
                 act_test_ll_field_s.visibility = View.VISIBLE
             else
                 act_test_ll_field_s.visibility = View.GONE
-            if(FIELDSBOOL[19]!!)
+            if (FIELDSBOOL[19]!!)
                 act_test_ll_field_t.visibility = View.VISIBLE
             else
                 act_test_ll_field_t.visibility = View.GONE
-            if(FIELDSBOOL[20]!!)
+            if (FIELDSBOOL[20]!!)
                 act_test_ll_field_u.visibility = View.VISIBLE
             else
                 act_test_ll_field_u.visibility = View.GONE
-            if(FIELDSBOOL[21]!!)
+            if (FIELDSBOOL[21]!!)
                 act_test_ll_field_v.visibility = View.VISIBLE
             else
                 act_test_ll_field_v.visibility = View.GONE
@@ -832,10 +840,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[0] = false
             fieldCount--
             act_test_iv_check_sector_A.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -845,10 +855,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[1] = false
             fieldCount--
             act_test_iv_check_sector_B.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -858,10 +870,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[2] = false
             fieldCount--
             act_test_iv_check_sector_C.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -871,10 +885,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[3] = false
             fieldCount--
             act_test_iv_check_sector_D.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -884,10 +900,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[4] = false
             fieldCount--
             act_test_iv_check_sector_E.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -897,10 +915,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[5] = false
             fieldCount--
             act_test_iv_check_sector_F.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -910,10 +930,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[6] = false
             fieldCount--
             act_test_iv_check_sector_G.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -923,10 +945,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[7] = false
             fieldCount--
             act_test_iv_check_sector_H.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -936,10 +960,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[8] = false
             fieldCount--
             act_test_iv_check_sector_I.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -949,10 +975,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[9] = false
             fieldCount--
             act_test_iv_check_sector_J.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -962,10 +990,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[10] = false
             fieldCount--
             act_test_iv_check_sector_K.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -975,10 +1005,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[11] = false
             fieldCount--
             act_test_iv_check_sector_L.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -988,10 +1020,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[12] = false
             fieldCount--
             act_test_iv_check_sector_M.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -1001,10 +1035,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[13] = false
             fieldCount--
             act_test_iv_check_sector_N.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -1014,10 +1050,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[14] = false
             fieldCount--
             act_test_iv_check_sector_O.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -1027,10 +1065,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[15] = false
             fieldCount--
             act_test_iv_check_sector_P.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -1040,10 +1080,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[16] = false
             fieldCount--
             act_test_iv_check_sector_Q.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -1053,10 +1095,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[17] = false
             fieldCount--
             act_test_iv_check_sector_R.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -1066,10 +1110,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[18] = false
             fieldCount--
             act_test_iv_check_sector_S.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -1079,10 +1125,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[19] = false
             fieldCount--
             act_test_iv_check_sector_T.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -1092,10 +1140,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[20] = false
             fieldCount--
             act_test_iv_check_sector_U.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -1105,10 +1155,12 @@ class TestActivity : AppCompatActivity() {
             FIELDSBOOL[21] = false
             fieldCount--
             act_test_iv_check_sector_V.setImageResource(R.drawable.icn_emptybox)
-            if (fieldCount > 0) {
+            if (fieldCount > 0)
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_field_count.text = fieldCount.toString()
@@ -1117,20 +1169,20 @@ class TestActivity : AppCompatActivity() {
         //endregion
         //region 설립 경과 년수 설정
         act_test_iv_01.setOnClickListener {
-            if(PERIODSBOOL[0]!! && periodCount > 0) {
+            if (PERIODSBOOL[0]!! && periodCount > 0) {
                 PERIODSBOOL[0] = false
                 periodCount--
                 act_test_iv_01.setImageResource(R.drawable.btn_pick_year_01)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_period_count.text = periodCount.toString()
-            } else if(!PERIODSBOOL[0]!! && periodCount < 3) {
+            } else if (!PERIODSBOOL[0]!! && periodCount < 3) {
                 PERIODSBOOL[0] = true
                 periodCount++
                 act_test_iv_01.setImageResource(R.drawable.btn_pick_year_01_click)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1138,20 +1190,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_12.setOnClickListener {
-            if(PERIODSBOOL[1]!! && periodCount > 0) {
+            if (PERIODSBOOL[1]!! && periodCount > 0) {
                 PERIODSBOOL[1] = false
                 periodCount--
                 act_test_iv_12.setImageResource(R.drawable.btn_pick_year_12)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_period_count.text = periodCount.toString()
-            } else if(!PERIODSBOOL[1]!! && periodCount < 3) {
+            } else if (!PERIODSBOOL[1]!! && periodCount < 3) {
                 PERIODSBOOL[1] = true
                 periodCount++
                 act_test_iv_12.setImageResource(R.drawable.btn_pick_year_12_click)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1159,20 +1211,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_23.setOnClickListener {
-            if(PERIODSBOOL[2]!! && periodCount > 0) {
+            if (PERIODSBOOL[2]!! && periodCount > 0) {
                 PERIODSBOOL[2] = false
                 periodCount--
                 act_test_iv_23.setImageResource(R.drawable.btn_pick_year_23)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_period_count.text = periodCount.toString()
-            } else if(!PERIODSBOOL[2]!! && periodCount < 3) {
+            } else if (!PERIODSBOOL[2]!! && periodCount < 3) {
                 PERIODSBOOL[2] = true
                 periodCount++
                 act_test_iv_23.setImageResource(R.drawable.btn_pick_year_23_click)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1180,20 +1232,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_34.setOnClickListener {
-            if(PERIODSBOOL[3]!! && periodCount > 0) {
+            if (PERIODSBOOL[3]!! && periodCount > 0) {
                 PERIODSBOOL[3] = false
                 periodCount--
                 act_test_iv_34.setImageResource(R.drawable.btn_pick_year_34)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_period_count.text = periodCount.toString()
-            } else if(!PERIODSBOOL[3]!! && periodCount < 3) {
+            } else if (!PERIODSBOOL[3]!! && periodCount < 3) {
                 PERIODSBOOL[3] = true
                 periodCount++
                 act_test_iv_34.setImageResource(R.drawable.btn_pick_year_34_click)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1201,20 +1253,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_45.setOnClickListener {
-            if(PERIODSBOOL[4]!! && periodCount > 0) {
+            if (PERIODSBOOL[4]!! && periodCount > 0) {
                 PERIODSBOOL[4] = false
                 periodCount--
                 act_test_iv_45.setImageResource(R.drawable.btn_pick_year_45)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_period_count.text = periodCount.toString()
-            } else if(!PERIODSBOOL[4]!! && periodCount < 3) {
+            } else if (!PERIODSBOOL[4]!! && periodCount < 3) {
                 PERIODSBOOL[4] = true
                 periodCount++
                 act_test_iv_45.setImageResource(R.drawable.btn_pick_year_45_click)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1222,20 +1274,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_56.setOnClickListener {
-            if(PERIODSBOOL[5]!! && periodCount > 0) {
+            if (PERIODSBOOL[5]!! && periodCount > 0) {
                 PERIODSBOOL[5] = false
                 periodCount--
                 act_test_iv_56.setImageResource(R.drawable.btn_pick_year_56)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_period_count.text = periodCount.toString()
-            } else if(!PERIODSBOOL[5]!! && periodCount < 3) {
+            } else if (!PERIODSBOOL[5]!! && periodCount < 3) {
                 PERIODSBOOL[5] = true
                 periodCount++
                 act_test_iv_56.setImageResource(R.drawable.btn_pick_year_56_click)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1243,20 +1295,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_67.setOnClickListener {
-            if(PERIODSBOOL[6]!! && periodCount > 0) {
+            if (PERIODSBOOL[6]!! && periodCount > 0) {
                 PERIODSBOOL[6] = false
                 periodCount--
                 act_test_iv_67.setImageResource(R.drawable.btn_pick_year_67)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_period_count.text = periodCount.toString()
-            } else if(!PERIODSBOOL[6]!! && periodCount < 3) {
+            } else if (!PERIODSBOOL[6]!! && periodCount < 3) {
                 PERIODSBOOL[6] = true
                 periodCount++
                 act_test_iv_67.setImageResource(R.drawable.btn_pick_year_67_click)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1264,20 +1316,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_7.setOnClickListener {
-            if(PERIODSBOOL[7]!! && periodCount > 0) {
+            if (PERIODSBOOL[7]!! && periodCount > 0) {
                 PERIODSBOOL[7] = false
                 periodCount--
                 act_test_iv_7.setImageResource(R.drawable.btn_pick_year_7)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_period_count.text = periodCount.toString()
-            } else if(!PERIODSBOOL[7]!! && periodCount < 3) {
+            } else if (!PERIODSBOOL[7]!! && periodCount < 3) {
                 PERIODSBOOL[7] = true
                 periodCount++
                 act_test_iv_7.setImageResource(R.drawable.btn_pick_year_7_click)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1285,20 +1337,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_yet.setOnClickListener {
-            if(PERIODSBOOL[8]!! && periodCount > 0) {
+            if (PERIODSBOOL[8]!! && periodCount > 0) {
                 PERIODSBOOL[8] = false
                 periodCount--
                 act_test_iv_yet.setImageResource(R.drawable.btn_pick_year_under0)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_period_count.text = periodCount.toString()
-            } else if(!PERIODSBOOL[8]!! && periodCount < 3) {
+            } else if (!PERIODSBOOL[8]!! && periodCount < 3) {
                 PERIODSBOOL[8] = true
                 periodCount++
                 act_test_iv_yet.setImageResource(R.drawable.btn_pick_year_under_0_click)
-                if(periodCount > 0)
+                if (periodCount > 0)
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1308,20 +1360,20 @@ class TestActivity : AppCompatActivity() {
         //endregion
         // region 우대사항 설정
         act_test_iv_preference_1.setOnClickListener {
-            if(ADVANTAGESBOOL[0]!! && advantageCount > 0) {
+            if (ADVANTAGESBOOL[0]!! && advantageCount > 0) {
                 ADVANTAGESBOOL[0] = false
                 advantageCount--
                 act_test_iv_preference_1.setImageResource(R.drawable.btn_pick_preference_1)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_advantage_count.text = advantageCount.toString()
-            } else if(!ADVANTAGESBOOL[0]!! && advantageCount < 8) {
+            } else if (!ADVANTAGESBOOL[0]!! && advantageCount < 8) {
                 ADVANTAGESBOOL[0] = true
                 advantageCount++
                 act_test_iv_preference_1.setImageResource(R.drawable.btn_pick_preference_1_click)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1329,20 +1381,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_preference_2.setOnClickListener {
-            if(ADVANTAGESBOOL[1]!! && advantageCount > 0) {
+            if (ADVANTAGESBOOL[1]!! && advantageCount > 0) {
                 ADVANTAGESBOOL[1] = false
                 advantageCount--
                 act_test_iv_preference_2.setImageResource(R.drawable.btn_pick_preference_2)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_advantage_count.text = advantageCount.toString()
-            } else if(!ADVANTAGESBOOL[1]!! && advantageCount < 8) {
+            } else if (!ADVANTAGESBOOL[1]!! && advantageCount < 8) {
                 ADVANTAGESBOOL[1] = true
                 advantageCount++
                 act_test_iv_preference_2.setImageResource(R.drawable.btn_pick_preference_2_click)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1350,20 +1402,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_preference_3.setOnClickListener {
-            if(ADVANTAGESBOOL[2]!! && advantageCount > 0) {
+            if (ADVANTAGESBOOL[2]!! && advantageCount > 0) {
                 ADVANTAGESBOOL[2] = false
                 advantageCount--
                 act_test_iv_preference_3.setImageResource(R.drawable.btn_pick_preference_3)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_advantage_count.text = advantageCount.toString()
-            } else if(!ADVANTAGESBOOL[2]!! && advantageCount < 8) {
+            } else if (!ADVANTAGESBOOL[2]!! && advantageCount < 8) {
                 ADVANTAGESBOOL[2] = true
                 advantageCount++
                 act_test_iv_preference_3.setImageResource(R.drawable.btn_pick_preference_3_click)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1371,20 +1423,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_preference_4.setOnClickListener {
-            if(ADVANTAGESBOOL[3]!! && advantageCount > 0) {
+            if (ADVANTAGESBOOL[3]!! && advantageCount > 0) {
                 ADVANTAGESBOOL[3] = false
                 advantageCount--
                 act_test_iv_preference_4.setImageResource(R.drawable.btn_pick_preference_4)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_advantage_count.text = advantageCount.toString()
-            } else if(!ADVANTAGESBOOL[3]!! && advantageCount < 8) {
+            } else if (!ADVANTAGESBOOL[3]!! && advantageCount < 8) {
                 ADVANTAGESBOOL[3] = true
                 advantageCount++
                 act_test_iv_preference_4.setImageResource(R.drawable.btn_pick_preference_4_click)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1392,20 +1444,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_preference_5.setOnClickListener {
-            if(ADVANTAGESBOOL[4]!! && advantageCount > 0) {
+            if (ADVANTAGESBOOL[4]!! && advantageCount > 0) {
                 ADVANTAGESBOOL[4] = false
                 advantageCount--
                 act_test_iv_preference_5.setImageResource(R.drawable.btn_pick_preference_5)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_advantage_count.text = advantageCount.toString()
-            } else if(!ADVANTAGESBOOL[4]!! && advantageCount < 8) {
+            } else if (!ADVANTAGESBOOL[4]!! && advantageCount < 8) {
                 ADVANTAGESBOOL[4] = true
                 advantageCount++
                 act_test_iv_preference_5.setImageResource(R.drawable.btn_pick_preference_5_click)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1413,20 +1465,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_preference_6.setOnClickListener {
-            if(ADVANTAGESBOOL[5]!! && advantageCount > 0) {
+            if (ADVANTAGESBOOL[5]!! && advantageCount > 0) {
                 ADVANTAGESBOOL[5] = false
                 advantageCount--
                 act_test_iv_preference_6.setImageResource(R.drawable.btn_pick_preference_6)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_advantage_count.text = advantageCount.toString()
-            } else if(!ADVANTAGESBOOL[5]!! && advantageCount < 8) {
+            } else if (!ADVANTAGESBOOL[5]!! && advantageCount < 8) {
                 ADVANTAGESBOOL[5] = true
                 advantageCount++
                 act_test_iv_preference_6.setImageResource(R.drawable.btn_pick_preference_6_click)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1434,20 +1486,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_preference_7.setOnClickListener {
-            if(ADVANTAGESBOOL[6]!! && advantageCount > 0) {
+            if (ADVANTAGESBOOL[6]!! && advantageCount > 0) {
                 ADVANTAGESBOOL[6] = false
                 advantageCount--
                 act_test_iv_preference_7.setImageResource(R.drawable.btn_pick_preference_7)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_advantage_count.text = advantageCount.toString()
-            } else if(!ADVANTAGESBOOL[6]!! && advantageCount < 8) {
+            } else if (!ADVANTAGESBOOL[6]!! && advantageCount < 8) {
                 ADVANTAGESBOOL[6] = true
                 advantageCount++
                 act_test_iv_preference_7.setImageResource(R.drawable.btn_pick_preference_7_click)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1455,20 +1507,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_preference_8.setOnClickListener {
-            if(ADVANTAGESBOOL[7]!! && advantageCount > 0) {
+            if (ADVANTAGESBOOL[7]!! && advantageCount > 0) {
                 ADVANTAGESBOOL[7] = false
                 advantageCount--
                 act_test_iv_preference_8.setImageResource(R.drawable.btn_pick_preference_8)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_advantage_count.text = advantageCount.toString()
-            } else if(!ADVANTAGESBOOL[7]!! && advantageCount < 8) {
+            } else if (!ADVANTAGESBOOL[7]!! && advantageCount < 8) {
                 ADVANTAGESBOOL[7] = true
                 advantageCount++
                 act_test_iv_preference_8.setImageResource(R.drawable.btn_pick_preference_8_click)
-                if(advantageCount > 0)
+                if (advantageCount > 0)
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1478,20 +1530,20 @@ class TestActivity : AppCompatActivity() {
         //endregion
         // region 기업형태 설정
         act_test_iv_company_1.setOnClickListener {
-            if(BUSITYPESBOOL[0]!! && busiTypeCount > 0) {
+            if (BUSITYPESBOOL[0]!! && busiTypeCount > 0) {
                 BUSITYPESBOOL[0] = false
                 busiTypeCount--
                 act_test_iv_company_1.setImageResource(R.drawable.btn_pick_company_1)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[0]!! && busiTypeCount < 7) {
+            } else if (!BUSITYPESBOOL[0]!! && busiTypeCount < 7) {
                 BUSITYPESBOOL[0] = true
                 busiTypeCount++
                 act_test_iv_company_1.setImageResource(R.drawable.btn_pick_company_1_click)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1499,20 +1551,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_company_2.setOnClickListener {
-            if(BUSITYPESBOOL[1]!! && busiTypeCount > 0) {
+            if (BUSITYPESBOOL[1]!! && busiTypeCount > 0) {
                 BUSITYPESBOOL[1] = false
                 busiTypeCount--
                 act_test_iv_company_2.setImageResource(R.drawable.btn_pick_company_2)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[1]!! && busiTypeCount < 7) {
+            } else if (!BUSITYPESBOOL[1]!! && busiTypeCount < 7) {
                 BUSITYPESBOOL[1] = true
                 busiTypeCount++
                 act_test_iv_company_2.setImageResource(R.drawable.btn_pick_company_2_click)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1520,20 +1572,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_company_3.setOnClickListener {
-            if(BUSITYPESBOOL[2]!! && busiTypeCount > 0) {
+            if (BUSITYPESBOOL[2]!! && busiTypeCount > 0) {
                 BUSITYPESBOOL[2] = false
                 busiTypeCount--
                 act_test_iv_company_3.setImageResource(R.drawable.btn_pick_company_3)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[2]!! && busiTypeCount < 7) {
+            } else if (!BUSITYPESBOOL[2]!! && busiTypeCount < 7) {
                 BUSITYPESBOOL[2] = true
                 busiTypeCount++
                 act_test_iv_company_3.setImageResource(R.drawable.btn_pick_company_3_click)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1541,20 +1593,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_company_4.setOnClickListener {
-            if(BUSITYPESBOOL[3]!! && busiTypeCount > 0) {
+            if (BUSITYPESBOOL[3]!! && busiTypeCount > 0) {
                 BUSITYPESBOOL[3] = false
                 busiTypeCount--
                 act_test_iv_company_4.setImageResource(R.drawable.btn_pick_company_4)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[3]!! && busiTypeCount < 7) {
+            } else if (!BUSITYPESBOOL[3]!! && busiTypeCount < 7) {
                 BUSITYPESBOOL[3] = true
                 busiTypeCount++
                 act_test_iv_company_4.setImageResource(R.drawable.btn_pick_company_4_click)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1562,20 +1614,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_company_5.setOnClickListener {
-            if(BUSITYPESBOOL[4]!! && busiTypeCount > 0) {
+            if (BUSITYPESBOOL[4]!! && busiTypeCount > 0) {
                 BUSITYPESBOOL[4] = false
                 busiTypeCount--
                 act_test_iv_company_5.setImageResource(R.drawable.btn_pick_company_5)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[4]!! && busiTypeCount < 7) {
+            } else if (!BUSITYPESBOOL[4]!! && busiTypeCount < 7) {
                 BUSITYPESBOOL[4] = true
                 busiTypeCount++
                 act_test_iv_company_5.setImageResource(R.drawable.btn_pick_company_5_click)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1583,20 +1635,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_company_6.setOnClickListener {
-            if(BUSITYPESBOOL[5]!! && busiTypeCount > 0) {
+            if (BUSITYPESBOOL[5]!! && busiTypeCount > 0) {
                 BUSITYPESBOOL[5] = false
                 busiTypeCount--
                 act_test_iv_company_6.setImageResource(R.drawable.btn_pick_company_6)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[5]!! && busiTypeCount < 7) {
+            } else if (!BUSITYPESBOOL[5]!! && busiTypeCount < 7) {
                 BUSITYPESBOOL[5] = true
                 busiTypeCount++
                 act_test_iv_company_6.setImageResource(R.drawable.btn_pick_company_6_click)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1604,20 +1656,20 @@ class TestActivity : AppCompatActivity() {
             }
         }
         act_test_iv_company_7.setOnClickListener {
-            if(BUSITYPESBOOL[6]!! && busiTypeCount > 0) {
+            if (BUSITYPESBOOL[6]!! && busiTypeCount > 0) {
                 BUSITYPESBOOL[6] = false
                 busiTypeCount--
                 act_test_iv_company_7.setImageResource(R.drawable.btn_pick_company_7)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
                 act_test_tv_busiType_count.text = busiTypeCount.toString()
-            } else if(!BUSITYPESBOOL[6]!! && busiTypeCount < 7) {
+            } else if (!BUSITYPESBOOL[6]!! && busiTypeCount < 7) {
                 BUSITYPESBOOL[6] = true
                 busiTypeCount++
                 act_test_iv_company_7.setImageResource(R.drawable.btn_pick_company_7_click)
-                if(busiTypeCount > 0)
+                if (busiTypeCount > 0)
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                 else
                     act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorText))
@@ -1629,7 +1681,7 @@ class TestActivity : AppCompatActivity() {
         //region 팝업 부분
         act_test_rl_needless.setOnClickListener {
             tempCategoryCount = categoryCount
-            for(a in 0..7)
+            for (a in 0..7)
                 TEMPCATEGORYSBOOL[a] = CATEGORYSBOOL[a]
             if (categoryCount > 0)
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
@@ -1641,38 +1693,38 @@ class TestActivity : AppCompatActivity() {
         }
         act_test_rl_popup_needless_exit.setOnClickListener {
             categoryCount = tempCategoryCount
-            for(a in 0..7)
+            for (a in 0..7)
                 CATEGORYSBOOL[a] = TEMPCATEGORYSBOOL[a]
             //region 노가다로 값넣기1 -> 나중에 수정하자...
-            if(CATEGORYSBOOL[0]!!)
+            if (CATEGORYSBOOL[0]!!)
                 act_test_popup_needless_iv_A.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_popup_needless_iv_A.setImageResource(R.drawable.icn_emptybox)
-            if(CATEGORYSBOOL[1]!!)
+            if (CATEGORYSBOOL[1]!!)
                 act_test_popup_needless_iv_B.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_popup_needless_iv_B.setImageResource(R.drawable.icn_emptybox)
-            if(CATEGORYSBOOL[2]!!)
+            if (CATEGORYSBOOL[2]!!)
                 act_test_popup_needless_iv_C.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_popup_needless_iv_C.setImageResource(R.drawable.icn_emptybox)
-            if(CATEGORYSBOOL[3]!!)
+            if (CATEGORYSBOOL[3]!!)
                 act_test_popup_needless_iv_D.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_popup_needless_iv_D.setImageResource(R.drawable.icn_emptybox)
-            if(CATEGORYSBOOL[4]!!)
+            if (CATEGORYSBOOL[4]!!)
                 act_test_popup_needless_iv_E.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_popup_needless_iv_E.setImageResource(R.drawable.icn_emptybox)
-            if(CATEGORYSBOOL[5]!!)
+            if (CATEGORYSBOOL[5]!!)
                 act_test_popup_needless_iv_F.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_popup_needless_iv_F.setImageResource(R.drawable.icn_emptybox)
-            if(CATEGORYSBOOL[6]!!)
+            if (CATEGORYSBOOL[6]!!)
                 act_test_popup_needless_iv_G.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_popup_needless_iv_G.setImageResource(R.drawable.icn_emptybox)
-            if(CATEGORYSBOOL[7]!!)
+            if (CATEGORYSBOOL[7]!!)
                 act_test_popup_needless_iv_H.setImageResource(R.drawable.icn_checkbox_white)
             else
                 act_test_popup_needless_iv_H.setImageResource(R.drawable.icn_emptybox)
@@ -1687,38 +1739,38 @@ class TestActivity : AppCompatActivity() {
         }
         act_test_rl_popup_needless_ok.setOnClickListener {
             tempCategoryCount = categoryCount
-            for(a in 0..7)
+            for (a in 0..7)
                 TEMPCATEGORYSBOOL[a] = CATEGORYSBOOL[a]
             //region 노가다로 값넣기2 -> 나중에 수정하자...
-            if(CATEGORYSBOOL[0]!!)
+            if (CATEGORYSBOOL[0]!!)
                 act_test_ll_excCategory_edu.visibility = View.VISIBLE
             else
                 act_test_ll_excCategory_edu.visibility = View.GONE
-            if(CATEGORYSBOOL[1]!!)
+            if (CATEGORYSBOOL[1]!!)
                 act_test_ll_excCategory_know.visibility = View.VISIBLE
             else
                 act_test_ll_excCategory_know.visibility = View.GONE
-            if(CATEGORYSBOOL[2]!!)
+            if (CATEGORYSBOOL[2]!!)
                 act_test_ll_excCategory_place.visibility = View.VISIBLE
             else
                 act_test_ll_excCategory_place.visibility = View.GONE
-            if(CATEGORYSBOOL[3]!!)
+            if (CATEGORYSBOOL[3]!!)
                 act_test_ll_excCategory_local.visibility = View.VISIBLE
             else
                 act_test_ll_excCategory_local.visibility = View.GONE
-            if(CATEGORYSBOOL[4]!!)
+            if (CATEGORYSBOOL[4]!!)
                 act_test_ll_excCategory_global.visibility = View.VISIBLE
             else
                 act_test_ll_excCategory_global.visibility = View.GONE
-            if(CATEGORYSBOOL[5]!!)
+            if (CATEGORYSBOOL[5]!!)
                 act_test_ll_excCategory_make.visibility = View.VISIBLE
             else
                 act_test_ll_excCategory_make.visibility = View.GONE
-            if(CATEGORYSBOOL[6]!!)
+            if (CATEGORYSBOOL[6]!!)
                 act_test_ll_excCategory_gov.visibility = View.VISIBLE
             else
                 act_test_ll_excCategory_gov.visibility = View.GONE
-            if(CATEGORYSBOOL[7]!!)
+            if (CATEGORYSBOOL[7]!!)
                 act_test_ll_excCategory_loan.visibility = View.VISIBLE
             else
                 act_test_ll_excCategory_loan.visibility = View.GONE
@@ -1906,10 +1958,12 @@ class TestActivity : AppCompatActivity() {
             CATEGORYSBOOL[0] = false
             categoryCount--
             act_test_popup_needless_iv_A.setImageResource(R.drawable.icn_emptybox)
-            if (categoryCount > 0) {
+            if (categoryCount > 0)
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_excCategory_count.text = categoryCount.toString()
@@ -1919,10 +1973,12 @@ class TestActivity : AppCompatActivity() {
             CATEGORYSBOOL[1] = false
             categoryCount--
             act_test_popup_needless_iv_B.setImageResource(R.drawable.icn_emptybox)
-            if (categoryCount > 0) {
+            if (categoryCount > 0)
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_excCategory_count.text = categoryCount.toString()
@@ -1932,10 +1988,12 @@ class TestActivity : AppCompatActivity() {
             CATEGORYSBOOL[2] = false
             categoryCount--
             act_test_popup_needless_iv_C.setImageResource(R.drawable.icn_emptybox)
-            if (categoryCount > 0) {
+            if (categoryCount > 0)
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_excCategory_count.text = categoryCount.toString()
@@ -1945,10 +2003,12 @@ class TestActivity : AppCompatActivity() {
             CATEGORYSBOOL[3] = false
             categoryCount--
             act_test_popup_needless_iv_D.setImageResource(R.drawable.icn_emptybox)
-            if (categoryCount > 0) {
+            if (categoryCount > 0)
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_excCategory_count.text = categoryCount.toString()
@@ -1958,10 +2018,12 @@ class TestActivity : AppCompatActivity() {
             CATEGORYSBOOL[4] = false
             categoryCount--
             act_test_popup_needless_iv_E.setImageResource(R.drawable.icn_emptybox)
-            if (categoryCount > 0) {
+            if (categoryCount > 0)
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_excCategory_count.text = categoryCount.toString()
@@ -1971,10 +2033,12 @@ class TestActivity : AppCompatActivity() {
             CATEGORYSBOOL[5] = false
             categoryCount--
             act_test_popup_needless_iv_F.setImageResource(R.drawable.icn_emptybox)
-            if (categoryCount > 0) {
+            if (categoryCount > 0)
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_excCategory_count.text = categoryCount.toString()
@@ -1984,10 +2048,12 @@ class TestActivity : AppCompatActivity() {
             CATEGORYSBOOL[6] = false
             categoryCount--
             act_test_popup_needless_iv_G.setImageResource(R.drawable.icn_emptybox)
-            if (categoryCount > 0) {
+            if (categoryCount > 0)
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_excCategory_count.text = categoryCount.toString()
@@ -1997,10 +2063,12 @@ class TestActivity : AppCompatActivity() {
             CATEGORYSBOOL[7] = false
             categoryCount--
             act_test_popup_needless_iv_H.setImageResource(R.drawable.icn_emptybox)
-            if (categoryCount > 0) {
+            if (categoryCount > 0)
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
             }
-            else {
+            else
+            {
                 act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorText))
             }
             act_test_tv_excCategory_count.text = categoryCount.toString()
@@ -2008,12 +2076,16 @@ class TestActivity : AppCompatActivity() {
         //endregion
         //endregion
         act_test_rl.setOnClickListener {
-            putUserSmatchingResponse(mCondIdx)
+            if (state == 0)
+                postSmatchingCondsAddResponse()
+            else if (state == 1)
+                putUserSmatchingResponse(mCondIdx)
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.getItemId()) {
-            android.R.id.home -> {
+        when(item.getItemId())
+        {
+            android.R.id.home-> {
                 finish()
                 return true
             }
@@ -2026,32 +2098,129 @@ class TestActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_smatching, menu)
         return true
     }
-    private fun getUserSmatchingCondResponse(){
+    private fun getUserSmatchingCondResponse()
+    {
         val getUserSmatchingCondResponse = networkService.getUserSmatchingCondResponse(SharedPreferenceController.getAuthorization(this))
-        getUserSmatchingCondResponse.enqueue(object : Callback<GetUserSmatchingCondResponse> {
+        getUserSmatchingCondResponse.enqueue(object : Callback < GetUserSmatchingCondResponse > {
             override fun onFailure(call: Call<GetUserSmatchingCondResponse>, t: Throwable) {
                 Log.e("board list fail", t.toString())
             }
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-                if (response.isSuccessful && response.body()!!.data.condSummaryList.get(0) != null) {
+                if (response.isSuccessful && response.body()!!.status == 204) {
+                    state = 0
+                    act_test_tv_toolbar_text.visibility = View.INVISIBLE
+                } else if (response.isSuccessful && (response.body()!!.status == 200 || response.body()!!.status == 206)) {
                     mCondIdx = response.body()!!.data.condSummaryList.get(0).condIdx
                     getUserSmatchingListResponse(response.body()!!.data.condSummaryList.get(0).condIdx)
                     act_test_et_title.setText(response.body()!!.data.condSummaryList.get(0).condName)
+                    state = 1
+                    condIdx = response.body()!!.data.condSummaryList.get(0).condIdx
+                    act_test_tv_toolbar_text.visibility = View.VISIBLE
                 }
             }
         }
         )
     }
-    private fun getUserSmatchingListResponse(condIdx: Int){
+    private fun postSmatchingCondsAddResponse()
+    {
+        //region 요청바디에 들어갈 객체 생성
+        var jsonObject = JsonObject() // 요청바디 전체 객체
+
+        jsonObject.addProperty("condName", act_test_et_title.text.toString())
+
+        var ageJson = JsonObject() // age 내부 객체
+        for (a in 0..2)
+            ageJson.addProperty(AGESNAME[a], AGESBOOL[a])
+        jsonObject.add("age", ageJson)
+
+        var locationJson = JsonObject() // location 내부 객체
+        for (a in 0..17)
+            locationJson.addProperty(LOCATIONSNAME[a], LOCATIONSBOOL[a])
+        jsonObject.add("location", locationJson)
+
+        var periodJson = JsonObject() // period 내부 객체
+        for (a in 0..8)
+            periodJson.addProperty(PERIODSNAME[a], PERIODSBOOL[a])
+        jsonObject.add("period", periodJson)
+
+        var fieldJson = JsonObject() // field 내부 객체
+        for (a in 0..21)
+            fieldJson.addProperty(FIELDSNAME[a], FIELDSBOOL[a])
+        jsonObject.add("field", fieldJson)
+
+        var advantageJson = JsonObject() // advantage 내부 객체
+        for (a in 0..7)
+            advantageJson.addProperty(ADVANTAGESNAME[a], ADVANTAGESBOOL[a])
+        jsonObject.add("advantage", advantageJson)
+
+
+
+        var busiTypeJson = JsonObject() // busiType 내부 객체
+        for (a in 0..6)
+            busiTypeJson.addProperty(BUSITYPESNAME[a], BUSITYPESBOOL[a])
+        jsonObject.add("busiType", busiTypeJson)
+
+
+        var excCategoryJson = JsonObject() // excCategory 내부 객체
+        for (a in 0..7)
+            excCategoryJson.addProperty(CATEGORYSNAME[a], CATEGORYSBOOL[a])
+        jsonObject.add("excCategory", excCategoryJson)
+        //endregion
+        val postSmatchingCondsAddResponse =
+                networkService.postSmatchingCondsAddResponse("application/json",
+                        SharedPreferenceController.getAuthorization(this), jsonObject)
+
+        postSmatchingCondsAddResponse.enqueue(object : Callback < PostSmatchingAdd > {
+            override fun onFailure(call: Call<PostSmatchingAdd>, t: Throwable) {
+                Log.e("Add fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostSmatchingAdd>, response: Response<PostSmatchingAdd>) {
+                if (response.isSuccessful)
+                {
+                    val refresh = Intent(this@TestActivity, MainActivity::class.java )
+                    refresh.putExtra("view", 1)
+                    refresh.putExtra("page", 0)
+                    startActivity(refresh)//Start the same Activity
+                    finish() //finish Activity.
+                }
+            }
+        })
+    }
+    private fun deleteSmatchingCondsDeleteResponse(condIdxDelete: Int)
+    {
+        val deleteSmatchingCondsDeleteResponse =
+                networkService.deleteSmatchingCondsDeleteResponse(SharedPreferenceController.getAuthorization(this), condIdxDelete)
+
+        deleteSmatchingCondsDeleteResponse.enqueue(object : Callback < DeleteSmatchingCondsResponse > {
+            override fun onFailure(call: Call<DeleteSmatchingCondsResponse>, t: Throwable) {
+                Log.e("Add fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<DeleteSmatchingCondsResponse>, response: Response<DeleteSmatchingCondsResponse>) {
+                if (response.isSuccessful)
+                {
+                    val refresh = Intent(this@TestActivity, MainActivity::class.java )
+                    refresh.putExtra("view", 1)
+                    refresh.putExtra("page", 0)
+                    startActivity(refresh)//Start the same Activity
+                    finish() //finish Activity.
+                }
+            }
+        })
+    }
+    private fun getUserSmatchingListResponse(condIdx: Int)
+    {
         val getUserSmatchingListResponse = networkService.getSmatchingCondsResponse(condIdx)
-        getUserSmatchingListResponse.enqueue(object : Callback<GetSmatchingListResponse> {
+        getUserSmatchingListResponse.enqueue(object : Callback < GetSmatchingListResponse > {
             override fun onFailure(call: Call<GetSmatchingListResponse>, t: Throwable) {
                 Log.e("board list fail", t.toString())
             }
 
             override fun onResponse(call: Call<GetSmatchingListResponse>, response: Response<GetSmatchingListResponse>) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful)
+                {
                     /*
                     //region location
                     var locationCount: Int = 0
@@ -2097,448 +2266,450 @@ class TestActivity : AppCompatActivity() {
                     //endregion
                     */
                     //region age
-                    if(response.body()!!.data.age.twenty_less) {
+                    if (response.body()!!.data.age.twenty_less) {
                         act_test_iv_age20.setImageResource(R.drawable.btn_pick_age_20_click_blue)
                         AGESBOOL[0] = true
                     }
-                    if(response.body()!!.data.age.twenty_forty) {
+                    if (response.body()!!.data.age.twenty_forty) {
                         act_test_iv_age2039.setImageResource(R.drawable.btn_pick_age_2039_click_blue)
                         AGESBOOL[1] = true
                     }
-                    if(response.body()!!.data.age.forty_more) {
+                    if (response.body()!!.data.age.forty_more) {
                         act_test_iv_age40.setImageResource(R.drawable.btn_pick_age_40_click_blue)
                         AGESBOOL[2] = true
                     }
                     //endregion
                     //region period
-                    if(response.body()!!.data.period.zero_one) {
+                    if (response.body()!!.data.period.zero_one) {
                         periodCount++
                         PERIODSBOOL[0] = true
                         act_test_iv_01.setImageResource(R.drawable.btn_pick_year_01_click)
                     }
-                    if(response.body()!!.data.period.one_two) {
+                    if (response.body()!!.data.period.one_two) {
                         periodCount++
                         PERIODSBOOL[1] = true
                         act_test_iv_12.setImageResource(R.drawable.btn_pick_year_12_click)
                     }
-                    if(response.body()!!.data.period.two_three) {
+                    if (response.body()!!.data.period.two_three) {
                         periodCount++
                         PERIODSBOOL[2] = true
                         act_test_iv_23.setImageResource(R.drawable.btn_pick_year_23_click)
                     }
-                    if(response.body()!!.data.period.three_four) {
+                    if (response.body()!!.data.period.three_four) {
                         periodCount++
                         PERIODSBOOL[3] = true
                         act_test_iv_34.setImageResource(R.drawable.btn_pick_year_34_click)
                     }
-                    if(response.body()!!.data.period.four_five) {
+                    if (response.body()!!.data.period.four_five) {
                         periodCount++
                         PERIODSBOOL[4] = true
                         act_test_iv_45.setImageResource(R.drawable.btn_pick_year_45_click)
                     }
-                    if(response.body()!!.data.period.five_six) {
+                    if (response.body()!!.data.period.five_six) {
                         periodCount++
                         PERIODSBOOL[5] = true
                         act_test_iv_56.setImageResource(R.drawable.btn_pick_year_56_click)
                     }
-                    if(response.body()!!.data.period.six_seven) {
+                    if (response.body()!!.data.period.six_seven) {
                         periodCount++
                         PERIODSBOOL[6] = true
                         act_test_iv_67.setImageResource(R.drawable.btn_pick_year_67_click)
                     }
-                    if(response.body()!!.data.period.seven_more) {
+                    if (response.body()!!.data.period.seven_more) {
                         periodCount++
                         PERIODSBOOL[7] = true
                         act_test_iv_7.setImageResource(R.drawable.btn_pick_year_7_click)
                     }
-                    if(response.body()!!.data.period.yet) {
+                    if (response.body()!!.data.period.yet) {
                         periodCount++
                         PERIODSBOOL[8] = true
                         act_test_iv_yet.setImageResource(R.drawable.btn_pick_year_under_0_click)
                     }
-                    if(periodCount > 0)
+                    if (periodCount > 0)
                         act_test_tv_period_count.setTextColor(resources.getColor(R.color.colorBlue))
                     act_test_tv_period_count.text = periodCount.toString()
                     //endregion
                     //region busiType
-                    if(response.body()!!.data.busiType.midsmall) {
+                    if (response.body()!!.data.busiType.midsmall) {
                         busiTypeCount++
                         BUSITYPESBOOL[0] = true
                         act_test_iv_company_1.setImageResource(R.drawable.btn_pick_company_1_click)
                     }
-                    if(response.body()!!.data.busiType.midbig) {
+                    if (response.body()!!.data.busiType.midbig) {
                         BUSITYPESBOOL[1] = true
                         busiTypeCount++
                         act_test_iv_company_2.setImageResource(R.drawable.btn_pick_company_2_click)
                     }
-                    if(response.body()!!.data.busiType.big) {
+                    if (response.body()!!.data.busiType.big) {
                         BUSITYPESBOOL[2] = true
                         busiTypeCount++
                         act_test_iv_company_3.setImageResource(R.drawable.btn_pick_company_3_click)
                     }
-                    if(response.body()!!.data.busiType.sole) {
+                    if (response.body()!!.data.busiType.sole) {
                         BUSITYPESBOOL[3] = true
                         busiTypeCount++
                         act_test_iv_company_4.setImageResource(R.drawable.btn_pick_company_4_click)
                     }
-                    if(response.body()!!.data.busiType.small) {
+                    if (response.body()!!.data.busiType.small) {
                         BUSITYPESBOOL[4] = true
                         busiTypeCount++
                         act_test_iv_company_5.setImageResource(R.drawable.btn_pick_company_5_click)
                     }
-                    if(response.body()!!.data.busiType.tradi) {
+                    if (response.body()!!.data.busiType.tradi) {
                         BUSITYPESBOOL[5] = true
                         busiTypeCount++
                         act_test_iv_company_6.setImageResource(R.drawable.btn_pick_company_6_click)
                     }
-                    if(response.body()!!.data.busiType.pre) {
+                    if (response.body()!!.data.busiType.pre) {
                         BUSITYPESBOOL[6] = true
                         busiTypeCount++
                         act_test_iv_company_7.setImageResource(R.drawable.btn_pick_company_7_click)
                     }
-                    if(busiTypeCount > 0)
+                    if (busiTypeCount > 0)
                         act_test_tv_busiType_count.setTextColor(resources.getColor(R.color.colorBlue))
                     act_test_tv_busiType_count.text = busiTypeCount.toString()
                     //endregion
                     //region field
-                    if(response.body()!!.data.field.a) {
+                    if (response.body()!!.data.field.a) {
                         fieldCount++
                         FIELDSBOOL[0] = true
                         act_test_iv_check_sector_A.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_a.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.b) {
+                    if (response.body()!!.data.field.b) {
                         FIELDSBOOL[1] = true
                         fieldCount++
                         act_test_iv_check_sector_B.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_b.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.c) {
+                    if (response.body()!!.data.field.c) {
                         FIELDSBOOL[2] = true
                         fieldCount++
                         act_test_iv_check_sector_C.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_c.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.d) {
+                    if (response.body()!!.data.field.d) {
                         FIELDSBOOL[3] = true
                         fieldCount++
                         act_test_iv_check_sector_D.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_d.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.e) {
+                    if (response.body()!!.data.field.e) {
                         FIELDSBOOL[4] = true
                         fieldCount++
                         act_test_iv_check_sector_E.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_e.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.f) {
+                    if (response.body()!!.data.field.f) {
                         FIELDSBOOL[5] = true
                         fieldCount++
                         act_test_iv_check_sector_F.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_f.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.g) {
+                    if (response.body()!!.data.field.g) {
                         FIELDSBOOL[6] = true
                         fieldCount++
                         act_test_iv_check_sector_G.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_g.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.h) {
+                    if (response.body()!!.data.field.h) {
                         FIELDSBOOL[7] = true
                         fieldCount++
                         act_test_iv_check_sector_H.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_h.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.i) {
+                    if (response.body()!!.data.field.i) {
                         FIELDSBOOL[8] = true
                         fieldCount++
                         act_test_iv_check_sector_I.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_i.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.j) {
+                    if (response.body()!!.data.field.j) {
                         FIELDSBOOL[9] = true
                         fieldCount++
                         act_test_iv_check_sector_J.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_j.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.k) {
+                    if (response.body()!!.data.field.k) {
                         FIELDSBOOL[10] = true
                         fieldCount++
                         act_test_iv_check_sector_K.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_k.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.l) {
+                    if (response.body()!!.data.field.l) {
                         FIELDSBOOL[11] = true
                         fieldCount++
                         act_test_iv_check_sector_L.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_l.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.m) {
+                    if (response.body()!!.data.field.m) {
                         FIELDSBOOL[12] = true
                         fieldCount++
                         act_test_iv_check_sector_M.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_m.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.n) {
+                    if (response.body()!!.data.field.n) {
                         FIELDSBOOL[13] = true
                         fieldCount++
                         act_test_iv_check_sector_N.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_n.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.o) {
+                    if (response.body()!!.data.field.o) {
                         FIELDSBOOL[14] = true
                         fieldCount++
                         act_test_iv_check_sector_O.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_o.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.p) {
+                    if (response.body()!!.data.field.p) {
                         FIELDSBOOL[15] = true
                         fieldCount++
                         act_test_iv_check_sector_P.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_p.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.q) {
+                    if (response.body()!!.data.field.q) {
                         FIELDSBOOL[16] = true
                         fieldCount++
                         act_test_iv_check_sector_Q.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_q.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.r) {
+                    if (response.body()!!.data.field.r) {
                         FIELDSBOOL[17] = true
                         fieldCount++
                         act_test_iv_check_sector_R.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_r.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.s) {
+                    if (response.body()!!.data.field.s) {
                         FIELDSBOOL[18] = true
                         fieldCount++
                         act_test_iv_check_sector_S.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_s.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.t) {
+                    if (response.body()!!.data.field.t) {
                         FIELDSBOOL[19] = true
                         fieldCount++
                         act_test_iv_check_sector_T.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_t.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.u) {
+                    if (response.body()!!.data.field.u) {
                         FIELDSBOOL[20] = true
                         fieldCount++
                         act_test_iv_check_sector_U.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_u.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.field.v) {
+                    if (response.body()!!.data.field.v) {
                         FIELDSBOOL[21] = true
                         fieldCount++
                         act_test_iv_check_sector_V.setImageResource(R.drawable.icn_checkbox_white)
                         act_test_ll_field_v.visibility = View.VISIBLE
                     }
-                    if(fieldCount > 0)
+                    if (fieldCount > 0)
                         act_test_tv_field_count.setTextColor(resources.getColor(R.color.colorBlue))
                     act_test_tv_field_count.text = fieldCount.toString()
                     //endregion
                     //region excCategory
-                    if(response.body()!!.data.excCategory.edu) {
+                    if (response.body()!!.data.excCategory.edu) {
                         CATEGORYSBOOL[0] = true
                         act_test_popup_needless_iv_A.setImageResource(R.drawable.icn_checkbox_white)
                         categoryCount++
                         act_test_ll_excCategory_edu.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.excCategory.know) {
+                    if (response.body()!!.data.excCategory.know) {
                         CATEGORYSBOOL[1] = true
                         act_test_popup_needless_iv_B.setImageResource(R.drawable.icn_checkbox_white)
                         categoryCount++
                         act_test_ll_excCategory_know.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.excCategory.place) {
+                    if (response.body()!!.data.excCategory.place) {
                         CATEGORYSBOOL[2] = true
                         act_test_popup_needless_iv_C.setImageResource(R.drawable.icn_checkbox_white)
                         categoryCount++
                         act_test_ll_excCategory_place.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.excCategory.local) {
+                    if (response.body()!!.data.excCategory.local) {
                         CATEGORYSBOOL[3] = true
                         act_test_popup_needless_iv_D.setImageResource(R.drawable.icn_checkbox_white)
                         categoryCount++
                         act_test_ll_excCategory_local.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.excCategory.global) {
+                    if (response.body()!!.data.excCategory.global) {
                         CATEGORYSBOOL[4] = true
                         act_test_popup_needless_iv_E.setImageResource(R.drawable.icn_checkbox_white)
                         categoryCount++
                         act_test_ll_excCategory_global.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.excCategory.make) {
+                    if (response.body()!!.data.excCategory.make) {
                         CATEGORYSBOOL[5] = true
                         act_test_popup_needless_iv_F.setImageResource(R.drawable.icn_checkbox_white)
                         categoryCount++
                         act_test_ll_excCategory_make.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.excCategory.gov) {
+                    if (response.body()!!.data.excCategory.gov) {
                         CATEGORYSBOOL[6] = true
                         act_test_popup_needless_iv_G.setImageResource(R.drawable.icn_checkbox_white)
                         categoryCount++
                         act_test_ll_excCategory_gov.visibility = View.VISIBLE
                     }
-                    if(response.body()!!.data.excCategory.loan) {
+                    if (response.body()!!.data.excCategory.loan) {
                         CATEGORYSBOOL[7] = true
                         act_test_popup_needless_iv_H.setImageResource(R.drawable.icn_checkbox_white)
                         categoryCount++
                         act_test_ll_excCategory_loan.visibility = View.VISIBLE
                     }
-                    if(categoryCount > 0)
+                    if (categoryCount > 0)
                         act_test_tv_excCategory_count.setTextColor(resources.getColor(R.color.colorBlue))
                     act_test_tv_excCategory_count.text = categoryCount.toString()
                     //endregion
                     //region advantage
-                    if(response.body()!!.data.advantage.retry) {
+                    if (response.body()!!.data.advantage.retry) {
                         advantageCount++
                         ADVANTAGESBOOL[0] = true
                         act_test_iv_preference_1.setImageResource(R.drawable.btn_pick_preference_1_click)
                     }
-                    if(response.body()!!.data.advantage.woman) {
+                    if (response.body()!!.data.advantage.woman) {
                         advantageCount++
                         ADVANTAGESBOOL[1] = true
                         act_test_iv_preference_2.setImageResource(R.drawable.btn_pick_preference_2_click)
                     }
-                    if(response.body()!!.data.advantage.disabled) {
+                    if (response.body()!!.data.advantage.disabled) {
                         advantageCount++
                         ADVANTAGESBOOL[2] = true
                         act_test_iv_preference_3.setImageResource(R.drawable.btn_pick_preference_3_click)
                     }
-                    if(response.body()!!.data.advantage.social) {
+                    if (response.body()!!.data.advantage.social) {
                         advantageCount++
                         ADVANTAGESBOOL[3] = true
                         act_test_iv_preference_4.setImageResource(R.drawable.btn_pick_preference_4_click)
                     }
-                    if(response.body()!!.data.advantage.sole) {
+                    if (response.body()!!.data.advantage.sole) {
                         advantageCount++
                         ADVANTAGESBOOL[4] = true
                         act_test_iv_preference_5.setImageResource(R.drawable.btn_pick_preference_5_click)
                     }
-                    if(response.body()!!.data.advantage.fourth) {
+                    if (response.body()!!.data.advantage.fourth) {
                         advantageCount++
                         ADVANTAGESBOOL[5] = true
                         act_test_iv_preference_6.setImageResource(R.drawable.btn_pick_preference_6_click)
                     }
-                    if(response.body()!!.data.advantage.univ) {
+                    if (response.body()!!.data.advantage.univ) {
                         advantageCount++
                         ADVANTAGESBOOL[6] = true
                         act_test_iv_preference_7.setImageResource(R.drawable.btn_pick_preference_7_click)
                     }
-                    if(response.body()!!.data.advantage.togather) {
+                    if (response.body()!!.data.advantage.togather) {
                         advantageCount++
                         ADVANTAGESBOOL[7] = true
                         act_test_iv_preference_8.setImageResource(R.drawable.btn_pick_preference_8_click)
                     }
-                    if(advantageCount > 0)
+                    if (advantageCount > 0)
                         act_test_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                     act_test_tv_advantage_count.text = advantageCount.toString()
                     //endregion
-/* 테스트
-                    //region 요청바디에 들어갈 객체 생성
-                    var jsonObject = JsonObject() // 요청바디 전체 객체
+                    /* 테스트
+                                        //region 요청바디에 들어갈 객체 생성
+                                        var jsonObject = JsonObject() // 요청바디 전체 객체
 
-                    jsonObject.addProperty("condName", act_test_et_title.text.toString())
+                                        jsonObject.addProperty("condName", act_test_et_title.text.toString())
 
-                    var ageJson = JsonObject() // age 내부 객체
-                    for(a in 0..2)
-                        ageJson.addProperty(AGESNAME[a], AGESBOOL[a])
-                    jsonObject.add("age", ageJson)
+                                        var ageJson = JsonObject() // age 내부 객체
+                                        for(a in 0..2)
+                                            ageJson.addProperty(AGESNAME[a], AGESBOOL[a])
+                                        jsonObject.add("age", ageJson)
 
-                    var locationJson = JsonObject() // location 내부 객체
-                    for(a in 0..17)
-                        locationJson.addProperty(LOCATIONSNAME[a], LOCATIONSBOOL[a])
-                    jsonObject.add("location", locationJson)
+                                        var locationJson = JsonObject() // location 내부 객체
+                                        for(a in 0..17)
+                                            locationJson.addProperty(LOCATIONSNAME[a], LOCATIONSBOOL[a])
+                                        jsonObject.add("location", locationJson)
 
-                    var periodJson = JsonObject() // period 내부 객체
-                    for(a in 0..8)
-                        periodJson.addProperty(PERIODSNAME[a], PERIODSBOOL[a])
-                    jsonObject.add("period", periodJson)
+                                        var periodJson = JsonObject() // period 내부 객체
+                                        for(a in 0..8)
+                                            periodJson.addProperty(PERIODSNAME[a], PERIODSBOOL[a])
+                                        jsonObject.add("period", periodJson)
 
-                    var fieldJson = JsonObject() // field 내부 객체
-                    for(a in 0..21)
-                        fieldJson.addProperty(FIELDSNAME[a], FIELDSBOOL[a])
-                    jsonObject.add("field", fieldJson)
+                                        var fieldJson = JsonObject() // field 내부 객체
+                                        for(a in 0..21)
+                                            fieldJson.addProperty(FIELDSNAME[a], FIELDSBOOL[a])
+                                        jsonObject.add("field", fieldJson)
 
-                    var advantageJson = JsonObject() // advantage 내부 객체
-                    for(a in 0..7)
-                        advantageJson.addProperty(ADVANTAGESNAME[a], ADVANTAGESBOOL[a])
-                    jsonObject.add("advantage", advantageJson)
-
-
-
-                    var busiTypeJson = JsonObject() // busiType 내부 객체
-                    for(a in 0..6)
-                        busiTypeJson.addProperty(BUSITYPESNAME[a], BUSITYPESBOOL[a])
-                    jsonObject.add("busiType", busiTypeJson)
+                                        var advantageJson = JsonObject() // advantage 내부 객체
+                                        for(a in 0..7)
+                                            advantageJson.addProperty(ADVANTAGESNAME[a], ADVANTAGESBOOL[a])
+                                        jsonObject.add("advantage", advantageJson)
 
 
-                    var excCategoryJson = JsonObject() // excCategory 내부 객체
-                    for(a in 0..7)
-                        excCategoryJson.addProperty(CATEGORYSNAME[a], CATEGORYSBOOL[a])
-                    jsonObject.add("excCategory", excCategoryJson)
-                    //endregion
-                    putSmatchingCondsCountResponse(jsonObject)*/
+
+                                        var busiTypeJson = JsonObject() // busiType 내부 객체
+                                        for(a in 0..6)
+                                            busiTypeJson.addProperty(BUSITYPESNAME[a], BUSITYPESBOOL[a])
+                                        jsonObject.add("busiType", busiTypeJson)
+
+
+                                        var excCategoryJson = JsonObject() // excCategory 내부 객체
+                                        for(a in 0..7)
+                                            excCategoryJson.addProperty(CATEGORYSNAME[a], CATEGORYSBOOL[a])
+                                        jsonObject.add("excCategory", excCategoryJson)
+                                        //endregion
+                                        putSmatchingCondsCountResponse(jsonObject)*/
                 }
             }
         })
     }
-    private fun putUserSmatchingResponse(condIdx: Int) {
+    private fun putUserSmatchingResponse(condIdx: Int)
+    {
         //region 요청바디에 들어갈 객체 생성
         var jsonObject = JsonObject() // 요청바디 전체 객체
 
         jsonObject.addProperty("condName", act_test_et_title.text.toString())
 
         var ageJson = JsonObject() // age 내부 객체
-        for(a in 0..2)
+        for (a in 0..2)
             ageJson.addProperty(AGESNAME[a], AGESBOOL[a])
         jsonObject.add("age", ageJson)
 
         var locationJson = JsonObject() // location 내부 객체
-        for(a in 0..17)
+        for (a in 0..17)
             locationJson.addProperty(LOCATIONSNAME[a], LOCATIONSBOOL[a])
         jsonObject.add("location", locationJson)
 
         var periodJson = JsonObject() // period 내부 객체
-        for(a in 0..8)
+        for (a in 0..8)
             periodJson.addProperty(PERIODSNAME[a], PERIODSBOOL[a])
         jsonObject.add("period", periodJson)
 
         var fieldJson = JsonObject() // field 내부 객체
-        for(a in 0..21)
+        for (a in 0..21)
             fieldJson.addProperty(FIELDSNAME[a], FIELDSBOOL[a])
         jsonObject.add("field", fieldJson)
 
         var advantageJson = JsonObject() // advantage 내부 객체
-        for(a in 0..7)
+        for (a in 0..7)
             advantageJson.addProperty(ADVANTAGESNAME[a], ADVANTAGESBOOL[a])
         jsonObject.add("advantage", advantageJson)
 
 
 
         var busiTypeJson = JsonObject() // busiType 내부 객체
-        for(a in 0..6)
+        for (a in 0..6)
             busiTypeJson.addProperty(BUSITYPESNAME[a], BUSITYPESBOOL[a])
         jsonObject.add("busiType", busiTypeJson)
 
 
         var excCategoryJson = JsonObject() // excCategory 내부 객체
-        for(a in 0..7)
+        for (a in 0..7)
             excCategoryJson.addProperty(CATEGORYSNAME[a], CATEGORYSBOOL[a])
         jsonObject.add("excCategory", excCategoryJson)
         //endregion
         //통신 시작
-        val postSignUpResponse: Call<PutSmatchingEdit> =
+        val postSignUpResponse: Call < PutSmatchingEdit > =
                 networkService.putSmatchingCondsChangeResponse("application/json", SharedPreferenceController.getAuthorization(this), condIdx, jsonObject)
 
-        postSignUpResponse.enqueue(object : Callback<PutSmatchingEdit> {
+        postSignUpResponse.enqueue(object : Callback < PutSmatchingEdit > {
             override fun onFailure(call: Call<PutSmatchingEdit>, t: Throwable) {
                 Log.e("Sign Up Fail", t.toString())
             }
 
             override fun onResponse(call: Call<PutSmatchingEdit>, response: Response<PutSmatchingEdit>) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful)
+                {
 
                     val refresh = Intent(this@TestActivity, MainActivity::class.java )
                     refresh.putExtra("view", 1)
@@ -2549,26 +2720,4 @@ class TestActivity : AppCompatActivity() {
             }
         })
     }
-    /* 테스트
-    private fun putSmatchingCondsCountResponse(jsonObject: JsonObject){
-        val putSmatchingCondsCountResponse = networkService.putSmatchingCondsCountResponse("application/json", jsonObject)
-        putSmatchingCondsCountResponse.enqueue(object : Callback<PutSmatchingCount> {
-            override fun onFailure(call: Call<PutSmatchingCount>, t: Throwable) {
-                Log.e("board list fail", t.toString())
-            }
-
-            override fun onResponse(call: Call<PutSmatchingCount>, response: Response<PutSmatchingCount>) {
-                if (response.isSuccessful) {
-                    act_test_tv_smatching_count.text = response.body()!!.data.toString()
-                    if(response.body()!!.data > 0) {
-                        act_test_rl.setBackgroundColor(resources.getColor(R.color.colorBlue))
-                        act_test_tv_smatching_count.setTextColor(resources.getColor(R.color.colorWhite))
-                    } else {
-                        act_test_rl.setBackgroundColor(resources.getColor(R.color.colorBackgroundshallow))
-                        act_test_tv_smatching_count.setTextColor(resources.getColor(R.color.colorText))
-                    }
-                }
-            }
-        })
-    }*/
 }

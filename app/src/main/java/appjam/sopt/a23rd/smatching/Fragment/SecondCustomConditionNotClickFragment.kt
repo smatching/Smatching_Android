@@ -70,9 +70,9 @@ class SecondCustomConditionNotClickFragment : Fragment(){
             }
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-                if (response.isSuccessful && response.body()!!.data.condSummaryList.size == 2) {
+                if (response.isSuccessful && response.body()!!.status == 200) {
                     fragment_second_custom_condition_notclick_tv_name.text = response.body()!!.data.condSummaryList.get(1).condName
-                } else {
+                } else if(response.isSuccessful && (response.body()!!.status == 204 || response.body()!!.status == 206)) {
                     replaceFragmentBody(SecondCustomConditionNotClickEmptyFragment())
                 }
 
