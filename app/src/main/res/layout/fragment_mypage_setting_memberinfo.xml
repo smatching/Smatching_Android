@@ -1,58 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="1">-->
-            <!--<RelativeLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent">-->
-                <!--<RelativeLayout-->
-                    <!--android:id="@+id/fragment_mypage_setting_memberinfo_rl_profile"-->
-                    <!--android:layout_width="72dp"-->
-                    <!--android:layout_height="72dp"-->
-                    <!--android:layout_centerInParent="true"-->
-                    <!--android:layout_marginTop="30dp"-->
-                    <!--android:onClick="onClick">-->
-                    <!--<ImageView-->
-                        <!--android:src="@drawable/img_profile_edge_blue"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content" />-->
-                    <!--<RelativeLayout-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerInParent="true">-->
-                        <!--<ImageView-->
-                            <!--android:src="@drawable/img_profile"-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content" />-->
-                    <!--</RelativeLayout>-->
-
-                    <!--<ImageView-->
-                        <!--android:src="@drawable/icn_profile_camera"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_alignParentBottom="true"-->
-                        <!--android:layout_alignParentRight="true"/>-->
-                <!--</RelativeLayout>-->
-            <!--</RelativeLayout>-->
-
-        <!--</LinearLayout>-->
-
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginVertical="40dp"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
@@ -85,6 +48,7 @@
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -101,7 +65,7 @@
                 android:lineSpacingExtra="-1sp"
                 android:text="이메일주소 (변경불가)"
                 />
-            <EditText
+            <TextView
                 android:id="@+id/fragment_mypage_setting_memberinfo_et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,8 +75,25 @@
                 android:lineSpacingExtra="2sp"
                 android:fontFamily="@font/nanumsquarer"
                 android:background="@null"
-                android:inputType="textEmailAddress"
                 />
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:src="@drawable/line_horizon"
+                android:layout_marginHorizontal="36dp"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="36dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="25dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/line_horizon" />
+
             <ImageView
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="25dp"
@@ -152,12 +133,21 @@
                 />
             <ImageView
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="25dp"
                 android:src="@drawable/line_horizon"
                 android:layout_marginHorizontal="36dp"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="36dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="25dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/line_horizon" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -199,17 +189,25 @@
                 android:lineSpacingExtra="2sp"
                 android:inputType="textPassword"
                 android:background="@null"
-                android:fontFamily="@font/nanumsquarer"
                 />
             </RelativeLayout>
             <ImageView
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="25dp"
                 android:src="@drawable/line_horizon"
                 android:layout_marginHorizontal="36dp"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="36dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="25dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/line_horizon" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -264,6 +262,6 @@
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
-    </LinearLayout>
+
     </ScrollView>
 </RelativeLayout>

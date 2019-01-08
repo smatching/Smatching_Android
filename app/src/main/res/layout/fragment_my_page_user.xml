@@ -51,7 +51,8 @@
                     android:layout_marginLeft="6dp"
                     android:text="닉네임"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"/>
                 <TextView
                     android:fontFamily="@font/nanumsquareb"
                     android:textSize="15sp"
@@ -117,7 +118,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_centerVertical="true">
                         <EditText
                             android:id="@+id/fragment_mypage_user_et_search"
@@ -135,7 +136,7 @@
                             android:src="@drawable/icn_mypage_search"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingHorizontal="7dp"
+                            android:paddingHorizontal="10dp"
                             android:paddingVertical="7dp"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"/>

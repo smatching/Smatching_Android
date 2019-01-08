@@ -87,7 +87,7 @@ interface NetworkService {
     @PUT("/notices/scrap/{noticeIdx}")
     fun putNoticeScrap(
             @Header("Authorization") token : String,
-            @Path("noticeIdx") cond_idx: Int
+            @Path("noticeIdx") notice_idx: Int
     ) : Call<PutNoticeScrap>
     //지원사업 상세 조회
     @GET("/notices/detail")
@@ -111,9 +111,7 @@ interface NetworkService {
     fun putUserInfoEditResponse(
             @Header("Content-Type") content_type : String,
             @Header("Authorization") token : String,
-            @Query("nickname") nickname : String,
-            @Query("password") password : String,
-            @Query("newPassword") newPassword: String
+            @Body() body : JsonObject
     ) : Call<PutSmatchingEdit>
     //회원탈퇴
     @DELETE("/users")

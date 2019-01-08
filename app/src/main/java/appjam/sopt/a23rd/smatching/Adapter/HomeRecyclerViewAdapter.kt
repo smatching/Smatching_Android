@@ -2,6 +2,7 @@ package appjam.sopt.a23rd.smatching.Adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +10,24 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Data.NoticeData
+import appjam.sopt.a23rd.smatching.Put.PutNoticeScrap
 import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.R.drawable.line
+import appjam.sopt.a23rd.smatching.network.ApplicationController
+import appjam.sopt.a23rd.smatching.network.NetworkService
 import org.jetbrains.anko.lines
 import org.jetbrains.anko.rightPadding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-class HomeRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<NoticeData>)
+class HomeRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<NoticeData>, val token : String)
     : RecyclerView.Adapter<HomeRecyclerViewAdapter.Holder>() {
     var currentView: Int = 0
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_home, parent, false)
         return Holder(view)
@@ -46,6 +56,19 @@ class HomeRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<NoticeDa
             else
                 holder.scrap.setImageResource(R.drawable.icn_scrap_yellow)
         }
+        holder.scrap.setOnClickListener{
+            Log.d("scrap on/off", dataList[position].scrap.toString())
+            if(dataList[position].scrap == 0) {
+                putNoticeScrap(dataList[position].noticeIdx)
+                dataList[position].scrap = 1
+                holder.scrap.setImageResource(R.drawable.icn_scrap_yellow)
+            }
+            else {
+                putNoticeScrap(dataList[position].noticeIdx)
+                dataList[position].scrap = 0
+                holder.scrap.setImageResource(R.drawable.icn_scrap_grey)
+            }
+        }
 
     }
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -55,5 +78,19 @@ class HomeRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<NoticeDa
         val title : TextView = itemView.findViewById(R.id.rv_item_home_tv_title) as TextView
         val scrap : ImageView = itemView.findViewById(R.id.rv_item_home_iv_scrap) as ImageView
         val width : LinearLayout = itemView.findViewById(R.id.rv_item_home_ll_dday) as LinearLayout
+    }
+    private fun putNoticeScrap(noticeIdx : Int){
+        val putNoticeScrap : Call<PutNoticeScrap> = networkService.putNoticeScrap(token, noticeIdx)
+        putNoticeScrap.enqueue(object : Callback<PutNoticeScrap> {
+            override fun onFailure(call: Call<PutNoticeScrap>, t: Throwable) {
+                Log.e("Scrap Setting Fail ", t.toString())
+            }
+
+            override fun onResponse(call: Call<PutNoticeScrap>, response: Response<PutNoticeScrap>) {
+                if(response.isSuccessful){
+                    Log.e("Scrap Setting Success ", response.body()!!.message)
+                }
+            }
+        })
     }
 }

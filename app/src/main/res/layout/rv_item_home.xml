@@ -69,9 +69,11 @@
 
             <ImageView
                 android:id="@+id/rv_item_home_iv_scrap"
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:paddingHorizontal="7dp"
+                android:paddingVertical="7dp"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/icn_scrap_grey"/>
 

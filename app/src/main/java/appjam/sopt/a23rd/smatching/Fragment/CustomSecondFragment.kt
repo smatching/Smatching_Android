@@ -55,7 +55,7 @@ class CustomSecondFragment: Fragment() {
         transaction.commit()
     }
     private fun setRecyclerView() {
-        customRecyclerViewAdapter =  CustomRecyclerViewAdapter(activity!!, dataList)
+        customRecyclerViewAdapter =  CustomRecyclerViewAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
         fragment_second_custom_condition_rv.adapter = customRecyclerViewAdapter
         fragment_second_custom_condition_rv.layoutManager = LinearLayoutManager(activity)
         fragment_second_custom_condition_rv.addItemDecoration(DividerItemDecoration(view!!.getContext(), 1))

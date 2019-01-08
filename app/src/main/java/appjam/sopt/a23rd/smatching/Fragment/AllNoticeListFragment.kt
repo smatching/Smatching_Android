@@ -14,12 +14,15 @@ import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.Get.GetAllNoticeListSizeResponse
 import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
 import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
+import appjam.sopt.a23rd.smatching.Put.PutNoticeScrap
 import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_all_notice_list.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.rv_item_home.*
+import org.jetbrains.anko.imageResource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,7 +46,7 @@ class AllNoticeListFragment : Fragment(){
         getAllNoticeListSizeResponse()
     }
     private fun setRecyclerView() {
-        allNoticeListFragmentRecyclerViewAdapter =  AllNoticeListFragmentRecyclerViewAdapter(activity!!, dataList)
+        allNoticeListFragmentRecyclerViewAdapter =  AllNoticeListFragmentRecyclerViewAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
         fragment_all_notice_list_rv.adapter = allNoticeListFragmentRecyclerViewAdapter
         fragment_all_notice_list_rv.layoutManager = LinearLayoutManager(activity)
         fragment_all_notice_list_rv.addItemDecoration(DividerItemDecoration(view!!.getContext(), 1))
@@ -86,4 +89,19 @@ class AllNoticeListFragment : Fragment(){
             }
         })
     }
+
+//    private fun putNoticeScrap(noticeIdx : Int){
+//        val putNoticeScrap : Call<PutNoticeScrap> = networkService.putNoticeScrap(SharedPreferenceController.getAuthorization(activity!!), noticeIdx)
+//        putNoticeScrap.enqueue(object : Callback<PutNoticeScrap> {
+//            override fun onFailure(call: Call<PutNoticeScrap>, t: Throwable) {
+//                Log.e("Scrap Setting Fail ", t.toString())
+//            }
+//
+//            override fun onResponse(call: Call<PutNoticeScrap>, response: Response<PutNoticeScrap>) {
+//                if(response.isSuccessful){
+//                    Log.e("Scrap Setting Success ", response.body()!!.message)
+//                }
+//            }
+//        })
+//    }
 }

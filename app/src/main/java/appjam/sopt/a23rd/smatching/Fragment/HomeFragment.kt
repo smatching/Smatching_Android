@@ -124,7 +124,7 @@ class HomeFragment : Fragment(){
 
 
     private fun setRecyclerView() {
-        homeRecyclerViewAdapter = HomeRecyclerViewAdapter(activity!!, dataList)
+        homeRecyclerViewAdapter = HomeRecyclerViewAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
         homeRecyclerViewAdapter.currentView = 0
         fragment_home_rv.adapter = homeRecyclerViewAdapter
         fragment_home_rv.layoutManager = LinearLayoutManager(activity)

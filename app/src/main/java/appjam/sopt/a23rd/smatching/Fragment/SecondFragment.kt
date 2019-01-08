@@ -50,7 +50,7 @@ class SecondFragment : Fragment(){
         var ro: TextView = view!!.findViewById(R.id.fragment_second_tv_ro)
         ro.setPaintFlags(ro.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
 
-        homeFragmentFragmentRecyclerViewAdapter = HomeRecyclerViewAdapter(activity!!, dataList)
+        homeFragmentFragmentRecyclerViewAdapter = HomeRecyclerViewAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
         fragment_second_rv.adapter = homeFragmentFragmentRecyclerViewAdapter
         fragment_second_rv.layoutManager = LinearLayoutManager(activity)
     }

@@ -2,6 +2,7 @@ package appjam.sopt.a23rd.smatching.Adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +10,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Data.DetailData
 import appjam.sopt.a23rd.smatching.Data.NoticeData
+import appjam.sopt.a23rd.smatching.Put.PutNoticeScrap
 import appjam.sopt.a23rd.smatching.R
+import appjam.sopt.a23rd.smatching.network.ApplicationController
+import appjam.sopt.a23rd.smatching.network.NetworkService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class ItemClickAdapter(val ctx : Context, val dataList : ArrayList<DetailData>)
+class ItemClickAdapter(val ctx : Context, val dataList : ArrayList<DetailData>, val token : String)
     : RecyclerView.Adapter<ItemClickAdapter.Holder>() {
     var currentView: Int = 0
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemClickAdapter.Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.fragment_detailcontent, parent, false)
         return Holder(view)
@@ -32,14 +42,27 @@ class ItemClickAdapter(val ctx : Context, val dataList : ArrayList<DetailData>)
         holder.sv_department.text = dataList[position].part
         holder.sv_phonenumber.text = dataList[position].phone
 
-        /*
-        // 스크랩이 되지 않았을 경우
+        holder.scrap.visibility = View.VISIBLE
+     /*   // 스크랩이 되지 않았을 경우
         if(dataList[position].scrap == 0)
             holder.scrap.setImageResource(R.drawable.icn_scrap_grey)
         // 스크랩이 됐을 경우
         else
             holder.scrap.setImageResource(R.drawable.icn_scrap_yellow)
-            */
+
+        holder.scrap.setOnClickListener{
+            if(dataList[position].scrap == 0) {
+                putNoticeScrap(dataList[position].noticeIdx)
+                dataList[position].scrap = 1
+                holder.scrap.setImageResource(R.drawable.icn_scrap_yellow)
+            }
+            else {
+                putNoticeScrap(dataList[position].noticeIdx)
+                dataList[position].scrap = 0
+                holder.scrap.setImageResource(R.drawable.icn_scrap_grey)
+            }
+        }
+        */
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -55,5 +78,19 @@ class ItemClickAdapter(val ctx : Context, val dataList : ArrayList<DetailData>)
         val sv_department: TextView = itemView.findViewById(R.id.fragment_detailcontent_sv_department)
         val sv_phonenumber: TextView = itemView.findViewById(R.id.fragment_detailcontent_sv_phone)
         val scrap: ImageView = itemView.findViewById(R.id.fragment_detailcontent_iv_scrap)
+    }
+    private fun putNoticeScrap(noticeIdx : Int){
+        val putNoticeScrap : Call<PutNoticeScrap> = networkService.putNoticeScrap(token, noticeIdx)
+        putNoticeScrap.enqueue(object : Callback<PutNoticeScrap> {
+            override fun onFailure(call: Call<PutNoticeScrap>, t: Throwable) {
+                Log.e("Scrap Setting Fail ", t.toString())
+            }
+
+            override fun onResponse(call: Call<PutNoticeScrap>, response: Response<PutNoticeScrap>) {
+                if(response.isSuccessful){
+                    Log.e("Scrap Setting Success ", response.body()!!.message)
+                }
+            }
+        })
     }
 }
