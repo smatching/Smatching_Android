@@ -1,10 +1,7 @@
 package appjam.sopt.a23rd.smatching.network
 
 import appjam.sopt.a23rd.smatching.Delete.DeleteSmatchingCondsResponse
-import appjam.sopt.a23rd.smatching.Get.GetDetailContentResponse
-import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
-import appjam.sopt.a23rd.smatching.Get.GetSmatchingListResponse
-import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
+import appjam.sopt.a23rd.smatching.Get.*
 import appjam.sopt.a23rd.smatching.Put.PutNoticeScrap
 import appjam.sopt.a23rd.smatching.Put.PutSmatchingCount
 import appjam.sopt.a23rd.smatching.Put.PutSmatchingEdit
@@ -99,6 +96,20 @@ interface NetworkService {
             @Query("request_num") request_num : Int,
             @Query("exist_num") exist_num : Int
     ) : Call<GetNoticeListResponse>
+    //회원정보 조회
+    @GET("/users/edit")
+    fun getUserInfo(
+            @Header("Authorization") token : String
+    ) : Call<GetUserInfoDataResponse>
+    //회원정보 설정
+    @PUT("/users/edit")
+    fun putUserInfoEditResponse(
+            @Header("Content-Type") content_type : String,
+            @Header("Authorization") token : String,
+            @Query("nickname") nickname : String,
+            @Query("password") password : String,
+            @Query("newPassword") newPassword: String
+    ) : Call<PutSmatchingEdit>
     //회원탈퇴
     @DELETE("/users")
     fun deleteUserInfoResponse(

@@ -367,6 +367,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(Color.WHITE)
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBlue))
         }
         transaction.replace(R.id.act_bottom_navi_fl, fragment)
         transaction.commit()

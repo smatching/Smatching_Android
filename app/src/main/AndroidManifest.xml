@@ -33,12 +33,10 @@
         <activity android:name=".PolicyActivity" />
         <activity android:name=".PolicyViewActivity" />
         <activity android:name=".StartActivity" />
-<<<<<<< HEAD
         <activity android:name=".MemberQuitActivity" />
         <activity android:name=".LogoutActivity" />
-=======
         <activity android:name=".SmatchingCustomCorporateDetailActivity" />
->>>>>>> b5c6e8243f10868ee47e822d5eaf54cfc6ded4c3
+
     </application>
 
 </manifest>

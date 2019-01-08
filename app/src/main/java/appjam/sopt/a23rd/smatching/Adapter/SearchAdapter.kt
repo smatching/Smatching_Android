@@ -14,20 +14,20 @@ class SearchAdapter(val ctx : Context, val dataList : ArrayList<NoticeData>)
     : RecyclerView.Adapter<SearchAdapter.Holder>() {
     var currentView: Int = 0
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.Holder {
-        val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_mypage_smatching_scrap, parent, false)
+        val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_home, parent, false)
         return Holder(view)
     }
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.supervisor.text = dataList[position].institution
-        if(dataList[position].dday.toString() > "1000"){
-            holder.dday.text = ""
-            holder.ddayImg.setImageResource(R.drawable.txt_budgetend)
+        if(dataList[position].dday.toString() > "1000") {
+            holder.deadline.text = "예산 소진시"
+            holder.tag.text = ""
         }
         else {
-            holder.dday.text = dataList[position].dday.toString()
-            holder.ddayImg.setImageResource(R.drawable.box_dday_gray)
+            holder.deadline.text = dataList[position].dday.toString()
+            holder.tag.text = "D-"
         }
         holder.title.text = dataList[position].title
         // 스크랩이 되지 않았을 경우
@@ -39,10 +39,10 @@ class SearchAdapter(val ctx : Context, val dataList : ArrayList<NoticeData>)
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val supervisor: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_supervisor)
-        val ddayImg : ImageView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_iv_dday)
-        val dday: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_dday)
-        val title: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_title)
-        val scrap: ImageView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_iv_scrap)
+        val supervisor : TextView = itemView.findViewById(R.id.rv_item_home_tv_supervisor) as TextView
+        val tag : TextView = itemView.findViewById(R.id.rv_item_home_tv_tag) as TextView
+        val deadline : TextView = itemView.findViewById(R.id.rv_item_home_tv_deadline) as TextView
+        val title : TextView = itemView.findViewById(R.id.rv_item_home_tv_title) as TextView
+        val scrap : ImageView = itemView.findViewById(R.id.rv_item_home_iv_scrap) as ImageView
     }
 }

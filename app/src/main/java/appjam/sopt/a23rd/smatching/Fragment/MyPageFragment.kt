@@ -37,8 +37,9 @@ class MyPageFragment : Fragment(){
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setRecyclerView()
         getSmatchingScrapListResponse()
+
+        (activity as MainActivity).setpageNum(3) //정호의 편지: 안녕!
 
         fragment_my_page_user_rl_profile.setOnClickListener{
             replaceFragment(MyPageSettingMemberInfoFragment())
@@ -67,7 +68,7 @@ class MyPageFragment : Fragment(){
     }
     private fun getSmatchingScrapListResponse(){
         val getSmatchingScrapListResponse = networkService.getSmatchingScrapListResponse(SharedPreferenceController.getAuthorization(activity!!),
-                20, 0)
+                999, 0)
         getSmatchingScrapListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
                 Log.e("board list fail", t.toString())
@@ -75,14 +76,20 @@ class MyPageFragment : Fragment(){
 
             override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
                 if (response.isSuccessful){
-                    val temp : ArrayList<NoticeData> = response.body()!!.data
-                    if (temp.size > 0){
+                    if(response.body()!!.status == 204) {
+                        Log.d("mypage test : ", response.body()!!.status.toString())
+                        fragment_my_page_user_ll.setVisibility(View.GONE)
+                        fragment_my_page_user_line.setVisibility(View.GONE)
+                        fragment_my_page_user_iv_noscrap.setVisibility(View.VISIBLE)
+                    }
+                    else {
+                        val temp : ArrayList<NoticeData> = response.body()!!.data
+                        setRecyclerView()
                         val position = smatchingScrapFragmentRecyclerViewAdapter.itemCount
                         val scrapCnt: TextView = view!!.findViewById(R.id.fragment_my_page_user_tv_scrapCnt)
                         scrapCnt.setText(temp.size.toString())
                         smatchingScrapFragmentRecyclerViewAdapter.dataList.addAll(temp)
                         smatchingScrapFragmentRecyclerViewAdapter.notifyItemInserted(position)
-
                     }
                 }
             }
