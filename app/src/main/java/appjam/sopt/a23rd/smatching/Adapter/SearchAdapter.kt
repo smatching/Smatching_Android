@@ -13,13 +13,21 @@ import android.content.Intent
 import org.jetbrains.anko.imageResource
 import kotlin.coroutines.coroutineContext
 import android.graphics.drawable.Drawable
+import android.util.Log
+import appjam.sopt.a23rd.smatching.Put.PutNoticeScrap
+import appjam.sopt.a23rd.smatching.network.ApplicationController
+import appjam.sopt.a23rd.smatching.network.NetworkService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-
-
-class SearchAdapter(val ctx : Context, val dataList : ArrayList<NoticeData>)
+class SearchAdapter(val ctx : Context, val dataList : ArrayList<NoticeData>, val token : String)
     : RecyclerView.Adapter<SearchAdapter.Holder>() {
     var currentView: Int = 0
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_home, parent, false)
         return Holder(view)
@@ -45,6 +53,19 @@ class SearchAdapter(val ctx : Context, val dataList : ArrayList<NoticeData>)
         else {
             holder.scrap.setImageResource(R.drawable.icn_scrap_yellow)
         }
+        holder.scrap.setOnClickListener{
+            Log.d("scrap on/off", dataList[position].scrap.toString())
+            if(dataList[position].scrap == 0) {
+                putNoticeScrap(dataList[position].noticeIdx)
+                dataList[position].scrap = 1
+                holder.scrap.setImageResource(R.drawable.icn_scrap_yellow)
+            }
+            else {
+                putNoticeScrap(dataList[position].noticeIdx)
+                dataList[position].scrap = 0
+                holder.scrap.setImageResource(R.drawable.icn_scrap_grey)
+            }
+        }
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -53,5 +74,19 @@ class SearchAdapter(val ctx : Context, val dataList : ArrayList<NoticeData>)
         val deadline : TextView = itemView.findViewById(R.id.rv_item_home_tv_deadline) as TextView
         val title : TextView = itemView.findViewById(R.id.rv_item_home_tv_title) as TextView
         val scrap : ImageView = itemView.findViewById(R.id.rv_item_home_iv_scrap) as ImageView
+    }
+    private fun putNoticeScrap(noticeIdx : Int){
+        val putNoticeScrap : Call<PutNoticeScrap> = networkService.putNoticeScrap(token, noticeIdx)
+        putNoticeScrap.enqueue(object : Callback<PutNoticeScrap> {
+            override fun onFailure(call: Call<PutNoticeScrap>, t: Throwable) {
+                Log.e("Scrap Setting Fail ", t.toString())
+            }
+
+            override fun onResponse(call: Call<PutNoticeScrap>, response: Response<PutNoticeScrap>) {
+                if(response.isSuccessful){
+                    Log.e("Scrap Setting Success ", response.body()!!.message)
+                }
+            }
+        })
     }
 }

@@ -118,7 +118,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_centerVertical="true">
                         <EditText
                             android:id="@+id/fragment_mypage_user_et_search"
@@ -128,6 +128,7 @@
                             android:hint="스크랩을 검색하세요."
                             android:singleLine="true"
                             android:background="@null"
+                            android:layout_centerVertical="true"
                             android:textColorHint="@color/colorTextHint"
                             android:textSize="12sp" />
                         <ImageView
@@ -135,6 +136,8 @@
                             android:src="@drawable/icn_mypage_search"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="7dp"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"/>
 

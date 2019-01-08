@@ -13,13 +13,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Adapter.SmatchingScrapRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Data.NoticeData
+import appjam.sopt.a23rd.smatching.Data.UserInfoData
 import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
+import appjam.sopt.a23rd.smatching.Get.GetUserInfoDataResponse
 import appjam.sopt.a23rd.smatching.MainActivity
 import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_my_page_user.*
+import kotlinx.android.synthetic.main.fragment_mypage_setting_memberinfo.*
+import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,6 +37,7 @@ class MyPageFragment : Fragment(){
     }
     lateinit var smatchingScrapFragmentRecyclerViewAdapter: SmatchingScrapRecyclerViewAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        getUserInfo()
         return inflater.inflate(R.layout.fragment_my_page_user, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,9 +46,10 @@ class MyPageFragment : Fragment(){
 
         (activity as MainActivity).setpageNum(3) //정호의 편지: 안녕!
 
-        fragment_my_page_user_rl_profile.setOnClickListener{
+      /*  fragment_my_page_user_rl_profile.setOnClickListener{
             replaceFragment(MyPageSettingMemberInfoFragment())
         }
+        */
         fragment_my_page_user_talkscrap.setOnClickListener {
             replaceFragment(MyPageTalkFragment())
         }
@@ -62,7 +68,7 @@ class MyPageFragment : Fragment(){
         }*/
     }
     private fun setRecyclerView() {
-        smatchingScrapFragmentRecyclerViewAdapter = SmatchingScrapRecyclerViewAdapter(activity!!, dataList)
+        smatchingScrapFragmentRecyclerViewAdapter = SmatchingScrapRecyclerViewAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
         fragment_my_page_user_rv.adapter = smatchingScrapFragmentRecyclerViewAdapter
         fragment_my_page_user_rv.layoutManager = LinearLayoutManager(activity)
     }
@@ -95,6 +101,26 @@ class MyPageFragment : Fragment(){
             }
         })
     }
+    private fun getUserInfo(){
+        val getUserInfo = networkService.getUserInfo(SharedPreferenceController.getAuthorization(activity!!))
+        getUserInfo.enqueue(object : Callback<GetUserInfoDataResponse> {
+            override fun onFailure(call: Call<GetUserInfoDataResponse>, t: Throwable) {
+                Log.e("response body fail", t.toString())
+            }
+            override fun onResponse(call: Call<GetUserInfoDataResponse>, response: Response<GetUserInfoDataResponse>) {
+                if (response.isSuccessful) {
+                    Log.e("mypage setting member", response.body()!!.status.toString())
+                    if (response.body()!!.status != 200)
+                        toast(response.body()!!.message)
+                    else {
+                        val arr: UserInfoData = response.body()!!.data
+                        fragment_my_page_profile_tv_nickname.setText(arr.nickname)
+                    }
+                }
+            }
+        })
+    }
+
     private fun replaceFragment(fragment: Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
         transaction.replace(R.id.act_bottom_navi_fl, fragment)
