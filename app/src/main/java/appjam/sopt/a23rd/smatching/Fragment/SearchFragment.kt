@@ -73,11 +73,11 @@ class SearchFragment : Fragment() {
                             frag_search_rl.visibility = View.VISIBLE
                             fragment_search_list_ll.visibility = View.GONE
                         }
-                        else if(response.body()!!.status == 200){
+                        else if(response.body()!!.status == 200) {
                             frag_search_rl.visibility = View.GONE
                             fragment_search_list_ll.visibility = View.VISIBLE
                             setRecyclerView()
-                            val temp : ArrayList<NoticeData> = response.body()!!.data
+                            val temp: ArrayList<NoticeData> = response.body()!!.data
                             val position = searchAdapter.itemCount
                             val scrapCnt: TextView = fragment_search_tv_count
                             scrapCnt.setText(temp.size.toString())
@@ -87,7 +87,7 @@ class SearchFragment : Fragment() {
                         }
                 }
             }
-            })
+        })
     }
 
     private fun replaceFragment(fragment: Fragment) {

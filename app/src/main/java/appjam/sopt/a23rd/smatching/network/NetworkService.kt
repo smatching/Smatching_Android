@@ -101,6 +101,20 @@ interface NetworkService {
             @Query("request_num") request_num : Int,
             @Query("exist_num") exist_num : Int
     ) : Call<GetNoticeListResponse>
+    //회원정보 조회
+    @GET("/users/edit")
+    fun getUserInfo(
+            @Header("Authorization") token : String
+    ) : Call<GetUserInfoDataResponse>
+    //회원정보 설정
+    @PUT("/users/edit")
+    fun putUserInfoEditResponse(
+            @Header("Content-Type") content_type : String,
+            @Header("Authorization") token : String,
+            @Query("nickname") nickname : String,
+            @Query("password") password : String,
+            @Query("newPassword") newPassword: String
+    ) : Call<PutSmatchingEdit>
     //회원탈퇴
     @DELETE("/users")
     fun deleteUserInfoResponse(
