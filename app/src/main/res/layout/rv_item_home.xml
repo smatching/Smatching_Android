@@ -26,7 +26,6 @@
                 android:id="@+id/rv_item_home_ll_dday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_alignParentRight="true">
 
 
@@ -34,6 +33,7 @@
                     android:id="@+id/rv_item_home_tv_tag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorText"
                     android:text="D-"
                     android:fontFamily="@font/nanumsquarer"
                     android:textSize="10sp"/>

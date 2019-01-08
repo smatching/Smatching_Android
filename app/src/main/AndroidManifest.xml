@@ -33,6 +33,8 @@
         <activity android:name=".PolicyActivity" />
         <activity android:name=".PolicyViewActivity" />
         <activity android:name=".StartActivity" />
+        <activity android:name=".MemberQuitActivity" />
+        <activity android:name=".LogoutActivity" />
     </application>
 
 </manifest>

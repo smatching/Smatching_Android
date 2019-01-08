@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StartLoginActivity"
     android:focusable="true"
-    android:layout_centerInParent="true"
+    android:orientation="vertical"
     android:focusableInTouchMode="true"
     android:background="@color/colorBackground">
 
@@ -19,10 +20,14 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+<ScrollView
+    android:layout_centerInParent="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+        <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -50,12 +55,12 @@
                 android:src="@drawable/et_email" />
             <EditText
                 android:id="@+id/act_start_login_et_email"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="이메일 주소 입력"
-                android:textColorHint="@color/colorTextHint"
                 android:textColor="@color/colorText"
                 android:textSize="14sp"
+                android:hint="이메일 주소 입력"
+                android:textColorHint="@color/colorTextHint"
                 android:background="@null"
                 android:inputType="textEmailAddress"
                 android:layout_centerVertical="true"
@@ -87,21 +92,17 @@
                 android:layout_centerInParent="true"
                 android:background="@null"
                 android:src="@drawable/et_email" />
-            <EditText
-                android:id="@+id/act_start_login_et_password_hint"
+            <TextView
+                android:id="@+id/act_start_login_tv_password_hint"
+                android:text="비밀번호 입력"
+                android:fontFamily="@font/nanumsquareb"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="17dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorTextHint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="비밀번호 입력"
-                android:fontFamily="@font/nanumsquarer"
-                android:textColorHint="@color/colorTextHint"
-                android:textColor="@color/colorText"
-                android:textSize="14sp"
-                android:background="@null"
-                android:layout_centerVertical="true"
-                android:layout_marginHorizontal="17dp"
-                android:maxLength="15"
-                android:singleLine="true"
-                android:inputType="textPassword"/>
+                android:visibility="visible"/>
             <EditText
                 android:id="@+id/act_start_login_et_password"
                 android:layout_width="match_parent"
@@ -112,6 +113,7 @@
                 android:background="@null"
                 android:layout_centerVertical="true"
                 android:maxLength="15"
+                android:layout_marginHorizontal="17dp"
                 android:singleLine="true"
                 android:inputType="textPassword"/>
             <ImageView
@@ -134,7 +136,8 @@
             android:layout_centerInParent="true"
             android:src="@drawable/btn_login"/>
 </LinearLayout>
+</ScrollView>
     </RelativeLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

@@ -1,5 +1,6 @@
 package appjam.sopt.a23rd.smatching
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
@@ -18,13 +19,13 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
 import appjam.sopt.a23rd.smatching.Fragment.*
-import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import org.jetbrains.anko.find
 import org.jetbrains.anko.imageResource
+import org.jetbrains.anko.textColor
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
@@ -186,6 +187,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_iv_smatching.isSelected = false
             act_main_iv_talk.isSelected = false
             act_main_iv_my_page.isSelected = true
+
             titleText.setText("마이페이지")
             titleImage.visibility = View.INVISIBLE
         }
@@ -193,6 +195,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //configureBottomNavigation()
 
     }
+    @SuppressLint("ResourceAsColor")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         when(item.getItemId())
@@ -217,7 +220,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragmentTransaction.replace(R.id.act_bottom_navi_fl, fr)// 위에서 만든 Fragment Instance를 붙여줌
                 fragmentTransaction.commit()// 실행*/
                 replaceFragment(SearchFragment())
-                findViewById<TextView>(R.id.act_bottom_navi_tv_title).setText("검색")
+                findViewById<TextView>(R.id.act_bottom_navi_tv_title).run {
+                    setTextColor(R.color.colorText)
+                    setText("검색")
+                }
                 findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
                 supportActionBar!!.setDisplayHomeAsUpEnabled(true)
                 supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
@@ -225,6 +231,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 act_bottom_navi_iv_title.visibility = View.INVISIBLE
                 return true
             }
+            R.id.menu_setting_white-> {
+              /*  isSearch = 1
+
+                val fr = SearchFragment()// Fragment Instance 설정
+                val fm = supportFragmentManager
+                val fragmentTransaction = fm.beginTransaction()// FragmentManager와 FragmentTransaction 얻어옴
+                fragmentTransaction.replace(R.id.act_bottom_navi_fl, fr)// 위에서 만든 Fragment Instance를 붙여줌
+                fragmentTransaction.commit()// 실행*/
+                replaceFragment(MyPageSettingFragment())
+                findViewById<TextView>(R.id.act_bottom_navi_tv_title).setText("설정")
+                findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(R.color.colorText)
+                findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
+                findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
+                supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+                supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
+
+                act_bottom_navi_iv_title.visibility = View.INVISIBLE
+                return true
+            }
+
             /*R.id.menu_notice-> {
                 if (drawer_layout.isDrawerOpen(GravityCompat.END))
                 {

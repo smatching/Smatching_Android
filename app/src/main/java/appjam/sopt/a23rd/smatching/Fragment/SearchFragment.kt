@@ -67,6 +67,7 @@ class SearchFragment : Fragment() {
                 }
                 override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>){
                     if (response.isSuccessful) {
+                        Log.v("data set", response.body()!!.data.toString())
                         if(response.body()!!.status == 204)
                             replaceFragment(SearchNoresultFragment())
                         else if(response.body()!!.status == 200){
@@ -86,7 +87,6 @@ class SearchFragment : Fragment() {
                                 searchAdapter.notifyItemInserted(position)
                         }
                 }
-
             }
             })
     }

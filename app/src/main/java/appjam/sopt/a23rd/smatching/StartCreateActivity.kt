@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import appjam.sopt.a23rd.smatching.R.id.act_start_login_iv_email
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
@@ -16,6 +17,7 @@ import appjam.sopt.a23rd.smatching.post.PostSignUpResponse
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_start_create.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
@@ -38,9 +40,9 @@ class StartCreateActivity : AppCompatActivity() {
         val nickName = findViewById<EditText>(R.id.act_start_create_et_nickname)
         val email = findViewById<EditText>(R.id.act_start_create_et_email)
         val password = findViewById<EditText>(R.id.act_start_create_et_password)
-        val password_confirm = findViewById<EditText>(R.id.act_start_create_et_password_confirm)
-        val password_hint = findViewById<EditText>(R.id.act_start_create_et_password_hint)
-        val password_confirm_hint = findViewById<EditText>(R.id.act_start_create_et_password_confirm_hint)
+        val password_confirm = findViewById<EditText>(R.id.act_start_create_et_passwordagain)
+        val password_hint = findViewById<TextView>(R.id.act_start_create_tv_password)
+        val passwordagain_hint = findViewById<TextView>(R.id.act_start_create_tv_passwordagain)
 
 
         //툴바 부분
@@ -59,7 +61,6 @@ class StartCreateActivity : AppCompatActivity() {
 
                 if(!nickName.text.toString().isEmpty())
                     act_start_create_iv_nickname_delete.setVisibility(View.VISIBLE)
-
                 if(!password.text.toString().isEmpty())
                     act_start_create_iv_password_delete.setVisibility(View.VISIBLE)
                 if(!password_confirm.text.toString().isEmpty())
@@ -74,10 +75,15 @@ class StartCreateActivity : AppCompatActivity() {
         }
         nickName.setOnFocusChangeListener(object : View.OnFocusChangeListener {
             override fun onFocusChange(v: View, hasFocus: Boolean) {
-                if (hasFocus || nickName.getText().toString().length != 0)
+                if (hasFocus || nickName.getText().toString().length != 0) {
                     act_start_create_iv_nickname.setImageResource(R.drawable.et_nickname_click)
-                else
+                    if(nickName.getText().toString().length != 0)
+                        act_start_create_iv_nickname_delete.setVisibility(View.VISIBLE)
+                }
+                    else {
+                    act_start_create_iv_nickname_delete.setVisibility(View.INVISIBLE)
                     act_start_create_iv_nickname.setImageResource(R.drawable.et_nickname)
+                }
             }
         })
 
@@ -93,6 +99,7 @@ class StartCreateActivity : AppCompatActivity() {
                 //여기서 받기
                 if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
                         && email.getText().toString().length != 0){
+                    act_start_create_iv_email_delete.setVisibility(View.VISIBLE)
                     act_start_create_iv_email.setImageResource(R.drawable.et_email_error)
                     email.setOnFocusChangeListener(object : View.OnFocusChangeListener {
                         override fun onFocusChange(v: View, hasFocus: Boolean) {
@@ -108,21 +115,21 @@ class StartCreateActivity : AppCompatActivity() {
                             if (!hasFocus)
                                 act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
                             if(!email.text.toString().isEmpty())
-                                act_start_create_iv_email_delete.setVisibility(View.INVISIBLE)
+                                act_start_create_iv_email_delete.setVisibility(View.VISIBLE)
                         }
                     })
 
                     act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
                 }
                 else if(email.text.toString().length == 0) {
-
-                    act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
+                    act_start_create_iv_email_delete.setVisibility(View.INVISIBLE)
+                    act_start_create_iv_email.setImageResource(R.drawable.et_email)
                     email.setOnFocusChangeListener(object : View.OnFocusChangeListener {
                         override fun onFocusChange(v: View, hasFocus: Boolean) {
                             if (!hasFocus)
                                 act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
                             if(!email.text.toString().isEmpty())
-                                act_start_create_iv_email_delete.setVisibility(View.INVISIBLE)
+                                act_start_create_iv_email_delete.setVisibility(View.VISIBLE)
                         }
                     })
                 }
@@ -147,11 +154,11 @@ class StartCreateActivity : AppCompatActivity() {
                 password.addTextChangedListener(textWatcher)
                 if (hasFocus || password.getText().toString().length != 0) {
                     act_start_create_iv_password.setImageResource(R.drawable.et_password_click)
-                    act_start_create_et_password_hint.setHint("")
+                    act_start_create_tv_password.setVisibility(View.GONE)
                 }
                 else {
                     act_start_create_iv_password.setImageResource(R.drawable.et_password)
-                    act_start_create_et_password_hint.setHint("비밀번호 (8~15자리 숫자, 영문자)")
+                    act_start_create_tv_password.setVisibility(View.VISIBLE)
                 }
             }
         })
@@ -159,17 +166,17 @@ class StartCreateActivity : AppCompatActivity() {
             override fun onFocusChange(v: View, hasFocus: Boolean) {
                 password_confirm.addTextChangedListener(textWatcher)
                 if (hasFocus) {
+                    act_start_create_tv_passwordagain.setVisibility(View.GONE)
                     act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain_click)
-                    act_start_create_et_password_confirm_hint.setHint("")
                 } else if (password_confirm.getText().toString().length != 0) {
-                    act_start_create_et_password_confirm_hint.setHint("")
+                    act_start_create_tv_passwordagain.setVisibility(View.GONE)
                     if (password.getText().toString() != password_confirm.getText().toString())
                         act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain_error)
                     else
                         act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain_click)
                 } else {
                     act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain)
-                    act_start_create_et_password_confirm_hint.setHint("비밀번호 재입력")
+                    act_start_create_tv_passwordagain.setVisibility(View.VISIBLE)
                     }
              }
           }
@@ -195,7 +202,7 @@ class StartCreateActivity : AppCompatActivity() {
             act_start_create_et_password.setText("")
         }
         act_start_create_iv_passwordagain_delete.setOnClickListener{
-            act_start_create_et_password_confirm.setText("")
+            act_start_create_et_passwordagain.setText("")
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -211,7 +218,7 @@ class StartCreateActivity : AppCompatActivity() {
 
         //EditText에 있는 값 받기
         if (act_start_create_et_nickname.text.toString().isNotEmpty() && act_start_create_et_email.text.toString().isNotEmpty()
-                && act_start_create_et_password.text.toString().isNotEmpty() && act_start_create_et_password_confirm.text.toString().isNotEmpty()) {
+                && act_start_create_et_password.text.toString().isNotEmpty() && act_start_create_et_passwordagain.text.toString().isNotEmpty()) {
 
             val input_nickname: String = act_start_create_et_nickname.text.toString()
             val input_email: String = act_start_create_et_email.text.toString()
@@ -237,8 +244,13 @@ class StartCreateActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<PostSignUpResponse>, response: Response<PostSignUpResponse>) {
                     if (response.isSuccessful) {
-                        toast(response.body()!!.message)
-                        finish()
+                        if(response.body()!!.status == 405){
+                            toast(response.body()!!.message)
+                        }
+                       else if(response.body()!!.status == 201){
+                            toast("스매칭의 회원이 되신걸 환영합니다:)")
+                            startActivity<StartLoginActivity>()
+                        }
                     }
                 }
             })

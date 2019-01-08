@@ -38,7 +38,6 @@ class StartLoginActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         val email = findViewById<EditText>(R.id.act_start_login_et_email)
         val password = findViewById<EditText>(R.id.act_start_login_et_password)
-        val password_hint = findViewById<EditText>(R.id.act_start_login_et_password_hint)
 
         //툴바 부분
         setSupportActionBar(toolbar)
@@ -75,13 +74,20 @@ class StartLoginActivity : AppCompatActivity() {
                 if (hasFocus)
                     act_start_login_iv_email.setImageResource(R.drawable.et_email_click)
                 else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
-                        && email.getText().toString().length != 0)
+                        && email.getText().toString().length != 0) {
+                    act_start_login_iv_email_delete.setVisibility(View.VISIBLE)
                     act_start_login_iv_email.setImageResource(R.drawable.et_email_error)
+                }
                 else if(android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
-                        && email.getText().toString().length != 0)
+                        && email.getText().toString().length != 0){
                     act_start_login_iv_email.setImageResource(R.drawable.et_email_click)
-                else if(email.text.toString().length == 0)
+                    act_start_login_iv_email_delete.setVisibility(View.VISIBLE)
+                }
+                else if(email.text.toString().length == 0){
+                    act_start_login_iv_email_delete.setVisibility(View.GONE)
                     act_start_login_iv_email.setImageResource(R.drawable.et_email)
+                }
+
             }
         }
         password.onFocusChangeListener = object : View.OnFocusChangeListener {
@@ -89,10 +95,12 @@ class StartLoginActivity : AppCompatActivity() {
                 password.addTextChangedListener(textWatcher)
                 if (hasFocus || password.text.toString().length != 0) {
                     act_start_login_iv_password.setImageResource(R.drawable.et_password_click)
-                    act_start_login_et_password_hint.setHint("")
+                    act_start_login_iv_password_delete.setVisibility(View.VISIBLE)
+                    act_start_login_tv_password_hint.setVisibility(View.GONE)
                 }else if(password.text.toString().length == 0) {
                     act_start_login_iv_password.setImageResource(R.drawable.et_password)
-                    act_start_login_et_password_hint.setHint("비밀번호 입력")
+                    act_start_login_iv_password_delete.setVisibility(View.GONE)
+                    act_start_login_tv_password_hint.setVisibility(View.VISIBLE)
                 }
             }
         }
@@ -134,14 +142,21 @@ class StartLoginActivity : AppCompatActivity() {
                 }
 
                 override fun onResponse(call: Call<PostLogInResponse>, response: Response<PostLogInResponse>) {
-                    if (response.isSuccessful){
-                        val token = response.body()!!.data.token
-                        //저번 시간에 배웠던 SharedPreference에 토큰을 저장! 왜냐하면 토큰이 필요한 통신에 사용하기 위해서!!
-                        SharedPreferenceController.setAuthorization(this@StartLoginActivity, token)
-                        //toast(SharedPreferenceController.getNickname(this@StartLoginActivity))
-                        //toast(SharedPreferenceController.getUserNickName(this@StartLoginActivity))
-                        startActivity<MainActivity>()
-                        finish()
+                    if (response.isSuccessful) {
+                        Log.d("login data : status", response.body()!!.status.toString())
+                        Log.d("login data : message", response.body()!!.message)
+                        if (response.body()!!.status == 400) {
+                            toast("로그인 실패!\n이메일과 비밀번호를 다시 한번 확인해주세요!")
+                        }
+                        else if (response.body()!!.status == 200) {
+                            val token = response.body()!!.data.token
+                            //저번 시간에 배웠던 SharedPreference에 토큰을 저장! 왜냐하면 토큰이 필요한 통신에 사용하기 위해서!!
+                            SharedPreferenceController.setAuthorization(this@StartLoginActivity, token)
+                            //toast(SharedPreferenceController.getNickname(this@StartLoginActivity))
+                            //toast(SharedPreferenceController.getUserNickName(this@StartLoginActivity))
+                            startActivity<MainActivity>()
+                            finish()
+                        }
                     }
                 }
             })

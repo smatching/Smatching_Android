@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_mypage_setting.*
 
 class MyPageSettingFragment : Fragment(){
 override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    return inflater.inflate(R.layout.fragment_my_page_user, container, false)
+    return inflater.inflate(R.layout.fragment_mypage_setting, container, false)
 }
 override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
