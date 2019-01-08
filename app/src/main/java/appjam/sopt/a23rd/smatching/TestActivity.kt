@@ -31,6 +31,7 @@ import android.content.Intent
 import appjam.sopt.a23rd.smatching.Delete.DeleteSmatchingCondsResponse
 import appjam.sopt.a23rd.smatching.Put.PutSmatchingCount
 import appjam.sopt.a23rd.smatching.post.PostSmatchingAdd
+import kotlinx.android.synthetic.main.activity_test2.*
 import org.jetbrains.anko.startActivity
 
 
@@ -101,10 +102,23 @@ class TestActivity : AppCompatActivity() {
         act_test_iv_detail.setOnClickListener {
             startActivity<SmatchingCustomCorporateDetailActivity>()
         }
-
+        act_test_iv_text_delete.setOnClickListener {
+            act_test_et_title.setText("")
+        }
 
         act_test_tv_toolbar_text.setOnClickListener {
             deleteSmatchingCondsDeleteResponse(condIdx)
+        }
+
+        act_test_delete_no.setOnClickListener {
+            act_test_rl_delete.visibility = View.GONE
+        }
+
+        act_test_tv_toolbar_text.setOnClickListener {
+            act_test_rl_delete.visibility = View.VISIBLE
+        }
+        act_test_rl_must_typing_ok.setOnClickListener {
+            act_test_rl_must_typing.visibility = View.GONE
         }
 
         //region 나이 설정
@@ -2076,10 +2090,14 @@ class TestActivity : AppCompatActivity() {
         //endregion
         //endregion
         act_test_rl.setOnClickListener {
-            if (state == 0)
-                postSmatchingCondsAddResponse()
-            else if (state == 1)
-                putUserSmatchingResponse(mCondIdx)
+            if (periodCount != 0 && busiTypeCount != 0 && advantageCount != 0 && fieldCount != 0 && categoryCount != 0 && advantageCount != 0) {
+                if (state == 0)
+                    postSmatchingCondsAddResponse()
+                else if (state == 1)
+                    putUserSmatchingResponse(mCondIdx)
+            }else {
+                act_test_rl_must_typing.visibility = View.VISIBLE
+            }
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -2126,8 +2144,10 @@ class TestActivity : AppCompatActivity() {
     {
         //region 요청바디에 들어갈 객체 생성
         var jsonObject = JsonObject() // 요청바디 전체 객체
-
-        jsonObject.addProperty("condName", act_test_et_title.text.toString())
+        if(act_test_et_title.text.toString() == "") {
+            jsonObject.addProperty("condName", "맞춤조건")
+        } else
+            jsonObject.addProperty("condName", act_test_et_title.text.toString())
 
         var ageJson = JsonObject() // age 내부 객체
         for (a in 0..2)
@@ -2656,9 +2676,12 @@ class TestActivity : AppCompatActivity() {
     private fun putUserSmatchingResponse(condIdx: Int)
     {
         //region 요청바디에 들어갈 객체 생성
-        var jsonObject = JsonObject() // 요청바디 전체 객체
 
-        jsonObject.addProperty("condName", act_test_et_title.text.toString())
+        var jsonObject = JsonObject() // 요청바디 전체 객체
+        if(act_test_et_title.text.toString() == "") {
+            jsonObject.addProperty("condName", "맞춤조건")
+        } else
+            jsonObject.addProperty("condName", act_test_et_title.text.toString())
 
         var ageJson = JsonObject() // age 내부 객체
         for (a in 0..2)

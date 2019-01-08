@@ -71,7 +71,7 @@ class CustomSecondFragment: Fragment() {
             override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
                 if (response.isSuccessful){
                     if (response.body()!!.status == 204 || response.body()!!.status == 206)
-                        replaceFragmentContent(FirstCustomNullFragment())
+                        replaceFragmentContent(SecondCustomNullFragment())
                     else if(response.body()!!.status == 200){
                         val temp: ArrayList<NoticeData> = response.body()!!.data
                         if (temp.size > 0) {

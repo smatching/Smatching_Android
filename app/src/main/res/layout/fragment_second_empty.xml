@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/frag_first_null_rl"
+    android:id="@+id/frag_second_empty_rl"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,7 +9,7 @@
         android:layout_marginHorizontal="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/btn_main_nonesmatching"
+        android:src="@drawable/btn_main_smatching"
         android:scaleType="fitXY"/>
 
 </RelativeLayout>

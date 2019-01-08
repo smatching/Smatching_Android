@@ -92,6 +92,7 @@
                         android:fontFamily="@font/nanumsquareb"/>
 
                     <ImageView
+                        android:id="@+id/act_test2_iv_text_delete"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/btn_delete"
@@ -441,7 +442,7 @@
                             android:src="@drawable/btn_custom_must"
                             android:layout_toRightOf="@+id/fragment_smatching_custom_ll_busiType"/>
                         <ImageView
-                            android:id="@+id/act_test_iv_detail"
+                            android:id="@+id/act_test2_iv_detail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -3368,6 +3369,120 @@
             </LinearLayout>
 
         </LinearLayout>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/act_test2_rl_delete"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundNull">
+        <RelativeLayout
+            android:layout_width="310dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:src="@drawable/popup_mypage_memberquit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:text="삭제하시겠습니까?"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"
+                android:fontFamily="@font/nanumsquareb"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true">
+                <RelativeLayout
+                    android:id="@+id/act_test2_delete_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="60dp"
+                    android:paddingVertical="15dp">
+                    <TextView
+                        android:text="취소"
+                        android:textColor="@color/colorText"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/act_test2_delete_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="60dp"
+                    android:paddingVertical="15dp">
+                    <TextView
+                        android:text="확인"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/act_test2_rl_must_typing"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundNull">
+        <RelativeLayout
+            android:layout_width="310dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:src="@drawable/popupbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:text="필수조건을 꼭 선택해주세요 :P"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"
+                android:fontFamily="@font/nanumsquareb"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true">
+                <RelativeLayout
+                    android:id="@+id/act_test2_rl_must_typing_ok"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="60dp"
+                    android:paddingVertical="15dp">
+                    <TextView
+                        android:text="확인"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
 </RelativeLayout>

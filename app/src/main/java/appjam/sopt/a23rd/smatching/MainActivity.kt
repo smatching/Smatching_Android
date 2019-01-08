@@ -14,18 +14,27 @@ import android.widget.TextView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.GravityCompat
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
+import appjam.sopt.a23rd.smatching.Delete.DeleteSmatchingCondsResponse
 import appjam.sopt.a23rd.smatching.Fragment.*
+import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
+import appjam.sopt.a23rd.smatching.network.ApplicationController
+import appjam.sopt.a23rd.smatching.network.NetworkService
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_mypage_setting_logout.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.nav_header_main.*
-import org.jetbrains.anko.find
-import org.jetbrains.anko.imageResource
-import org.jetbrains.anko.textColor
+import org.jetbrains.anko.*
+import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
@@ -34,6 +43,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var isSearch: Int = 0
     var time: Long = 0
     lateinit var fragment: Fragment
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -71,6 +83,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val navi = ll_bottom_navi_act_main
 
+        act_main_dont_do_that
+
+        act_mypage_setting_memberquit_no.setOnClickListener {
+            act_main_dont_do_that.visibility = View.GONE
+        }
+        act_mypage_setting_memberquit_ok.setOnClickListener{
+            getDeleteUserInfoResponse()
+        }
+        act_mypage_setting_logout_ok.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View) {
+                if(SharedPreferenceController.getAuthorization(this@MainActivity).isNotEmpty()) {
+                    SharedPreferenceController.setAuthorization(this@MainActivity, "")
+                    toast("로그아웃이 정상적으로 처리 되었습니다.")
+                    startActivity<StartActivity>()
+                }
+            }
+        })
+        act_mypage_setting_logout_no.setOnClickListener {
+            act_main_rl_logout.visibility = View.GONE
+        }
+
+
         val intent = getIntent()
         if (intent.getIntExtra("view", 0) == 1)
         {
@@ -99,6 +133,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragIntent.putExtra("page", 1)
             }
         }
+
+
 
         //configureBottomNavigation()
 
@@ -413,5 +449,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     public fun setpageNum(num:Int)
     {
         pageNum = num
+    }
+
+    private fun getDeleteUserInfoResponse() {
+        val getDeleteUserInfoResponse = networkService.deleteUserInfoResponse(
+                SharedPreferenceController.getAuthorization(this@MainActivity))
+        getDeleteUserInfoResponse.enqueue(object : Callback<DeleteSmatchingCondsResponse> {
+            override fun onFailure(call: Call<DeleteSmatchingCondsResponse>, t: Throwable) {
+                Log.e("Member Quit fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<DeleteSmatchingCondsResponse>, response: Response<DeleteSmatchingCondsResponse>) {
+                if (response.isSuccessful) {
+                    SharedPreferenceController.setAuthorization(this@MainActivity, "")
+                    startActivity<StartActivity>()
+                    toast("회원 탈퇴 되었습니다.\n스메칭을 이용해 주셔서 감사합니다:)")
+                }
+            }
+        })
     }
 }

@@ -1,18 +1,14 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
-import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import appjam.sopt.a23rd.smatching.Adapter.HomeFragmentRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.R
 import kotlinx.android.synthetic.main.fragment_second.*
@@ -20,12 +16,9 @@ import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Adapter.HomeRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
 import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
-import appjam.sopt.a23rd.smatching.MainActivity
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
-import com.airbnb.lottie.LottieAnimationView
-import kotlinx.android.synthetic.main.fragment_second_custom_condition_notclick.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -104,10 +97,10 @@ class SecondFragment : Fragment(){
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
                 if (response.isSuccessful && response.body()!!.status == 204) {
-                    replaceFragment(NullFragment())
+                    replaceFragment(SecondEmptyFragment())
 
                 } else if (response.isSuccessful && response.body()!!.status == 206) {
-                    replaceFragment(NullFragment())
+                    replaceFragment(SecondEmptyFragment())
 
                 } else if (response.isSuccessful && response.body()!!.status == 200) {
                     getSecondFitListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)

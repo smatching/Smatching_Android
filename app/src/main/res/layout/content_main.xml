@@ -40,101 +40,102 @@
 
     </android.support.v7.widget.Toolbar>
 
-        <FrameLayout
-            android:id="@+id/act_bottom_navi_fl"
+    <FrameLayout
+        android:id="@+id/act_bottom_navi_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_bottom_navi_act_main"
+        android:layout_below="@+id/my_toolbar">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_bottom_navi_act_frag_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v4.view.ViewPager>
+
+    </FrameLayout>
+
+    <!--
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tl_bottom_navi_act_bottom_menu"
+                android:background="#FFFFFF"
+                android:elevation="5dp"
+                app:tabIndicatorColor="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_alignParentBottom="true">
+            </android.support.design.widget.TabLayout> -->
+
+
+    <LinearLayout
+        android:id="@+id/ll_bottom_navi_act_main"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"        >
+        <RelativeLayout
+            android:id="@+id/act_main_rl_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/ll_bottom_navi_act_main"
-            android:layout_below="@+id/my_toolbar">
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_bottom_navi_act_frag_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </android.support.v4.view.ViewPager>
+            <ImageView
+                android:id="@+id/act_main_iv_home"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bottom_navi_home_icon"/>
 
-        </FrameLayout>
-
-        <!--
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tl_bottom_navi_act_bottom_menu"
-                    android:background="#FFFFFF"
-                    android:elevation="5dp"
-                    app:tabIndicatorColor="#FFFFFF"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:layout_alignParentBottom="true">
-                </android.support.design.widget.TabLayout> -->
-
-        <LinearLayout
-            android:id="@+id/ll_bottom_navi_act_main"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal"
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/act_main_rl_smatching"
             android:layout_width="match_parent"
-            android:layout_height="64dp"        >
-            <RelativeLayout
-                android:id="@+id/act_main_rl_home"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/act_main_iv_home"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_bottom_navi_home_icon"/>
+            <ImageView
+                android:id="@+id/act_main_iv_smatching"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bottom_navi_smatching_icon"/>
 
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/act_main_rl_smatching"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1">
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/act_main_rl_talk"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/act_main_iv_smatching"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_bottom_navi_smatching_icon"/>
+            <ImageView
+                android:id="@+id/act_main_iv_talk"
+                android:layout_weight="1"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bottom_navi_talk_icon"/>
+        </RelativeLayout>
 
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/act_main_rl_talk"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1">
+        <RelativeLayout
+            android:id="@+id/act_main_rl_my_page"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/act_main_iv_talk"
-                    android:layout_weight="1"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_bottom_navi_talk_icon"/>
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/act_main_iv_my_page"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bottom_navi_my_page_icon"/>
 
-            <RelativeLayout
-                android:id="@+id/act_main_rl_my_page"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1">
+        </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/act_main_iv_my_page"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_bottom_navi_my_page_icon"/>
-
-            </RelativeLayout>
-
-        </LinearLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/act_main_loading"
@@ -152,6 +153,136 @@
             app:lottie_autoPlay="false"
             app:lottie_rawRes="@raw/loading"/>
 
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/act_main_dont_do_that"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundNull">
+        <RelativeLayout
+            android:layout_width="310dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:src="@drawable/popup_mypage_memberquit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:text="회원탈퇴 하시겠습니까?"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"
+                android:fontFamily="@font/nanumsquareb"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true">
+                <RelativeLayout
+                    android:id="@+id/act_mypage_setting_memberquit_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="60dp"
+                    android:paddingVertical="15dp">
+                    <TextView
+                        android:text="취소"
+                        android:textColor="@color/colorText"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/act_mypage_setting_memberquit_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="60dp"
+                    android:paddingVertical="15dp">
+                    <TextView
+                        android:text="확인"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/act_main_rl_logout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundNull">
+        <RelativeLayout
+            android:layout_width="310dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:src="@drawable/popup_mypage_memberquit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:text="로그아웃 하시겠습니까?"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"
+                android:fontFamily="@font/nanumsquareb"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true">
+                <RelativeLayout
+                    android:id="@+id/act_mypage_setting_logout_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="60dp"
+                    android:paddingVertical="15dp">
+                    <TextView
+                        android:text="취소"
+                        android:textColor="@color/colorText"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/act_mypage_setting_logout_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="60dp"
+                    android:paddingVertical="15dp">
+                    <TextView
+                        android:text="확인"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
 </RelativeLayout>

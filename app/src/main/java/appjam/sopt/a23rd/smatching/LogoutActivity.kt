@@ -16,7 +16,7 @@ class LogoutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage_setting_logout)
-
+/*
         act_mypage_setting_logout_no.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 finish()
@@ -30,6 +30,6 @@ class LogoutActivity : AppCompatActivity() {
                     startActivity<StartActivity>()
                 }
             }
-        })
+        })*/
     }
 }
