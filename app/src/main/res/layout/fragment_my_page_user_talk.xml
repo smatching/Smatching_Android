@@ -50,6 +50,7 @@
                     android:lineSpacingExtra="10sp"
                     android:layout_marginLeft="6dp"
                     android:text="닉네임"
+                    android:layout_marginRight="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView

@@ -30,6 +30,7 @@ import org.jetbrains.anko.textColor
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
 {
+    var index : Int = -1
     var pageNum: Int = 0
     var isSearch: Int = 0
     var time: Long = 0
@@ -413,5 +414,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     public fun setpageNum(num:Int)
     {
         pageNum = num
+    }
+    public fun replaceFragment(fragment: Fragment, index : Int){
+        this.index = index
+        val transaction: FragmentTransaction = supportFragmentManager!!.beginTransaction()
+        transaction.replace(R.id.act_bottom_navi_fl, fragment)
+        transaction.commit()
     }
 }

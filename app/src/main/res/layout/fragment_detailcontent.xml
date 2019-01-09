@@ -13,24 +13,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="90dp"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
                 android:src="@drawable/image_detail_blueboard"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:scaleType="fitXY"/>
             <LinearLayout
-                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
               <LinearLayout
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:orientation="horizontal">
+                  android:orientation="horizontal"
+                  android:layout_marginTop="16dp">
                   <TextView
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
@@ -55,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:layout_marginBottom="14dp"
-                    android:text="서비스 선도기업 육성(2019년 1차 수출지원기반활용사업 수출바우처(통합형)사업서비스 선도기업 육성(2019년 1차 수출지원기반활용사업 수출바우처(통합형)사업"
+                    android:text="서비스 선도기업 육성(2019년 1차 수출지원기반활용사업서비스 선도기업 육성(2019년 1차 수출지원기반활용사업 수출바우처(통합형)사업서비스 선도기업 육성(2019년 1차 수출지원기반활용사업 수출바우처(통합형)사업"
                     android:textColor="@color/colorBackground"
                     android:fontFamily="@font/nanumsquareb"/>
                 <RelativeLayout
@@ -84,6 +88,11 @@
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -194,7 +203,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -215,12 +225,18 @@
                 android:textColor="@color/colorText"
                 android:fontFamily="@font/nanumsquarer"/>
         </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <ImageView
             android:src="@drawable/img_precautionbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="21dp"
-            android:layout_marginBottom="150dp"/>
+            android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+
     </LinearLayout>
     </ScrollView>
 
@@ -230,7 +246,7 @@
     android:layout_height="47dp"
     android:layout_centerHorizontal="true"
     android:layout_alignParentBottom="true"
-    android:layout_marginBottom="119dp">
+    android:layout_marginBottom="100dp">
         <ImageView
             android:src="@drawable/floatingbar"
             android:layout_width="match_parent"
@@ -241,12 +257,14 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true">
             <ImageView
+                android:id="@+id/fragment_detailcontent_iv_call"
                 android:src="@drawable/icn_detailpage_calll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="22dp"
                 android:layout_alignParentLeft="true"/>
             <ImageView
+                android:id="@+id/fragment_detailcontent_iv_link"
                 android:src="@drawable/icn_detailpage_link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
