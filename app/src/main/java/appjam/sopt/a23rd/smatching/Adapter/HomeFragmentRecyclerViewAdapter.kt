@@ -29,6 +29,7 @@ class HomeFragmentRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
+
         holder.supervisor.text = dataList[position].institution
         if(dataList[position].dday.toString() > "1000") {
             holder.deadline.text = "예산 소진시"

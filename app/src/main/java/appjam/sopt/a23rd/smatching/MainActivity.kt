@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        nav_view.setNavigationItemSelectedListener(this)
+        //nav_view.setNavigationItemSelectedListener(this)
 
 
         act_main_loading.setOnTouchListener(View.OnTouchListener { v, event -> true })
@@ -142,13 +142,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         act_main_rl_home.setOnClickListener{
 
 
-            //act_main_rl_home.isEnabled = false
+            act_main_rl_home.isEnabled = false
+            act_main_rl_smatching.isEnabled = false
+            act_main_rl_talk.isEnabled = false
+            act_main_rl_my_page.isEnabled = false
             replaceFragment(HomeFragment())
-            /*
-            Handler().postDelayed(Runnable {
-                // TODO
-            }, 500)
-            act_main_rl_home.isEnabled = true*/
 
 
             //replaceFragment(CorporateDetailFragment())
@@ -168,9 +166,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             titleText.setText("")
             titleImage.visibility = View.VISIBLE
 
+            act_main_rl_home.isEnabled = true
+            act_main_rl_smatching.isEnabled = true
+            act_main_rl_talk.isEnabled = true
+            act_main_rl_my_page.isEnabled = true
+
         }
         act_main_rl_smatching.setOnClickListener{
-            //replaceFragment(CustomFirstFragment())
+            act_main_rl_home.isEnabled = false
+            act_main_rl_smatching.isEnabled = false
+            act_main_rl_talk.isEnabled = false
+            act_main_rl_my_page.isEnabled = false
+
             replaceFragment(SmatchingCustom())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
@@ -188,8 +195,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_iv_my_page.isSelected = false
             titleText.setText("맞춤지원")
             titleImage.visibility = View.INVISIBLE
+
+            act_main_rl_home.isEnabled = true
+            act_main_rl_smatching.isEnabled = true
+            act_main_rl_talk.isEnabled = true
+            act_main_rl_my_page.isEnabled = true
         }
         act_main_rl_talk.setOnClickListener{
+            act_main_rl_home.isEnabled = false
+            act_main_rl_smatching.isEnabled = false
+            act_main_rl_talk.isEnabled = false
+            act_main_rl_my_page.isEnabled = false
+
             replaceFragment(TalkFragment())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
@@ -207,8 +224,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_iv_my_page.isSelected = false
             titleText.setText("창업토크")
             titleImage.visibility = View.INVISIBLE
+
+            act_main_rl_home.isEnabled = true
+            act_main_rl_smatching.isEnabled = true
+            act_main_rl_talk.isEnabled = true
+            act_main_rl_my_page.isEnabled = true
         }
         act_main_rl_my_page.setOnClickListener{
+            act_main_rl_home.isEnabled = false
+            act_main_rl_smatching.isEnabled = false
+            act_main_rl_talk.isEnabled = false
+            act_main_rl_my_page.isEnabled = false
+
             replaceFragment(MyPageFragment())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBlue))
             titleText.setTextColor(Color.WHITE)
@@ -226,6 +253,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             titleText.setText("마이페이지")
             titleImage.visibility = View.INVISIBLE
+
+            act_main_rl_home.isEnabled = true
+            act_main_rl_smatching.isEnabled = true
+            act_main_rl_talk.isEnabled = true
+            act_main_rl_my_page.isEnabled = true
         }
 
         //configureBottomNavigation()

@@ -111,19 +111,16 @@ class Test2Activity : AppCompatActivity() {
             startActivity<SmatchingCustomCorporateDetailActivity>()
         }
 
-        act_test2_delete_ok.setOnClickListener {
-            deleteSmatchingCondsDeleteResponse(condIdx)
-        }
-
-
         act_test2_iv_text_delete.setOnClickListener {
             act_test2_et_title.setText("")
         }
-        act_test2_delete_no.setOnClickListener {
 
+        act_test2_delete_ok.setOnClickListener {
+            deleteSmatchingCondsDeleteResponse(condIdx)
+        }
+        act_test2_delete_no.setOnClickListener {
             act_test2_rl_delete.visibility = View.GONE
         }
-
         act_test2_tv_toolbar_text.setOnClickListener {
             act_test2_rl_delete.visibility = View.VISIBLE
         }

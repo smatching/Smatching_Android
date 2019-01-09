@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.util.Log
@@ -71,6 +72,7 @@ class MyPageFragment : Fragment(){
         smatchingScrapFragmentRecyclerViewAdapter = SmatchingScrapRecyclerViewAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
         fragment_my_page_user_rv.adapter = smatchingScrapFragmentRecyclerViewAdapter
         fragment_my_page_user_rv.layoutManager = LinearLayoutManager(activity)
+        fragment_my_page_user_rv.addItemDecoration(DividerItemDecoration(view!!.getContext(), 1))
     }
     private fun getSmatchingScrapListResponse(){
         val getSmatchingScrapListResponse = networkService.getSmatchingScrapListResponse(SharedPreferenceController.getAuthorization(activity!!),

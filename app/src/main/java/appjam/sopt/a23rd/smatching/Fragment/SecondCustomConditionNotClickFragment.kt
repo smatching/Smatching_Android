@@ -26,6 +26,8 @@ import retrofit2.Response
 import java.util.ArrayList
 
 class SecondCustomConditionNotClickFragment : Fragment(){
+    var loadingSecondCustomConditionNotClick = 0
+
     val dataList : ArrayList<CondSummaryListData> by lazy {
         ArrayList<CondSummaryListData>()
     }
@@ -38,19 +40,10 @@ class SecondCustomConditionNotClickFragment : Fragment(){
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        //
-        (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
-        (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
-        //
         fragment_second_custom_condition_notclick_rl_custom_custom.setOnClickListener {
             replaceFragment(SecondCustomConditionClickFragment())
         }
         getUserSmatchingCondResponse()
-
-        Handler().postDelayed({
-            (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
-        }, 1000)
     }
     private fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
@@ -63,6 +56,7 @@ class SecondCustomConditionNotClickFragment : Fragment(){
         transaction.commit()
     }
     private fun getUserSmatchingCondResponse(){
+        loadingSecondCustomConditionNotClick = 0
         val getUserSmatchingCondResponse = networkService.getUserSmatchingCondResponse(SharedPreferenceController.getAuthorization(activity!!))
         getUserSmatchingCondResponse.enqueue(object : Callback<GetUserSmatchingCondResponse> {
             override fun onFailure(call: Call<GetUserSmatchingCondResponse>, t: Throwable) {
@@ -70,12 +64,14 @@ class SecondCustomConditionNotClickFragment : Fragment(){
             }
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-                if (response.isSuccessful && response.body()!!.status == 200) {
-                    fragment_second_custom_condition_notclick_tv_name.text = response.body()!!.data.condSummaryList.get(1).condName
-                } else if(response.isSuccessful && (response.body()!!.status == 204 || response.body()!!.status == 206)) {
-                    replaceFragmentBody(SecondCustomConditionNotClickEmptyFragment())
+                if(response.isSuccessful) {
+                    if (response.body()!!.status == 200) {
+                        fragment_second_custom_condition_notclick_tv_name.text = response.body()!!.data.condSummaryList.get(1).condName
+                    } else if (response.body()!!.status == 204 || response.body()!!.status == 206) {
+                        replaceFragmentBody(SecondCustomConditionNotClickEmptyFragment())
+                    }
+                    loadingSecondCustomConditionNotClick
                 }
-
             }
         })
     }

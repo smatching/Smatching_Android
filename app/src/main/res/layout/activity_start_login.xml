@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,6 +10,122 @@
     android:orientation="vertical"
     android:focusableInTouchMode="true"
     android:background="@color/colorBackground">
+        <ScrollView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="40dp">
+                <ImageView
+                    android:id="@+id/act_main_iv_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="66dp"
+                    android:src="@drawable/logo" />
+
+                <RelativeLayout
+                    android:id="@+id/act_start_login_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:layout_below="@+id/act_main_iv_logo">
+                    <ImageView
+                        android:id="@+id/act_start_login_iv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="@null"
+                        android:src="@drawable/et_email" />
+                    <EditText
+                        android:id="@+id/act_start_login_et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorText"
+                        android:textSize="14sp"
+                        android:hint="이메일 주소 입력"
+                        android:textColorHint="@color/colorTextHint"
+                        android:background="@null"
+                        android:inputType="textEmailAddress"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="17dp"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:maxLength="15"
+                        android:maxLines = "2"/>
+                    <ImageView
+                        android:id="@+id/act_start_login_iv_email_delete"
+                        android:src="@drawable/btn_x"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_marginRight="4.5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/act_start_login_password"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="11dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="2">
+                    <ImageView
+                        android:id="@+id/act_start_login_iv_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="@null"
+                        android:src="@drawable/et_email" />
+                    <TextView
+                        android:id="@+id/act_start_login_tv_password_hint"
+                        android:text="비밀번호 입력"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="17dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorTextHint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"/>
+                    <EditText
+                        android:id="@+id/act_start_login_et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/colorTextHint"
+                        android:textColor="@color/colorText"
+                        android:textSize="14sp"
+                        android:background="@null"
+                        android:layout_centerVertical="true"
+                        android:maxLength="15"
+                        android:layout_marginHorizontal="17dp"
+                        android:singleLine="true"
+                        android:inputType="textPassword"/>
+                    <ImageView
+                        android:id="@+id/act_start_login_iv_password_delete"
+                        android:src="@drawable/btn_x"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_marginRight="4.5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/act_start_login_canclick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:layout_marginTop="25.2dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/btn_login"/>
+            </LinearLayout>
+        </ScrollView>
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -19,125 +135,4 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-<ScrollView
-    android:layout_centerInParent="true"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-        <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-        <ImageView
-            android:id="@+id/act_main_iv_logo"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:layout_gravity="center"
-            android:layout_marginBottom="66dp"
-            android:src="@drawable/logo" />
-
-        <RelativeLayout
-            android:id="@+id/act_start_login_email"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:layout_below="@+id/act_main_iv_logo">
-            <ImageView
-                android:id="@+id/act_start_login_iv_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@null"
-                android:src="@drawable/et_email" />
-            <EditText
-                android:id="@+id/act_start_login_et_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorText"
-                android:textSize="14sp"
-                android:hint="이메일 주소 입력"
-                android:textColorHint="@color/colorTextHint"
-                android:background="@null"
-                android:inputType="textEmailAddress"
-                android:layout_centerVertical="true"
-                android:layout_marginHorizontal="17dp"
-                android:fontFamily="@font/nanumsquareb"
-                android:maxLength="15"
-                android:maxLines = "2"/>
-            <ImageView
-                android:id="@+id/act_start_login_iv_email_delete"
-                android:src="@drawable/btn_x"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginRight="4.5dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/act_start_login_password"
-            android:layout_width="match_parent"
-            android:layout_marginTop="11dp"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-            <ImageView
-                android:id="@+id/act_start_login_iv_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@null"
-                android:src="@drawable/et_email" />
-            <TextView
-                android:id="@+id/act_start_login_tv_password_hint"
-                android:text="비밀번호 입력"
-                android:fontFamily="@font/nanumsquareb"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="17dp"
-                android:textSize="14sp"
-                android:textColor="@color/colorTextHint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="visible"/>
-            <EditText
-                android:id="@+id/act_start_login_et_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/colorTextHint"
-                android:textColor="@color/colorText"
-                android:textSize="14sp"
-                android:background="@null"
-                android:layout_centerVertical="true"
-                android:maxLength="15"
-                android:layout_marginHorizontal="17dp"
-                android:singleLine="true"
-                android:inputType="textPassword"/>
-            <ImageView
-                android:id="@+id/act_start_login_iv_password_delete"
-                android:src="@drawable/btn_x"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginRight="4.5dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true" />
-        </RelativeLayout>
-
-        <ImageView
-            android:id="@+id/act_start_login_canclick"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:layout_marginTop="25.2dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/btn_login"/>
-</LinearLayout>
-</ScrollView>
-    </RelativeLayout>
-
-
-</LinearLayout>
+</RelativeLayout>

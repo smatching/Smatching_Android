@@ -28,9 +28,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-
 class CustomFirstFragment : Fragment(){
+    var loadingFirstCustom1 = 0
+    var loadingFirstCustom2 = 0
     val dataList : ArrayList<NoticeData> by lazy {
         ArrayList<NoticeData>()
     }
@@ -42,21 +42,31 @@ class CustomFirstFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_first_custom, container, false)
     }
+/*
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if((Fragment() as CustomFirstFragment).loadingFirstCustom1 == 1
+                && (Fragment() as CustomFirstFragment).loadingFirstCustom2 == 1
+                && (Fragment() as FirstCustomConditionClickFragment).loadingFirstCustomConditionClick1 == 1
+                && (Fragment() as FirstCustomConditionClickFragment).loadingFirstCustomConditionClick2 == 1
+                && (Fragment() as FirstCustomConditionNotClickFragment).loadingFirstCustomConditionNotClick == 1
+                && (Fragment() as CustomSecondFragment).loadingSecondCustom1 == 1
+                && (Fragment() as CustomSecondFragment).loadingSecondCustom2 == 1
+                && (Fragment() as SecondCustomConditionClickFragment).loadingSecondCustomConditionClick1 == 1
+                && (Fragment() as SecondCustomConditionClickFragment).loadingSecondCustomConditionClick2 == 1
+                && (Fragment() as SecondCustomConditionNotClickFragment).loadingSecondCustomConditionNotClick == 1) {
+            (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+        }
+        else {
+            (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
+            (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
+        }
+    }*/
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        //
-        (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
-        (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
-        //
         replaceFragment(FirstCustomConditionNotClickFragment())
         getUserSmatchingCondResponse()
         setRecyclerView()
-
-        Handler().postDelayed({
-            (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
-        }, 1000)
-
     }
     private fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
@@ -81,6 +91,7 @@ class CustomFirstFragment : Fragment(){
 
     }
     private fun getCustomFirstFragmentListResponse(cond_idx:Int){
+        loadingFirstCustom1 = 0
         val getCustomFirstFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 999, 0, cond_idx)
         getCustomFirstFragmentListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
@@ -88,7 +99,7 @@ class CustomFirstFragment : Fragment(){
             }
 
             override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     if (response.body()!!.status == 204)
                         replaceFragmentContent(FirstCustomNullFragment())
                     else if (response.body()!!.status == 200 || response.body()!!.status == 206) {
@@ -99,11 +110,13 @@ class CustomFirstFragment : Fragment(){
                             customRecyclerViewAdapter.notifyItemInserted(position)
                         }
                     }
+                    loadingFirstCustom1 = 1
                 }
             }
         })
     }
     private fun getUserSmatchingCondResponse(){
+        loadingFirstCustom2 = 0
         val getUserSmatchingCondResponse = networkService.getUserSmatchingCondResponse(SharedPreferenceController.getAuthorization(activity!!))
         getUserSmatchingCondResponse.enqueue(object : Callback<GetUserSmatchingCondResponse> {
             override fun onFailure(call: Call<GetUserSmatchingCondResponse>, t: Throwable) {
@@ -111,11 +124,14 @@ class CustomFirstFragment : Fragment(){
             }
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-                if (response.isSuccessful && (response.body()!!.status == 200 || response.body()!!.status == 206)) {
-                    getCustomFirstFragmentListResponse(response.body()!!.data.condSummaryList.get(0).condIdx)
-                    fragment_first_custom_condition_notclick_tv_listsize.text = response.body()!!.data.condSummaryList.get(0).noticeCnt.toString()
-                } else if(response.isSuccessful && response.body()!!.status == 204){
-                    replaceFragmentBody(FirstCustomEmptyFragment())
+                if(response.isSuccessful) {
+                    if (response.body()!!.status == 200 || response.body()!!.status == 206) {
+                        getCustomFirstFragmentListResponse(response.body()!!.data.condSummaryList.get(0).condIdx)
+                        fragment_first_custom_condition_notclick_tv_listsize.text = response.body()!!.data.condSummaryList.get(0).noticeCnt.toString()
+                    } else if (response.body()!!.status == 204) {
+                        replaceFragmentBody(FirstCustomEmptyFragment())
+                    }
+                    loadingFirstCustom2 = 1
                 }
             }
         })

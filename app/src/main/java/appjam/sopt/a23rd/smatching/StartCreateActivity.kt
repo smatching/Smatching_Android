@@ -30,6 +30,11 @@ class StartCreateActivity : AppCompatActivity() {
         ApplicationController.instance.networkService
     }
 
+    var completeNickName = false
+    var completeNickEmail = false
+    var completePassword = false
+    var completePassword_confirm = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_create)
@@ -44,149 +49,176 @@ class StartCreateActivity : AppCompatActivity() {
         val password_hint = findViewById<TextView>(R.id.act_start_create_tv_password)
         val passwordagain_hint = findViewById<TextView>(R.id.act_start_create_tv_passwordagain)
 
-
         //툴바 부분
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
         supportActionBar!!.setTitle("")
 
-        val textWatcher = object : TextWatcher {
-            override fun afterTextChanged(edit: Editable) {
-                if (nickName.getText().toString().isEmpty() || email.getText().toString().isEmpty()
-                        || password.getText().toString().isEmpty() || password_confirm.getText().toString().isEmpty())
-                    act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
-                else
-                    act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
-
-                if(!nickName.text.toString().isEmpty())
+        nickName.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //여기서 받기
+                if(nickName.getText().toString().length != 0){
                     act_start_create_iv_nickname_delete.setVisibility(View.VISIBLE)
-                if(!password.text.toString().isEmpty())
-                    act_start_create_iv_password_delete.setVisibility(View.VISIBLE)
-                if(!password_confirm.text.toString().isEmpty())
-                    act_start_create_iv_passwordagain_delete.setVisibility(View.VISIBLE)
-
-            }
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-            }
-        }
-        nickName.setOnFocusChangeListener(object : View.OnFocusChangeListener {
-            override fun onFocusChange(v: View, hasFocus: Boolean) {
-                if (hasFocus || nickName.getText().toString().length != 0) {
                     act_start_create_iv_nickname.setImageResource(R.drawable.et_nickname_click)
-                    if(nickName.getText().toString().length != 0)
-                        act_start_create_iv_nickname_delete.setVisibility(View.VISIBLE)
-                }
-                    else {
+                    completeNickName = true
+                    if(completeNickName && completeNickEmail && completePassword && completePassword_confirm)
+                        act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
+                    else
+                        act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
+                } else if(nickName.text.toString().length == 0) {
                     act_start_create_iv_nickname_delete.setVisibility(View.INVISIBLE)
-                    act_start_create_iv_nickname.setImageResource(R.drawable.et_nickname)
+                    completeNickName = false
+                    if(completeNickName && completeNickEmail && completePassword && completePassword_confirm)
+                        act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
+                    else
+                        act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
                 }
             }
         })
-
-        //체킹
+        nickName.setOnFocusChangeListener(object : View.OnFocusChangeListener {
+            override fun onFocusChange(v: View, hasFocus: Boolean) {
+                if (hasFocus && nickName.getText().toString().length == 0) {
+                    act_start_create_iv_nickname.setImageResource(R.drawable.et_nickname_click)
+                } else if(!hasFocus && nickName.text.toString().length == 0)
+                    act_start_create_iv_nickname.setImageResource(R.drawable.et_nickname)
+            }
+        })
         email.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
             }
-
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 //여기서 받기
-                if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
-                        && email.getText().toString().length != 0){
-                    act_start_create_iv_email_delete.setVisibility(View.VISIBLE)
-                    act_start_create_iv_email.setImageResource(R.drawable.et_email_error)
-                    email.setOnFocusChangeListener(object : View.OnFocusChangeListener {
-                        override fun onFocusChange(v: View, hasFocus: Boolean) {
-                            if (!hasFocus)
-                                act_start_create_iv_email.setImageResource(R.drawable.et_email_error)
-                        }
-                    })
-                }
-                else if(android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
-                        && email.getText().toString().length != 0) {
-                    email.setOnFocusChangeListener(object : View.OnFocusChangeListener {
-                        override fun onFocusChange(v: View, hasFocus: Boolean) {
-                            if (!hasFocus)
-                                act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
-                            if(!email.text.toString().isEmpty())
-                                act_start_create_iv_email_delete.setVisibility(View.VISIBLE)
-                        }
-                    })
-
-                    act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
-                }
-                else if(email.text.toString().length == 0) {
+                if(email.text.toString().length == 0) {
                     act_start_create_iv_email_delete.setVisibility(View.INVISIBLE)
-                    act_start_create_iv_email.setImageResource(R.drawable.et_email)
-                    email.setOnFocusChangeListener(object : View.OnFocusChangeListener {
-                        override fun onFocusChange(v: View, hasFocus: Boolean) {
-                            if (!hasFocus)
-                                act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
-                            if(!email.text.toString().isEmpty())
-                                act_start_create_iv_email_delete.setVisibility(View.VISIBLE)
-                        }
-                    })
+                    completeNickEmail = false
+                    if(completeNickName && completeNickEmail && completePassword && completePassword_confirm)
+                        act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
+                    else
+                        act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
+                } else if(email.getText().toString().length != 0){
+                    act_start_create_iv_email_delete.setVisibility(View.VISIBLE)
+                    if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()) {
+                        act_start_create_iv_email.setImageResource(R.drawable.et_email_error)
+                        completeNickEmail = false
+                        if(completeNickName && completeNickEmail && completePassword && completePassword_confirm)
+                            act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
+                        else
+                            act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
+                    } else if(android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()) {
+                        act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
+                        completeNickEmail = true
+                        if(completeNickName && completeNickEmail && completePassword && completePassword_confirm)
+                            act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
+                        else
+                            act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
+                    }
                 }
             }
         })
         email.setOnFocusChangeListener(object : View.OnFocusChangeListener {
             override fun onFocusChange(v: View, hasFocus: Boolean) {
-                if (hasFocus)
+                if (hasFocus && email.getText().toString().length == 0) {
                     act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
-                else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
-                        && email.getText().toString().length != 0)
-                        act_start_create_iv_email.setImageResource(R.drawable.et_email_error)
-                else if(android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
-                        && email.getText().toString().length != 0)
-                    act_start_create_iv_email.setImageResource(R.drawable.et_email_click)
-                else if(email.text.toString().length == 0)
+                } else if(!hasFocus && email.text.toString().length == 0)
                     act_start_create_iv_email.setImageResource(R.drawable.et_email)
+            }
+        })
+        password.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //여기서 받기
+                if(password.getText().toString().length != 0){
+                    act_start_create_iv_password_delete.setVisibility(View.VISIBLE)
+                    password_hint.visibility = View.INVISIBLE
+                    if(password.getText().toString().length >= 8) {
+                        act_start_create_iv_password.setImageResource(R.drawable.et_password_click)
+                        completePassword = true
+                        if(completeNickName && completeNickEmail && completePassword && completePassword_confirm)
+                            act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
+                        else
+                            act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
+                    } else{
+                        act_start_create_iv_password.setImageResource(R.drawable.et_password_error)
+                        completePassword = false
+                        if(completeNickName && completeNickEmail && completePassword && completePassword_confirm)
+                            act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
+                        else
+                            act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
+                    }
+                } else if(password.text.toString().length == 0) {
+                    act_start_create_iv_password_delete.setVisibility(View.INVISIBLE)
+                    password_hint.visibility = View.VISIBLE
+                    completePassword = false
+                    if(completeNickName && completeNickEmail && completePassword && completePassword_confirm)
+                        act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
+                    else
+                        act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
+                }
             }
         })
         password.setOnFocusChangeListener(object : View.OnFocusChangeListener {
             override fun onFocusChange(v: View, hasFocus: Boolean) {
-                password.addTextChangedListener(textWatcher)
-                if (hasFocus || password.getText().toString().length != 0) {
+                if (hasFocus && password.getText().toString().length == 0)
                     act_start_create_iv_password.setImageResource(R.drawable.et_password_click)
-                    act_start_create_tv_password.setVisibility(View.GONE)
-                }
-                else {
+                else if(!hasFocus && password.getText().toString().length == 0)
                     act_start_create_iv_password.setImageResource(R.drawable.et_password)
-                    act_start_create_tv_password.setVisibility(View.VISIBLE)
+            }
+        })
+        password_confirm.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //여기서 받기
+                if(password_confirm.getText().toString().length != 0){
+                    act_start_create_iv_passwordagain_delete.setVisibility(View.VISIBLE)
+                    passwordagain_hint.visibility = View.INVISIBLE
+                    if(password_confirm.getText().toString().length >= 8 && password_confirm.text.toString() == password.text.toString()) {
+                        act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain_click)
+                        completePassword_confirm = true
+                        if(completeNickName && completeNickEmail && completePassword && completePassword_confirm)
+                            act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
+                        else
+                            act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
+                    } else{
+                        act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain_error)
+                        completePassword_confirm = false
+                        if(completeNickName && completeNickEmail && completePassword && completePassword_confirm)
+                            act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
+                        else
+                            act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
+                    }
+                } else if(password_confirm.text.toString().length == 0) {
+                    act_start_create_iv_passwordagain_delete.setVisibility(View.INVISIBLE)
+                    passwordagain_hint.visibility = View.VISIBLE
+                    completePassword_confirm = false
+                    if(completeNickName && completeNickEmail && completePassword && completePassword_confirm)
+                        act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount_canclick)
+                    else
+                        act_start_create_iv_createaccount.setImageResource(R.drawable.btn_createaccount)
                 }
             }
         })
         password_confirm.setOnFocusChangeListener(object : View.OnFocusChangeListener {
             override fun onFocusChange(v: View, hasFocus: Boolean) {
-                password_confirm.addTextChangedListener(textWatcher)
-                if (hasFocus) {
-                    act_start_create_tv_passwordagain.setVisibility(View.GONE)
+                if (hasFocus && password_confirm.getText().toString().length == 0)
                     act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain_click)
-                } else if (password_confirm.getText().toString().length != 0) {
-                    act_start_create_tv_passwordagain.setVisibility(View.GONE)
-                    if (password.getText().toString() != password_confirm.getText().toString())
-                        act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain_error)
-                    else
-                        act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain_click)
-                } else {
+                else if(!hasFocus && password_confirm.getText().toString().length == 0)
                     act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain)
-                    act_start_create_tv_passwordagain.setVisibility(View.VISIBLE)
-                    }
-             }
-          }
-        )
+            }
+        })
 
-
-        nickName.addTextChangedListener(textWatcher)
-        email.addTextChangedListener(textWatcher)
-        password.addTextChangedListener(textWatcher)
-        password_confirm.addTextChangedListener(textWatcher)
     }
     private fun setOnBtnClickListenter(){
         act_start_create_iv_createaccount.setOnClickListener {
@@ -194,15 +226,23 @@ class StartCreateActivity : AppCompatActivity() {
         }
         act_start_create_iv_nickname_delete.setOnClickListener{
             act_start_create_et_nickname.setText("")
+            act_start_create_iv_nickname.setImageResource(R.drawable.et_nickname)
+            act_start_create_iv_nickname_delete.setVisibility(View.INVISIBLE)
         }
         act_start_create_iv_email_delete.setOnClickListener{
             act_start_create_et_email.setText("")
+            act_start_create_iv_email.setImageResource(R.drawable.et_email)
+            act_start_create_iv_email_delete.setVisibility(View.INVISIBLE)
         }
         act_start_create_iv_password_delete.setOnClickListener{
             act_start_create_et_password.setText("")
+            act_start_create_iv_password.setImageResource(R.drawable.et_password)
+            act_start_create_iv_password_delete.setVisibility(View.INVISIBLE)
         }
         act_start_create_iv_passwordagain_delete.setOnClickListener{
             act_start_create_et_passwordagain.setText("")
+            act_start_create_iv_passwordagain.setImageResource(R.drawable.et_passwordagain)
+            act_start_create_iv_passwordagain_delete.setVisibility(View.INVISIBLE)
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -217,9 +257,7 @@ class StartCreateActivity : AppCompatActivity() {
     private fun getSignUpResponse() {
 
         //EditText에 있는 값 받기
-        if (act_start_create_et_nickname.text.toString().isNotEmpty() && act_start_create_et_email.text.toString().isNotEmpty()
-                && act_start_create_et_password.text.toString().isNotEmpty() && act_start_create_et_passwordagain.text.toString().isNotEmpty()
-                && act_start_create_et_password.text.toString() == act_start_create_et_passwordagain.text.toString()) {
+        if (completeNickName && completeNickEmail && completePassword && completePassword_confirm) {
 
             val input_nickname: String = act_start_create_et_nickname.text.toString()
             val input_email: String = act_start_create_et_email.text.toString()

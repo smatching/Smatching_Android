@@ -34,6 +34,7 @@ import com.airbnb.lottie.LottieAnimationView
 
 
 class HomeFragment : Fragment(){
+    var loadingHome = 0
     var mInstace : HomeFragment? = null
     val dataList : ArrayList<NoticeData> by lazy {
         ArrayList<NoticeData>()
@@ -53,6 +54,13 @@ class HomeFragment : Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if(loadingHome == 1 && (Fragment() as FirstFragment).loadingFirstFrag1 == 1 && (Fragment() as FirstFragment).loadingFirstFrag2 == 1
+                && (Fragment() as SecondFragment).loadingSecondFrag1 == 1 && (Fragment() as SecondFragment).loadingSecondFrag2 == 1) {
+            (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+        } else {
+            (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
+            (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
+        }
         /*
         if(arguments!!.getInt("mainState") == 1
                 && arguments!!.getInt("firstState") == 1
@@ -130,7 +138,7 @@ class HomeFragment : Fragment(){
         fragment_home_rv.layoutManager = LinearLayoutManager(activity)
     }
     private fun getAllNoticeListResponse(){
-
+        loadingHome = 0
         val getAllNoticeListResponse = networkService.getAllNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 4, 0)
         getAllNoticeListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
@@ -145,7 +153,7 @@ class HomeFragment : Fragment(){
                         for (a in 0..3)
                             homeRecyclerViewAdapter.dataList.add(temp.get(a))
                         homeRecyclerViewAdapter.notifyItemInserted(position)
-
+                        loadingHome = 1
                         //val state =  Bundle()
                         //state.putInt("mainState", 1)
                     }

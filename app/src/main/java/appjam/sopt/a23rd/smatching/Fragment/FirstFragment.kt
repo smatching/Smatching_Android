@@ -29,6 +29,8 @@ import android.support.v4.app.FragmentTransaction
 
 
 class FirstFragment : Fragment(){
+    var loadingFirstFrag1 = 0
+    var loadingFirstFrag2 = 0
     val dataList : ArrayList<NoticeData> by lazy {
         ArrayList<NoticeData>()
     }
@@ -45,8 +47,7 @@ class FirstFragment : Fragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //
-        (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
-        (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
+
         //
 
 
@@ -75,6 +76,7 @@ class FirstFragment : Fragment(){
         fragment_first_rv.layoutManager = LinearLayoutManager(activity)
     }
     private fun getFirstFitListResponse(cond_idx:Int){
+        loadingFirstFrag1 = 0
         val getCustomSecondFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 3, 0, cond_idx)
         getCustomSecondFragmentListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
@@ -83,9 +85,12 @@ class FirstFragment : Fragment(){
 
             override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
                 if (response.isSuccessful){
-                    if (response.body()!!.status == 204)
+                    if (response.body()!!.status == 204) {
                         replaceFragment(FirstNullFragment())
+                        fragment_first_ll_not_null.visibility = View.GONE
+                    }
                     else {
+                        fragment_first_ll_not_null.visibility = View.VISIBLE
                         val temp: ArrayList<NoticeData> = response.body()!!.data
                         if (temp.size > 0) {
                             val position = homeFragmentFragmentRecyclerViewAdapter.itemCount
@@ -99,11 +104,13 @@ class FirstFragment : Fragment(){
                             }
                         }
                     }
+                    loadingFirstFrag1 = 1
                 }
             }
         })
     }
     private fun getUserSmatchingCondResponse(){
+        loadingFirstFrag2 = 0
         val getUserSmatchingCondResponse = networkService.getUserSmatchingCondResponse(SharedPreferenceController.getAuthorization(activity!!))
         getUserSmatchingCondResponse.enqueue(object : Callback<GetUserSmatchingCondResponse> {
             override fun onFailure(call: Call<GetUserSmatchingCondResponse>, t: Throwable) {
@@ -113,15 +120,16 @@ class FirstFragment : Fragment(){
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
                 if (response.isSuccessful && response.body()!!.status == 204) {
                     replaceFragment(FirstEmptyFragment())
+                    fragment_first_ll_not_null.visibility = View.GONE
                 } else if ((response.isSuccessful && response.body()!!.status == 200)
                         || (response.isSuccessful && response.body()!!.status == 206)) {
+                    fragment_first_ll_not_null.visibility = View.VISIBLE
                     getFirstFitListResponse(response.body()!!.data.condSummaryList.get(0).condIdx)
                     fragment_first_tv_cnt.text = response.body()!!.data.condSummaryList.get(0).noticeCnt.toString()
                     fragment_first_tv_nickname.text = response.body()!!.data.nickname
                 }
 
-                val state =  Bundle()
-                state.putInt("firstState", 1)
+                loadingFirstFrag2 = 1
             }
         })
     }

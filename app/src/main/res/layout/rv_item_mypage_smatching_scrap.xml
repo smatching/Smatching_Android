@@ -4,6 +4,7 @@
     android:layout_height="71dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -31,17 +32,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"/>
-                <TextView
-                    android:id="@+id/rv_item_mypage_smatching_scrap_tv_dday"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/nanumsquareb"
-                    android:textColor="#bdbdbd"
-                    android:lineSpacingExtra="2sp"
-                    android:text="예산 소진시"
-                    />
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:id="@+id/rv_item_mypage_smatching_scrap_tv_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:textColor="#bdbdbd"
+                        android:lineSpacingExtra="2sp"
+                        android:text="D-"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/rv_item_mypage_smatching_scrap_tv_dday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/nanumsquareb"
+                        android:textColor="#bdbdbd"
+                        android:lineSpacingExtra="2sp"
+                        android:text=""
+                        />
+
+                </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
         <TextView
@@ -56,6 +77,7 @@
             />
     </LinearLayout>
     <ImageView
+        android:layout_marginTop="10dp"
         android:id="@+id/rv_item_mypage_smatching_scrap_iv_scrap"
         android:layout_alignParentRight="true"
         android:src="@drawable/icn_scrap_yellow"

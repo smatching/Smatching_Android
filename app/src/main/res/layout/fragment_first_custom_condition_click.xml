@@ -1,273 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="18dp">
+
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp">
-        <LinearLayout
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="7dp">
+            card_view:cardCornerRadius="10dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPaddingLeft="-5dp">
+
             <LinearLayout
-                android:id="@+id/fragment_first_custom_condition_click_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/fragment_first_custom_condition_click_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitXY"
+
+                            android:src="@drawable/image_blueboard"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="20dp">
+                            <TextView
+                                android:id="@+id/fragment_first_custom_condition_click_tv_smatching_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textSize="18sp"
+                                android:fontFamily="@font/nanumsquareb"
+                                android:textColor="#ffffff"/>
+                            <ImageView
+                                android:id="@+id/fragment_first_custom_condition_click_iv_back"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/icn_back_white_revers"/>
+
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:background="#ffffff"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <!--
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginTop="14dp"
+                                android:layout_marginBottom="10dp">
+                                <TextView
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="지역"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+
+                                <TextView
+                                    android:id="@+id/fragment_first_custom_condition_click_tv_location"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+                            </LinearLayout>
+                            -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginTop="14dp"
+                                android:layout_marginBottom="10dp">
+                                <TextView
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="나이"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+
+                                <TextView
+                                    android:id="@+id/fragment_first_custom_condition_click_tv_age"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:textSize="12sp"
+                                    android:lineSpacingExtra="4dp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginBottom="10dp">
+                                <TextView
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="설립 경과 년수"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+
+                                <TextView
+                                    android:id="@+id/fragment_first_custom_condition_click_tv_period"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:lineSpacingExtra="4dp"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginBottom="10dp">
+                                <TextView
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="기업형태"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+
+                                <TextView
+                                    android:id="@+id/fragment_first_custom_condition_click_tv_busiType"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:lineSpacingExtra="4dp"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginBottom="10dp">
+                                <TextView
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="업종"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+
+                                <TextView
+                                    android:id="@+id/fragment_first_custom_condition_click_tv_field"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:lineSpacingExtra="4dp"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginBottom="10dp">
+                                <TextView
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="필요 없는 지원"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+
+                                <TextView
+                                    android:id="@+id/fragment_first_custom_condition_click_tv_exceCategory"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:lineSpacingExtra="4dp"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginBottom="16dp">
+                                <TextView
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="우대사항"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+
+                                <TextView
+                                    android:id="@+id/fragment_first_custom_condition_click_tv_advantage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=""
+                                    android:lineSpacingExtra="4dp"
+                                    android:textSize="12dp"
+                                    android:fontFamily="@font/nanumsquarer"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <RelativeLayout
+                    android:id="@+id/fragment_first_custom_condition_click_tv_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:scaleType="fitXY"
-                        android:src="@drawable/image_blueboard"/>
+                        android:src="@drawable/image_whiteboard_underbar"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
                         android:layout_marginHorizontal="16dp">
-                        <TextView
-                            android:id="@+id/fragment_first_custom_condition_click_tv_smatching_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textSize="18sp"
-                            android:fontFamily="@font/nanumsquareb"
-                            android:textColor="#ffffff"/>
-                        <ImageView
-                            android:id="@+id/fragment_first_custom_condition_click_iv_back"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/icn_back_white_revers"/>
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:src="@drawable/icn_emptybox"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="이 조건에 대하여 알림받기"
+                                android:textColor="@color/colorText"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/nanumsquarer"/>
 
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="편집하기"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/nanumsquareb"/>
 
                     </RelativeLayout>
 
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:background="#ffffff"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <!--
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_marginTop="14dp"
-                            android:layout_marginBottom="10dp">
-                            <TextView
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:text="지역"
-                                android:textSize="12sp"
-                                android:fontFamily="@font/nanumsquarer"/>
-
-                            <TextView
-                                android:id="@+id/fragment_first_custom_condition_click_tv_location"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textSize="12sp"
-                                android:fontFamily="@font/nanumsquarer"/>
-                        </LinearLayout>
-                        -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_marginTop="14dp"
-                            android:layout_marginBottom="10dp">
-                            <TextView
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:text="나이"
-                                android:textSize="12sp"
-                                android:fontFamily="@font/nanumsquarer"/>
-
-                            <TextView
-                                android:id="@+id/fragment_first_custom_condition_click_tv_age"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:textSize="12sp"
-                                android:lineSpacingExtra="4dp"
-                                android:fontFamily="@font/nanumsquarer"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_marginBottom="10dp">
-                            <TextView
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:text="설립 경과 년수"
-                                android:textSize="12sp"
-                                android:fontFamily="@font/nanumsquarer"/>
-
-                            <TextView
-                                android:id="@+id/fragment_first_custom_condition_click_tv_period"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:lineSpacingExtra="4dp"
-                                android:textSize="12sp"
-                                android:fontFamily="@font/nanumsquarer"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_marginBottom="10dp">
-                            <TextView
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:text="기업형태"
-                                android:textSize="12sp"
-                                android:fontFamily="@font/nanumsquarer"/>
-
-                            <TextView
-                                android:id="@+id/fragment_first_custom_condition_click_tv_busiType"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:lineSpacingExtra="4dp"
-                                android:textSize="12sp"
-                                android:fontFamily="@font/nanumsquarer"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_marginBottom="10dp">
-                            <TextView
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:text="업종"
-                                android:textSize="12sp"
-                                android:fontFamily="@font/nanumsquarer"/>
-
-                            <TextView
-                                android:id="@+id/fragment_first_custom_condition_click_tv_field"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:lineSpacingExtra="4dp"
-                                android:textSize="12sp"
-                                android:fontFamily="@font/nanumsquarer"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_marginBottom="10dp">
-                            <TextView
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:text="필요 없는 지원"
-                                android:textSize="12sp"
-                                android:fontFamily="@font/nanumsquarer"/>
-
-                            <TextView
-                                android:id="@+id/fragment_first_custom_condition_click_tv_exceCategory"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:lineSpacingExtra="4dp"
-                                android:textSize="12sp"
-                                android:fontFamily="@font/nanumsquarer"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_marginBottom="16dp">
-                            <TextView
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:text="우대사항"
-                                android:textSize="12sp"
-                                android:fontFamily="@font/nanumsquarer"/>
-
-                            <TextView
-                                android:id="@+id/fragment_first_custom_condition_click_tv_advantage"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=""
-                                android:lineSpacingExtra="4dp"
-                                android:textSize="12dp"
-                                android:fontFamily="@font/nanumsquarer"/>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-
-                </RelativeLayout>
-            </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/fragment_first_custom_condition_click_tv_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/image_whiteboard_underbar"/>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp">
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:src="@drawable/icn_emptybox"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="이 조건에 대하여 알림받기"
-                            android:textColor="@color/colorText"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/nanumsquarer"/>
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_alignParentRight="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="편집하기"
-                        android:textColor="@color/colorBlue"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/nanumsquareb"/>
 
                 </RelativeLayout>
 
 
-            </RelativeLayout>
-
-
-        </LinearLayout>
+            </LinearLayout
+                >
+        </android.support.v7.widget.CardView>
     </RelativeLayout>
 
 
