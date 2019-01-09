@@ -6,20 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import appjam.sopt.a23rd.smatching.R
-import appjam.sopt.a23rd.smatching.Test2Activity
 import appjam.sopt.a23rd.smatching.TestActivity
-import kotlinx.android.synthetic.main.fragment_first_null.*
+import kotlinx.android.synthetic.main.fragment_first_empty.*
 import org.jetbrains.anko.support.v4.startActivity
 
-class FirstNullFragment : Fragment() {
+class FirstEmptyFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_first_null, container, false)
+        return inflater.inflate(R.layout.fragment_first_empty, container, false)
     }
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        frag_first_null_rl.setOnClickListener {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            startActivity<TestActivity>() //테슷흐
+        frag_first_empty_rl.setOnClickListener {
+            startActivity<TestActivity>()
         }
     }
 }

@@ -104,6 +104,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=""
+                                android:lineSpacingExtra="4dp"
                                 android:textSize="12sp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
@@ -124,6 +125,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=""
+                                android:lineSpacingExtra="4dp"
                                 android:textSize="12sp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
@@ -144,6 +146,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=""
+                                android:lineSpacingExtra="4dp"
                                 android:textSize="12sp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
@@ -164,6 +167,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=""
+                                android:lineSpacingExtra="4dp"
                                 android:textSize="12sp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
@@ -184,6 +188,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=""
+                                android:lineSpacingExtra="4dp"
                                 android:textSize="12sp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
@@ -191,7 +196,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
-                            android:layout_marginBottom="25dp">
+                            android:layout_marginBottom="16dp">
                             <TextView
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
@@ -204,6 +209,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=""
+                                android:lineSpacingExtra="4dp"
                                 android:textSize="12dp"
                                 android:fontFamily="@font/nanumsquarer"/>
                         </LinearLayout>
@@ -226,8 +232,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginHorizontal="16dp">
                     <LinearLayout
                         android:visibility="gone"
                         android:layout_width="match_parent"

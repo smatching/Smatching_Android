@@ -20,6 +20,7 @@ class MemberQuitActivity : AppCompatActivity() {
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage_setting_memberquit)
@@ -40,18 +41,19 @@ class MemberQuitActivity : AppCompatActivity() {
     private fun getDeleteUserInfoResponse() {
         val getDeleteUserInfoResponse = networkService.deleteUserInfoResponse(
                 SharedPreferenceController.getAuthorization(this@MemberQuitActivity!!))
-        getDeleteUserInfoResponse.enqueue(object : Callback<DeleteSmatchingCondsResponse>{
-            override fun onFailure(call: Call<DeleteSmatchingCondsResponse>, t : Throwable){
+        getDeleteUserInfoResponse.enqueue(object : Callback<DeleteSmatchingCondsResponse> {
+            override fun onFailure(call: Call<DeleteSmatchingCondsResponse>, t: Throwable) {
                 Log.e("Member Quit fail", t.toString())
             }
-            override fun onResponse(call: Call<DeleteSmatchingCondsResponse>, response: Response<DeleteSmatchingCondsResponse>){
+
+            override fun onResponse(call: Call<DeleteSmatchingCondsResponse>, response: Response<DeleteSmatchingCondsResponse>) {
                 if (response.isSuccessful) {
                     SharedPreferenceController.setAuthorization(this@MemberQuitActivity, "")
                     startActivity<StartActivity>()
                     toast("회원 탈퇴 되었습니다.\n스메칭을 이용해 주셔서 감사합니다:)")
-                    }
                 }
-            })
-        }
+            }
+        })
     }
+}
 

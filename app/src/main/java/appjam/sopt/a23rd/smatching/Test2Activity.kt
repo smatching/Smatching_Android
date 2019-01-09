@@ -38,6 +38,7 @@ import android.view.MotionEvent
 import appjam.sopt.a23rd.smatching.Delete.DeleteSmatchingCondsResponse
 import appjam.sopt.a23rd.smatching.Put.PutSmatchingCount
 import appjam.sopt.a23rd.smatching.post.PostSmatchingAdd
+import kotlinx.android.synthetic.main.activity_test.*
 import org.jetbrains.anko.startActivity
 
 
@@ -77,6 +78,7 @@ class Test2Activity : AppCompatActivity() {
     var tempCategoryCount = 0
     var state = 0
     var condIdx = 0
+    var size = 0
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -105,13 +107,28 @@ class Test2Activity : AppCompatActivity() {
             TEMPCATEGORYSBOOL[a] = CATEGORYSBOOL[a]
         act_test2_rl_popup_needless.setOnTouchListener(View.OnTouchListener { v, event -> true })
         act_test2_rl_popup_sector.setOnTouchListener(View.OnTouchListener { v, event -> true })
-        act_test_iv_detail.setOnClickListener {
+        act_test2_iv_detail.setOnClickListener {
             startActivity<SmatchingCustomCorporateDetailActivity>()
         }
 
+        act_test2_delete_ok.setOnClickListener {
+            deleteSmatchingCondsDeleteResponse(condIdx)
+        }
+
+
+        act_test2_iv_text_delete.setOnClickListener {
+            act_test2_et_title.setText("")
+        }
+        act_test2_delete_no.setOnClickListener {
+
+            act_test2_rl_delete.visibility = View.GONE
+        }
 
         act_test2_tv_toolbar_text.setOnClickListener {
-            deleteSmatchingCondsDeleteResponse(condIdx)
+            act_test2_rl_delete.visibility = View.VISIBLE
+        }
+        act_test2_rl_must_typing_ok.setOnClickListener {
+            act_test2_rl_must_typing.visibility = View.GONE
         }
 
         //region 나이 설정
@@ -158,7 +175,6 @@ class Test2Activity : AppCompatActivity() {
             }
         }
         //endregion
-
         //region 업종 설정
         //region 팝업부분
         act_test2_rl_busiType.setOnClickListener {
@@ -2082,11 +2098,18 @@ class Test2Activity : AppCompatActivity() {
         }
         //endregion
         //endregion
+
+        getUserSmatchingCondResponse()
+
         act_test2_rl.setOnClickListener {
-            if(state == 0)
-                postSmatchingCondsAddResponse()
-            else if(state == 1)
-                putUserSmatchingResponse(mCondIdx)
+            if (periodCount != 0 && busiTypeCount != 0 && advantageCount != 0 && fieldCount != 0 && categoryCount != 0 && advantageCount != 0) {
+                if (state == 0)
+                    postSmatchingCondsAddResponse()
+                else if (state == 1)
+                    putUserSmatchingResponse(mCondIdx)
+            }else {
+                act_test2_rl_must_typing.visibility = View.VISIBLE
+            }
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -2114,13 +2137,19 @@ class Test2Activity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-                if(response.isSuccessful && (response.body()!!.status == 206 || response.body()!!.status == 204)) {
+                if(response.isSuccessful && response.body()!!.status == 204) {
                     state = 0
+                    size = 0
+                    act_test2_tv_toolbar_text.visibility = View.INVISIBLE
+                } else if(response.isSuccessful && response.body()!!.status == 206)  {
+                    state = 0
+                    size = 1
                     act_test2_tv_toolbar_text.visibility = View.INVISIBLE
                 } else if (response.isSuccessful && response.body()!!.status == 200) {
                     mCondIdx = response.body()!!.data.condSummaryList.get(1).condIdx
                     getUserSmatchingListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
                     act_test2_et_title.setText(response.body()!!.data.condSummaryList.get(1).condName)
+                    size = 2
                     state = 1
                     condIdx = response.body()!!.data.condSummaryList.get(1).condIdx
                     act_test2_tv_toolbar_text.visibility = View.VISIBLE
@@ -2133,8 +2162,10 @@ class Test2Activity : AppCompatActivity() {
     {
         //region 요청바디에 들어갈 객체 생성
         var jsonObject = JsonObject() // 요청바디 전체 객체
-
-        jsonObject.addProperty("condName", act_test2_et_title.text.toString())
+        if(act_test2_et_title.text.toString() == "") {
+            jsonObject.addProperty("condName", "맞춤조건")
+        } else
+            jsonObject.addProperty("condName", act_test2_et_title.text.toString())
 
         var ageJson = JsonObject() // age 내부 객체
         for(a in 0..2)
@@ -2188,7 +2219,10 @@ class Test2Activity : AppCompatActivity() {
                 {
                     val refresh = Intent(this@Test2Activity, MainActivity::class.java )
                     refresh.putExtra("view", 1)
-                    refresh.putExtra("page", 1)
+                    if(size == 0)
+                        refresh.putExtra("page", 0)
+                    else
+                        refresh.putExtra("page", 1)
                     startActivity(refresh)//Start the same Activity
                     finish() //finish Activity.
                 }
@@ -2210,7 +2244,10 @@ class Test2Activity : AppCompatActivity() {
                 {
                     val refresh = Intent(this@Test2Activity, MainActivity::class.java )
                     refresh.putExtra("view", 1)
-                    refresh.putExtra("page", 1)
+                    if(size == 0)
+                        refresh.putExtra("page", 0)
+                    else
+                        refresh.putExtra("page", 1)
                     startActivity(refresh)//Start the same Activity
                     finish() //finish Activity.
                 }
@@ -2228,50 +2265,6 @@ class Test2Activity : AppCompatActivity() {
             override fun onResponse(call: Call<GetSmatchingListResponse>, response: Response<GetSmatchingListResponse>) {
                 if (response.isSuccessful)
                 {
-                    /*
-                    //region location
-                    var locationCount: Int = 0
-                    if(response.body()!!.data.location.aborad)
-                        locationCount++
-                    if(response.body()!!.data.location.busan)
-                        locationCount++
-                    if(response.body()!!.data.location.chungbuk)
-                        locationCount++
-                    if(response.body()!!.data.location.chungnam)
-                        locationCount++
-                    if(response.body()!!.data.location.daegu)
-                        locationCount++
-                    if(response.body()!!.data.location.daejeon)
-                        locationCount++
-                    if(response.body()!!.data.location.gangwon)
-                        locationCount++
-                    if(response.body()!!.data.location.gwangju)
-                        locationCount++
-                    if(response.body()!!.data.location.incheon)
-                        locationCount++
-                    if(response.body()!!.data.location.jeju)
-                        locationCount++
-                    if(response.body()!!.data.location.jeonbuk)
-                        locationCount++
-                    if(response.body()!!.data.location.jeonnam)
-                        locationCount++
-                    if(response.body()!!.data.location.kyungbuk)
-                        locationCount++
-                    if(response.body()!!.data.location.kyunggi)
-                        locationCount++
-                    if(response.body()!!.data.location.kyungnam)
-                        locationCount++
-                    if(response.body()!!.data.location.sejong)
-                        locationCount++
-                    if(response.body()!!.data.location.seoul)
-                        locationCount++
-                    if(response.body()!!.data.location.ulsan)
-                        locationCount++
-                    if(locationCount > 0)
-                        fragment_smatching_custom_location.setTextColor(resources.getColor(R.color.colorBlue))
-                    fragment_smatching_custom_location.text = locationCount.toString()
-                    //endregion
-                    */
                     //region age
                     if (response.body()!!.data.age.twenty_less) {
                         act_test2_iv_age20.setImageResource(R.drawable.btn_pick_age_20_click_blue)
@@ -2611,51 +2604,6 @@ class Test2Activity : AppCompatActivity() {
                         act_test2_tv_advantage_count.setTextColor(resources.getColor(R.color.colorBlue))
                     act_test2_tv_advantage_count.text = advantageCount.toString()
                     //endregion
-                    /* 테스트
-                                        //region 요청바디에 들어갈 객체 생성
-                                        var jsonObject = JsonObject() // 요청바디 전체 객체
-
-                                        jsonObject.addProperty("condName", act_test2_et_title.text.toString())
-
-                                        var ageJson = JsonObject() // age 내부 객체
-                                        for(a in 0..2)
-                                            ageJson.addProperty(AGESNAME[a], AGESBOOL[a])
-                                        jsonObject.add("age", ageJson)
-
-                                        var locationJson = JsonObject() // location 내부 객체
-                                        for(a in 0..17)
-                                            locationJson.addProperty(LOCATIONSNAME[a], LOCATIONSBOOL[a])
-                                        jsonObject.add("location", locationJson)
-
-                                        var periodJson = JsonObject() // period 내부 객체
-                                        for(a in 0..8)
-                                            periodJson.addProperty(PERIODSNAME[a], PERIODSBOOL[a])
-                                        jsonObject.add("period", periodJson)
-
-                                        var fieldJson = JsonObject() // field 내부 객체
-                                        for(a in 0..21)
-                                            fieldJson.addProperty(FIELDSNAME[a], FIELDSBOOL[a])
-                                        jsonObject.add("field", fieldJson)
-
-                                        var advantageJson = JsonObject() // advantage 내부 객체
-                                        for(a in 0..7)
-                                            advantageJson.addProperty(ADVANTAGESNAME[a], ADVANTAGESBOOL[a])
-                                        jsonObject.add("advantage", advantageJson)
-
-
-
-                                        var busiTypeJson = JsonObject() // busiType 내부 객체
-                                        for(a in 0..6)
-                                            busiTypeJson.addProperty(BUSITYPESNAME[a], BUSITYPESBOOL[a])
-                                        jsonObject.add("busiType", busiTypeJson)
-
-
-                                        var excCategoryJson = JsonObject() // excCategory 내부 객체
-                                        for(a in 0..7)
-                                            excCategoryJson.addProperty(CATEGORYSNAME[a], CATEGORYSBOOL[a])
-                                        jsonObject.add("excCategory", excCategoryJson)
-                                        //endregion
-                                        putSmatchingCondsCountResponse(jsonObject)*/
                 }
             }
         })
@@ -2664,8 +2612,10 @@ class Test2Activity : AppCompatActivity() {
     {
         //region 요청바디에 들어갈 객체 생성
         var jsonObject = JsonObject() // 요청바디 전체 객체
-
-        jsonObject.addProperty("condName", act_test2_et_title.text.toString())
+        if(act_test2_et_title.text.toString() == "") {
+            jsonObject.addProperty("condName", "맞춤조건")
+        } else
+            jsonObject.addProperty("condName", act_test2_et_title.text.toString())
 
         var ageJson = JsonObject() // age 내부 객체
         for (a in 0..2)
@@ -2717,10 +2667,12 @@ class Test2Activity : AppCompatActivity() {
             override fun onResponse(call: Call<PutSmatchingEdit>, response: Response<PutSmatchingEdit>) {
                 if (response.isSuccessful)
                 {
-
                     val refresh = Intent(this@Test2Activity, MainActivity::class.java )
                     refresh.putExtra("view", 1)
-                    refresh.putExtra("page", 1)
+                    if(size == 0)
+                        refresh.putExtra("page", 0)
+                    else
+                        refresh.putExtra("page", 1)
                     startActivity(refresh)//Start the same Activity
                     finish() //finish Activity.
                 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import appjam.sopt.a23rd.smatching.R
+import appjam.sopt.a23rd.smatching.Test2Activity
 import appjam.sopt.a23rd.smatching.TestActivity
 import kotlinx.android.synthetic.main.fragment_first_custom_null.*
 import kotlinx.android.synthetic.main.fragment_second_custom_null.*
@@ -18,7 +19,7 @@ class SecondCustomNullFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         frag_second_custom_null_rl.setOnClickListener {
-            startActivity<TestActivity>() //테슷흐
+            startActivity<Test2Activity>() //테슷흐
         }
     }
 }

@@ -1,6 +1,5 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
-import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,24 +11,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
-import appjam.sopt.a23rd.smatching.Adapter.HomeFragmentRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Adapter.HomeRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
 import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
-import appjam.sopt.a23rd.smatching.MainActivity
 import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
 import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.fragment_first.*
-import kotlinx.android.synthetic.main.fragment_second_custom.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
 import android.os.Handler
 import android.support.v4.app.FragmentTransaction
 
@@ -118,7 +112,7 @@ class FirstFragment : Fragment(){
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
                 if (response.isSuccessful && response.body()!!.status == 204) {
-                    replaceFragment(NullFragment())
+                    replaceFragment(FirstEmptyFragment())
                 } else if ((response.isSuccessful && response.body()!!.status == 200)
                         || (response.isSuccessful && response.body()!!.status == 206)) {
                     getFirstFitListResponse(response.body()!!.data.condSummaryList.get(0).condIdx)

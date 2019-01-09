@@ -14,30 +14,40 @@ import android.widget.TextView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.GravityCompat
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
+import appjam.sopt.a23rd.smatching.Delete.DeleteSmatchingCondsResponse
 import appjam.sopt.a23rd.smatching.Fragment.*
+import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
+import appjam.sopt.a23rd.smatching.network.ApplicationController
+import appjam.sopt.a23rd.smatching.network.NetworkService
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_mypage_setting_logout.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.nav_header_main.*
-import org.jetbrains.anko.find
-import org.jetbrains.anko.imageResource
-import org.jetbrains.anko.textColor
+import org.jetbrains.anko.*
+import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
-{
-    var index : Int = -1
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    var index: Int = -1
     var pageNum: Int = 0
     var isSearch: Int = 0
     var time: Long = 0
     lateinit var fragment: Fragment
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -72,9 +82,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val navi = ll_bottom_navi_act_main
 
+        act_main_dont_do_that
+
+        act_mypage_setting_memberquit_no.setOnClickListener {
+            act_main_dont_do_that.visibility = View.GONE
+        }
+        act_mypage_setting_memberquit_ok.setOnClickListener {
+            getDeleteUserInfoResponse()
+        }
+        act_mypage_setting_logout_ok.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View) {
+                if (SharedPreferenceController.getAuthorization(this@MainActivity).isNotEmpty()) {
+                    SharedPreferenceController.setAuthorization(this@MainActivity, "")
+                    toast("로그아웃이 정상적으로 처리 되었습니다.")
+                    startActivity<StartActivity>()
+                }
+            }
+        })
+        act_mypage_setting_logout_no.setOnClickListener {
+            act_main_rl_logout.visibility = View.GONE
+        }
+
+
         val intent = getIntent()
-        if (intent.getIntExtra("view", 0) == 1)
-        {
+        if (intent.getIntExtra("view", 0) == 1) {
             replaceFragment(SmatchingCustom())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
@@ -87,24 +118,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_iv_my_page.isSelected = false
             titleText.setText("맞춤지원")
             titleImage.visibility = View.INVISIBLE
-            if (intent.getIntExtra("page", 0) == 0)
-            {
+            if (intent.getIntExtra("page", 0) == 0) {
                 intent.removeExtra("page")
                 val fragIntent = intent
                 fragIntent.putExtra("page", 0)
-            }
-            else if (intent.getIntExtra("page", 0) == 1)
-            {
+            } else if (intent.getIntExtra("page", 0) == 1) {
                 intent.removeExtra("page")
                 val fragIntent = intent
                 fragIntent.putExtra("page", 1)
             }
         }
 
+
         //configureBottomNavigation()
 
 
-        act_main_rl_home.setOnClickListener{
+        act_main_rl_home.setOnClickListener {
 
 
             //act_main_rl_home.isEnabled = false
@@ -134,7 +163,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             titleImage.visibility = View.VISIBLE
 
         }
-        act_main_rl_smatching.setOnClickListener{
+        act_main_rl_smatching.setOnClickListener {
             //replaceFragment(CustomFirstFragment())
             replaceFragment(SmatchingCustom())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
@@ -154,7 +183,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             titleText.setText("맞춤지원")
             titleImage.visibility = View.INVISIBLE
         }
-        act_main_rl_talk.setOnClickListener{
+        act_main_rl_talk.setOnClickListener {
             replaceFragment(TalkFragment())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
@@ -173,7 +202,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             titleText.setText("창업토크")
             titleImage.visibility = View.INVISIBLE
         }
-        act_main_rl_my_page.setOnClickListener{
+        act_main_rl_my_page.setOnClickListener {
             replaceFragment(MyPageFragment())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBlue))
             titleText.setTextColor(Color.WHITE)
@@ -196,14 +225,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //configureBottomNavigation()
 
     }
+
     @SuppressLint("ResourceAsColor")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        when(item.getItemId())
-        {
-            android.R.id.home-> {
-                if (isSearch == 1)
-                {
+        when (item.getItemId()) {
+            android.R.id.home -> {
+                if (isSearch == 1) {
                     val mEditText = findViewById<TextView>(R.id.fragment_search_et_search)
                     val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                     inputMethodManager.hideSoftInputFromWindow(mEditText.windowToken, 0)
@@ -212,7 +240,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 replaceFragmentNum(pageNum)
                 return true
             }
-            R.id.menu_search-> {
+            R.id.menu_search -> {
                 isSearch = 1
 /*
                 val fr = SearchFragment()// Fragment Instance 설정
@@ -232,8 +260,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 act_bottom_navi_iv_title.visibility = View.INVISIBLE
                 return true
             }
-            R.id.menu_setting_white-> {
-              /*  isSearch = 1
+            R.id.menu_setting_white -> {
+                /*  isSearch = 1
 
                 val fr = SearchFragment()// Fragment Instance 설정
                 val fm = supportFragmentManager
@@ -284,12 +312,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             else -> return super.onOptionsItemSelected(item)
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         //return super.onCreateOptionsMenu(menu);
         val menuInflater = menuInflater
         menuInflater.inflate(R.menu.menu, menu)
         return true
     }
+
     /*
     private fun configureBottomNavigation(){
         vp_bottom_navi_act_frag_pager.adapter = FragmentStatePagerAdapter(supportFragmentManager, 4)
@@ -303,24 +333,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         tl_bottom_navi_act_bottom_menu.getTabAt(2)!!.customView = bottomNaviLayout.findViewById(R.id.bottom_navi_btn_tab_talk) as RelativeLayout
         tl_bottom_navi_act_bottom_menu.getTabAt(3)!!.customView = bottomNaviLayout.findViewById(R.id.bottom_navi_btn_tab_my_page) as RelativeLayout
     }*/
-    private fun addFragment(fragment : Fragment)
-    {
-        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+    private fun addFragment(fragment: Fragment) {
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.act_bottom_navi_fl, fragment)
         transaction.commit()
     }
 
-    private fun replaceFragment(fragment : Fragment)
-    {
-        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+    private fun replaceFragment(fragment: Fragment) {
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.act_bottom_navi_fl, fragment)
         transaction.commit()
     }
-    private fun replaceFragmentNum(int : Int)
-    {
-        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
-        if (int == 0)
-        {
+
+    private fun replaceFragmentNum(int: Int) {
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        if (int == 0) {
             fragment = HomeFragment()
             act_bottom_navi_tv_title.setText("")
             act_bottom_navi_iv_title.visibility = View.VISIBLE
@@ -331,9 +358,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-        }
-        else if (int == 1)
-        {
+        } else if (int == 1) {
             fragment = SmatchingCustom()
             act_bottom_navi_tv_title.setText("맞춤지원")
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
@@ -344,9 +369,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
 
-        }
-        else if (int == 2)
-        {
+        } else if (int == 2) {
             fragment = TalkFragment()
             act_bottom_navi_tv_title.setText("창업토크")
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
@@ -356,9 +379,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-        }
-        else if (int == 3)
-        {
+        } else if (int == 3) {
             fragment = MyPageFragment()
             act_bottom_navi_tv_title.setText("마이페이지")
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = true
@@ -373,20 +394,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         transaction.replace(R.id.act_bottom_navi_fl, fragment)
         transaction.commit()
     }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
-        when(item.itemId)
-        {
-            R.id.a-> {
+        when (item.itemId) {
+            R.id.a -> {
                 // Handle the camera action
             }
-            R.id.b-> {
+            R.id.b -> {
 
             }
-            R.id.c-> {
+            R.id.c -> {
 
             }
-            R.id.d-> {
+            R.id.d -> {
 
             }
         }
@@ -394,31 +415,48 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    override fun onBackPressed()
-    {
+    override fun onBackPressed() {
         //if (findViewById<ImageView>(R.id.home).visibility == View.VISIBLE)
         //     replaceFragmentNum(pageNum)
         //else {
-        if (System.currentTimeMillis() - time >= 2000)
-        {
+        if (System.currentTimeMillis() - time >= 2000) {
             time = System.currentTimeMillis()
             Toast.makeText(getApplicationContext(), "뒤로 버튼을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show()
-        }
-        else if (System.currentTimeMillis() - time < 2000)
-        {
+        } else if (System.currentTimeMillis() - time < 2000) {
             finish()
             finishAffinity()
             //   }
         }
     }
-    public fun setpageNum(num:Int)
-    {
+
+    public fun setpageNum(num: Int) {
         pageNum = num
     }
-    public fun replaceFragment(fragment: Fragment, index : Int){
+
+    public fun replaceFragment(fragment: Fragment, index: Int) {
         this.index = index
         val transaction: FragmentTransaction = supportFragmentManager!!.beginTransaction()
         transaction.replace(R.id.act_bottom_navi_fl, fragment)
         transaction.commit()
+
+    }
+
+    private fun getDeleteUserInfoResponse() {
+        val getDeleteUserInfoResponse = networkService.deleteUserInfoResponse(
+                SharedPreferenceController.getAuthorization(this@MainActivity))
+        getDeleteUserInfoResponse.enqueue(object : Callback<DeleteSmatchingCondsResponse> {
+            override fun onFailure(call: Call<DeleteSmatchingCondsResponse>, t: Throwable) {
+                Log.e("Member Quit fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<DeleteSmatchingCondsResponse>, response: Response<DeleteSmatchingCondsResponse>) {
+                if (response.isSuccessful) {
+                    SharedPreferenceController.setAuthorization(this@MainActivity, "")
+                    startActivity<StartActivity>()
+                    toast("회원 탈퇴 되었습니다.\n스메칭을 이용해 주셔서 감사합니다:)")
+                }
+            }
+        })
     }
 }
+
