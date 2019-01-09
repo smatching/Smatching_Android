@@ -7,10 +7,12 @@ import android.view.View
 import appjam.sopt.a23rd.smatching.Fragment.*
 import appjam.sopt.a23rd.smatching.R
 
-class MyFragmentStatePagerAdapter(fm: FragmentManager, var fragmentCount : Int): FragmentStatePagerAdapter(fm){
+class WorkthroughsPagerAdapter(fm: FragmentManager, var fragmentCount : Int): FragmentStatePagerAdapter(fm){
     override fun getItem(position: Int): Fragment? {
             when(position) {//자바에서의 switch
-                0 -> return FirstFragment()
+                0 -> return WorkthroughsFragment_1()
+                1 -> return WorkthroughsFragment_2()
+                2 -> return WorkthroughsFragment_3()
                 else -> return null
             }
     }

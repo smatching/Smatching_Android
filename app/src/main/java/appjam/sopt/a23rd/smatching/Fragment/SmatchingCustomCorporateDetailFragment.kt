@@ -70,12 +70,11 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         if(scrap == 1){
             fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_yellow)}
         else{
             fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_grey)}
+        getNoticeScrap()
 
         fragment_detailcontent_iv_call.setOnClickListener{
             if(phone != "")
@@ -162,7 +161,16 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
             override fun onResponse(call: Call<PutNoticeScrap>, response: Response<PutNoticeScrap>) {
                 if(response.isSuccessful){
                     Log.e("Scrap Select Success", response.body()!!.message)
-                    scrap = response.body()!!.data
+                    Log.e("Scrap Select Success", response.body()!!.data.toString())
+
+                    if(response.body()!!.data == 0) {
+                       scrap == 0
+                        fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_grey)
+                    }
+                    else{
+                        scrap = 1
+                        fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_yellow)
+                    }
                 }
             }
         })

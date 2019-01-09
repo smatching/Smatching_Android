@@ -15,6 +15,8 @@ import kotlin.coroutines.coroutineContext
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.widget.RelativeLayout
+import appjam.sopt.a23rd.smatching.Fragment.SmatchingCustomCorporateDetailFragment
+import appjam.sopt.a23rd.smatching.MainActivity
 import appjam.sopt.a23rd.smatching.Put.PutNoticeScrap
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
@@ -66,6 +68,9 @@ class SearchAdapter(val ctx : Context, val dataList : ArrayList<NoticeData>, val
                 dataList[position].scrap = 0
                 holder.scrap.setImageResource(R.drawable.icn_scrap_grey)
             }
+        }
+        holder.item.setOnClickListener {
+            (ctx as MainActivity).replaceFragment(SmatchingCustomCorporateDetailFragment(), dataList[position].noticeIdx)
         }
     }
 
