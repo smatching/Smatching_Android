@@ -53,7 +53,6 @@ class AllNoticeListFragment : Fragment(){
         allNoticeListFragmentRecyclerViewAdapter =  AllNoticeListFragmentRecyclerViewAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
         fragment_all_notice_list_rv.adapter = allNoticeListFragmentRecyclerViewAdapter
         fragment_all_notice_list_rv.layoutManager = LinearLayoutManager(activity)
-        fragment_all_notice_list_rv.addItemDecoration(DividerItemDecoration(view!!.getContext(), 1))
     }
     private fun getAllNoticeListFragmentResponse(){
 
