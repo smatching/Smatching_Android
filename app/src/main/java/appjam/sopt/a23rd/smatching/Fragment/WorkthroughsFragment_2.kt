@@ -6,7 +6,9 @@ import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import appjam.sopt.a23rd.smatching.R
+import appjam.sopt.a23rd.smatching.WorkthroughsPagerActivity
 import kotlinx.android.synthetic.main.fragment_my_page_user.*
 
 class WorkthroughsFragment_2 : Fragment() {
@@ -17,5 +19,10 @@ class WorkthroughsFragment_2 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+    }
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        if (isVisibleToUser) {
+            (activity as WorkthroughsPagerActivity).findViewById<TextView>(R.id.fragment_workthroughs_tv).visibility = View.VISIBLE
+        }
     }
 }

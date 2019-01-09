@@ -25,7 +25,7 @@ class WorkthroughsActivity : AppCompatActivity() {
 
         act_workthroughs.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
-                val intent = Intent(this@WorkthroughsActivity, WorkthroughsFragment_1::class.java)
+                val intent = Intent(this@WorkthroughsActivity, WorkthroughsPagerActivity::class.java)
                 startActivity(intent)
                 finish()
             }

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".WorkthroughsPagerActivity">
 
     <android.support.v4.view.ViewPager
@@ -16,6 +17,9 @@
         android:layout_alignParentTop="true">
         <android.support.design.widget.TabLayout
             android:id="@+id/act_workthroughs_pager_tab"
+            android:background="@color/colorBackground"
+            app:tabIndicatorColor="@color/colorBackground"
+            app:tabIndicatorHeight="0dp"
             android:layout_width="wrap_content"
             android:layout_height="8dp"
             android:layout_centerInParent="true"

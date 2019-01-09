@@ -37,6 +37,5 @@ class WorkthroughsPagerActivity : AppCompatActivity() {
                 finish()
             }
         })
-
     }
 }

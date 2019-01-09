@@ -12,7 +12,9 @@ class WorkthroughsPagerAdapter(fm: FragmentManager, var fragmentCount : Int): Fr
             when(position) {//자바에서의 switch
                 0 -> return WorkthroughsFragment_1()
                 1 -> return WorkthroughsFragment_2()
-                2 -> return WorkthroughsFragment_3()
+                2 -> {
+                    return WorkthroughsFragment_3()
+                }
                 else -> return null
             }
     }
