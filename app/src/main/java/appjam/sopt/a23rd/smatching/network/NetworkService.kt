@@ -83,6 +83,12 @@ interface NetworkService {
             @Header("Authorization") token : String,
             @Path("condIdx") cond_idx: Int
     ) : Call<DeleteSmatchingCondsResponse>
+    //지원사업 스크랩 여부 조회
+    @GET("/notices/scrap")
+    fun getNoticeScrap(
+            @Header("Authorization") token : String,
+            @Query("notice_idx") notice_idx: Int
+    ) : Call<PutNoticeScrap>
     //지원사업 스크랩 설정/해제
     @PUT("/notices/scrap/{noticeIdx}")
     fun putNoticeScrap(

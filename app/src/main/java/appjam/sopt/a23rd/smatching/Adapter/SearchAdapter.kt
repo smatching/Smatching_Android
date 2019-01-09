@@ -14,6 +14,7 @@ import org.jetbrains.anko.imageResource
 import kotlin.coroutines.coroutineContext
 import android.graphics.drawable.Drawable
 import android.util.Log
+import android.widget.RelativeLayout
 import appjam.sopt.a23rd.smatching.Put.PutNoticeScrap
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
@@ -74,6 +75,8 @@ class SearchAdapter(val ctx : Context, val dataList : ArrayList<NoticeData>, val
         val deadline : TextView = itemView.findViewById(R.id.rv_item_home_tv_deadline) as TextView
         val title : TextView = itemView.findViewById(R.id.rv_item_home_tv_title) as TextView
         val scrap : ImageView = itemView.findViewById(R.id.rv_item_home_iv_scrap) as ImageView
+        val item : RelativeLayout = itemView.findViewById(R.id.rv_item_home_rl_item) as RelativeLayout
+
     }
     private fun putNoticeScrap(noticeIdx : Int){
         val putNoticeScrap : Call<PutNoticeScrap> = networkService.putNoticeScrap(token, noticeIdx)

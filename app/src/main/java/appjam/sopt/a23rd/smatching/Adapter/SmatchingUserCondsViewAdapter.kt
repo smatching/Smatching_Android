@@ -8,8 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Data.NoticeData
+import appjam.sopt.a23rd.smatching.Fragment.SmatchingCustomCorporateDetailFragment
+import appjam.sopt.a23rd.smatching.MainActivity
 import appjam.sopt.a23rd.smatching.Put.PutNoticeScrap
 import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.network.ApplicationController
@@ -65,6 +68,9 @@ class SmatchingUserCondsViewAdapter(val ctx: Context, val dataList: ArrayList<No
                 holder.scrap.setImageResource(R.drawable.icn_scrap_grey)
             }
         }
+        holder.item.setOnClickListener {
+            (ctx as MainActivity).replaceFragment(SmatchingCustomCorporateDetailFragment(), dataList[position].noticeIdx)
+        }
 
     }
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -74,6 +80,8 @@ class SmatchingUserCondsViewAdapter(val ctx: Context, val dataList: ArrayList<No
         val title : TextView = itemView.findViewById(R.id.rv_item_home_tv_title) as TextView
         val scrap : ImageView = itemView.findViewById(R.id.rv_item_home_iv_scrap) as ImageView
         val width : LinearLayout = itemView.findViewById(R.id.rv_item_home_ll_dday) as LinearLayout
+        val item : RelativeLayout = itemView.findViewById(R.id.rv_item_home_rl_item) as RelativeLayout
+
     }
     private fun putNoticeScrap(noticeIdx : Int){
         val putNoticeScrap : Call<PutNoticeScrap> = networkService.putNoticeScrap(token, noticeIdx)

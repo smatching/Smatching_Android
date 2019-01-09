@@ -17,6 +17,7 @@ import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_detailcontent.*
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,13 +27,17 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
     var url : String = ""
     var phone : String = ""
     var noticeIdx : Int = -1
+    var scrap : Int = 0
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         noticeIdx = (activity as MainActivity).index
-        putNoticeScrap(noticeIdx)
-        putNoticeScrap(noticeIdx)
+        getNoticeScrap()
+        if(scrap == 1)
+            fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_yellow)
+        else
+            fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_grey)
         getDetailContentResponse()
         return inflater.inflate(R.layout.fragment_detailcontent, container, false)
     }
@@ -100,6 +105,21 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
                         fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_yellow)
                     else
                         fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_grey)
+                }
+            }
+        })
+    }
+    private fun getNoticeScrap(){
+        val getNoticeScrap = networkService.getNoticeScrap(SharedPreferenceController.getAuthorization(activity!!), noticeIdx)
+        getNoticeScrap.enqueue(object : Callback<PutNoticeScrap>{
+            override fun onFailure(call: Call<PutNoticeScrap>, t: Throwable) {
+                Log.e("Scrap Select Fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<PutNoticeScrap>, response: Response<PutNoticeScrap>) {
+                if(response.isSuccessful){
+                    Log.e("Scrap Select Success", response.body()!!.message)
+                    scrap = response.body()!!.data
                 }
             }
         })

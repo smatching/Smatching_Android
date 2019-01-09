@@ -74,9 +74,6 @@ class AllNoticeListFragmentRecyclerViewAdapter(val ctx: Context, val dataList: A
         }
         holder.item.setOnClickListener {
             (ctx as MainActivity).replaceFragment(SmatchingCustomCorporateDetailFragment(), dataList[position].noticeIdx)
-//            noticeIdx = dataList[position].noticeIdx
-//            var bundle = Bundle()
-//            bundle.putInt("key", noticeIdx)
         }
     }
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
