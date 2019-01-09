@@ -18,12 +18,14 @@ import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.Toast
 import appjam.sopt.a23rd.smatching.Delete.DeleteSmatchingCondsResponse
 import appjam.sopt.a23rd.smatching.Fragment.*
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
+import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_mypage_setting_logout.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -132,17 +134,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         act_main_rl_home.setOnClickListener {
 
+            //
+            findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
+            findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
 
-            //act_main_rl_home.isEnabled = false
+            act_main_rl_home.isEnabled = false
+            act_main_rl_smatching.isEnabled = false
+            act_main_rl_talk.isEnabled = false
+            act_main_rl_my_page.isEnabled = false
+
             replaceFragment(HomeFragment())
-            /*
-            Handler().postDelayed(Runnable {
-                // TODO
-            }, 500)
-            act_main_rl_home.isEnabled = true*/
-
-
-            //replaceFragment(CorporateDetailFragment())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
@@ -158,10 +159,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_iv_my_page.isSelected = false
             titleText.setText("")
             titleImage.visibility = View.VISIBLE
-
+            Handler().postDelayed({
+                findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+                act_main_rl_home.isEnabled = true
+                act_main_rl_smatching.isEnabled = true
+                act_main_rl_talk.isEnabled = true
+                act_main_rl_my_page.isEnabled = true
+            }, 1000)
         }
         act_main_rl_smatching.setOnClickListener {
-            //replaceFragment(CustomFirstFragment())
+            //
+            findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
+            findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
+            //
+            act_main_rl_home.isEnabled = false
+            act_main_rl_smatching.isEnabled = false
+            act_main_rl_talk.isEnabled = false
+            act_main_rl_my_page.isEnabled = false
             replaceFragment(SmatchingCustom())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
@@ -179,8 +193,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_iv_my_page.isSelected = false
             titleText.setText("맞춤지원")
             titleImage.visibility = View.INVISIBLE
+            Handler().postDelayed({
+                findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+                act_main_rl_home.isEnabled = true
+                act_main_rl_smatching.isEnabled = true
+                act_main_rl_talk.isEnabled = true
+                act_main_rl_my_page.isEnabled = true
+            }, 1000)
+
         }
         act_main_rl_talk.setOnClickListener {
+
+            act_main_rl_home.isEnabled = false
+            act_main_rl_smatching.isEnabled = false
+            act_main_rl_talk.isEnabled = false
+            act_main_rl_my_page.isEnabled = false
             replaceFragment(TalkFragment())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
@@ -198,8 +225,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_iv_my_page.isSelected = false
             titleText.setText("창업토크")
             titleImage.visibility = View.INVISIBLE
+
+            act_main_rl_home.isEnabled = true
+            act_main_rl_smatching.isEnabled = true
+            act_main_rl_talk.isEnabled = true
+            act_main_rl_my_page.isEnabled = true
         }
         act_main_rl_my_page.setOnClickListener {
+            //
+            findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
+            findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
+            //
+            act_main_rl_home.isEnabled = false
+            act_main_rl_smatching.isEnabled = false
+            act_main_rl_talk.isEnabled = false
+            act_main_rl_my_page.isEnabled = false
             replaceFragment(MyPageFragment())
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBlue))
             titleText.setTextColor(Color.WHITE)
@@ -209,6 +249,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
+            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search_white).isVisible = false
             pageNum = 3
             act_main_iv_home.isSelected = false
             act_main_iv_smatching.isSelected = false
@@ -217,6 +258,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             titleText.setText("마이페이지")
             titleImage.visibility = View.INVISIBLE
+            Handler().postDelayed({
+                findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+                act_main_rl_home.isEnabled = true
+                act_main_rl_smatching.isEnabled = true
+                act_main_rl_talk.isEnabled = true
+                act_main_rl_my_page.isEnabled = true
+            }, 1000)
         }
 
         //configureBottomNavigation()
@@ -250,6 +298,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     setTextColor(R.color.colorText)
                     setText("검색")
                 }
+                findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
+                supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+                supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
+
+                act_bottom_navi_iv_title.visibility = View.INVISIBLE
+                return true
+            }
+            R.id.menu_search_white -> {
+                isSearch = 1
+/*
+                val fr = SearchFragment()// Fragment Instance 설정
+                val fm = supportFragmentManager
+                val fragmentTransaction = fm.beginTransaction()// FragmentManager와 FragmentTransaction 얻어옴
+                fragmentTransaction.replace(R.id.act_bottom_navi_fl, fr)// 위에서 만든 Fragment Instance를 붙여줌
+                fragmentTransaction.commit()// 실행*/
+                replaceFragment(SearchFragment())
+                findViewById<TextView>(R.id.act_bottom_navi_tv_title).run {
+                    setTextColor(R.color.colorText)
+                    setText("검색")
+                }
+                findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
                 findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
                 supportActionBar!!.setDisplayHomeAsUpEnabled(true)
                 supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
@@ -350,7 +419,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_bottom_navi_iv_title.visibility = View.VISIBLE
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
+            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search_white).isVisible = false
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
+            findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
@@ -360,7 +431,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_bottom_navi_tv_title.setText("맞춤지원")
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
+            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search_white).isVisible = false
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
+            findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
@@ -371,7 +444,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_bottom_navi_tv_title.setText("창업토크")
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
+            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search_white).isVisible = false
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
+            findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
@@ -381,6 +456,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_bottom_navi_tv_title.setText("마이페이지")
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = true
+            findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search_white).isVisible = false
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false

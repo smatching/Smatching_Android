@@ -75,6 +75,11 @@ class HomeRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<NoticeDa
         holder.item.setOnClickListener {
             (ctx as MainActivity).replaceFragment(SmatchingCustomCorporateDetailFragment(), dataList[position].noticeIdx)
         }
+        if(currentView == 0) {
+            holder.line.visibility = View.INVISIBLE
+        } else {
+            holder.line.visibility = View.VISIBLE
+        }
 
     }
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -85,6 +90,7 @@ class HomeRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<NoticeDa
         val scrap : ImageView = itemView.findViewById(R.id.rv_item_home_iv_scrap) as ImageView
         val width : LinearLayout = itemView.findViewById(R.id.rv_item_home_ll_dday) as LinearLayout
         val item : RelativeLayout = itemView.findViewById(R.id.rv_item_home_rl_item) as RelativeLayout
+        val line : ImageView = itemView.findViewById(R.id.rv_item_home_iv_line) as ImageView
     }
     private fun putNoticeScrap(noticeIdx : Int){
         val putNoticeScrap : Call<PutNoticeScrap> = networkService.putNoticeScrap(token, noticeIdx)

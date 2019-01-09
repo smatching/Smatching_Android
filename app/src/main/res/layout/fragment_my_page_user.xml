@@ -49,7 +49,7 @@
                     android:letterSpacing="0.02"
                     android:lineSpacingExtra="10sp"
                     android:layout_marginLeft="6dp"
-                    android:text="닉네임"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="4dp"/>
@@ -162,7 +162,7 @@
                         android:layout_height="wrap_content" />
                     <TextView
                         android:id="@+id/fragment_my_page_user_tv_scrapCnt"
-                        android:text="몇"
+                        android:text=""
                         android:textSize="12sp"
                         android:layout_marginLeft="4dp"
                         android:textColor="@color/colorText"
@@ -190,8 +190,26 @@
 
         </RelativeLayout>
 
-
         <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/frag_mypage_user_search_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="18dp">
+            <ImageView
+                android:background="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_mypage_scrapbox_bottom"/>
+            <ImageView
+                android:layout_marginTop="80dp"
+                android:src="@drawable/img_searchresultnone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/fragment_mypage_user_search_list_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="18dp">

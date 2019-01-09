@@ -54,13 +54,14 @@ class HomeFragment : Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        /*
         if(loadingHome == 1 && (Fragment() as FirstFragment).loadingFirstFrag1 == 1 && (Fragment() as FirstFragment).loadingFirstFrag2 == 1
                 && (Fragment() as SecondFragment).loadingSecondFrag1 == 1 && (Fragment() as SecondFragment).loadingSecondFrag2 == 1) {
             (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
         } else {
             (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
             (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
-        }
+        }*/
         /*
         if(arguments!!.getInt("mainState") == 1
                 && arguments!!.getInt("firstState") == 1
@@ -108,6 +109,7 @@ class HomeFragment : Fragment(){
             //(activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = true
             (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
+            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search_white).isVisible = false
             (activity as AppCompatActivity).findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
             (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_home).isSelected = false
             (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_smatching).isSelected = true
@@ -123,6 +125,7 @@ class HomeFragment : Fragment(){
             (activity as AppCompatActivity).supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
             //(activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false ??
             (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
+            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search_white).isVisible = false
 //            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_talk).isSelected = false
 //            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_my_page).isSelected = false
             (activity as AppCompatActivity).findViewById<TextView>(R.id.act_bottom_navi_tv_title).setText("전체공고")

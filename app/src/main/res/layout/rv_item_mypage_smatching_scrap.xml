@@ -5,9 +5,9 @@
     android:layout_height="71dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,6 +76,11 @@
             android:lineSpacingExtra="3sp"
             android:text="2019년 말레이시아 쿠알라룸푸르 할랄 전시회(MIHAS) 한국관 참가기업 모집 공고"
             />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="7dp"
+            android:src="@drawable/line"/>
     </LinearLayout>
     <ImageView
         android:layout_marginTop="10dp"
@@ -84,6 +89,7 @@
         android:src="@drawable/icn_scrap_yellow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
 </RelativeLayout>
 
 

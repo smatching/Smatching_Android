@@ -2,8 +2,10 @@ package appjam.sopt.a23rd.smatching.Fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
@@ -11,6 +13,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Adapter.SmatchingScrapRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Data.NoticeData
@@ -22,6 +25,7 @@ import appjam.sopt.a23rd.smatching.R
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
+import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.fragment_my_page_user.*
 import kotlinx.android.synthetic.main.fragment_mypage_setting_memberinfo.*
 import org.jetbrains.anko.support.v4.toast
@@ -43,10 +47,17 @@ class MyPageFragment : Fragment(){
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //
+        (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
+        (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
+        //
+
         getSmatchingScrapListResponse()
 
-        (activity as MainActivity).setpageNum(3) //정호의 편지: 안녕!
-
+        (activity as MainActivity).setpageNum(3)
+        Handler().postDelayed({
+            (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+        }, 1000)
       /*  fragment_my_page_user_rl_profile.setOnClickListener{
             replaceFragment(MyPageSettingMemberInfoFragment())
         }
@@ -56,6 +67,9 @@ class MyPageFragment : Fragment(){
         }
         fragment_my_page_user_smatchingscrap.setOnClickListener{
             replaceFragment(MyPageFragment())
+        }
+        fragment_mypage_user_btn_search.setOnClickListener {
+            getScrapSearchResponse()
         }
 
         /*
@@ -72,7 +86,6 @@ class MyPageFragment : Fragment(){
         smatchingScrapFragmentRecyclerViewAdapter = SmatchingScrapRecyclerViewAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
         fragment_my_page_user_rv.adapter = smatchingScrapFragmentRecyclerViewAdapter
         fragment_my_page_user_rv.layoutManager = LinearLayoutManager(activity)
-        fragment_my_page_user_rv.addItemDecoration(DividerItemDecoration(view!!.getContext(), 1))
     }
     private fun getSmatchingScrapListResponse(){
         val getSmatchingScrapListResponse = networkService.getSmatchingScrapListResponse(SharedPreferenceController.getAuthorization(activity!!),
@@ -96,6 +109,36 @@ class MyPageFragment : Fragment(){
                         val position = smatchingScrapFragmentRecyclerViewAdapter.itemCount
                         val scrapCnt: TextView = view!!.findViewById(R.id.fragment_my_page_user_tv_scrapCnt)
                         scrapCnt.setText(temp.size.toString())
+                        smatchingScrapFragmentRecyclerViewAdapter.dataList.addAll(temp)
+                        smatchingScrapFragmentRecyclerViewAdapter.notifyItemInserted(position)
+                    }
+                }
+            }
+        })
+    }
+    private fun getScrapSearchResponse() {
+        val query: String = fragment_mypage_user_et_search.text.toString()
+        val getScrapSearchResponse = networkService.getScrapSearchResponse(SharedPreferenceController.getAuthorization(activity!!), query, 999, 0)
+        getScrapSearchResponse.enqueue(object : Callback<GetNoticeListResponse>{
+            override fun onFailure(call: Call<GetNoticeListResponse>, t : Throwable){
+                Log.e("response body fail", t.toString())
+            }
+            override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>){
+                if (response.isSuccessful) {
+                    if(response.body()!!.status == 204) {
+                        frag_mypage_user_search_rl.visibility = View.VISIBLE
+                        fragment_mypage_user_search_list_ll.visibility = View.GONE
+                        fragment_my_page_user_tv_scrapCnt.text = "0"
+                    }
+                    else if(response.body()!!.status == 200) {
+                        frag_mypage_user_search_rl.visibility = View.GONE
+                        fragment_mypage_user_search_list_ll.visibility = View.VISIBLE
+                        setRecyclerView()
+                        val temp: ArrayList<NoticeData> = response.body()!!.data
+                        val position = smatchingScrapFragmentRecyclerViewAdapter.itemCount
+                        val scrapCnt: TextView = fragment_my_page_user_tv_scrapCnt
+                        scrapCnt.setText(temp.size.toString())
+                        smatchingScrapFragmentRecyclerViewAdapter.dataList.clear()
                         smatchingScrapFragmentRecyclerViewAdapter.dataList.addAll(temp)
                         smatchingScrapFragmentRecyclerViewAdapter.notifyItemInserted(position)
                     }

@@ -107,6 +107,14 @@ interface NetworkService {
             @Query("request_num") request_num : Int,
             @Query("exist_num") exist_num : Int
     ) : Call<GetNoticeListResponse>
+    //맞춤지원 스크랩에서 검색
+    @GET("/search/notices/scrap")
+    fun getScrapSearchResponse(
+            @Header("Authorization") token : String,
+            @Query("query") query : String,
+            @Query("request_num") request_num : Int,
+            @Query("exist_num") exist_num : Int
+    ) : Call<GetNoticeListResponse>
     //회원정보 조회
     @GET("/users/edit")
     fun getUserInfo(

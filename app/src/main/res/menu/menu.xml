@@ -18,6 +18,12 @@
         android:icon="@drawable/icn_setting_white"
         android:visible="false"
         app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/menu_search_white"
+        android:title="Setting"
+        android:icon="@drawable/icn_ios_search_white"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
 <!--
     <item android:id="@+id/menu_notice_white"
         android:title="Setting"

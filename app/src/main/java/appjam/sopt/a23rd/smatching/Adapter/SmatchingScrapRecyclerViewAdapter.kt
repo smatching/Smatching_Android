@@ -1,6 +1,7 @@
 package appjam.sopt.a23rd.smatching.Adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -45,10 +46,16 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
         if(dataList[position].dday.toString() > "1000") {
             holder.dday.text = "예산 소진시"
             holder.day.text = ""
+            holder.ddayImg.setImageResource(R.drawable.txt_budgetend_box)
         }
         else {
             holder.dday.text = dataList[position].dday.toString()
             holder.day.text = "D-"
+            if(dataList[position].dday.toString() < "7") {
+                holder.day.setTextColor(Color.parseColor("#BF7474"))
+                holder.dday.setTextColor(Color.parseColor("#BF7474"))
+                holder.ddayImg.setImageResource(R.drawable.box_dday_red)
+            }
         }
         holder.title.text = dataList[position].title
         // 스크랩이 되지 않았을 경우

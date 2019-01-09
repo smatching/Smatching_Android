@@ -38,10 +38,17 @@ class FirstCustomConditionNotClickFragment : Fragment(){
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        //
+        (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
+        (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
+        //
         fragment_first_custom_condition_notclick_rl_custom_custom.setOnClickListener {
             replaceFragment(FirstCustomConditionClickFragment())
         }
         getUserSmatchingCondResponse()
+        Handler().postDelayed({
+            (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+        }, 1000)
     }
     private fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()

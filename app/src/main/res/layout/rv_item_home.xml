@@ -80,6 +80,12 @@
 
         </RelativeLayout>
 
+        <ImageView
+            android:id="@+id/rv_item_home_iv_line"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="7dp"
+            android:src="@drawable/line"/>
 
     </LinearLayout>
 

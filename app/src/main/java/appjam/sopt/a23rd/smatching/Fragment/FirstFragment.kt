@@ -53,7 +53,6 @@ class FirstFragment : Fragment(){
 
         setRecyclerView()
         getUserSmatchingCondResponse()
-
         Handler().postDelayed({
             (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
         }, 1000)

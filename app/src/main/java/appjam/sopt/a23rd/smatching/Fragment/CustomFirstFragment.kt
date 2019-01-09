@@ -87,7 +87,6 @@ class CustomFirstFragment : Fragment(){
         customRecyclerViewAdapter =  CustomRecyclerViewAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
         fragment_first_custom_condition_rv.adapter = customRecyclerViewAdapter
         fragment_first_custom_condition_rv.layoutManager = LinearLayoutManager(activity)
-        fragment_first_custom_condition_rv.addItemDecoration(DividerItemDecoration(view!!.getContext(), 1))
 
     }
     private fun getCustomFirstFragmentListResponse(cond_idx:Int){

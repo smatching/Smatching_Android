@@ -56,7 +56,6 @@ class SearchFragment : Fragment() {
         searchAdapter = SearchAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
         fragment_search_list_rv.adapter = searchAdapter
         fragment_search_list_rv.layoutManager = LinearLayoutManager(activity)
-        fragment_search_list_rv.addItemDecoration(DividerItemDecoration(view!!.getContext(), 1))
     }
 
     private fun getSearchResponse() {
