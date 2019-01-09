@@ -39,15 +39,15 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        if(scrap == 1)
-            fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_yellow)
-        else
-            fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_grey)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fragment_detailcontent_iv_call.setOnClickListener{
+        if(scrap == 1){
+            fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_yellow)}
+        else{
+            fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_grey)}
 
+        fragment_detailcontent_iv_call.setOnClickListener{
         }
         fragment_detailcontent_iv_link.setOnClickListener{
 
