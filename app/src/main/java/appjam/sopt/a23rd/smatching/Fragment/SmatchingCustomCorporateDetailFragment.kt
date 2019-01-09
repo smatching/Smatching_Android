@@ -34,16 +34,15 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         noticeIdx = (activity as MainActivity).index
         getNoticeScrap()
-        if(scrap == 1)
-            fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_yellow)
-        else
-            fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_grey)
         getDetailContentResponse()
         return inflater.inflate(R.layout.fragment_detailcontent, container, false)
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        if(scrap == 1)
+            fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_yellow)
+        else
+            fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_grey)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -100,10 +99,14 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
             override fun onResponse(call: Call<PutNoticeScrap>, response: Response<PutNoticeScrap>) {
                 if(response.isSuccessful){
                     Log.e("Scrap Setting Success ", response.body()!!.message)
-                    if(response.body()!!.data == 1)
+                    if(scrap == 0) {
                         fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_yellow)
-                    else
+                        scrap = 1
+                    }
+                    else{
                         fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_grey)
+                        scrap = 0
+                    }
                 }
             }
         })
