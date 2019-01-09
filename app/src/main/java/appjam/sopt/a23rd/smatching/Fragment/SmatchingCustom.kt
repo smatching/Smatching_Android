@@ -25,6 +25,7 @@ class SmatchingCustom : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         val mViewPager = view.findViewById<ViewPager>(R.id.fragment_smatching_vp)
         val mTabLayout = view.findViewById<TabLayout>(R.id.fragment_smatching_tab)
         val bottomNaviLayout : View = activity!!.layoutInflater.inflate(R.layout.home_navigation_tab, null, false)//inflate뷰를 붙여줌

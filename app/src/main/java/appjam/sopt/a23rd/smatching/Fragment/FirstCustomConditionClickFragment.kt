@@ -31,6 +31,8 @@ import retrofit2.Response
 import java.util.*
 
 class FirstCustomConditionClickFragment : Fragment(){
+    var loadingFirstCustomConditionClick1 = 0
+    var loadingFirstCustomConditionClick2 = 0
     val dataList : ArrayList<CondSummaryListData> by lazy {
         ArrayList<CondSummaryListData>()
     }
@@ -42,11 +44,6 @@ class FirstCustomConditionClickFragment : Fragment(){
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //
-        (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
-        (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
-        //
-
         fragment_first_custom_condition_click_ll.setOnClickListener {
             replaceFragment(FirstCustomConditionNotClickFragment())
         }
@@ -54,10 +51,6 @@ class FirstCustomConditionClickFragment : Fragment(){
             startActivity<TestActivity>()
         }
         getUserSmatchingCondResponse()
-
-        Handler().postDelayed({
-            (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
-        }, 1000)
     }
     private fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
@@ -70,6 +63,7 @@ class FirstCustomConditionClickFragment : Fragment(){
         transaction.commit()
     }
     private fun getUserSmatchingCondResponse(){
+        loadingFirstCustomConditionClick1 = 0
         val getUserSmatchingCondResponse = networkService.getUserSmatchingCondResponse(SharedPreferenceController.getAuthorization(activity!!))
         getUserSmatchingCondResponse.enqueue(object : Callback<GetUserSmatchingCondResponse> {
             override fun onFailure(call: Call<GetUserSmatchingCondResponse>, t: Throwable) {
@@ -80,6 +74,7 @@ class FirstCustomConditionClickFragment : Fragment(){
                 if (response.isSuccessful && response.body()!!.data.condSummaryList.get(0) != null) {
                     getUserSmatchingListResponse(response.body()!!.data.condSummaryList.get(0).condIdx)
                     fragment_first_custom_condition_click_tv_smatching_name.text = response.body()!!.data.condSummaryList.get(0).condName
+                    loadingFirstCustomConditionClick1 = 1
                 }
             }
         }
@@ -87,6 +82,7 @@ class FirstCustomConditionClickFragment : Fragment(){
     }
 
     private fun getUserSmatchingListResponse(condIdx: Int){
+        loadingFirstCustomConditionClick2 = 0
         val getUserSmatchingListResponse = networkService.getSmatchingCondsResponse(condIdx)
         getUserSmatchingListResponse.enqueue(object : Callback<GetSmatchingListResponse> {
             override fun onFailure(call: Call<GetSmatchingListResponse>, t: Throwable) {
@@ -243,6 +239,8 @@ class FirstCustomConditionClickFragment : Fragment(){
                             .replace("[", "")  //remove the right bracket
                             .replace("]", "")  //remove the left bracket
                     //endregion
+
+                    loadingFirstCustomConditionClick2 = 1
                 }
             }
         })

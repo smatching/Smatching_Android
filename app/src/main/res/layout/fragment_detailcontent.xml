@@ -21,12 +21,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <ImageView
-                android:src="@drawable/image_detail_blueboard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"/>
             <LinearLayout
+                android:background="@color/colorBlue"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -41,25 +37,28 @@
                       android:layout_marginLeft="24dp"
                       android:layout_marginBottom="11dp"
                       android:text="공고일 | "
+                      android:textSize="10sp"
                       android:textColor="@color/colorBackground"
                       android:fontFamily="@font/nanumsquarer"/>
                   <TextView
-                  android:id="@+id/fragment_detailcontent_tv_update_date"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginBottom="11dp"
-                  android:text="2018/12/23 16:49"
-                  android:textColor="@color/colorBackground"
-                  android:fontFamily="@font/nanumsquarer"/>
+                      android:id="@+id/fragment_detailcontent_tv_update_date"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginBottom="11dp"
+                      android:text="2018/12/23 16:49"
+                      android:textSize="10sp"
+                      android:textColor="@color/colorBackground"
+                      android:fontFamily="@font/nanumsquarer"/>
               </LinearLayout>
                 <TextView
                     android:id="@+id/fragment_detailcontent_tv_title"
                     android:layout_marginHorizontal="26dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="18sp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginBottom="14dp"
-                    android:text="서비스 선도기업 육성(2019년 1차 수출지원기반활용사업서비스 선도기업 육성(2019년 1차 수출지원기반활용사업 수출바우처(통합형)사업서비스 선도기업 육성(2019년 1차 수출지원기반활용사업 수출바우처(통합형)사업"
+                    android:text="서비스 선도기업 육성(2019년 1차 수출지원기반활용사업 수출바우처(통합형)사업서비스 선도기업 육성(2019년 1차 수출지원기반활용사업 수출바우처(통합형)사업"
                     android:textColor="@color/colorBackground"
                     android:fontFamily="@font/nanumsquareb"/>
                 <RelativeLayout
@@ -72,19 +71,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:layout_centerVertical="true"
+                        android:textSize="12sp"
                         android:text="창업진흥원"
                         android:textColor="@color/colorBackground"
                         android:fontFamily="@font/nanumsquarer"/>
-                    <TextView
-                        android:id="@+id/fragment_detailcontent_tv_supportperiod"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:text="2018.12.27~2019.03.05"
-                        android:textColor="@color/colorBackground"
-                        android:fontFamily="@font/nanumsquarer"/>
+
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -229,7 +220,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="100dp">
         <ImageView
             android:src="@drawable/img_precautionbox"
             android:layout_width="wrap_content"
@@ -246,7 +238,7 @@
     android:layout_height="47dp"
     android:layout_centerHorizontal="true"
     android:layout_alignParentBottom="true"
-    android:layout_marginBottom="100dp">
+    android:layout_marginBottom="30dp">
         <ImageView
             android:src="@drawable/floatingbar"
             android:layout_width="match_parent"

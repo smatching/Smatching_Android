@@ -34,12 +34,21 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.supervisor.text = dataList[position].institution
+        /*
         if(dataList[position].dday.toString() > "1000"){
             holder.dday.text = ""
             holder.ddayImg.setImageResource(R.drawable.txt_budgetend)
         }
         else {
             holder.dday.text = dataList[position].dday.toString()
+        }*/
+        if(dataList[position].dday.toString() > "1000") {
+            holder.dday.text = "예산 소진시"
+            holder.day.text = ""
+        }
+        else {
+            holder.dday.text = dataList[position].dday.toString()
+            holder.day.text = "D-"
         }
         holder.title.text = dataList[position].title
         // 스크랩이 되지 않았을 경우
@@ -70,6 +79,7 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
         val supervisor: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_supervisor)
         val ddayImg : ImageView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_iv_dday)
         val dday: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_dday)
+        val day: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_day)
         val title: TextView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_tv_title)
         val scrap: ImageView = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_iv_scrap)
         val item : RelativeLayout = itemView.findViewById(R.id.rv_item_mypage_smatching_scrap_rl_item) as RelativeLayout

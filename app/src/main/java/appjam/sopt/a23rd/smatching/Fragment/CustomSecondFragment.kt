@@ -23,6 +23,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class CustomSecondFragment: Fragment() {
+    var loadingSecondCustom1 = 0
+    var loadingSecondCustom2 = 0
     val dataList : ArrayList<NoticeData> by lazy {
         ArrayList<NoticeData>()
     }
@@ -30,6 +32,7 @@ class CustomSecondFragment: Fragment() {
         ApplicationController.instance.networkService
     }
     lateinit var customRecyclerViewAdapter: CustomRecyclerViewAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_second_custom, container, false)
     }
@@ -62,6 +65,7 @@ class CustomSecondFragment: Fragment() {
 
     }
     private fun getCustomSecondFragmentListResponse(cond_idx:Int){
+        loadingSecondCustom1 = 0
         val getCustomSecondFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 999, 0, cond_idx)
         getCustomSecondFragmentListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
@@ -82,25 +86,30 @@ class CustomSecondFragment: Fragment() {
                             customRecyclerViewAdapter.notifyItemInserted(position)
                         }
                     }
+                    loadingSecondCustom1 = 1
                 }
             }
         })
     }
     private fun getUserSmatchingCondResponse(){
-    val getUserSmatchingCondResponse = networkService.getUserSmatchingCondResponse(SharedPreferenceController.getAuthorization(activity!!))
-    getUserSmatchingCondResponse.enqueue(object : Callback<GetUserSmatchingCondResponse> {
-        override fun onFailure(call: Call<GetUserSmatchingCondResponse>, t: Throwable) {
-            Log.e("board list fail", t.toString())
-        }
-
-        override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
-            if (response.isSuccessful && response.body()!!.status == 200) {
-                getCustomSecondFragmentListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
-                fragment_second_custom_condition_notclick_tv_listsize.text = response.body()!!.data.condSummaryList.get(1).noticeCnt.toString()
-            } else if(response.isSuccessful && (response.body()!!.status == 204 || response.body()!!.status == 206)) {
-                replaceFragmentBody(SecondCustomEmptyFragment())
+        loadingSecondCustom2 = 0
+        val getUserSmatchingCondResponse = networkService.getUserSmatchingCondResponse(SharedPreferenceController.getAuthorization(activity!!))
+        getUserSmatchingCondResponse.enqueue(object : Callback<GetUserSmatchingCondResponse> {
+            override fun onFailure(call: Call<GetUserSmatchingCondResponse>, t: Throwable) {
+                Log.e("board list fail", t.toString())
             }
-        }
-    })
-}
+
+            override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
+                if(response.isSuccessful) {
+                    if (response.body()!!.status == 200) {
+                        getCustomSecondFragmentListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
+                        fragment_second_custom_condition_notclick_tv_listsize.text = response.body()!!.data.condSummaryList.get(1).noticeCnt.toString()
+                    } else if (response.body()!!.status == 204 || response.body()!!.status == 206) {
+                        replaceFragmentBody(SecondCustomEmptyFragment())
+                    }
+                    loadingSecondCustom2 = 1
+                }
+            }
+        })
+    }
 }

@@ -25,7 +25,8 @@ import retrofit2.Response
 
 
 class SecondFragment : Fragment(){
-
+    var loadingSecondFrag1 = 0
+    var loadingSecondFrag2 = 0
     val dataList : ArrayList<NoticeData> by lazy {
         ArrayList<NoticeData>()
     }
@@ -60,6 +61,7 @@ class SecondFragment : Fragment(){
         transaction.commit()
     }
     private fun getSecondFitListResponse(cond_idx:Int){
+        loadingSecondFrag1 = 0
         val getCustomSecondFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 3, 0, cond_idx)
         getCustomSecondFragmentListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
@@ -68,9 +70,11 @@ class SecondFragment : Fragment(){
 
             override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
                 if (response.isSuccessful) {
-                    if (response.body()!!.status == 204)
+                    if (response.body()!!.status == 204) {
                         replaceFragment(SecondNullFragment())
-                    else {
+                        fragment_second_ll_not_null.visibility = View.GONE
+                    }else {
+                        fragment_second_ll_not_null.visibility = View.VISIBLE
                         val temp: ArrayList<NoticeData> = response.body()!!.data
                         if (temp.size > 0) {
                             val position = homeFragmentFragmentRecyclerViewAdapter.itemCount
@@ -85,10 +89,12 @@ class SecondFragment : Fragment(){
                         }
                     }
                 }
+                loadingSecondFrag1 = 1
             }
         })
     }
     private fun getUserSmatchingCondResponse(){
+        loadingSecondFrag1 = 0
         val getUserSmatchingCondResponse = networkService.getUserSmatchingCondResponse(SharedPreferenceController.getAuthorization(activity!!))
         getUserSmatchingCondResponse.enqueue(object : Callback<GetUserSmatchingCondResponse> {
             override fun onFailure(call: Call<GetUserSmatchingCondResponse>, t: Throwable) {
@@ -97,16 +103,18 @@ class SecondFragment : Fragment(){
 
             override fun onResponse(call: Call<GetUserSmatchingCondResponse>, response: Response<GetUserSmatchingCondResponse>) {
                 if (response.isSuccessful && response.body()!!.status == 204) {
+                    fragment_second_ll_not_null.visibility = View.GONE
                     replaceFragment(SecondEmptyFragment())
-
                 } else if (response.isSuccessful && response.body()!!.status == 206) {
+                    fragment_second_ll_not_null.visibility = View.GONE
                     replaceFragment(SecondEmptyFragment())
-
                 } else if (response.isSuccessful && response.body()!!.status == 200) {
+                    fragment_second_ll_not_null.visibility = View.VISIBLE
                     getSecondFitListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
                     fragment_second_tv_cnt.text = response.body()!!.data.condSummaryList.get(1).noticeCnt.toString()
                     fragment_second_tv_nickname.text = response.body()!!.data.nickname
                 }
+                loadingSecondFrag1 = 1
             }
         })
     }

@@ -106,14 +106,12 @@ class TestActivity : AppCompatActivity() {
             act_test_et_title.setText("")
         }
 
-        act_test_tv_toolbar_text.setOnClickListener {
+        act_test_delete_ok.setOnClickListener {
             deleteSmatchingCondsDeleteResponse(condIdx)
         }
-
         act_test_delete_no.setOnClickListener {
             act_test_rl_delete.visibility = View.GONE
         }
-
         act_test_tv_toolbar_text.setOnClickListener {
             act_test_rl_delete.visibility = View.VISIBLE
         }

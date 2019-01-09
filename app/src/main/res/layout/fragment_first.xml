@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
 <FrameLayout
     android:id="@+id/frag_first_fl"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
+
+
+
 
     <LinearLayout
         android:id="@+id/fragment_first_ll_not_null"
@@ -14,110 +17,122 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginHorizontal="25dp"
         android:orientation="vertical">
-
-        <RelativeLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="10dp"
+            card_view:cardElevation="5dp"
+            android:layout_marginHorizontal="25dp"
+            card_view:cardUseCompatPadding="true">
 
-            <ImageView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_smatchingbox_blue" />
+                android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginHorizontal="25dp"
-                android:orientation="vertical">
-
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_smatchingbox_blue" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="6dp">
+                    android:layout_centerVertical="true"
+                    android:layout_marginHorizontal="25dp"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/fragment_first_tv_nickname"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumsquarer"
-                        android:text=""
-                        android:textColor="#ffffff"
-                        android:textSize="16sp" />
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="6dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/fragment_first_tv_nickname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumsquarer"
+                            android:text=""
+                            android:textColor="#ffffff"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumsquarer"
+                            android:text="님을 위한 스매칭"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumsquarer"
-                        android:text="님을 위한 스매칭"
-                        android:textColor="#ffffff"
-                        android:textSize="16sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fragment_first_tv_cnt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:text="00"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/fragment_first_tv_ro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumsquareb"
+                            android:text="개"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumsquarer"
+                            android:text="를 확인해보세요"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
+            </RelativeLayout>
 
-                <LinearLayout
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_smatchingbox_white" />
 
-                    <TextView
-                        android:id="@+id/fragment_first_tv_cnt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:text="00"
-                        android:textColor="#ffffff"
-                        android:textSize="20sp" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/fragment_first_rv"
+                    android:layout_width="310dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginHorizontal="18dp">
 
-                    <TextView
-                        android:id="@+id/fragment_first_tv_ro"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:text="개"
-                        android:textColor="#ffffff"
-                        android:textSize="20sp" />
+                </android.support.v7.widget.RecyclerView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumsquarer"
-                        android:text="를 확인해보세요"
-                        android:textColor="#ffffff"
-                        android:textSize="16sp" />
+            </RelativeLayout>
+        </LinearLayout>
 
-                </LinearLayout>
-
-            </LinearLayout>
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_smatchingbox_white" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/fragment_first_rv"
-                android:layout_width="310dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="18dp">
-
-            </android.support.v7.widget.RecyclerView>
-
-        </RelativeLayout>
+        </android.support.v7.widget.CardView>
     </LinearLayout>
-
 </FrameLayout>
 
 </RelativeLayout >

@@ -76,7 +76,6 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
                         fragment_detailcontent_tv_update_date.setText(data.reg_date)
                         fragment_detailcontent_tv_title.setText(data.title)
                         fragment_detailcontent_tv_institution.setText(data.institution)
-                        fragment_detailcontent_tv_supportperiod.setText(data.start_date + " ~ " + data.end_date)
                         fragment_detailcontent_sv_supportperiod.setText(data.start_date + " ~ " + data.end_date)
                         fragment_detailcontent_sv_summary.setText(data.summary)
                         fragment_detailcontent_sv_target.setText(data.target)

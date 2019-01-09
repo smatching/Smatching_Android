@@ -30,22 +30,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class SecondCustomConditionClickFragment : Fragment(){
-    //region 복수선택 가능한 객관식 옵션들 정의
-    val LOCATIONSNAME = arrayOf("seoul", "busan", "daegu", "incheon", "gwangju", "daejeon", "ulsan", "sejong", "gangwon", "kyunggi", "kyungnam", "kyungbuk", "jeonnam", "jeonbuk", "chungnam", "chungbuk", "jeju", "aborad")
-    val AGESNAME = arrayOf("twenty_less", "twenty_forty", "forty_more")
-    val PERIODSNAME = arrayOf("zero_one", "one_two", "two_three", "three_four", "four_five", "five_six", "six_seven", "seven_more", "yet")
-    val CATEGORYSNAME = arrayOf("edu", "know", "place", "local", "global", "make", "gov", "loan")
-    val FIELDSNAME = arrayOf("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v")
-    val ADVANTAGESNAME = arrayOf("retry", "woman", "disabled", "social", "sole", "fourth", "univ", "togather")
-    val BUSITYPESNAME = arrayOf("midsmall", "midbig", "big", "sole", "small", "tradi", "pre")
-    val LOCATIONSBOOL = arrayOfNulls<Boolean>(18)
-    val AGESBOOL = arrayOfNulls<Boolean>(3)
-    val PERIODSBOOL = arrayOfNulls<Boolean>(9)
-    val CATEGORYSBOOL = arrayOfNulls<Boolean>(8)
-    val FIELDSBOOL = arrayOfNulls<Boolean>(22)
-    val ADVANTAGESBOOL = arrayOfNulls<Boolean>(8)
-    val BUSITYPESBOOL = arrayOfNulls<Boolean>(7)
-    //endregion 복수선택 가능한 객관식 옵션들 정의
+    var loadingSecondCustomConditionClick1 = 0
+    var loadingSecondCustomConditionClick2 = 0
     val dataList : ArrayList<CondSummaryListData> by lazy {
         ArrayList<CondSummaryListData>()
     }
@@ -57,12 +43,6 @@ class SecondCustomConditionClickFragment : Fragment(){
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-//
-        (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
-        (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
-        //
-
         fragment_second_custom_condition_click_ll.setOnClickListener {
             replaceFragment(SecondCustomConditionNotClickFragment())
         }
@@ -70,10 +50,6 @@ class SecondCustomConditionClickFragment : Fragment(){
             startActivity<Test2Activity>()
         }
         getUserSmatchingCondResponse()
-
-        Handler().postDelayed({
-            (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
-        }, 1000)
     }
     private fun replaceFragment(fragment : Fragment) {
         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
@@ -86,6 +62,7 @@ class SecondCustomConditionClickFragment : Fragment(){
         transaction.commit()
     }
     private fun getUserSmatchingCondResponse(){
+        loadingSecondCustomConditionClick1 = 0
         val getUserSmatchingCondResponse = networkService.getUserSmatchingCondResponse(SharedPreferenceController.getAuthorization(activity!!))
         getUserSmatchingCondResponse.enqueue(object : Callback<GetUserSmatchingCondResponse> {
             override fun onFailure(call: Call<GetUserSmatchingCondResponse>, t: Throwable) {
@@ -96,6 +73,7 @@ class SecondCustomConditionClickFragment : Fragment(){
                 if (response.isSuccessful && response.body()!!.data.condSummaryList.size == 2) {
                     getUserSmatchingListResponse(response.body()!!.data.condSummaryList.get(1).condIdx)
                     fragment_second_custom_condition_click_tv_smatching_name.text = response.body()!!.data.condSummaryList.get(1).condName
+                    loadingSecondCustomConditionClick1 = 1
                 }
             }
         }
@@ -103,6 +81,7 @@ class SecondCustomConditionClickFragment : Fragment(){
     }
 
     private fun getUserSmatchingListResponse(condIdx: Int){
+        loadingSecondCustomConditionClick2 = 0
         val getUserSmatchingListResponse = networkService.getSmatchingCondsResponse(condIdx)
         getUserSmatchingListResponse.enqueue(object : Callback<GetSmatchingListResponse> {
             override fun onFailure(call: Call<GetSmatchingListResponse>, t: Throwable) {
@@ -259,6 +238,8 @@ class SecondCustomConditionClickFragment : Fragment(){
                             .replace("[", "")  //remove the right bracket
                             .replace("]", "")  //remove the left bracket
                     //endregion
+
+                    loadingSecondCustomConditionClick2 = 1
                 }
             }
         })

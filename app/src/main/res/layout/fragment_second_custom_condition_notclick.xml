@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="18dp">
 
     <FrameLayout
         android:id="@+id/frag_second_custom_condition_notclick_fl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="10dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPaddingLeft="-5dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="20dp">
+            android:orientation="vertical">
             <RelativeLayout
                 android:id="@+id/fragment_second_custom_condition_notclick_rl_custom_custom"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="7dp">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/fragment_second_custom_condition_notclick_iv_custom"
@@ -32,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginHorizontal="16dp">
+                    android:layout_marginHorizontal="20dp">
 
                     <TextView
                         android:id="@+id/fragment_second_custom_condition_notclick_tv_name"
@@ -57,7 +61,7 @@
             </RelativeLayout>
 
         </LinearLayout>
-
+        </android.support.v7.widget.CardView>
     </FrameLayout>
 
 </RelativeLayout>
