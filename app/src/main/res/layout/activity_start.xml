@@ -7,8 +7,7 @@
     tools:context=".StartActivity"
     android:orientation="vertical"
     android:layout_centerVertical="true"
-    android:layout_centerInParent="true"
-    android:background="@color/colorBackground">
+    android:layout_centerInParent="true">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"

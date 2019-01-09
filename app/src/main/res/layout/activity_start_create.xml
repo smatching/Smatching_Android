@@ -8,8 +8,7 @@
     tools:context=".StartLoginActivity"
     android:focusable="true"
     android:orientation="vertical"
-    android:focusableInTouchMode="true"
-    android:background="@color/colorBackground">
+    android:focusableInTouchMode="true">
 
         <ScrollView
             android:layout_centerInParent="true"
