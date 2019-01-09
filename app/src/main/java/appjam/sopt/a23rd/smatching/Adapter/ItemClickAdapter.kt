@@ -34,7 +34,7 @@ class ItemClickAdapter(val ctx : Context, val dataList : ArrayList<DetailData>, 
         holder.update_date.text = dataList[position].reg_date
         holder.title.text = dataList[position].title
         holder.institution.text = dataList[position].institution
-        holder.supportperiod.text = dataList[position].start_date + " ~ " + dataList[position].end_date
+        holder.sv_supportperiod.text = dataList[position].start_date + " ~ " + dataList[position].end_date
         holder.sv_summary.text = dataList[position].summary
         holder.sv_target.text = dataList[position].target
         holder.sv_content.text = dataList[position].content
@@ -69,7 +69,6 @@ class ItemClickAdapter(val ctx : Context, val dataList : ArrayList<DetailData>, 
         val update_date: TextView = itemView.findViewById(R.id.fragment_detailcontent_tv_update_date)
         val title : TextView = itemView.findViewById(R.id.fragment_detailcontent_tv_title)
         val institution: TextView = itemView.findViewById(R.id.fragment_detailcontent_tv_institution)
-        val supportperiod: TextView = itemView.findViewById(R.id.fragment_detailcontent_tv_supportperiod)
         val sv_supportperiod: TextView = itemView.findViewById(R.id.fragment_detailcontent_sv_supportperiod)
         val sv_summary: TextView = itemView.findViewById(R.id.fragment_detailcontent_sv_summary)
         val sv_target: TextView = itemView.findViewById(R.id.fragment_detailcontent_sv_target)

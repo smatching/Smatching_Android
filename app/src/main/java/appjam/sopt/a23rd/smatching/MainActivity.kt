@@ -51,9 +51,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        nav_view.setNavigationItemSelectedListener(this)
-
-
         act_main_loading.setOnTouchListener(View.OnTouchListener { v, event -> true })
 
         //act_main_loading.visibility = View.VISIBLE
