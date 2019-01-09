@@ -2,6 +2,7 @@ package appjam.sopt.a23rd.smatching.Fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -44,13 +45,15 @@ class AllNoticeListFragment : Fragment(){
         setRecyclerView()
         getAllNoticeListFragmentResponse()
         getAllNoticeListSizeResponse()
+//        rv_item_home_rl_item.setOnItemClickListener{
+//            replaceFragment(SmatchingCustomCorporateDetailFragment())
+//        }
     }
     private fun setRecyclerView() {
         allNoticeListFragmentRecyclerViewAdapter =  AllNoticeListFragmentRecyclerViewAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
         fragment_all_notice_list_rv.adapter = allNoticeListFragmentRecyclerViewAdapter
         fragment_all_notice_list_rv.layoutManager = LinearLayoutManager(activity)
         fragment_all_notice_list_rv.addItemDecoration(DividerItemDecoration(view!!.getContext(), 1))
-
     }
     private fun getAllNoticeListFragmentResponse(){
 
@@ -89,19 +92,4 @@ class AllNoticeListFragment : Fragment(){
             }
         })
     }
-
-//    private fun putNoticeScrap(noticeIdx : Int){
-//        val putNoticeScrap : Call<PutNoticeScrap> = networkService.putNoticeScrap(SharedPreferenceController.getAuthorization(activity!!), noticeIdx)
-//        putNoticeScrap.enqueue(object : Callback<PutNoticeScrap> {
-//            override fun onFailure(call: Call<PutNoticeScrap>, t: Throwable) {
-//                Log.e("Scrap Setting Fail ", t.toString())
-//            }
-//
-//            override fun onResponse(call: Call<PutNoticeScrap>, response: Response<PutNoticeScrap>) {
-//                if(response.isSuccessful){
-//                    Log.e("Scrap Setting Success ", response.body()!!.message)
-//                }
-//            }
-//        })
-//    }
 }

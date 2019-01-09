@@ -30,8 +30,6 @@ class StartActivity : AppCompatActivity() {
         var btnGuest = findViewById<View>(R.id.act_main_iv_experience)
         var btnLogin = findViewById<View>(R.id.act_start_login_btn_login)
 
-
-
         setSupportActionBar(toolbar)
 
         supportActionBar!!.setTitle("")
