@@ -53,7 +53,6 @@
                         android:layout_centerVertical="true"
                         android:layout_marginHorizontal="17dp"
                         android:fontFamily="@font/nanumsquareb"
-                        android:maxLength="15"
                         android:maxLines = "2"/>
                     <ImageView
                         android:id="@+id/act_start_login_iv_email_delete"

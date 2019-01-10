@@ -76,11 +76,6 @@
             android:lineSpacingExtra="3sp"
             android:text="2019년 말레이시아 쿠알라룸푸르 할랄 전시회(MIHAS) 한국관 참가기업 모집 공고"
             />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="7dp"
-            android:src="@drawable/line"/>
     </LinearLayout>
     <ImageView
         android:layout_marginTop="10dp"
@@ -89,7 +84,12 @@
         android:src="@drawable/icn_scrap_yellow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
+    <ImageView
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/line"/>
 </RelativeLayout>
 
 

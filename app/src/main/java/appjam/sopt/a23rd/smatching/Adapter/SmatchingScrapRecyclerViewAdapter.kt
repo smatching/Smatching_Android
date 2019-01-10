@@ -47,14 +47,18 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
             holder.dday.text = "예산 소진시"
             holder.day.text = ""
             holder.ddayImg.setImageResource(R.drawable.txt_budgetend_box)
-        }
-        else {
+        }else if (dataList[position].dday.toString() == "0") {
+        } else {
             holder.dday.text = dataList[position].dday.toString()
             holder.day.text = "D-"
             if(dataList[position].dday.toString() < "7") {
                 holder.day.setTextColor(Color.parseColor("#BF7474"))
                 holder.dday.setTextColor(Color.parseColor("#BF7474"))
                 holder.ddayImg.setImageResource(R.drawable.box_dday_red)
+            } else if(dataList[position].dday.toString() == "0") {
+                holder.dday.text = "day"
+                holder.day.setTextColor(Color.parseColor("#BF7474"))
+                holder.dday.setTextColor(Color.parseColor("#BF7474"))
             }
         }
         holder.title.text = dataList[position].title

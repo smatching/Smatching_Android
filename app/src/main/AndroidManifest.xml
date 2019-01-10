@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/CustomAppTheme">
-        <activity android:name=".WorkthroughsActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".WorkthroughsPagerActivity"/>
-        <activity android:name=".SplashActivity"/>
+        <activity android:name=".WorkthroughsActivity"/>
         <activity android:name=".StartLoginActivity" />
         <activity android:name=".StartCreateActivity" />
         <activity

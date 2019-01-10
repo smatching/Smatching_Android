@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed(Runnable {
             /* 메뉴액티비티를 실행하고 로딩화면을 죽인다.*/
-            val mainIntent = Intent(this@SplashActivity, StartActivity::class.java)
+            val mainIntent = Intent(this@SplashActivity, WorkthroughsActivity::class.java)
             this@SplashActivity.startActivity(mainIntent)
             this@SplashActivity.finish()
         }, 4000)

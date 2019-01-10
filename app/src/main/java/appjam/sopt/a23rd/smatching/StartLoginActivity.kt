@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
@@ -38,6 +39,10 @@ class StartLoginActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         val email = findViewById<EditText>(R.id.act_start_login_et_email)
         val password = findViewById<EditText>(R.id.act_start_login_et_password)
+        val password_hint = findViewById<TextView>(R.id.act_start_login_tv_password_hint)
+
+        var completeNickEmail = false
+        var completePassword = false
 
         //툴바 부분
         setSupportActionBar(toolbar)
@@ -45,65 +50,116 @@ class StartLoginActivity : AppCompatActivity() {
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
         supportActionBar!!.setTitle("")
         //
-        val textWatcher = object : TextWatcher {
-            override fun afterTextChanged(edit: Editable) {
-                if (email.text.toString().isEmpty() || password.text.toString().isEmpty())
-                    act_start_login_canclick.setImageResource(R.drawable.btn_login)
-                    if(!email.text.toString().isEmpty())
-                        act_start_login_iv_email_delete.setVisibility(View.VISIBLE)
-                    if(!password.text.toString().isEmpty())
-                        act_start_login_iv_password_delete.setVisibility(View.VISIBLE)
-                else
-                    act_start_login_canclick.setImageResource(R.drawable.btn_login_canclick)
+
+
+        email.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?)
+            {
             }
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                //텍스트의 길이가 변경되었을 경우 발생할 이벤트를 작성.
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int)
+            {
             }
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                //텍스트가 변경될때마다 발생할 이벤트를 작성.
-            }
-        }
-
-
-        email.addTextChangedListener(textWatcher)
-        password.addTextChangedListener(textWatcher)
-
-        email.onFocusChangeListener = object : View.OnFocusChangeListener {
-            override fun onFocusChange(v: View, hasFocus: Boolean) {
-                if (hasFocus)
-                    act_start_login_iv_email.setImageResource(R.drawable.et_email_click)
-                else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
-                        && email.getText().toString().length != 0) {
-                    act_start_login_iv_email_delete.setVisibility(View.VISIBLE)
-                    act_start_login_iv_email.setImageResource(R.drawable.et_email_error)
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int)
+            {
+                //여기서 받기
+                if (email.text.toString().length == 0)
+                {
+                    act_start_login_iv_email_delete.setVisibility(View.INVISIBLE)
+                    completeNickEmail = false
+                    if (completeNickEmail && completePassword)
+                        act_start_login_canclick.setImageResource(R.drawable.btn_login_canclick)
+                    else
+                        act_start_login_canclick.setImageResource(R.drawable.btn_login)
                 }
-                else if(android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()
-                        && email.getText().toString().length != 0){
-                    act_start_login_iv_email.setImageResource(R.drawable.et_email_click)
+                else if (email.getText().toString().length != 0)
+                {
                     act_start_login_iv_email_delete.setVisibility(View.VISIBLE)
+                    if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches())
+                    {
+                        act_start_login_iv_email.setImageResource(R.drawable.et_email_error)
+                        completeNickEmail = false
+                        if (completeNickEmail && completePassword)
+                            act_start_login_canclick.setImageResource(R.drawable.btn_login_canclick)
+                        else
+                            act_start_login_canclick.setImageResource(R.drawable.btn_login)
+                    }
+                    else if (android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches())
+                    {
+                        act_start_login_iv_email.setImageResource(R.drawable.et_email_click)
+                        completeNickEmail = true
+                        if (completeNickEmail && completePassword)
+                            act_start_login_canclick.setImageResource(R.drawable.btn_login_canclick)
+                        else
+                            act_start_login_canclick.setImageResource(R.drawable.btn_login)
+                    }
                 }
-                else if(email.text.toString().length == 0){
-                    act_start_login_iv_email_delete.setVisibility(View.GONE)
+            }
+        })
+        email.setOnFocusChangeListener(object : View.OnFocusChangeListener {
+            override fun onFocusChange(v: View, hasFocus: Boolean)
+            {
+                if (hasFocus && email.getText().toString().length == 0)
+                {
+                    act_start_login_iv_email.setImageResource(R.drawable.et_email_click)
+                }
+                else if (!hasFocus && email.text.toString().length == 0)
                     act_start_login_iv_email.setImageResource(R.drawable.et_email)
-                }
-
             }
-        }
-        password.onFocusChangeListener = object : View.OnFocusChangeListener {
-            override fun onFocusChange(v: View, hasFocus: Boolean) {
-                password.addTextChangedListener(textWatcher)
-                if (hasFocus || password.text.toString().length != 0) {
-                    act_start_login_iv_password.setImageResource(R.drawable.et_password_click)
+        })
+        password.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?)
+            {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int)
+            {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int)
+            {
+                //여기서 받기
+                if (password.getText().toString().length != 0)
+                {
                     act_start_login_iv_password_delete.setVisibility(View.VISIBLE)
-                    act_start_login_tv_password_hint.setVisibility(View.GONE)
-                }else if(password.text.toString().length == 0) {
-                    act_start_login_iv_password.setImageResource(R.drawable.et_password)
-                    act_start_login_iv_password_delete.setVisibility(View.GONE)
-                    act_start_login_tv_password_hint.setVisibility(View.VISIBLE)
+                    password_hint.visibility = View.INVISIBLE
+                    if (password.getText().toString().length >= 8)
+                    {
+                        act_start_login_iv_password.setImageResource(R.drawable.et_password_click)
+                        completePassword = true
+                        if (completeNickEmail && completePassword)
+                            act_start_login_canclick.setImageResource(R.drawable.btn_login_canclick)
+                        else
+                            act_start_login_canclick.setImageResource(R.drawable.btn_login)
+                    }
+                    else
+                    {
+                        act_start_login_iv_password.setImageResource(R.drawable.et_password_error)
+                        completePassword = false
+                        if (completeNickEmail && completePassword)
+                            act_start_login_canclick.setImageResource(R.drawable.btn_login_canclick)
+                        else
+                            act_start_login_canclick.setImageResource(R.drawable.btn_login)
+                    }
+                }
+                else if (password.text.toString().length == 0)
+                {
+                    act_start_login_iv_password_delete.setVisibility(View.INVISIBLE)
+                    password_hint.visibility = View.VISIBLE
+                    completePassword = false
+                    if (completeNickEmail && completePassword)
+                        act_start_login_canclick.setImageResource(R.drawable.btn_login_canclick)
+                    else
+                        act_start_login_canclick.setImageResource(R.drawable.btn_login)
                 }
             }
-        }
+        })
+        password.setOnFocusChangeListener(object : View.OnFocusChangeListener {
+            override fun onFocusChange(v: View, hasFocus: Boolean)
+            {
+                if (hasFocus && password.getText().toString().length == 0)
+                    act_start_login_iv_password.setImageResource(R.drawable.et_password_click)
+                else if (!hasFocus && password.getText().toString().length == 0)
+                    act_start_login_iv_password.setImageResource(R.drawable.et_password)
+            }
+        })
     }
     private fun setOnBtnClickListener(){
         act_start_login_canclick.setOnClickListener{
@@ -111,9 +167,13 @@ class StartLoginActivity : AppCompatActivity() {
         }
         act_start_login_iv_email_delete.setOnClickListener{
             act_start_login_et_email.setText("")
+            act_start_login_iv_email.setImageResource(R.drawable.et_email)
+            act_start_login_iv_email_delete.setVisibility(View.INVISIBLE)
         }
         act_start_login_iv_password_delete.setOnClickListener{
             act_start_login_et_password.setText("")
+            act_start_login_iv_password.setImageResource(R.drawable.et_password)
+            act_start_login_iv_password_delete.setVisibility(View.INVISIBLE)
         }
     }
 

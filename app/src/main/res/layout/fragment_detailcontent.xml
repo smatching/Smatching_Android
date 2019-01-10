@@ -58,6 +58,7 @@
                     android:textSize="18sp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginBottom="14dp"
+                    android:lineSpacingExtra="5dp"
                     android:text=""
                     android:textColor="@color/colorBackground"
                     android:fontFamily="@font/nanumsquareb"/>
@@ -98,10 +99,11 @@
             android:id="@+id/fragment_detailcontent_sv_supportperiod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginHorizontal="25dp"
             android:layout_marginBottom="20dp"
             android:text=""
             android:textSize="14sp"
+            android:lineSpacingExtra="5dp"
             android:textColor="@color/colorText"
             android:fontFamily="@font/nanumsquarer"/>
         <TextView
@@ -116,10 +118,11 @@
             android:id="@+id/fragment_detailcontent_sv_summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginHorizontal="25dp"
             android:layout_marginBottom="20dp"
             android:text=""
             android:textSize="14sp"
+            android:lineSpacingExtra="5dp"
             android:textColor="@color/colorText"
             android:fontFamily="@font/nanumsquarer"/>
         <TextView
@@ -134,10 +137,11 @@
             android:id="@+id/fragment_detailcontent_sv_target"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginHorizontal="25dp"
             android:layout_marginBottom="20dp"
             android:text=""
             android:textSize="14sp"
+            android:lineSpacingExtra="5dp"
             android:textColor="@color/colorText"
             android:fontFamily="@font/nanumsquarer"/>
         <TextView
@@ -152,10 +156,11 @@
             android:id="@+id/fragment_detailcontent_sv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginHorizontal="25dp"
             android:layout_marginBottom="20dp"
             android:text=""
             android:textSize="14sp"
+            android:lineSpacingExtra="5dp"
             android:textColor="@color/colorText"
             android:fontFamily="@font/nanumsquarer"/>
         <TextView
@@ -174,9 +179,10 @@
                 android:id="@+id/fragment_detailcontent_sv_institution"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
+                android:layout_marginHorizontal="25dp"
                 android:layout_marginBottom="4dp"
                 android:text=""
+                android:lineSpacingExtra="5dp"
                 android:textSize="14sp"
                 android:textColor="@color/colorText"
                 android:fontFamily="@font/nanumsquarer"/>
@@ -185,8 +191,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
+                android:layout_marginRight="25dp"
                 android:layout_marginBottom="4dp"
                 android:text=""
+                android:lineSpacingExtra="5dp"
                 android:textSize="14sp"
                 android:textColor="@color/colorText"
                 android:fontFamily="@font/nanumsquarer"/>
@@ -234,11 +242,11 @@
 
 
     <RelativeLayout
-    android:layout_width="180dp"
-    android:layout_height="47dp"
+    android:layout_width="198dp"
+    android:layout_height="65dp"
     android:layout_centerHorizontal="true"
     android:layout_alignParentBottom="true"
-    android:layout_marginBottom="30dp">
+    android:layout_marginBottom="16dp">
         <ImageView
             android:src="@drawable/floatingbar"
             android:layout_width="match_parent"
@@ -247,19 +255,21 @@
             <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:layout_marginTop="20dp">
             <ImageView
                 android:id="@+id/fragment_detailcontent_iv_call"
                 android:src="@drawable/icn_detailpage_calll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="1dp"
                 android:layout_alignParentLeft="true"/>
             <ImageView
                 android:id="@+id/fragment_detailcontent_iv_link"
                 android:src="@drawable/icn_detailpage_link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:layout_centerHorizontal="true"/>
             <ImageView
                 android:id="@+id/fragment_detailcontent_iv_scrap"
@@ -267,7 +277,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="22.6dp"/>
+                android:layout_marginRight="32dp"/>
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

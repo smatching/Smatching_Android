@@ -42,8 +42,10 @@ class SearchAdapter(val ctx : Context, val dataList : ArrayList<NoticeData>, val
         if(dataList[position].dday.toString() > "1000") {
             holder.deadline.text = "예산 소진시"
             holder.tag.text = ""
-        }
-        else {
+        }else if (dataList[position].dday.toString() == "0") {
+            holder.deadline.text = "day"
+            holder.tag.text = "D-"
+        } else {
             holder.deadline.text = dataList[position].dday.toString()
             holder.tag.text = "D-"
         }
