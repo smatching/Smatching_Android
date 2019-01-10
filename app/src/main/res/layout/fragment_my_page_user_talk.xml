@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -30,7 +31,7 @@
                     android:textColor="#ffffff"
                     android:letterSpacing="0.02"
                     android:lineSpacingExtra="10sp"
-                    android:text="유지원"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="2dp"/>
