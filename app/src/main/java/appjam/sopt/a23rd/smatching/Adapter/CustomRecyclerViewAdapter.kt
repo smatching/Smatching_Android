@@ -36,7 +36,7 @@ class CustomRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Notice
         if(dataList[position].dday.toString() > "1000") {
             holder.deadline.text = "예산 소진시"
             holder.tag.text = ""
-        } else if (dataList[position].dday.toString() == "0") {
+        } else if (dataList[position].dday == 0) {
             holder.deadline.text = "day"
             holder.tag.text = "D-"
         } else {
