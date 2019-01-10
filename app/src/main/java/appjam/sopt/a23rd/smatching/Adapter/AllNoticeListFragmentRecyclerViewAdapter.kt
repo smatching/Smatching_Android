@@ -9,10 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.Fragment.SmatchingCustomCorporateDetailFragment
 import appjam.sopt.a23rd.smatching.MainActivity
@@ -96,6 +93,10 @@ class AllNoticeListFragmentRecyclerViewAdapter(val ctx: Context, val dataList: A
             override fun onResponse(call: Call<PutNoticeScrap>, response: Response<PutNoticeScrap>) {
                 if(response.isSuccessful){
                     Log.e("Scrap Setting Success ", response.body()!!.message)
+                    if(response.body()!!.data == 1)
+                        Toast.makeText(ctx, "스크랩 되었습니다.", Toast.LENGTH_SHORT).show()
+                    else
+                        Toast.makeText(ctx, "스크랩 해제 되었습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
         })

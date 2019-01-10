@@ -31,6 +31,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Handler
 import android.widget.RelativeLayout
+import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
 
 
@@ -146,10 +147,12 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
                     if(scrap == 0) {
                         fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_yellow)
                         scrap = 1
+                        toast("스크랩 되었습니다.")
                     }
                     else{
                         fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_grey)
                         scrap = 0
+                        toast("스크랩 해제 되었습니다.")
                     }
                 }
             }
