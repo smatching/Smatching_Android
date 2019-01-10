@@ -21,6 +21,7 @@ class WorkthroughsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_workthroughs)
 
         // 초기 사용자에게만 보여지는 화면으로 설정
+
        if(SharedPreferenceController.getWorkthroughs(this).equals("true"))
             startActivity<StartActivity>()
 

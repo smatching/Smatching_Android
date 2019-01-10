@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
+                android:layout_marginVertical="20dp"
                 android:layout_marginHorizontal="23.5dp"
                 android:layout_below="@+id/fragment_first_custom_condition_notclick_rl_custom_custom">
                 <LinearLayout
