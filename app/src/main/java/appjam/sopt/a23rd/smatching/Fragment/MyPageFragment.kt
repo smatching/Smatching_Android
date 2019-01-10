@@ -55,6 +55,7 @@ class MyPageFragment : Fragment(){
         getSmatchingScrapListResponse()
 
         (activity as MainActivity).setpageNum(3)
+
         Handler().postDelayed({
             (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
         }, 1000)

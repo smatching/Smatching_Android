@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var pageNum: Int = 0
     var isSearch: Int = 0
     var time: Long = 0
+    var backButtomVisibility = 0
     lateinit var fragment: Fragment
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var pageState = 0
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        backButtomVisibility = 0
         supportActionBar!!.setTitle("")
         titleText.setText("")
         /*
@@ -109,6 +111,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            backButtomVisibility = 0
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
             pageNum = 1
             act_main_iv_home.isSelected = false
@@ -134,10 +137,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         act_main_rl_home.setOnClickListener {
 
-            //
+            /*
             findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
             findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
-
+*/
             act_main_rl_home.isEnabled = false
             act_main_rl_smatching.isEnabled = false
             act_main_rl_talk.isEnabled = false
@@ -147,6 +150,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            backButtomVisibility = 0
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
@@ -160,7 +164,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             titleText.setText("")
             titleImage.visibility = View.VISIBLE
             Handler().postDelayed({
-                findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+                //findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
                 act_main_rl_home.isEnabled = true
                 act_main_rl_smatching.isEnabled = true
                 act_main_rl_talk.isEnabled = true
@@ -169,8 +173,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         act_main_rl_smatching.setOnClickListener {
             //
-            findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
-            findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
+            /*findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
+            findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()*/
             //
             act_main_rl_home.isEnabled = false
             act_main_rl_smatching.isEnabled = false
@@ -180,6 +184,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            backButtomVisibility = 0
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
@@ -194,7 +199,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             titleText.setText("맞춤지원")
             titleImage.visibility = View.INVISIBLE
             Handler().postDelayed({
-                findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+                //findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
                 act_main_rl_home.isEnabled = true
                 act_main_rl_smatching.isEnabled = true
                 act_main_rl_talk.isEnabled = true
@@ -212,6 +217,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            backButtomVisibility = 0
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
@@ -233,8 +239,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         act_main_rl_my_page.setOnClickListener {
             //
-            findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
-            findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
+            /*findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
+            findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()*/
             //
             act_main_rl_home.isEnabled = false
             act_main_rl_smatching.isEnabled = false
@@ -244,6 +250,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             toolbar.setBackgroundColor(resources.getColor(R.color.colorBlue))
             titleText.setTextColor(Color.WHITE)
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            backButtomVisibility = 0
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = true
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
@@ -259,7 +266,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             titleText.setText("마이페이지")
             titleImage.visibility = View.INVISIBLE
             Handler().postDelayed({
-                findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+                //findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
                 act_main_rl_home.isEnabled = true
                 act_main_rl_smatching.isEnabled = true
                 act_main_rl_talk.isEnabled = true
@@ -300,6 +307,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
                 supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+                backButtomVisibility = 1
                 supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
 
                 act_bottom_navi_iv_title.visibility = View.INVISIBLE
@@ -321,6 +329,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
                 findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
                 supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+                backButtomVisibility = 1
                 supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
 
                 act_bottom_navi_iv_title.visibility = View.INVISIBLE
@@ -340,6 +349,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
                 findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
                 supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+                backButtomVisibility = 1
                 supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
 
                 act_bottom_navi_iv_title.visibility = View.INVISIBLE
@@ -426,6 +436,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            backButtomVisibility = 0
         } else if (int == 1) {
             fragment = SmatchingCustom()
             act_bottom_navi_tv_title.setText("맞춤지원")
@@ -438,6 +449,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            backButtomVisibility = 0
 
         } else if (int == 2) {
             fragment = TalkFragment()
@@ -451,6 +463,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            backButtomVisibility = 0
         } else if (int == 3) {
             fragment = MyPageFragment()
             act_bottom_navi_tv_title.setText("마이페이지")
@@ -462,6 +475,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(Color.WHITE)
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            backButtomVisibility = 0
             findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBlue))
         }
         transaction.replace(R.id.act_bottom_navi_fl, fragment)
@@ -492,13 +506,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //if (findViewById<ImageView>(R.id.home).visibility == View.VISIBLE)
         //     replaceFragmentNum(pageNum)
         //else {
-        if (System.currentTimeMillis() - time >= 2000) {
-            time = System.currentTimeMillis()
-            Toast.makeText(getApplicationContext(), "뒤로 버튼을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show()
-        } else if (System.currentTimeMillis() - time < 2000) {
-            finish()
-            finishAffinity()
-            //   }
+        if (backButtomVisibility == 1) {
+            replaceFragmentNum(pageNum)
+        } else if (backButtomVisibility == 0) {
+            if (System.currentTimeMillis() - time >= 2000) {
+                time = System.currentTimeMillis()
+                Toast.makeText(getApplicationContext(), "뒤로 버튼을 한번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show()
+            } else if (System.currentTimeMillis() - time < 2000) {
+                finish()
+                finishAffinity()
+                //   }
+            }
         }
     }
 
@@ -531,4 +549,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         })
     }
+
+
 }

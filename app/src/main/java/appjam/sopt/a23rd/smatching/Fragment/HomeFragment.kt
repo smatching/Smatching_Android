@@ -104,6 +104,7 @@ class HomeFragment : Fragment(){
             (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
             (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).setTitleTextColor(resources.getColor(R.color.colorText))
             (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            (activity as MainActivity).backButtomVisibility = 0
             //(activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice_white).isVisible = false
             (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
             //(activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = true
@@ -122,6 +123,7 @@ class HomeFragment : Fragment(){
         fragment_home_iv_more.setOnClickListener{
             replaceFragment(AllNoticeListFragment())
             (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            (activity as MainActivity).backButtomVisibility = 1
             (activity as AppCompatActivity).supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
             //(activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false ??
             (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true

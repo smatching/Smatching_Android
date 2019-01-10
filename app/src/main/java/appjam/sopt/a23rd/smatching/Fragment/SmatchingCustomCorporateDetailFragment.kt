@@ -39,6 +39,7 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
     var phone : String = ""
     var noticeIdx : Int = -1
     var scrap : Int = 0
+    var stateDetail = 0
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
@@ -53,8 +54,10 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
         //
         (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
         (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
+        stateDetail = 0
         //
         (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        (activity as MainActivity).backButtomVisibility = 1
         (activity as AppCompatActivity).supportActionBar!!.setHomeAsUpIndicator(R.drawable.icn_back_white_ver_2)
         (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search_white).isVisible = true
         (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
@@ -66,6 +69,7 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
         (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_bottom_navi_iv_title).visibility = View.INVISIBLE
         Handler().postDelayed({
             (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
+            stateDetail = 1
         }, 1000)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

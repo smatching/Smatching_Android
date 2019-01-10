@@ -47,16 +47,17 @@ class FirstFragment : Fragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //
-
+        (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.VISIBLE
+        (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
         //
 
 
         setRecyclerView()
         getUserSmatchingCondResponse()
+
         Handler().postDelayed({
             (activity as AppCompatActivity).findViewById<RelativeLayout>(R.id.act_main_loading).visibility = View.INVISIBLE
         }, 1000)
-
     }
 
     private fun replaceFragment(fragment : Fragment) {
