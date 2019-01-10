@@ -21,10 +21,10 @@ class PolicyViewActivity : AppCompatActivity() {
         val intent: Intent = getIntent()
         if (intent.getIntExtra("policyData", 1) == 0) {
             supportActionBar!!.setTitle("이용약관")
-            act_policy_view_tv_text.text = getText(R.string.private_policy)
+            act_policy_view_iv_text.setImageResource(R.drawable.txt_accessterms)
         } else {
             supportActionBar!!.setTitle("개인정보 처리방침")
-            act_policy_view_tv_text.text = getText(R.string.policy)
+            act_policy_view_iv_text.setImageResource(R.drawable.txt_personaldeatail)
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

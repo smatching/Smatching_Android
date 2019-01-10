@@ -30,10 +30,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
-        <TextView
-            android:id="@+id/act_policy_view_tv_text"
+        <ImageView
+            android:id="@+id/act_policy_view_iv_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleType="fitXY"
             android:layout_margin="12dp"
             android:paddingBottom="50dp"/>
 
