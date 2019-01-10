@@ -30,13 +30,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
-        <ImageView
-            android:id="@+id/act_policy_view_iv_text"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:layout_margin="12dp"
-            android:paddingBottom="50dp"/>
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/act_policy_view_iv_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:layout_margin="12dp"
+                android:paddingBottom="50dp"/>
+            <TextView
+                android:id="@+id/act_policy_view_tv_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:paddingBottom="50dp"
+                android:text="@string/policy"/>
+
+        </RelativeLayout>
 
     </ScrollView>
 
