@@ -8,6 +8,7 @@
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="5.5dp"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,6 +80,7 @@
     </LinearLayout>
     <ImageView
         android:layout_marginTop="10dp"
+        android:layout_marginRight="5.5dp"
         android:id="@+id/rv_item_mypage_smatching_scrap_iv_scrap"
         android:layout_alignParentRight="true"
         android:src="@drawable/icn_scrap_yellow"

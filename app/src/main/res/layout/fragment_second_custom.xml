@@ -24,7 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginVertical="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="13dp"
                 android:layout_marginHorizontal="23.5dp"
                 android:layout_below="@+id/fragment_second_custom_condition_notclick_rl_custom_custom">
                 <LinearLayout
@@ -83,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
-                android:layout_marginHorizontal="18dp"
+                android:layout_marginHorizontal="23.5dp"
                 android:src="@drawable/line"/>
 
             <FrameLayout
