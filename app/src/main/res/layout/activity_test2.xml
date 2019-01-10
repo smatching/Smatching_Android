@@ -92,6 +92,7 @@
                         android:fontFamily="@font/nanumsquareb"/>
 
                     <ImageView
+                        android:padding="5dp"
                         android:id="@+id/act_test2_iv_text_delete"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

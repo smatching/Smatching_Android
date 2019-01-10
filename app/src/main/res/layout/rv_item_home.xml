@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginHorizontal="5.5dp"
+        android:layout_marginLeft="5.5dp"
         android:layout_centerVertical="true">
         <RelativeLayout
             android:layout_width="match_parent"

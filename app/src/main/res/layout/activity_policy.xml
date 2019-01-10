@@ -94,24 +94,13 @@
                     android:layout_marginBottom="14dp"
                     android:layout_marginHorizontal="15.5dp">
 
-                    <TextView
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="스매칭 이용약관 동의"
-                        android:textColor="@color/colorText"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/nanumsquarer"/>
+                        android:src="@drawable/txt_accesstermsagree"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="(필수)"
-                            android:layout_marginLeft="4dp"
-                            android:textColor="@color/colorText"
-                            android:textSize="10sp"
-                            android:fontFamily="@font/nanumsquarer"/>
                         <ImageView
                             android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
@@ -128,25 +117,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginHorizontal="15.5dp">
-
-                    <TextView
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="스매칭 개인정보 처리방침 동의"
-                        android:textColor="@color/colorText"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/nanumsquarer"/>
+                        android:src="@drawable/txt_personaldataagree"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="(필수)"
-                            android:layout_marginLeft="4dp"
-                            android:textColor="@color/colorText"
-                            android:textSize="10sp"
-                            android:fontFamily="@font/nanumsquarer"/>
+
                         <ImageView
                             android:id="@+id/act_policy_iv_private_in"
                             android:layout_width="wrap_content"

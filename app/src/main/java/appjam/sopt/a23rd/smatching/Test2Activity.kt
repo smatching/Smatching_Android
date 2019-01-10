@@ -30,6 +30,8 @@ import kotlin.collections.ArrayList
 import android.content.Intent
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.text.Editable
+import android.text.TextWatcher
 import appjam.sopt.a23rd.smatching.Fragment.CustomSecondFragment
 import appjam.sopt.a23rd.smatching.Fragment.SecondCustomConditionClickFragment
 import appjam.sopt.a23rd.smatching.Fragment.SmatchingCustomPopupSectorFragment
@@ -100,6 +102,23 @@ class Test2Activity : AppCompatActivity() {
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
         supportActionBar!!.setTitle("")
         act_test2_tv.text = "맞춤지원"
+
+        act_test2_et_title.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //여기서 받기
+                if(act_test2_et_title.getText().toString().length != 0){
+                    act_test2_iv_text_delete.setVisibility(View.VISIBLE)
+                } else if(act_test2_et_title.text.toString().length == 0) {
+                    act_test2_iv_text_delete.setVisibility(View.GONE)
+                }
+            }
+        })
+
+
         for (a in 0..21)
             TEMPFIELDSBOOL[a] = FIELDSBOOL[a]
         for (a in 0..7)
@@ -112,6 +131,7 @@ class Test2Activity : AppCompatActivity() {
 
         act_test2_iv_text_delete.setOnClickListener {
             act_test2_et_title.setText("")
+            act_test2_iv_text_delete.setVisibility(View.GONE)
         }
 
         act_test2_delete_ok.setOnClickListener {
