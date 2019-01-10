@@ -100,7 +100,6 @@ class Test2Activity : AppCompatActivity() {
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
         supportActionBar!!.setTitle("")
         act_test2_tv.text = "맞춤지원"
-        getUserSmatchingCondResponse()
         for (a in 0..21)
             TEMPFIELDSBOOL[a] = FIELDSBOOL[a]
         for (a in 0..7)
@@ -2099,7 +2098,7 @@ class Test2Activity : AppCompatActivity() {
         getUserSmatchingCondResponse()
 
         act_test2_rl.setOnClickListener {
-            if (periodCount != 0 && busiTypeCount != 0 && advantageCount != 0 && fieldCount != 0 && categoryCount != 0 && advantageCount != 0) {
+            if (periodCount != 0 && busiTypeCount != 0 && fieldCount != 0 && categoryCount != 0) {
                 if (state == 0)
                     postSmatchingCondsAddResponse()
                 else if (state == 1)

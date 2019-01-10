@@ -1,5 +1,6 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
+import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -26,6 +27,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.os.Handler
 import android.support.v4.app.FragmentTransaction
+import appjam.sopt.a23rd.smatching.MainActivity
+import appjam.sopt.a23rd.smatching.TestActivity
+import org.jetbrains.anko.support.v4.startActivity
 
 
 class FirstFragment : Fragment(){
@@ -51,7 +55,12 @@ class FirstFragment : Fragment(){
         (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
         //
 
-
+        frag_first_iv_blue.setOnClickListener {
+            val refresh = Intent(activity, MainActivity::class.java )
+            refresh.putExtra("view", 1)
+            refresh.putExtra("page", 0)
+            startActivity(refresh)
+        }
         setRecyclerView()
         getUserSmatchingCondResponse()
 

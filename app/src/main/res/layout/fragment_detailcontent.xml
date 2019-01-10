@@ -111,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/colorText"
             android:text="사업 요약"
             android:textSize="16sp"
             android:fontFamily="@font/nanumsquareb"/>
@@ -130,6 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/colorText"
             android:text="지원 대상"
             android:textSize="16sp"
             android:fontFamily="@font/nanumsquareb"/>
@@ -149,6 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/colorText"
             android:text="지원 내용"
             android:textSize="16sp"
             android:fontFamily="@font/nanumsquareb"/>
@@ -169,6 +172,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginBottom="8dp"
             android:text="주관기관 담당부서"
+            android:textColor="@color/colorText"
             android:textSize="16sp"
             android:fontFamily="@font/nanumsquareb"/>
         <LinearLayout
@@ -179,7 +183,7 @@
                 android:id="@+id/fragment_detailcontent_sv_institution"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginBottom="4dp"
                 android:text=""
                 android:lineSpacingExtra="5dp"
@@ -190,7 +194,7 @@
                 android:id="@+id/fragment_detailcontent_sv_department"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="4dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginBottom="4dp"
                 android:text=""

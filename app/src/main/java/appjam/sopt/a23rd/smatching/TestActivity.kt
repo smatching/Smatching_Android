@@ -2088,7 +2088,7 @@ class TestActivity : AppCompatActivity() {
         //endregion
         //endregion
         act_test_rl.setOnClickListener {
-            if (periodCount != 0 && busiTypeCount != 0 && advantageCount != 0 && fieldCount != 0 && categoryCount != 0 && advantageCount != 0) {
+            if (periodCount != 0 && busiTypeCount != 0 && fieldCount != 0 && categoryCount != 0) {
                 if (state == 0)
                     postSmatchingCondsAddResponse()
                 else if (state == 1)

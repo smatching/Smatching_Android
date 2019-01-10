@@ -1,14 +1,17 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import appjam.sopt.a23rd.smatching.Adapter.SearchAdapter
@@ -32,6 +35,9 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.view.inputmethod.EditorInfo
+
+
 
 class SearchFragment : Fragment() {
     val dataList: ArrayList<NoticeData> by lazy {
@@ -47,11 +53,26 @@ class SearchFragment : Fragment() {
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        fragment_search_et_search.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) { // 뷰의 id를 식별, 키보드의 완료 키 입력 검출
+                val mEditText = fragment_search_et_search
+                val inputMethodManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(mEditText.windowToken, 0)
+                getSearchResponse()
+                return@OnEditorActionListener true
+            }
+            false
+        })
+
         fragment_search_iv_search.setOnClickListener {
+            val mEditText = fragment_search_et_search
+            val inputMethodManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(mEditText.windowToken, 0)
             getSearchResponse()
         }
 
     }
+
     private fun setRecyclerView() {
         searchAdapter = SearchAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
         fragment_search_list_rv.adapter = searchAdapter

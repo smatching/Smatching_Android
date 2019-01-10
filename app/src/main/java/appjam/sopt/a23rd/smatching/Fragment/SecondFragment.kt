@@ -1,5 +1,6 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
+import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -16,9 +17,12 @@ import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Adapter.HomeRecyclerViewAdapter
 import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
 import appjam.sopt.a23rd.smatching.Get.GetUserSmatchingCondResponse
+import appjam.sopt.a23rd.smatching.MainActivity
+import appjam.sopt.a23rd.smatching.Test2Activity
 import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
+import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,6 +45,12 @@ class SecondFragment : Fragment(){
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        frag_second_iv_blue.setOnClickListener {
+            val refresh = Intent(activity, MainActivity::class.java )
+            refresh.putExtra("view", 1)
+            refresh.putExtra("page", 1)
+            startActivity(refresh)
+        }
         setRecyclerView()
         getUserSmatchingCondResponse()
     }

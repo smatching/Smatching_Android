@@ -1,5 +1,6 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -13,6 +14,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
 import android.widget.TextView
 import appjam.sopt.a23rd.smatching.Adapter.SmatchingScrapRecyclerViewAdapter
@@ -69,8 +72,21 @@ class MyPageFragment : Fragment(){
         fragment_my_page_user_smatchingscrap.setOnClickListener{
             replaceFragment(MyPageFragment())
         }
+        fragment_mypage_user_et_search.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) { // 뷰의 id를 식별, 키보드의 완료 키 입력 검출
+                val mEditText = fragment_mypage_user_et_search
+                val inputMethodManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(mEditText.windowToken, 0)
+                getScrapSearchResponse()
+                return@OnEditorActionListener true
+            }
+            false
+        })
         fragment_mypage_user_btn_search.setOnClickListener {
             getScrapSearchResponse()
+            val mEditText = fragment_mypage_user_et_search
+            val inputMethodManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(mEditText.windowToken, 0)
         }
 
         /*
