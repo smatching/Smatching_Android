@@ -12,32 +12,60 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/CustomAppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
         </activity>
-        <activity android:name=".WorkthroughsPagerActivity"/>
-        <activity android:name=".WorkthroughsActivity"/>
-        <activity android:name=".StartLoginActivity" />
-        <activity android:name=".StartCreateActivity" />
+
+        <activity android:name=".WorkthroughsPagerActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".WorkthroughsActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".StartLoginActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".StartCreateActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".TestActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".Test2Activity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".PolicyActivity" />
-        <activity android:name=".PolicyViewActivity" />
-        <activity android:name=".StartActivity" />
-        <activity android:name=".MemberQuitActivity" />
-        <activity android:name=".LogoutActivity" />
-        <activity android:name=".SmatchingCustomCorporateDetailActivity" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".PolicyActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".PolicyViewActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".StartActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".MemberQuitActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".LogoutActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".SmatchingCustomCorporateDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

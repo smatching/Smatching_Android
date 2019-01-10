@@ -28,6 +28,8 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import appjam.sopt.a23rd.smatching.Delete.DeleteSmatchingCondsResponse
 import appjam.sopt.a23rd.smatching.Put.PutSmatchingCount
 import appjam.sopt.a23rd.smatching.post.PostSmatchingAdd
@@ -93,6 +95,23 @@ class TestActivity : AppCompatActivity() {
         supportActionBar!!.setTitle("")
         act_test_tv.text = "맞춤지원"
         getUserSmatchingCondResponse()
+
+        act_test_et_title.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //여기서 받기
+                if(act_test_et_title.getText().toString().length != 0){
+                    act_test_iv_text_delete.setVisibility(View.VISIBLE)
+                } else if(act_test_et_title.text.toString().length == 0) {
+                    act_test_iv_text_delete.setVisibility(View.GONE)
+                }
+            }
+        })
+
+
         for (a in 0..21)
             TEMPFIELDSBOOL[a] = FIELDSBOOL[a]
         for (a in 0..7)
@@ -104,6 +123,7 @@ class TestActivity : AppCompatActivity() {
         }
         act_test_iv_text_delete.setOnClickListener {
             act_test_et_title.setText("")
+            act_test_iv_text_delete.setVisibility(View.GONE)
         }
 
         act_test_delete_ok.setOnClickListener {
@@ -163,7 +183,6 @@ class TestActivity : AppCompatActivity() {
             }
         }
         //endregion
-
         //region 업종 설정
         //region 팝업부분
         act_test_rl_busiType.setOnClickListener {

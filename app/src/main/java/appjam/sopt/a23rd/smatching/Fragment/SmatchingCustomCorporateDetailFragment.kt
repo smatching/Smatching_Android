@@ -81,9 +81,13 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
             fragment_detailcontent_iv_scrap.setImageResource(R.drawable.icn_scrap_grey)}
         getNoticeScrap()
 
-        fragment_detailcontent_iv_call.setOnClickListener{
-            if(phone != "")
-                startActivity(Intent("android.intent.action.DIAL", Uri.parse(phone)))
+        fragment_detailcontent_iv_call.setOnClickListener {
+            if (phone != "") {
+                if(phone == "링크 참조")
+                    toast("링크를 참고하세요.")
+                else
+                    startActivity(Intent("android.intent.action.DIAL", Uri.parse(phone)))
+            }
             else
                 toast("전화번호가 없습니다.")
         }
@@ -125,7 +129,10 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
                         if(data.phone == "") {
                             fragment_detailcontent_iv_call.setImageResource(R.drawable.icn_detailpage_call_grey)
                             phone = ""
-                        } else {
+                        } else if(data.phone == "링크 참조") {
+                            fragment_detailcontent_iv_call.setImageResource(R.drawable.icn_detailpage_calll)
+                            phone = "링크 참조"
+                        }else {
                             fragment_detailcontent_iv_call.setImageResource(R.drawable.icn_detailpage_calll)
                             phone = "tel:" + data.phone
                         }
