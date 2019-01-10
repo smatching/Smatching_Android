@@ -44,25 +44,32 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
         else {
             holder.dday.text = dataList[position].dday.toString()
         }*/
-        if(dataList[position].dday.toString() > "1000") {
+        if(dataList[position].dday > 1000) {
             holder.dday.text = "예산 소진시"
             holder.day.text = ""
             holder.ddayImg.setImageResource(R.drawable.txt_budgetend_box)
-        } else if (dataList[position].dday == 0) {
-            holder.day.text = "D-"
-            holder.dday.text = "day"
-            holder.day.setTextColor(Color.parseColor("#BF7474"))
-            holder.dday.setTextColor(Color.parseColor("#BF7474"))
-            holder.ddayImg.setImageResource(R.drawable.box_dday_red)
         } else {
-            holder.dday.text = dataList[position].dday.toString()
             holder.day.text = "D-"
-            if(dataList[position].dday < 7) {
+            holder.dday.text = dataList[position].dday.toString()
+
+            // 7일 이하는 색깔 빨간색으로 바꿔줌
+            // 원인 : 함수가 호출될때마다 holder가 초기화되서 불려오는게 아니라 이전 정보가 남아있는 holder 그대로 가져와서 하나씩 덮어쓰는 방식임
+            //        그래서 빨간색으로 바꾼게 다른 정보를 표시할때에도 그대로 이어짐
+            // 버그 픽스 방법 : 검정색으로 원복해주는 else 문 추가
+            if(dataList[position].dday <= 7) {
+                if (dataList[position].dday == 0)
+                    holder.dday.text = "day"
                 holder.day.setTextColor(Color.parseColor("#BF7474"))
                 holder.dday.setTextColor(Color.parseColor("#BF7474"))
                 holder.ddayImg.setImageResource(R.drawable.box_dday_red)
             }
+            else {
+                holder.day.setTextColor(Color.parseColor("#9B9B9B"))
+                holder.dday.setTextColor(Color.parseColor("#9B9B9B"))
+                holder.ddayImg.setImageResource(R.drawable.box_dday_gray)
+            }
         }
+
         holder.title.text = dataList[position].title
         // 스크랩이 되지 않았을 경우
         if(dataList[position].scrap == 0)

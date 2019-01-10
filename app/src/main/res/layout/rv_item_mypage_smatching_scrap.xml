@@ -23,7 +23,7 @@
                 android:textSize="11sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:textColor="@color/colorBackgroundshallow"/>
+                android:textColor="@color/colorTextshallow2"/>
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">

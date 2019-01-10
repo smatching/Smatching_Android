@@ -29,8 +29,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class CustomFirstFragment : Fragment(){
-    var loadingFirstCustom1 = 0
-    var loadingFirstCustom2 = 0
+    var customFirstFragmentPage = 0
     val dataList : ArrayList<NoticeData> by lazy {
         ArrayList<NoticeData>()
     }
@@ -90,7 +89,6 @@ class CustomFirstFragment : Fragment(){
 
     }
     private fun getCustomFirstFragmentListResponse(cond_idx:Int){
-        loadingFirstCustom1 = 0
         val getCustomFirstFragmentListResponse = networkService.getFitNoticeListResponse(SharedPreferenceController.getAuthorization(activity!!), 999, 0, cond_idx)
         getCustomFirstFragmentListResponse.enqueue(object : Callback<GetNoticeListResponse> {
             override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
@@ -109,13 +107,11 @@ class CustomFirstFragment : Fragment(){
                             customRecyclerViewAdapter.notifyItemInserted(position)
                         }
                     }
-                    loadingFirstCustom1 = 1
                 }
             }
         })
     }
     private fun getUserSmatchingCondResponse(){
-        loadingFirstCustom2 = 0
         val getUserSmatchingCondResponse = networkService.getUserSmatchingCondResponse(SharedPreferenceController.getAuthorization(activity!!))
         getUserSmatchingCondResponse.enqueue(object : Callback<GetUserSmatchingCondResponse> {
             override fun onFailure(call: Call<GetUserSmatchingCondResponse>, t: Throwable) {
@@ -130,7 +126,6 @@ class CustomFirstFragment : Fragment(){
                     } else if (response.body()!!.status == 204) {
                         replaceFragmentBody(FirstCustomEmptyFragment())
                     }
-                    loadingFirstCustom2 = 1
                 }
             }
         })

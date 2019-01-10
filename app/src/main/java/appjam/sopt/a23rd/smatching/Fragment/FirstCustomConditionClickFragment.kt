@@ -23,6 +23,7 @@ import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
 import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.fragment_first_custom_condition_click.*
+import kotlinx.android.synthetic.main.fragment_second_custom_condition_click.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
@@ -105,8 +106,8 @@ class FirstCustomConditionClickFragment : Fragment(){
                         fragment_first_custom_condition_click_tv_age.text = "만 20세 이상 ~ 만 39세 이하"
                     else if (response.body()!!.data.age.forty_more)
                         fragment_first_custom_condition_click_tv_age.text = "만 40세 이상"
-                    else if(!response.body()!!.data.age.twenty_less && !response.body()!!.data.age.twenty_forty && response.body()!!.data.age.forty_more)
-                        fragment_first_custom_condition_click_tv_age.text = ""
+                    else
+                        fragment_first_custom_condition_click_tv_age.text = "선택사항 없음"
                     //endregion
                     //region 설립 경과 년수
                     val periodList = ArrayList<String>()
@@ -242,9 +243,13 @@ class FirstCustomConditionClickFragment : Fragment(){
                         advantageList.add("대학(원)생")
                     if (response.body()!!.data.advantage.togather)
                         advantageList.add("공동창업")
-                    fragment_first_custom_condition_click_tv_advantage.text = advantageList.toString()
-                            .replace("[", "")  //remove the right bracket
-                            .replace("]", "")  //remove the left bracket
+                    if(advantageList.toString().replace("[", "").replace("]", "") == "")
+                        fragment_first_custom_condition_click_tv_advantage.text = "선택사항 없음"
+                    else {
+                        fragment_first_custom_condition_click_tv_advantage.text = advantageList.toString()
+                                .replace("[", "")  //remove the right bracket
+                                .replace("]", "")  //remove the left bracket
+                    }
                     //endregion
 
                     loadingFirstCustomConditionClick2 = 1
