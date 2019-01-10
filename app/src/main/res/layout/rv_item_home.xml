@@ -7,12 +7,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="5.5dp"
+        android:layout_centerVertical="true">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="13dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/rv_item_home_tv_supervisor"
@@ -22,40 +23,40 @@
                 android:text="주관처"
                 android:fontFamily="@font/nanumsquarer"
                 android:textSize="11sp"/>
-<RelativeLayout
-    android:layout_width="50dp"
-    android:layout_height="wrap_content"
-    android:layout_alignParentRight="true">
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
 
-    <LinearLayout
-        android:id="@+id/rv_item_home_ll_dday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
-
-
-        <TextView
-            android:id="@+id/rv_item_home_tv_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorText"
-            android:text="D-"
-            android:fontFamily="@font/nanumsquarer"
-            android:textSize="10sp"/>
+                <LinearLayout
+                    android:id="@+id/rv_item_home_ll_dday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true">
 
 
-        <TextView
-            android:id="@+id/rv_item_home_tv_deadline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorText"
-            android:text=""
-            android:fontFamily="@font/nanumsquarer"
-            android:textSize="10sp"/>
+                    <TextView
+                        android:id="@+id/rv_item_home_tv_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTextshallow3"
+                        android:text="D-"
+                        android:fontFamily="@font/nanumsquarer"
+                        android:textSize="10sp"/>
 
-    </LinearLayout>
 
-</RelativeLayout>
+                    <TextView
+                        android:id="@+id/rv_item_home_tv_deadline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTextshallow3"
+                        android:text=""
+                        android:fontFamily="@font/nanumsquarer"
+                        android:textSize="10sp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -69,38 +70,40 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="50dp"
+                android:layout_centerVertical="true"
                 android:textSize="12sp"
                 android:fontFamily="@font/nanumsquareb"
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:text="2019년도 스매칭 주관 기술혁신창업기업 기술육성 프로그램 문정호 캠프 참여기업 모집 공고"/>
-<RelativeLayout
-    android:layout_width="50dp"
-    android:layout_height="wrap_content"
-    android:layout_alignParentRight="true">
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
 
-    <ImageView
-        android:id="@+id/rv_item_home_iv_scrap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:paddingVertical="7dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/icn_scrap_grey"/>
-</RelativeLayout>
+                <ImageView
+                    android:id="@+id/rv_item_home_iv_scrap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingVertical="7dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/icn_scrap_grey"/>
+            </RelativeLayout>
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/rv_item_home_iv_line"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:src="@drawable/line"/>
+
 
     </LinearLayout>
 
-
+    <ImageView
+        android:id="@+id/rv_item_home_iv_line"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/line"/>
 
 
 

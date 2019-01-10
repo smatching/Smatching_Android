@@ -22,12 +22,12 @@ class PolicyViewActivity : AppCompatActivity() {
         val intent: Intent = getIntent()
         if (intent.getIntExtra("policyData", 1) == 0) {
             supportActionBar!!.setTitle("이용약관")
-            act_policy_view_tv_text.visibility = View.GONE
-            act_policy_view_iv_text.visibility = View.VISIBLE
-        } else {
-            supportActionBar!!.setTitle("개인정보 처리방침")
             act_policy_view_tv_text.visibility = View.VISIBLE
             act_policy_view_iv_text.visibility = View.GONE
+        } else {
+            supportActionBar!!.setTitle("개인정보 처리방침")
+            act_policy_view_tv_text.visibility = View.GONE
+            act_policy_view_iv_text.visibility = View.VISIBLE
             act_policy_view_iv_text.setImageResource(R.drawable.txt_personaldeatail)
         }
     }
