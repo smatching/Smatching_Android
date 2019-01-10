@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.Fragment.SmatchingCustomCorporateDetailFragment
 import appjam.sopt.a23rd.smatching.MainActivity
@@ -91,6 +92,10 @@ class CustomRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Notice
             override fun onResponse(call: Call<PutNoticeScrap>, response: Response<PutNoticeScrap>) {
                 if(response.isSuccessful){
                     Log.e("Scrap Setting Success ", response.body()!!.message)
+                    if(response.body()!!.data == 1)
+                        Toast.makeText(ctx, "스크랩 되었습니다.", Toast.LENGTH_SHORT).show()
+                    else
+                        Toast.makeText(ctx, "스크랩 해제 되었습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
         })

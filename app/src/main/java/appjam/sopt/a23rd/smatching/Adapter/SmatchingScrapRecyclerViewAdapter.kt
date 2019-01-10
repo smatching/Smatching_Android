@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.Fragment.SmatchingCustomCorporateDetailFragment
 import appjam.sopt.a23rd.smatching.MainActivity
@@ -105,7 +106,15 @@ class SmatchingScrapRecyclerViewAdapter(val ctx : Context, val dataList : ArrayL
 
             override fun onResponse(call: Call<PutNoticeScrap>, response: Response<PutNoticeScrap>) {
                 if(response.isSuccessful){
-                    Log.e("Scrap Setting Success ", response.body()!!.message)
+                    Log.e("Smatching Scrap Success", response.body()!!.message)
+                    if(response.body()!!.data == 1){
+                        Log.e("Smatching Scrap", response.body()!!.message)
+                        Toast.makeText(ctx, "스크랩 되었습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        Log.e("Smatching Scrap", response.body()!!.message)
+                        Toast.makeText(ctx, "스크랩 해제 되었습니다.", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         })

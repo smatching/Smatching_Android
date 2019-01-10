@@ -12,31 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RelativeLayout
-                android:id="@+id/fragment_my_page_user_rl_profile"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginTop="5dp"
-                android:layout_centerHorizontal="true">
-                <ImageView
-                    android:src="@drawable/img_profile_edge"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <ImageView
-                    android:src="@drawable/img_profile"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginHorizontal="40dp"
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,18 +26,17 @@
                 <TextView
                     android:id="@+id/fragment_my_page_profile_tv_nickname"
                     android:fontFamily="@font/nanumsquareb"
-                    android:textSize="20sp"
+                    android:textSize="26sp"
                     android:textColor="#ffffff"
                     android:letterSpacing="0.02"
                     android:lineSpacingExtra="10sp"
-                    android:layout_marginLeft="6dp"
-                    android:text=""
-                    android:layout_marginRight="4dp"
+                    android:text="유지원"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"/>
                 <TextView
-                    android:fontFamily="@font/nanumsquareb"
-                    android:textSize="15sp"
+                    android:fontFamily="@font/nanumsquarel"
+                    android:textSize="20sp"
                     android:textColor="#ffffff"
                     android:letterSpacing="0.02"
                     android:lineSpacingExtra="10sp"
@@ -63,7 +44,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
-        </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarel"
+                android:textSize="20sp"
+                android:textColor="#ffffff"
+                android:letterSpacing="0.02"
+                android:lineSpacingExtra="10sp"
+                android:text="우리 번창하자구요 :P"
+                />
+        </LinearLayout>
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/fragment_my_page_user_rl_profile"-->
+                <!--android:layout_width="72dp"-->
+                <!--android:layout_height="72dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_centerHorizontal="true">-->
+                <!--<ImageView-->
+                    <!--android:src="@drawable/img_profile_edge"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<ImageView-->
+                    <!--android:src="@drawable/img_profile"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+            <!--</RelativeLayout>-->
+        <!--</RelativeLayout>-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
