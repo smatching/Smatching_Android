@@ -32,9 +32,9 @@ class MyPageTalkFragment : Fragment(){
 
         getUserInfo()
 
-        fragment_my_page_user_rl_profile.setOnClickListener{
-            replaceFragment(MyPageSettingMemberInfoFragment())
-        }
+//        fragment_my_page_user_rl_profile.setOnClickListener{
+//            replaceFragment(MyPageSettingMemberInfoFragment())
+//        }
         fragment_my_page_user_talkscrap.setOnClickListener {
             replaceFragment(MyPageTalkFragment())
         }

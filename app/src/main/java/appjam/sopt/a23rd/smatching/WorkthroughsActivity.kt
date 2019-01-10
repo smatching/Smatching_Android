@@ -20,8 +20,9 @@ class WorkthroughsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workthroughs)
 
-        if(SharedPreferenceController.getWorkthroughs(this).equals("true"))
-            startActivity<StartActivity>()
+        // 초기 사용자에게만 보여지는 화면으로 설정
+//        if(SharedPreferenceController.getWorkthroughs(this).equals("true"))
+//            startActivity<StartActivity>()
 
         act_workthroughs.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
