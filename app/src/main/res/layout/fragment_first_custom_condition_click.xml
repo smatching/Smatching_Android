@@ -102,7 +102,7 @@
                                 android:layout_marginTop="14dp"
                                 android:layout_marginBottom="10dp">
                                 <TextView
-                                    android:layout_width="80dp"
+                                    android:layout_width="88dp"
                                     android:layout_height="wrap_content"
                                     android:text="나이"
                                     android:textSize="12sp"
@@ -123,7 +123,7 @@
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_marginBottom="10dp">
                                 <TextView
-                                    android:layout_width="80dp"
+                                    android:layout_width="88dp"
                                     android:layout_height="wrap_content"
                                     android:text="설립 경과 년수"
                                     android:textSize="12sp"
@@ -144,7 +144,7 @@
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_marginBottom="10dp">
                                 <TextView
-                                    android:layout_width="80dp"
+                                    android:layout_width="88dp"
                                     android:layout_height="wrap_content"
                                     android:text="기업형태"
                                     android:textSize="12sp"
@@ -165,7 +165,7 @@
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_marginBottom="10dp">
                                 <TextView
-                                    android:layout_width="80dp"
+                                    android:layout_width="88dp"
                                     android:layout_height="wrap_content"
                                     android:text="업종"
                                     android:textSize="12sp"
@@ -186,7 +186,7 @@
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_marginBottom="10dp">
                                 <TextView
-                                    android:layout_width="80dp"
+                                    android:layout_width="88dp"
                                     android:layout_height="wrap_content"
                                     android:text="필요 없는 지원"
                                     android:textSize="12sp"
@@ -207,7 +207,7 @@
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_marginBottom="16dp">
                                 <TextView
-                                    android:layout_width="80dp"
+                                    android:layout_width="88dp"
                                     android:layout_height="wrap_content"
                                     android:text="우대사항"
                                     android:textSize="12sp"
