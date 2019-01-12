@@ -132,6 +132,7 @@ class HomeFragment : Fragment(){
 //            (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_main_iv_my_page).isSelected = false
             (activity as AppCompatActivity).findViewById<TextView>(R.id.act_bottom_navi_tv_title).setText("전체공고")
             (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_bottom_navi_iv_title).visibility = View.INVISIBLE
+            (activity as AppCompatActivity).findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
         }
     }
 
