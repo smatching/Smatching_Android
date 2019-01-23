@@ -25,46 +25,6 @@ class MyPageTalkFragment : Fragment(){
         ApplicationController.instance.networkService
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_my_page_user_talk, container, false)
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        getUserInfo()
-
-//        fragment_my_page_user_rl_profile.setOnClickListener{
-//            replaceFragment(MyPageSettingMemberInfoFragment())
-//        }
-        fragment_my_page_user_talkscrap.setOnClickListener {
-            replaceFragment(MyPageTalkFragment())
-        }
-        fragment_my_page_user_smatchingscrap.setOnClickListener{
-            replaceFragment(MyPageFragment())
-        }
-    }
-
-        private fun replaceFragment(fragment: Fragment) {
-            val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.act_bottom_navi_fl, fragment)
-            transaction.commit()
-        }
-    private fun getUserInfo(){
-        val getUserInfo = networkService.getUserInfo(SharedPreferenceController.getAuthorization(activity!!))
-        getUserInfo.enqueue(object : Callback<GetUserInfoDataResponse> {
-            override fun onFailure(call: Call<GetUserInfoDataResponse>, t: Throwable) {
-                Log.e("response body fail", t.toString())
-            }
-            override fun onResponse(call: Call<GetUserInfoDataResponse>, response: Response<GetUserInfoDataResponse>) {
-                if (response.isSuccessful) {
-                    Log.e("mypage setting member", response.body()!!.status.toString())
-                    if (response.body()!!.status != 200)
-                        toast(response.body()!!.message)
-                    else {
-                        val arr: UserInfoData = response.body()!!.data
-                        fragment_my_page_profile_tv_nickname.setText(arr.nickname)
-                    }
-                }
-            }
-        })
+        return inflater.inflate(R.layout.fragment_my_page_talk, container, false)
     }
 }
