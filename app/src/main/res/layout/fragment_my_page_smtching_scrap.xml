@@ -30,7 +30,6 @@
                 android:layout_marginHorizontal="25dp"
                 android:orientation="vertical">
 
-
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -152,8 +151,6 @@
             </RelativeLayout>
 
         </RelativeLayout>
-
-
 
     </LinearLayout>
 

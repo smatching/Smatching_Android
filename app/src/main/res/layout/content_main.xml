@@ -139,7 +139,7 @@
 
     <RelativeLayout
         android:id="@+id/act_main_loading"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#8CFFFFFF">
@@ -192,14 +192,11 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="60dp"
                     android:paddingVertical="15dp">
-                    <TextView
-                        android:text="취소"
-                        android:textColor="@color/colorText"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:layout_centerInParent="true"
+                    <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/txt_nono"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/act_mypage_setting_memberquit_ok"
@@ -207,14 +204,11 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="60dp"
                     android:paddingVertical="15dp">
-                    <TextView
-                        android:text="확인"
-                        android:textColor="@color/colorBlue"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:layout_centerInParent="true"
+                    <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/txt_ok"
+                        android:layout_centerInParent="true"/>
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -257,14 +251,11 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="60dp"
                     android:paddingVertical="15dp">
-                    <TextView
-                        android:text="취소"
-                        android:textColor="@color/colorText"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:layout_centerInParent="true"
+                    <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/txt_nono"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/act_mypage_setting_logout_ok"
@@ -272,14 +263,11 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="60dp"
                     android:paddingVertical="15dp">
-                    <TextView
-                        android:text="확인"
-                        android:textColor="@color/colorBlue"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/nanumsquareb"
-                        android:layout_centerInParent="true"
+                    <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/txt_ok"
+                        android:layout_centerInParent="true"/>
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>

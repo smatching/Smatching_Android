@@ -1,10 +1,8 @@
 package appjam.sopt.a23rd.smatching
 
-import android.app.Activity
-import android.app.PendingIntent.getActivity
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.media.Image
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
@@ -18,10 +16,7 @@ import appjam.sopt.a23rd.smatching.db.SharedPreferenceController
 import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
 import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_test.*
-import org.jetbrains.anko.toast
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,10 +26,13 @@ import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import appjam.sopt.a23rd.smatching.Delete.DeleteSmatchingCondsResponse
-import appjam.sopt.a23rd.smatching.Put.PutSmatchingCount
 import appjam.sopt.a23rd.smatching.post.PostSmatchingAdd
-import kotlinx.android.synthetic.main.activity_test2.*
 import org.jetbrains.anko.startActivity
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.view.inputmethod.InputMethodManager
+import android.widget.RelativeLayout
+
+
 
 
 class TestActivity : AppCompatActivity() {
@@ -96,6 +94,19 @@ class TestActivity : AppCompatActivity() {
         act_test_tv.text = "맞춤지원"
         getUserSmatchingCondResponse()
 
+/*
+        val rl = findViewById(R.id.act_test_rl_view) as RelativeLayout
+
+        rl.setOnClickListener(object : View.OnClickListener {
+
+            override fun onClick(v: View) {
+                // TODO Auto-generated method stub
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(act_test_et_title.windowToken, 0)
+            }
+        })
+
+*/
         act_test_et_title.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }

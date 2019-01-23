@@ -109,10 +109,4 @@ class SearchFragment : Fragment() {
             }
         })
     }
-
-    private fun replaceFragment(fragment: Fragment) {
-        val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fragment_search_fl, fragment)
-        transaction.commit()
-    }
 }

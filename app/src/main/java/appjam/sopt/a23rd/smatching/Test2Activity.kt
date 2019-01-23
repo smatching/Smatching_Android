@@ -103,6 +103,9 @@ class Test2Activity : AppCompatActivity() {
         supportActionBar!!.setTitle("")
         act_test2_tv.text = "맞춤지원"
 
+
+
+
         act_test2_et_title.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
