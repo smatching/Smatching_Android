@@ -101,7 +101,7 @@ class HomeFragment : Fragment(){
 
         fragment_home_iv_more_smatching.setOnClickListener {
             replaceFragment(SmatchingCustom())
-            (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
+            //(activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
             (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).setTitleTextColor(resources.getColor(R.color.colorText))
             (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(false)
             (activity as MainActivity).backButtomVisibility = 0

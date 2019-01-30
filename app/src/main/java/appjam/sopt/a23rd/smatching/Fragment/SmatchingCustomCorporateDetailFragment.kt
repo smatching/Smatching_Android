@@ -64,7 +64,7 @@ class SmatchingCustomCorporateDetailFragment : Fragment() {
         (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
         (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
         (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
-        (activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBlue))
+        //(activity as AppCompatActivity).findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBlue))
         (activity as AppCompatActivity).findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorWhite))
         (activity as AppCompatActivity).findViewById<TextView>(R.id.act_bottom_navi_tv_title).setText("상세정보")
         (activity as AppCompatActivity).findViewById<ImageView>(R.id.act_bottom_navi_iv_title).visibility = View.INVISIBLE

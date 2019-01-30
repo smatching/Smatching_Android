@@ -84,7 +84,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val navi = ll_bottom_navi_act_main
 
-        act_main_dont_do_that
 
         act_mypage_setting_memberquit_no.setOnClickListener {
             act_main_dont_do_that.visibility = View.GONE
@@ -98,6 +97,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     SharedPreferenceController.setAuthorization(this@MainActivity, "")
                     toast("로그아웃이 정상적으로 처리 되었습니다.")
                     startActivity<StartActivity>()
+                    finish()
                 }
             }
         })
@@ -109,7 +109,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val intent = getIntent()
         if (intent.getIntExtra("view", 0) == 1) {
             replaceFragment(SmatchingCustom())
-            toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
+            //
+            // toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
             backButtomVisibility = 0
@@ -148,7 +149,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_rl_my_page.isEnabled = false
 
             replaceFragment(HomeFragment())
-            toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
+            //toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
             backButtomVisibility = 0
@@ -183,7 +184,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_rl_talk.isEnabled = false
             act_main_rl_my_page.isEnabled = false
             replaceFragment(SmatchingCustom())
-            toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
+            //toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
             backButtomVisibility = 0
@@ -217,7 +218,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_rl_talk.isEnabled = false
             act_main_rl_my_page.isEnabled = false
             replaceFragment(TalkFragment())
-            toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
+            //toolbar.setBackgroundColor(resources.getColor(R.color.colorBackground))
             toolbar.setTitleTextColor(resources.getColor(R.color.colorText))
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
             backButtomVisibility = 0
@@ -251,7 +252,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             act_main_rl_talk.isEnabled = false
             act_main_rl_my_page.isEnabled = false
             replaceFragment(MyPageFragment())
-            toolbar.setBackgroundColor(resources.getColor(R.color.colorBlue))
+            //toolbar.setBackgroundColor(resources.getColor(R.color.colorBlue))
             titleText.setTextColor(Color.WHITE)
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
             backButtomVisibility = 0
@@ -329,7 +330,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     setTextColor(R.color.colorText)
                     setText("검색")
                 }
-                findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
+                //findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
                 findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
                 supportActionBar!!.setDisplayHomeAsUpEnabled(true)
                 backButtomVisibility = 1
@@ -350,7 +351,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 findViewById<TextView>(R.id.act_bottom_navi_tv_title).setText("설정")
                 findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(R.color.colorText)
                 findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = false
-                findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
+                //findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
                 supportActionBar!!.setDisplayHomeAsUpEnabled(true)
                 backButtomVisibility = 1
                 supportActionBar!!.setHomeAsUpIndicator(R.drawable.btn_back)
@@ -434,7 +435,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search_white).isVisible = false
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
-            findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
+            //findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
@@ -447,7 +448,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search_white).isVisible = false
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
-            findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
+            //findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
@@ -461,7 +462,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_setting_white).isVisible = false
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search_white).isVisible = false
             //findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_notice).isVisible = false
-            findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
+            //findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBackground))
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_search).isVisible = true
             findViewById<Toolbar>(R.id.my_toolbar).menu.findItem(R.id.menu_smatching_delete).isVisible = false
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(resources.getColor(R.color.colorText))
@@ -479,7 +480,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             findViewById<TextView>(R.id.act_bottom_navi_tv_title).setTextColor(Color.WHITE)
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
             backButtomVisibility = 0
-            findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBlue))
+            //findViewById<Toolbar>(R.id.my_toolbar).setBackgroundColor(resources.getColor(R.color.colorBlue))
         }
         transaction.replace(R.id.act_bottom_navi_fl, fragment)
         transaction.commit()
@@ -548,6 +549,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     SharedPreferenceController.setAuthorization(this@MainActivity, "")
                     startActivity<StartActivity>()
                     toast("회원 탈퇴 되었습니다.\n스메칭을 이용해 주셔서 감사합니다:)")
+                    finish()
                 }
             }
         })

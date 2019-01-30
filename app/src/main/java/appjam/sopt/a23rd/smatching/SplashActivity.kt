@@ -22,6 +22,6 @@ class SplashActivity : AppCompatActivity() {
             val mainIntent = Intent(this@SplashActivity, WorkthroughsActivity::class.java)
             this@SplashActivity.startActivity(mainIntent)
             this@SplashActivity.finish()
-        }, 4000)
+        }, 3200)
     }
 }
