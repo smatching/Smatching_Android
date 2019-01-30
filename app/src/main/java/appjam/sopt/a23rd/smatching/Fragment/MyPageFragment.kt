@@ -1,27 +1,20 @@
 package appjam.sopt.a23rd.smatching.Fragment
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.RelativeLayout
-import android.widget.TextView
-import appjam.sopt.a23rd.smatching.Adapter.SmatchingScrapRecyclerViewAdapter
+import appjam.sopt.a23rd.smatching.Adapter.MyPageAdapter
 import appjam.sopt.a23rd.smatching.Data.NoticeData
 import appjam.sopt.a23rd.smatching.Data.UserInfoData
-import appjam.sopt.a23rd.smatching.Get.GetNoticeListResponse
 import appjam.sopt.a23rd.smatching.Get.GetUserInfoDataResponse
 import appjam.sopt.a23rd.smatching.MainActivity
 import appjam.sopt.a23rd.smatching.R
@@ -30,7 +23,6 @@ import appjam.sopt.a23rd.smatching.network.ApplicationController
 import appjam.sopt.a23rd.smatching.network.NetworkService
 import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.fragment_my_page_user.*
-import kotlinx.android.synthetic.main.fragment_mypage_setting_memberinfo.*
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,7 +35,6 @@ class MyPageFragment : Fragment(){
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
-    lateinit var smatchingScrapFragmentRecyclerViewAdapter: SmatchingScrapRecyclerViewAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         getUserInfo()
         return inflater.inflate(R.layout.fragment_my_page_user, container, false)
@@ -55,8 +46,6 @@ class MyPageFragment : Fragment(){
         (activity as AppCompatActivity).findViewById<LottieAnimationView>(R.id.act_main_anim).playAnimation()
         //
 
-        getSmatchingScrapListResponse()
-
         (activity as MainActivity).setpageNum(3)
 
         Handler().postDelayed({
@@ -66,102 +55,7 @@ class MyPageFragment : Fragment(){
             replaceFragment(MyPageSettingMemberInfoFragment())
         }
         */
-        fragment_my_page_user_talkscrap.setOnClickListener {
-            replaceFragment(MyPageTalkFragment())
-        }
-        fragment_my_page_user_smatchingscrap.setOnClickListener{
-            replaceFragment(MyPageFragment())
-        }
-        fragment_mypage_user_et_search.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) { // 뷰의 id를 식별, 키보드의 완료 키 입력 검출
-                val mEditText = fragment_mypage_user_et_search
-                val inputMethodManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.hideSoftInputFromWindow(mEditText.windowToken, 0)
-                getScrapSearchResponse()
-                return@OnEditorActionListener true
-            }
-            false
-        })
-        fragment_mypage_user_btn_search.setOnClickListener {
-            getScrapSearchResponse()
-            val mEditText = fragment_mypage_user_et_search
-            val inputMethodManager = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(mEditText.windowToken, 0)
-        }
-
-        /*
-        fragment_my_page_user_smatchingscrap.setOnClickListener {
-            fragment_my_page_user_smatchingscrap.setTextColor(resources.getColor(R.color.colorText))
-            fragment_my_page_user_talkscrap.setTextColor(resources.getColor(R.color.colorTextshallow))
-        }
-        fragment_my_page_user_talkscrap.setOnClickListener {
-            fragment_my_page_user_talkscrap.setTextColor(resources.getColor(R.color.colorText))
-            fragment_my_page_user_smatchingscrap.setTextColor(resources.getColor(R.color.colorTextshallow))
-        }*/
-    }
-    private fun setRecyclerView() {
-        smatchingScrapFragmentRecyclerViewAdapter = SmatchingScrapRecyclerViewAdapter(activity!!, dataList, SharedPreferenceController.getAuthorization(activity!!))
-        fragment_my_page_user_rv.adapter = smatchingScrapFragmentRecyclerViewAdapter
-        fragment_my_page_user_rv.layoutManager = LinearLayoutManager(activity)
-    }
-    private fun getSmatchingScrapListResponse(){
-        val getSmatchingScrapListResponse = networkService.getSmatchingScrapListResponse(SharedPreferenceController.getAuthorization(activity!!),
-                999, 0)
-        getSmatchingScrapListResponse.enqueue(object : Callback<GetNoticeListResponse> {
-            override fun onFailure(call: Call<GetNoticeListResponse>, t: Throwable) {
-                Log.e("board list fail", t.toString())
-            }
-
-            override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>) {
-                if (response.isSuccessful){
-                    if(response.body()!!.status == 204) {
-                        Log.d("mypage test : ", response.body()!!.status.toString())
-                        fragment_my_page_user_ll.setVisibility(View.GONE)
-                        fragment_my_page_user_line.setVisibility(View.GONE)
-                        fragment_my_page_user_iv_noscrap.setVisibility(View.VISIBLE)
-                    }
-                    else {
-                        val temp : ArrayList<NoticeData> = response.body()!!.data
-                        setRecyclerView()
-                        val position = smatchingScrapFragmentRecyclerViewAdapter.itemCount
-                        val scrapCnt: TextView = view!!.findViewById(R.id.fragment_my_page_user_tv_scrapCnt)
-                        scrapCnt.setText(temp.size.toString())
-                        smatchingScrapFragmentRecyclerViewAdapter.dataList.addAll(temp)
-                        smatchingScrapFragmentRecyclerViewAdapter.notifyItemInserted(position)
-                    }
-                }
-            }
-        })
-    }
-    private fun getScrapSearchResponse() {
-        val query: String = fragment_mypage_user_et_search.text.toString()
-        val getScrapSearchResponse = networkService.getScrapSearchResponse(SharedPreferenceController.getAuthorization(activity!!), query, 999, 0)
-        getScrapSearchResponse.enqueue(object : Callback<GetNoticeListResponse>{
-            override fun onFailure(call: Call<GetNoticeListResponse>, t : Throwable){
-                Log.e("response body fail", t.toString())
-            }
-            override fun onResponse(call: Call<GetNoticeListResponse>, response: Response<GetNoticeListResponse>){
-                if (response.isSuccessful) {
-                    if(response.body()!!.status == 204) {
-                        frag_mypage_user_search_rl.visibility = View.VISIBLE
-                        fragment_mypage_user_search_list_ll.visibility = View.GONE
-                        fragment_my_page_user_tv_scrapCnt.text = "0"
-                    }
-                    else if(response.body()!!.status == 200) {
-                        frag_mypage_user_search_rl.visibility = View.GONE
-                        fragment_mypage_user_search_list_ll.visibility = View.VISIBLE
-                        setRecyclerView()
-                        val temp: ArrayList<NoticeData> = response.body()!!.data
-                        val position = smatchingScrapFragmentRecyclerViewAdapter.itemCount
-                        val scrapCnt: TextView = fragment_my_page_user_tv_scrapCnt
-                        scrapCnt.setText(temp.size.toString())
-                        smatchingScrapFragmentRecyclerViewAdapter.dataList.clear()
-                        smatchingScrapFragmentRecyclerViewAdapter.dataList.addAll(temp)
-                        smatchingScrapFragmentRecyclerViewAdapter.notifyItemInserted(position)
-                    }
-                }
-            }
-        })
+        configureBottomNavigation()
     }
     private fun getUserInfo(){
         val getUserInfo = networkService.getUserInfo(SharedPreferenceController.getAuthorization(activity!!))
@@ -182,10 +76,17 @@ class MyPageFragment : Fragment(){
             }
         })
     }
+    private fun configureBottomNavigation() {
+    val mViewPager = (activity as AppCompatActivity).findViewById<ViewPager>(R.id.fragment_mypage_viewpager)
+    val mTabLayout = (activity as AppCompatActivity).findViewById<TabLayout>(R.id.fragment_mypage_tablayout)
+    val bottomNaviLayout: View = this.layoutInflater.inflate(R.layout.mypage_tab, null, false)
 
-    private fun replaceFragment(fragment: Fragment) {
-        val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.act_bottom_navi_fl, fragment)
-        transaction.commit()
+    mViewPager.adapter = MyPageAdapter((activity as AppCompatActivity).supportFragmentManager, 2)
+    mTabLayout.setupWithViewPager(mViewPager)
+    mTabLayout.getTabAt(0)!!.customView = bottomNaviLayout.findViewById(R.id.fragment_my_page_user_smatchingscrap) as ImageView
+    mTabLayout.getTabAt(1)!!.customView = bottomNaviLayout.findViewById(R.id.fragment_my_page_user_talkscrap) as ImageView
     }
 }
+
+
+
