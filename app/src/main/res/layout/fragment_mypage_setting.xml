@@ -251,6 +251,7 @@
                 android:textColor="#212e4f"
                 android:textSize="18sp" />
             <TextView
+                android:id="@+id/frag_my_page_setting_tv_version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -258,7 +259,6 @@
                 android:layout_marginRight="45dp"
                 android:fontFamily="@font/nanumsquarer"
                 android:lineSpacingExtra="3sp"
-                android:text="1.0.4"
                 android:textColor="#d9d9d9"
                 android:textSize="14sp" />
         </RelativeLayout>

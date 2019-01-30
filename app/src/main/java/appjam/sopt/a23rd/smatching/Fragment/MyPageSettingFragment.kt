@@ -36,6 +36,9 @@ class MyPageSettingFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        frag_my_page_setting_tv_version.text = BuildConfig.VERSION_NAME
+
+
         fragment_mypage_setting_rl_memberinfo_setting.setOnClickListener {
             replaceFragment(MyPageSettingMemberInfoFragment())
         }

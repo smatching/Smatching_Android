@@ -110,7 +110,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="-13dp"
+            android:layout_marginTop="-15dp"
             android:focusableInTouchMode="true">
             <ImageView
                 android:src="@drawable/img_mypage_scrapbox_bottom"
@@ -137,7 +137,7 @@
                     android:id="@+id/fragment_my_page_user_iv_noscrap"
                     android:src="@drawable/img_mypage_no_scrap"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_centerInParent="true"
                     android:visibility="gone"/>
                 <android.support.v7.widget.RecyclerView
